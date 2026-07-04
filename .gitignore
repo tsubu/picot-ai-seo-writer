@@ -1,0 +1,7 @@
+logs/
+*.log
+.DS_Store
+._*
+*.po~
+node_modules/
+vendor/

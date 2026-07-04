@@ -1,0 +1,179 @@
+/**
+ * Picot AI SEO Writer Setup Wizard CSS
+ */
+
+.picot-wizard-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 99999;
+    display: flex;
+    align-items: flex-start !important;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 20px; /* 全体のパディングを最小限に */
+}
+
+.picot-wizard-container {
+    width: 90%;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    overflow: hidden;
+    animation: picot-fade-in 0.3s ease-out;
+    margin-top: 40px !important; /* バランスの良い高さに微調整 */
+    margin-bottom: 60px;
+}
+
+@keyframes picot-fade-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.picot-wizard-header {
+    background: #2271b1;
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.picot-wizard-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.picot-wizard-subtitle {
+    margin: 10px 0 0;
+    opacity: 0.9;
+    font-size: 14px;
+}
+
+.picot-wizard-content {
+    padding: 40px 50px;
+}
+
+/* ── スクリーン切り替え ── */
+.picot-wizard-screen {
+    display: none;
+}
+.picot-wizard-screen.active {
+    display: block;
+}
+
+/* ── ステップインジケーター ── */
+.picot-wizard-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin-top: 20px;
+}
+
+.picot-wizard-step-indicator {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.picot-wizard-step-indicator.active {
+    background: #fff;
+    color: #2271b1;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.picot-wizard-step-line {
+    width: 60px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.picot-wizard-step-indicator.completed {
+    background: #46b450;
+    color: #fff;
+}
+
+.picot-wizard-section h3 {
+    margin-top: 0;
+    font-size: 18px;
+    border-bottom: 2px solid #f0f0f1;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.picot-setup-steps {
+    background: #f8f9fa;
+    padding: 20px 20px 20px 40px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.picot-setup-steps li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.picot-wizard-field {
+    margin-bottom: 20px;
+}
+
+.picot-wizard-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1d2327;
+}
+
+.picot-wizard-field input[type="text"],
+.picot-wizard-field input[type="password"],
+.picot-wizard-field select {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+}
+
+.picot-wizard-footer {
+    padding: 20px 40px 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid #f0f0f1;
+}
+
+.picot-wizard-footer .button {
+    padding: 8px 20px !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    font-size: 14px !important;
+}
+
+.picot-wizard-screen h3 {
+    margin-top: 0;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #1d2327;
+}
+
+.picot-wizard-screen p {
+    color: #646970;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,62 @@
+/**
+ * 設定ページ用CSS
+ */
+.wrap h1 {
+  margin-bottom: 20px;
+}
+
+.form-table th {
+  width: 200px;
+}
+
+.form-table input[type="password"],
+.form-table input[type="text"] {
+  width: 400px;
+}
+
+.form-table select {
+  min-width: 200px;
+}
+
+.form-table .description {
+  margin-top: 5px;
+  color: #666;
+}
+
+#fetch-models {
+  margin-left: 10px;
+}
+
+.picot-ai-seo-writer-cse-help {
+  max-width: 720px;
+  margin: 0 0 0.5em;
+  padding: 12px 14px;
+  background: #f6f7f7;
+  border: 1px solid #c3c4c7;
+  border-radius: 4px;
+}
+
+.picot-ai-seo-writer-cse-help__title {
+  margin: 0 0 8px;
+}
+
+.picot-ai-seo-writer-cse-help__list {
+  margin: 0 0 0 1.25em;
+  padding: 0;
+}
+
+.picot-ai-seo-writer-cse-help__list li {
+  margin-bottom: 6px;
+}
+
+.picot-ai-seo-writer-settings-subsection td {
+  padding-top: 8px;
+}
+
+.picot-ai-seo-writer-clear-api-key-wrap {
+  margin: 10px 0 0;
+}
+
+.picot-ai-seo-writer-api-key-status {
+  margin-top: 8px;
+}

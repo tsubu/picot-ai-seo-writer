@@ -1,0 +1,558 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Picot AI SEO Writer 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/picot-tokyo/picot-ai-seo-writer/issues\n"
+"POT-Creation-Date: 2026-07-04 11:58+0900\n"
+"PO-Revision-Date: 2026-07-04 11:58+0900\n"
+"Last-Translator: PICOT\n"
+"Language-Team: PICOT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Picot AI SEO Writer i18n sync\n"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
+msgid "Picot AI SEO Writer"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "モデル一覧を取得中..."
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "モデル一覧の取得に失敗しました。"
+msgstr ""
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "次へ進む"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "設定を保存して完了する"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "接続テスト中..."
+msgstr ""
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
+msgid "ターゲットワード"
+msgstr ""
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
+msgid "例: WordPress SEO"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "調査"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "調査中..."
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "調査が完了しました"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "調査に失敗しました"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "調査履歴"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "調査履歴がありません"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "タイトルと見出しを作成"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "見出しから記事を作成"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "生成中..."
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "Geminiが執筆中..."
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "これには数十秒かかる場合があります。"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "タイトル: "
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "タイトル生成に失敗しました"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "記事を挿入しました"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "記事生成に失敗しました"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "希望追加内容"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "追加したい情報や要望を入力してください"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "ターゲットワードを入力してください"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "記事内容を入力してください"
+msgstr ""
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
+msgid "画像挿入ポイント探索"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "画像挿入ポイント:\\n\\n"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "画像: "
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "画像提案に失敗しました"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "日本語: "
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "英語: "
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "エラーが発生しました"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "成功しました"
+msgstr ""
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "取得中..."
+msgstr ""
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "モデル一覧を更新しました"
+msgstr ""
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "モデル一覧の取得に失敗しました"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "参照URLを確認"
+msgstr ""
+
+#: includes/admin/class-admin.php
+msgid "設定"
+msgstr ""
+
+#: includes/admin/class-meta-box.php
+msgid "Gemini 記事生成"
+msgstr ""
+
+#: includes/admin/class-meta-box.php
+msgid "希望追加内容（任意）"
+msgstr ""
+
+#: includes/admin/class-meta-box.php
+msgid "記事に含めたい具体的な情報や、トーン、構成案などがあれば入力してください"
+msgstr ""
+
+#: includes/admin/class-meta-box.php
+msgid "出力言語"
+msgstr ""
+
+#: includes/admin/class-meta-box.php
+msgid "日本語"
+msgstr ""
+
+#: includes/admin/class-meta-box.php
+msgid "English"
+msgstr ""
+
+#: includes/admin/class-meta-box.php
+msgid "简体中文"
+msgstr ""
+
+#: includes/admin/class-meta-box.php
+msgid "繁體中文"
+msgstr ""
+
+#: includes/admin/class-meta-box.php
+msgid "記事を生成"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "APIキーを破棄しました。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "Google Gemini 連携"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "Googleの最新AIによる執筆と検索機能の設定"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "APIキー"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "取得ガイド"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "接続テスト"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "Google AI Studioで取得したAPIキーを入力してください。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Picot AIO AI Content Optimizer や WordPress AI（Google コネクター）など、他の AI プラ"
+"グインで Gemini API キーが設定済みの場合、未設定時に自動で引き継ぎます。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "APIキーを破棄する"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "テキストモデル"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "利用可能なモデルがありません。まずモデル一覧を更新してください。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "モデル一覧を更新"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "推奨モデル: %s"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "「モデル一覧を更新」をクリックして、利用可能なモデルを取得してください。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "画像生成モデル"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "画像生成に使用するモデルを選択します。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"画像生成モデル（Imagen など）の利用には、Google AI の有料 API プラン（課金設定済み）が必要です。無料枠のみの API "
+"キーでは画像生成が利用できない場合があります。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "執筆スタイル設定"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "生成される文章のトーンなどを設定"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "文章スタイル"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "カジュアル (親しみやすい)"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "プロフェッショナル (丁寧・信頼)"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "フレンドリー (温かみ)"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "テクニカル (専門・正確)"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "ユーモア (軽快・面白い)"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "説得力 (情熱・主張)"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "インフォマティブ (事実・解説)"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "画像スタイル"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "実写風 (Photorealistic)"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "デジタルアート"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "ベクターイラスト"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "スケッチ風"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "水彩画風"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "サイバーパンク"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "アニメ風"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "油絵風"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "記事内に挿入される画像のトーンを指定します。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "設定を保存"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "Gemini 連携セットアップ"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "1. Gemini APIキーを設定"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "Google AI Studioから無料でAPIキーを取得し、以下に貼り付けてください。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "APIキーを取得する (Google AI Studio)"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "2. 使用するモデルを選択"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "執筆に使用するGeminiモデルを選択してください。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "利用可能なモデルがありません。まずAPIキーを入力してください。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "再取得"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "推奨テキストモデル: %s"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "利用可能なモデルがありません。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "戻る"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "キャンセル"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "この操作を実行する権限がありません。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "APIキーが必要です。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "通信エラーが発生しました。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "利用可能なモデルが見つかりませんでした。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "APIキーが入力されていません。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "利用可能なモデルがありません。APIキーを確認するか、モデル一覧を更新してください。"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "通信エラー: "
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "✅ Geminiへの接続に成功しました"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "接続に失敗しました。"
+msgstr ""
+
+#: includes/api/class-gemini-client.php
+#: includes/api/class-image-generator.php
+msgid "Gemini APIキーが設定されていません。"
+msgstr ""
+
+#: includes/api/class-gemini-client.php
+msgid "テキストモデルが設定されていません。設定画面でモデルを選択してください。"
+msgstr ""
+
+#: includes/api/class-gemini-client.php
+msgid "Gemini APIエラーが発生しました。"
+msgstr ""
+
+#: includes/api/class-image-generator.php
+msgid "Image Gen Failed (%1$s): %2$s"
+msgstr ""
+
+#: includes/class-api-settings-sync.php
+msgid "他の AI プラグイン（%s）の設定から Gemini API キー等を自動で引き継ぎました。"
+msgstr ""
+
+#: includes/class-api-settings-sync.php
+msgid "Picot AIO AI Content Optimizer"
+msgstr ""
+
+#: includes/class-api-settings-sync.php
+msgid "WordPress AI（Google コネクター）"
+msgstr ""
+
+#: includes/class-api-settings-sync.php
+msgid "Picot AI SEO Writer（旧設定）"
+msgstr ""
+
+#: includes/class-api-settings-sync.php
+msgid "環境変数 GEMINI_API_KEY"
+msgstr ""
+
+#: includes/class-api-settings-sync.php
+msgid "環境変数 GOOGLE_API_KEY"
+msgstr ""
+
+#: includes/rest/class-content-endpoint.php
+msgid "コンテンツが空です。"
+msgstr ""
+
+#: includes/rest/class-content-endpoint.php
+msgid "JSON解析失敗 (%s)。"
+msgstr ""
+
+#: includes/rest/class-content-endpoint.php
+msgid "画像提案を Optimizer に保存しました。"
+msgstr ""
+
+#: includes/rest/class-content-endpoint.php
+msgid "ターゲットワードは必須です"
+msgstr ""
+
+#: includes/rest/class-content-endpoint.php
+msgid "調査IDは必須です"
+msgstr ""
+
+#: includes/rest/class-content-endpoint.php
+#: includes/rest/class-research-endpoint.php
+msgid "調査データが見つかりません"
+msgstr ""
+
+#: includes/rest/class-content-endpoint.php
+msgid "調査データにURLが含まれていません"
+msgstr ""
+
+#: includes/rest/class-content-endpoint.php
+msgid "先にタイトルと見出しを生成するか、エディタに見出しを入力してください"
+msgstr ""
+
+#: includes/rest/class-image-endpoint.php
+msgid "記事内容は必須です"
+msgstr ""
+
+#: includes/rest/class-image-endpoint.php
+msgid "プロンプトは必須です"
+msgstr ""
+
+#: includes/rest/class-models-endpoint.php
+msgid "Gemini APIキーが設定されていません。設定画面からAPIキーを入力してください。"
+msgstr ""
+
+#: includes/rest/class-research-endpoint.php
+msgid "キーワードと投稿IDは必須です"
+msgstr ""
+
+#: includes/rest/class-research-endpoint.php
+msgid "調査データの保存に失敗しました"
+msgstr ""
+
+#: includes/rest/class-research-endpoint.php
+msgid "投稿IDは必須です"
+msgstr ""
+
+#: view-logs.php
+msgid "このページは管理者権限が必要です。先にWordPressにログインしてください。"
+msgstr ""
