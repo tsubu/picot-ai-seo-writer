@@ -29,19 +29,19 @@ class Research_Endpoint extends REST_Controller
         register_rest_route($this->namespace, '/research', [
             'methods' => 'POST',
             'callback' => [$this, 'create_research'],
-            'permission_callback' => [$this, 'check_edit_permission'],
+            'permission_callback' => [$this, 'check_post_edit_permission'],
         ]);
 
         register_rest_route($this->namespace, '/research/history', [
             'methods' => 'GET',
             'callback' => [$this, 'get_history'],
-            'permission_callback' => [$this, 'check_edit_permission'],
+            'permission_callback' => [$this, 'check_post_edit_permission'],
         ]);
 
         register_rest_route($this->namespace, '/research/(?P<id>\d+)', [
             'methods' => 'GET',
             'callback' => [$this, 'get_research'],
-            'permission_callback' => [$this, 'check_edit_permission'],
+            'permission_callback' => [$this, 'check_research_route_edit_permission'],
         ]);
     }
 

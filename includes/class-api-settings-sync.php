@@ -39,7 +39,6 @@ class Api_Settings_Sync
     {
         $compatible = [
             'picot-aio-ai-content-optimizer/picot-aio-ai-content-optimizer.php',
-            'ai/ai.php',
             'ai-provider-for-google/plugin.php',
         ];
 
@@ -179,11 +178,6 @@ class Api_Settings_Sync
                 'getter' => [self::class, 'get_picot_aio_api_key'],
             ],
             [
-                'id' => 'wordpress_ai_google',
-                'label' => self::get_source_label('wordpress_ai_google'),
-                'getter' => [self::class, 'get_wordpress_ai_google_api_key'],
-            ],
-            [
                 'id' => 'legacy',
                 'label' => self::get_source_label('legacy'),
                 'getter' => [self::class, 'get_legacy_api_key'],
@@ -224,32 +218,6 @@ class Api_Settings_Sync
     public static function get_picot_aio_api_key()
     {
         return (string) get_option('picot_aio_optimizer_api_key', '');
-    }
-
-    /**
-     * @return string
-     */
-    public static function get_wordpress_ai_google_api_key()
-    {
-        if (function_exists('WordPress\AI\get_connector_api_key_source')) {
-            $source = \WordPress\AI\get_connector_api_key_source(
-                'connectors_ai_google_api_key',
-                'GOOGLE_API_KEY',
-                'GOOGLE_API_KEY'
-            );
-
-            if ($source === 'env') {
-                $env_value = getenv('GOOGLE_API_KEY');
-                return is_string($env_value) ? $env_value : '';
-            }
-
-            if ($source === 'constant' && defined('GOOGLE_API_KEY')) {
-                $const_value = constant('GOOGLE_API_KEY');
-                return is_string($const_value) ? $const_value : '';
-            }
-        }
-
-        return (string) get_option('connectors_ai_google_api_key', '');
     }
 
     /**

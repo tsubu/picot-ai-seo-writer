@@ -4,7 +4,7 @@ Tags: seo, ai, gemini, writing, content
 Requires at least: 6.7
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,12 @@ The plugin is free. Gemini API usage may incur costs depending on your Google AI
 
 == Changelog ==
 
+= 1.0.1 =
+* Fixed Plugin URI and moved runtime logs to the uploads directory.
+* Removed dev-only log viewer and plugin-directory file writes.
+* Strengthened REST API permission checks for post-specific access.
+* Stopped reading WordPress AI Client connector API keys directly.
+
 = 1.0.0 =
 * Initial public release.
 * Gemini-powered article generation with Google Search grounding.
@@ -75,6 +81,9 @@ The plugin is free. Gemini API usage may incur costs depending on your Google AI
 * Reference URL resolution for grounded sources.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Review fixes: logging location, REST permissions, and credential handling updates.
 
 = 1.0.0 =
 Initial release.

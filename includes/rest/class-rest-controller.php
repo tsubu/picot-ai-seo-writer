@@ -72,6 +72,73 @@ abstract class REST_Controller
     }
 
     /**
+     * Verify the current user may edit a specific post from the request.
+     *
+     * @param \WP_REST_Request $request REST request.
+     * @param string           $param   Request parameter name for the post ID.
+     * @return bool
+     */
+    public function check_post_edit_permission($request, $param = 'post_id')
+    {
+        $post_id = (int) $request->get_param($param);
+
+        if ($post_id <= 0) {
+            return current_user_can('edit_posts');
+        }
+
+        return current_user_can('edit_post', $post_id);
+    }
+
+    /**
+     * Verify the current user may edit the post linked to a research record.
+     *
+     * @param \WP_REST_Request $request REST request.
+     * @param string           $param   Request parameter name for the research ID.
+     * @return bool
+     */
+    public function check_research_edit_permission($request, $param = 'research_id')
+    {
+        $research_id = (int) $request->get_param($param);
+        if ($research_id <= 0) {
+            return false;
+        }
+
+        $repository = new \PICOT_SEO_WRITING\Database\Research_Repository();
+        $research = $repository->get_by_id($research_id);
+        if (!$research || empty($research['post_id'])) {
+            return false;
+        }
+
+        return current_user_can('edit_post', (int) $research['post_id']);
+    }
+
+    /**
+     * Verify the current user may edit the post linked to a research record ID route param.
+     *
+     * @param \WP_REST_Request $request REST request.
+     * @return bool
+     */
+    public function check_research_route_edit_permission($request)
+    {
+        return $this->check_research_edit_permission($request, 'id');
+    }
+
+    /**
+     * Verify upload and post edit permissions for image generation.
+     *
+     * @param \WP_REST_Request $request REST request.
+     * @return bool
+     */
+    public function check_generate_image_permission($request)
+    {
+        if (!current_user_can('upload_files')) {
+            return false;
+        }
+
+        return $this->check_post_edit_permission($request, 'post_id');
+    }
+
+    /**
      * 管理権限をチェック
      *
      * @return bool 権限があればtrue

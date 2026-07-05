@@ -171,8 +171,6 @@ class Image_Generator extends Gemini_Client
         }
 
         require_once ABSPATH . 'wp-admin/includes/image.php';
-        require_once ABSPATH . 'wp-admin/includes/file.php';
-        require_once ABSPATH . 'wp-admin/includes/media.php';
 
         $attach_data = wp_generate_attachment_metadata($attach_id, $file_path);
         wp_update_attachment_metadata($attach_id, $attach_data);

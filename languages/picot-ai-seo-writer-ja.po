@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Picot AI SEO Writer 1.0.0\n"
-"Report-Msgid-Bugs-To: https://github.com/picot-tokyo/picot-ai-seo-writer/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
 "POT-Creation-Date: 2026-07-04 11:58+0900\n"
 "PO-Revision-Date: 2026-07-04 11:58+0900\n"
 "Last-Translator: PICOT\n"

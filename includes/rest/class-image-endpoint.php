@@ -34,7 +34,7 @@ class Image_Endpoint extends REST_Controller
         register_rest_route($this->namespace, '/generate-image', [
             'methods' => 'POST',
             'callback' => [$this, 'generate_image'],
-            'permission_callback' => [$this, 'check_upload_permission'],
+            'permission_callback' => [$this, 'check_generate_image_permission'],
         ]);
     }
 

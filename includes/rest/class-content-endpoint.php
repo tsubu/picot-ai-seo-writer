@@ -30,33 +30,33 @@ class Content_Endpoint extends REST_Controller
         register_rest_route($this->namespace, '/generate-title', [
             'methods' => 'POST',
             'callback' => [$this, 'generate_title'],
-            'permission_callback' => [$this, 'check_edit_permission'],
+            'permission_callback' => [$this, 'check_research_edit_permission'],
         ]);
 
         register_rest_route($this->namespace, '/generate-article', [
             'methods' => 'POST',
             'callback' => [$this, 'generate_article'],
-            'permission_callback' => [$this, 'check_edit_permission'],
+            'permission_callback' => [$this, 'check_research_edit_permission'],
         ]);
 
         // 直接生成エンドポイント
         register_rest_route($this->namespace, '/generate-article-direct', [
             'methods' => 'POST',
             'callback' => [$this, 'generate_article_direct'],
-            'permission_callback' => [$this, 'check_edit_permission'],
+            'permission_callback' => [$this, 'check_post_edit_permission'],
         ]);
 
         // メタデータ保存専用エンドポイント
         register_rest_route($this->namespace, '/save-meta', [
             'methods' => 'POST',
             'callback' => [$this, 'save_post_meta'],
-            'permission_callback' => [$this, 'check_edit_permission'],
+            'permission_callback' => [$this, 'check_post_edit_permission'],
         ]);
 
         register_rest_route($this->namespace, '/insert-image-prompts', [
             'methods' => 'POST',
             'callback' => [$this, 'handle_insert_image_prompts'],
-            'permission_callback' => [$this, 'check_edit_permission'],
+            'permission_callback' => [$this, 'check_post_edit_permission'],
         ]);
     }
 

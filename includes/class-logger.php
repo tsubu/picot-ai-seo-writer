@@ -19,8 +19,10 @@ class Logger
 {
     /**
      * ログディレクトリ
+     *
+     * @var string|false
      */
-    private static $log_dir;
+    private static $log_dir = false;
 
     /**
      * ログレベル
@@ -35,30 +37,44 @@ class Logger
      */
     public static function init()
     {
-        self::$log_dir = PICOT_SEO_WRITING_PLUGIN_DIR . 'logs/';
+        self::$log_dir = self::get_log_directory();
+        if (self::$log_dir) {
+            self::ensure_log_directory_protection();
+        }
+    }
+
+    /**
+     * Resolve the uploads-based log directory path.
+     *
+     * @return string|false
+     */
+    private static function get_log_directory()
+    {
+        $upload_dir = wp_upload_dir();
+        if (!empty($upload_dir['error'])) {
+            return false;
+        }
+
+        return trailingslashit($upload_dir['basedir']) . 'picot-ai-seo-writer/logs/';
+    }
+
+    /**
+     * Create log directory guard files when missing.
+     */
+    private static function ensure_log_directory_protection()
+    {
+        if (!self::$log_dir) {
+            return;
+        }
 
         if (!file_exists(self::$log_dir)) {
             wp_mkdir_p(self::$log_dir);
         }
 
-        self::ensure_log_directory_protection();
-    }
-
-    /**
-     * Create log directory guard files when missing (runtime only, not shipped in release ZIP).
-     */
-    private static function ensure_log_directory_protection()
-    {
         $index = self::$log_dir . 'index.php';
         if (!file_exists($index)) {
             // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- Bootstrap guard file for logs directory.
             file_put_contents($index, "<?php\n// Silence is golden.\n");
-        }
-
-        $htaccess = self::$log_dir . '.htaccess';
-        if (!file_exists($htaccess)) {
-            // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- Apache guard file for logs directory.
-            file_put_contents($htaccess, "Order deny,allow\nDeny from all\n");
         }
     }
 
@@ -67,12 +83,16 @@ class Logger
      *
      * @param string $message メッセージ
      * @param string $level ログレベル
-     * @param array $context コンテキスト情報
+     * @param array  $context コンテキスト情報
      */
     public static function log($message, $level = self::LEVEL_INFO, $context = [])
     {
         if (!self::$log_dir) {
             self::init();
+        }
+
+        if (!self::$log_dir) {
+            return;
         }
 
         $timestamp = current_time('Y-m-d H:i:s');
@@ -85,14 +105,12 @@ class Logger
             $message
         );
 
-        // コンテキスト情報があれば追加
         if (!empty($context)) {
-            $log_entry .= "Context: " . json_encode($context, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . "\n";
+            $log_entry .= 'Context: ' . wp_json_encode($context, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . "\n";
         }
 
         $log_entry .= str_repeat('-', 80) . "\n";
 
-        // ログファイルに書き込み
         // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
         error_log($log_entry, 3, $log_file);
     }
@@ -101,7 +119,7 @@ class Logger
      * デバッグログ
      *
      * @param string $message メッセージ
-     * @param array $context コンテキスト情報
+     * @param array  $context コンテキスト情報
      */
     public static function debug($message, $context = [])
     {
@@ -112,7 +130,7 @@ class Logger
      * 情報ログ
      *
      * @param string $message メッセージ
-     * @param array $context コンテキスト情報
+     * @param array  $context コンテキスト情報
      */
     public static function info($message, $context = [])
     {
@@ -123,7 +141,7 @@ class Logger
      * 警告ログ
      *
      * @param string $message メッセージ
-     * @param array $context コンテキスト情報
+     * @param array  $context コンテキスト情報
      */
     public static function warning($message, $context = [])
     {
@@ -134,7 +152,7 @@ class Logger
      * エラーログ
      *
      * @param string $message メッセージ
-     * @param array $context コンテキスト情報
+     * @param array  $context コンテキスト情報
      */
     public static function error($message, $context = [])
     {
@@ -152,7 +170,15 @@ class Logger
             self::init();
         }
 
+        if (!self::$log_dir) {
+            return;
+        }
+
         $files = glob(self::$log_dir . 'picot-ai-seo-writer-*.log');
+        if (!is_array($files)) {
+            return;
+        }
+
         $cutoff = time() - ($days * DAY_IN_SECONDS);
 
         foreach ($files as $file) {
@@ -174,13 +200,21 @@ class Logger
             self::init();
         }
 
+        if (!self::$log_dir) {
+            return '';
+        }
+
         $log_file = self::$log_dir . 'picot-ai-seo-writer-' . current_time('Y-m-d') . '.log';
 
         if (!file_exists($log_file)) {
-            return 'ログファイルが見つかりません。';
+            return '';
         }
 
         $file_lines = file($log_file);
+        if (!is_array($file_lines)) {
+            return '';
+        }
+
         $recent_lines = array_slice($file_lines, -$lines);
 
         return implode('', $recent_lines);

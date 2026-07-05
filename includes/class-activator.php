@@ -32,9 +32,6 @@ class Activator
         // 他プラグインの Gemini 設定を引き継ぎ
         Api_Settings_Sync::sync(true);
 
-        // ログディレクトリの保護
-        self::protect_log_directory();
-
         // クリーンアップスケジュールの設定
         if (!wp_next_scheduled('picot_seo_writing_cleanup_old_logs')) {
             wp_schedule_event(time(), 'daily', 'picot_seo_writing_cleanup_old_logs');
@@ -86,25 +83,6 @@ class Activator
             if (get_option($key) === false) {
                 add_option($key, $value);
             }
-        }
-    }
-
-    /**
-     * ログディレクトリを保護
-     */
-    private static function protect_log_directory()
-    {
-        $log_dir = PICOT_SEO_WRITING_PLUGIN_DIR . 'logs';
-        $htaccess_file = $log_dir . '/.htaccess';
-
-        if (!file_exists($htaccess_file)) {
-            $content = "Order deny,allow\nDeny from all";
-            file_put_contents($htaccess_file, $content);
-        }
-
-        $index_file = $log_dir . '/index.php';
-        if (!file_exists($index_file)) {
-            file_put_contents($index_file, '<?php // Silence is golden');
         }
     }
 }
