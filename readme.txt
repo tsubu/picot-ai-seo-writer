@@ -65,12 +65,6 @@ Yes. The plugin supports both the block editor and the classic editor.
 
 The plugin is free. Gemini API usage may incur costs depending on your Google AI plan and usage.
 
-== Screenshots ==
-
-1. Settings page for Gemini model selection and connector link.
-2. Picot AI SEO Writer sidebar in the block editor.
-3. Generated article content and reference URL list.
-
 == Changelog ==
 
 = 1.0.3 =
