@@ -74,14 +74,9 @@ jQuery(document).ready(function($) {
         return fallback;
     }
 
-    // Geminiモデル取得関数
-    function fetchGeminiModels(apiKey, $btn) {
+    // AI モデル取得関数
+    function fetchGeminiModels($btn) {
         const deferred = $.Deferred();
-
-        if (!apiKey) {
-            deferred.reject({ message: 'APIキーを入力してください。' });
-            return deferred.promise();
-        }
 
         const originalText = $btn ? $btn.text() : null;
         if ($btn) {
@@ -94,8 +89,7 @@ jQuery(document).ready(function($) {
             dataType: 'json',
             data: {
                 action: 'picot_seo_writing_fetch_gemini_models',
-                nonce: picot_seo_writing_wizard.nonce,
-                api_key: apiKey
+                nonce: picot_seo_writing_wizard.nonce
             }
         }).done(function(response) {
             if (!response || !response.success) {
@@ -152,31 +146,42 @@ jQuery(document).ready(function($) {
         return deferred.promise();
     }
 
-    // APIキー入力時に自動取得 (blurイベント)
-    $('#picot_seo_writing_gemini_api_key').on('blur', function() {
-        fetchGeminiModels($(this).val());
+    // モデル再取得ボタン
+    $(document).on('click', '#picot-wizard-fetch-models', function() {
+        fetchGeminiModels($(this)).fail(function(error) {
+            alert((error && error.message) || 'モデル一覧の取得に失敗しました。');
+        });
     });
-
-    // 次へボタンのクリック
     $nextBtn.on('click', function() {
         if (currentStep < $screens.length - 1) {
             const $currentScreen = $screens.eq(currentStep);
             
-            // Step 1 (API Key) から Step 2 へ進む際の処理
-            if (getScreenStepId($currentScreen) === 'api_key') {
-                const apiKey = $('#picot_seo_writing_gemini_api_key').val();
-                if (!apiKey) {
-                    alert('APIキーを入力してください。');
-                    return;
-                }
-
+            // Step 1 (WordPress AI) から Step 2 へ進む際の処理
+            if (getScreenStepId($currentScreen) === 'ai_setup') {
                 $nextBtn.prop('disabled', true).text(picot_seo_writing_wizard.strings.testing || '接続テスト中...');
 
-                fetchGeminiModels(apiKey).done(function() {
-                    currentStep++;
-                    updateStep(currentStep);
-                }).fail(function(error) {
-                    alert((error && error.message) || 'APIキーが無効か、モデルの取得に失敗しました。');
+                $.ajax({
+                    url: picot_seo_writing_wizard.ajax_url,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        action: 'picot_seo_writing_test_connection',
+                        nonce: picot_seo_writing_wizard.nonce
+                    }
+                }).done(function(response) {
+                    if (!response || !response.success) {
+                        alert(getErrorMessage(response, 'Google Gemini コネクターへの接続に失敗しました。'));
+                        return;
+                    }
+
+                    fetchGeminiModels(null).done(function() {
+                        currentStep++;
+                        updateStep(currentStep);
+                    }).fail(function(error) {
+                        alert((error && error.message) || 'モデルの取得に失敗しました。');
+                    });
+                }).fail(function() {
+                    alert('Google Gemini コネクターへの接続テストに失敗しました。');
                 }).always(function() {
                     $nextBtn.prop('disabled', false).text(
                         currentStep === $screens.length - 1
@@ -192,14 +197,6 @@ jQuery(document).ready(function($) {
         } else {
             $form.submit();
         }
-    });
-
-    // モデル再取得ボタン
-    $(document).on('click', '#picot-wizard-fetch-models', function() {
-        const apiKey = $('#picot_seo_writing_gemini_api_key').val();
-        fetchGeminiModels(apiKey, $(this)).fail(function(error) {
-            alert((error && error.message) || 'モデル一覧の取得に失敗しました。');
-        });
     });
 
     // フォーカス時にパスワードを表示

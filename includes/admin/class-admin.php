@@ -178,9 +178,9 @@ class Admin
             ]);
 
             // ウィザード用アセット
-            $gemini_key = get_option('picot_seo_writing_gemini_api_key', '');
+            $ai_configured = \PICOT_SEO_WRITING\Ai_Client_Helper::supports_text_generation();
             $view = filter_input(INPUT_GET, 'view', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: '';
-            $is_wizard = ($view === 'wizard') || (empty($gemini_key) && $view !== 'standard');
+            $is_wizard = ($view === 'wizard') || (!$ai_configured && $view !== 'standard');
 
             if ($is_wizard) {
                 $wizard_css_path = PICOT_SEO_WRITING_PLUGIN_DIR . 'assets/css/wizard.css';

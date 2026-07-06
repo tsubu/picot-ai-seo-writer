@@ -7,7 +7,9 @@
 
 namespace PICOT_SEO_WRITING\Admin;
 
+use PICOT_SEO_WRITING\Ai_Client_Helper;
 use PICOT_SEO_WRITING\Api_Settings_Sync;
+use PICOT_SEO_WRITING\API\Model_Manager;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -84,7 +86,6 @@ class Settings_Page
      */
     public function register_settings()
     {
-        register_setting(self::OPTION_GROUP, 'picot_seo_writing_gemini_api_key', ['sanitize_callback' => 'sanitize_text_field']);
         register_setting(self::OPTION_GROUP, 'picot_seo_writing_text_model', ['sanitize_callback' => 'sanitize_text_field']);
         register_setting(self::OPTION_GROUP, 'picot_seo_writing_image_model', ['sanitize_callback' => 'sanitize_text_field']);
         register_setting(self::OPTION_GROUP, 'picot_seo_writing_writing_style', ['sanitize_callback' => 'sanitize_text_field']);
@@ -108,28 +109,18 @@ class Settings_Page
             add_settings_error('picot_seo_writing_messages', 'api_sync', $sync_notice, 'updated');
         }
 
-        $view = isset($_GET['view']) ? sanitize_text_field(wp_unslash($_GET['view'])) : 'standard';
+        $view = filter_input(INPUT_GET, 'view', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $view = is_string($view) && $view !== '' ? $view : 'standard';
 
         if ($view === 'wizard') {
             $this->render_wizard();
             return;
         }
 
-        // キー破棄処理
-        if (isset($_POST['picot_seo_writing_clear_key']) && check_admin_referer('picot-ai-seo-writer-options-options')) {
-            delete_option('picot_seo_writing_gemini_api_key');
-            wp_safe_redirect(add_query_arg('picot-ai-seo-writer-key-cleared', '1', admin_url('options-general.php?page=' . self::PAGE_SLUG)));
-            exit;
-        }
-
-        if (isset($_GET['picot-ai-seo-writer-key-cleared'])) {
-            add_settings_error('picot_seo_writing_messages', 'key_cleared', __('APIキーを破棄しました。', 'picot-ai-seo-writer'), 'updated');
-        }
-
         settings_errors('picot_seo_writing_messages');
 
-        $gemini_key = get_option('picot_seo_writing_gemini_api_key', '');
-        $has_key = !empty($gemini_key);
+        $ai_configured = Ai_Client_Helper::supports_text_generation();
+        $ai_settings_url = Ai_Client_Helper::get_settings_url();
 ?>
         <div class="wrap picot-settings-page">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
@@ -137,47 +128,35 @@ class Settings_Page
             <form action="options.php" method="post">
                 <?php settings_fields(self::OPTION_GROUP); ?>
 
-                <!-- ── Gemini連携カード ── -->
+                <!-- ── WordPress AI 連携カード ── -->
                 <div class="picot-settings-card">
                     <div class="picot-card-header">
                         <div class="picot-card-icon icon-gemini">
-                            <span class="dashicons dashicons-rest-api"></span>
+                            <span class="dashicons dashicons-admin-generic"></span>
                         </div>
                         <div>
                             <p class="picot-card-title"><?php esc_html_e('Google Gemini 連携', 'picot-ai-seo-writer'); ?></p>
-                            <p class="picot-card-desc"><?php esc_html_e('Googleの最新AIによる執筆と検索機能の設定', 'picot-ai-seo-writer'); ?></p>
+                            <p class="picot-card-desc"><?php esc_html_e('Google Gemini コネクター（設定 → コネクター）の接続が必要です', 'picot-ai-seo-writer'); ?></p>
                         </div>
                     </div>
                     <div class="picot-card-body">
                         <table class="form-table" role="presentation"><tbody>
                         <tr>
-                            <th scope="row"><label for="picot_seo_writing_gemini_api_key"><?php esc_html_e('APIキー', 'picot-ai-seo-writer'); ?></label></th>
+                            <th scope="row"><?php esc_html_e('接続状態', 'picot-ai-seo-writer'); ?></th>
                             <td>
-                                <div class="picot-field-with-guide">
-                                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                                        <input type="password" id="picot_seo_writing_gemini_api_key" name="picot_seo_writing_gemini_api_key" 
-                                               value="<?php echo esc_attr($gemini_key); ?>" 
-                                               placeholder="AIza...." class="regular-text picot-hover-show" autocomplete="new-password">
-                                        <a href="<?php echo esc_url(add_query_arg(['view' => 'wizard'], admin_url('options-general.php?page=' . self::PAGE_SLUG))); ?>" class="picot-guide-btn">
-                                            <?php esc_html_e('取得ガイド', 'picot-ai-seo-writer'); ?>
-                                        </a>
-                                        <button type="button" class="button picot-test-connection-btn" data-provider="gemini">
-                                            <?php esc_html_e('接続テスト', 'picot-ai-seo-writer'); ?>
-                                        </button>
-                                        <span class="picot-connection-test-result" id="picot-test-result-gemini"></span>
-                                    </div>
-                                </div>
-                                <p class="description"><?php esc_html_e('Google AI Studioで取得したAPIキーを入力してください。', 'picot-ai-seo-writer'); ?></p>
-                                <?php if (Api_Settings_Sync::has_external_api_key_source() && empty($gemini_key)) : ?>
-                                    <p class="description"><?php esc_html_e('Picot AIO AI Content Optimizer や WordPress AI（Google コネクター）など、他の AI プラグインで Gemini API キーが設定済みの場合、未設定時に自動で引き継ぎます。', 'picot-ai-seo-writer'); ?></p>
+                                <?php if ($ai_configured) : ?>
+                                    <p style="margin: 0 0 10px; color: #155724;"><?php esc_html_e('✅ Google Gemini コネクターが接続され、テキスト生成が利用可能です。', 'picot-ai-seo-writer'); ?></p>
+                                <?php else : ?>
+                                    <p style="margin: 0 0 10px; color: #856404;"><?php esc_html_e('Google Gemini コネクターが未設定、またはテキスト生成に対応していません。', 'picot-ai-seo-writer'); ?></p>
                                 <?php endif; ?>
-                                <?php if ($has_key) : ?>
-                                    <div style="margin-top: 10px;">
-                                        <button type="submit" name="picot_seo_writing_clear_key" value="1" class="button button-secondary" onclick="return confirm('APIキーを破棄しますか？');">
-                                            <?php esc_html_e('APIキーを破棄する', 'picot-ai-seo-writer'); ?>
-                                        </button>
-                                    </div>
-                                <?php endif; ?>
+                                <a href="<?php echo esc_url($ai_settings_url); ?>" class="button">
+                                    <?php esc_html_e('AI コネクター設定を開く', 'picot-ai-seo-writer'); ?>
+                                </a>
+                                <button type="button" class="button picot-test-connection-btn" data-provider="ai">
+                                    <?php esc_html_e('接続テスト', 'picot-ai-seo-writer'); ?>
+                                </button>
+                                <span class="picot-connection-test-result" id="picot-test-result-ai"></span>
+                                <p class="description"><?php esc_html_e('このプラグインは Google Gemini コネクターを使用します。API キーは設定 → コネクターで管理してください。このプラグインは WordPress AI Client 経由でリクエストします。', 'picot-ai-seo-writer'); ?></p>
                             </td>
                         </tr>
                         <tr>
@@ -319,7 +298,8 @@ class Settings_Page
      */
     public function render_wizard()
     {
-        $gemini_key = get_option('picot_seo_writing_gemini_api_key', '');
+        $ai_configured = Ai_Client_Helper::supports_text_generation();
+        $ai_settings_url = Ai_Client_Helper::get_settings_url();
 ?>
         <div class="picot-wizard-wrap">
             <div class="picot-wizard-container">
@@ -331,7 +311,7 @@ class Settings_Page
                                 <path d="M12 6L13.1 8.9L16 10L13.1 11.1L12 14L10.9 11.1L8 10L10.9 8.9L12 6Z" fill="#8E75FF" />
                             </svg>
                         </div>
-                        <h2 style="margin:0;"><?php esc_html_e('Gemini 連携セットアップ', 'picot-ai-seo-writer'); ?></h2>
+                        <h2 style="margin:0;"><?php esc_html_e('Google Gemini セットアップ', 'picot-ai-seo-writer'); ?></h2>
                     </div>
                     <div class="picot-wizard-steps">
                         <div class="picot-wizard-step-indicator active" data-step="0">1</div>
@@ -345,31 +325,35 @@ class Settings_Page
                     <input type="hidden" name="_wp_http_referer" value="<?php echo esc_url(admin_url('options-general.php?page=' . self::PAGE_SLUG . '&settings-updated=true')); ?>" />
                     
                     <div class="picot-wizard-content">
-                        <!-- Step 1: API Key -->
-                        <div class="picot-wizard-screen active" data-step-id="api_key">
-                        <h3><?php esc_html_e('1. Gemini APIキーを設定', 'picot-ai-seo-writer'); ?></h3>
-                        <p><?php esc_html_e('Google AI Studioから無料でAPIキーを取得し、以下に貼り付けてください。', 'picot-ai-seo-writer'); ?></p>
-                        
+                        <!-- Step 1: WordPress AI -->
+                        <div class="picot-wizard-screen active" data-step-id="ai_setup">
+                        <h3><?php esc_html_e('1. Google Gemini コネクターを設定', 'picot-ai-seo-writer'); ?></h3>
+                        <p><?php esc_html_e('設定 → コネクターで Google（Gemini）コネクターをインストール・有効化し、API キーを接続してください。このプラグインは Gemini を使用します。', 'picot-ai-seo-writer'); ?></p>
+
                         <div style="margin: 15px 0;">
-                            <a href="https://aistudio.google.com/app/apikey" target="_blank" class="button">
-                                <span class="dashicons dashicons-external" style="margin-top: 4px;"></span>
-                                <?php esc_html_e('APIキーを取得する (Google AI Studio)', 'picot-ai-seo-writer'); ?>
+                            <a href="<?php echo esc_url($ai_settings_url); ?>" class="button">
+                                <?php esc_html_e('AI コネクター設定を開く', 'picot-ai-seo-writer'); ?>
                             </a>
                         </div>
 
-                        <div class="picot-wizard-field">
-                            <label for="picot_seo_writing_gemini_api_key"><?php esc_html_e('APIキー', 'picot-ai-seo-writer'); ?></label>
-                            <input type="password" id="picot_seo_writing_gemini_api_key" name="picot_seo_writing_gemini_api_key" 
-                                   value="<?php echo esc_attr($gemini_key); ?>" class="widefat picot-hover-show" autocomplete="new-password">
-                        </div>
-                        
+                        <p style="margin-top: 10px;">
+                            <?php if ($ai_configured) : ?>
+                                <?php esc_html_e('✅ Google Gemini コネクターが接続され、テキスト生成が利用可能です。', 'picot-ai-seo-writer'); ?>
+                            <?php else : ?>
+                                <?php esc_html_e('Gemini コネクターを接続後、「接続テスト」を実行してから次へ進んでください。', 'picot-ai-seo-writer'); ?>
+                            <?php endif; ?>
+                        </p>
+
+                        <button type="button" class="button picot-test-connection-btn" data-provider="ai">
+                            <?php esc_html_e('接続テスト', 'picot-ai-seo-writer'); ?>
+                        </button>
                         <div id="picot-wizard-test-result" style="margin-top: 10px;"></div>
                     </div>
 
                     <!-- Step 2: Model selection -->
                     <div class="picot-wizard-screen" data-step-id="model_selection" style="display:none;">
                         <h3><?php esc_html_e('2. 使用するモデルを選択', 'picot-ai-seo-writer'); ?></h3>
-                        <p><?php esc_html_e('執筆に使用するGeminiモデルを選択してください。', 'picot-ai-seo-writer'); ?></p>
+                        <p><?php esc_html_e('執筆に使用する AI モデルを選択してください。', 'picot-ai-seo-writer'); ?></p>
                         
                         <div class="picot-wizard-field">
                             <label for="picot_seo_writing_text_model"><?php esc_html_e('テキストモデル', 'picot-ai-seo-writer'); ?></label>
@@ -385,7 +369,7 @@ class Settings_Page
                                                 printf('<option value="%s" %s>%s</option>', esc_attr($val), selected($current_model, $val, false), esc_html($label));
                                             }
                                         } else {
-                                            echo '<option value="">' . esc_html__('利用可能なモデルがありません。まずAPIキーを入力してください。', 'picot-ai-seo-writer') . '</option>';
+                                            echo '<option value="">' . esc_html__('利用可能な Gemini モデルがありません。Google Gemini コネクターを設定してから「再取得」を押してください。', 'picot-ai-seo-writer') . '</option>';
                                         }
                                         ?>
                                     </select>
@@ -439,7 +423,7 @@ class Settings_Page
     }
 
     /**
-     * AJAX: Fetch Gemini Models
+     * AJAX: Fetch available AI models from WordPress AI Client.
      */
     public function ajax_fetch_gemini_models()
     {
@@ -449,125 +433,44 @@ class Settings_Page
             wp_send_json_error(['message' => __('この操作を実行する権限がありません。', 'picot-ai-seo-writer')]);
         }
 
-        $api_key = isset($_POST['api_key']) ? sanitize_text_field(wp_unslash($_POST['api_key'])) : get_option('picot_seo_writing_gemini_api_key');
-
-        if (empty($api_key)) {
-            wp_send_json_error(['message' => __('APIキーが必要です。', 'picot-ai-seo-writer')]);
+        if (!Ai_Client_Helper::is_available()) {
+            wp_send_json_error(['message' => __('WordPress AI Client が利用できません。Google Gemini コネクターをインストールしてください。', 'picot-ai-seo-writer')]);
         }
 
-        $url = 'https://generativelanguage.googleapis.com/v1beta/models?key=' . $api_key;
-        $response = wp_remote_get($url, ['timeout' => 30]);
-
-        if (is_wp_error($response)) {
-            wp_send_json_error(['message' => __('通信エラーが発生しました。', 'picot-ai-seo-writer')]);
+        try {
+            $manager = new Model_Manager();
+            $text_items = $manager->list_models();
+            $image_items = $manager->list_image_models();
+        } catch (\Exception $e) {
+            wp_send_json_error(['message' => $e->getMessage()]);
         }
 
-        $body = json_decode(wp_remote_retrieve_body($response), true);
-        if (isset($body['error'])) {
-            wp_send_json_error(['message' => $body['error']['message']]);
-        }
-
-        $models = [];
         $text_models = [];
+        foreach ($text_items as $item) {
+            $text_models[$item['id']] = $item['name'];
+        }
+
         $image_models = [];
-        $model_descriptions = [];
-
-        if (isset($body['models'])) {
-            foreach ($body['models'] as $model) {
-                $id = str_replace('models/', '', $model['name']);
-                $display_name = isset($model['displayName']) ? $model['displayName'] : $id;
-                $description = isset($model['description']) ? $model['description'] : '';
-                
-                // 通称 (正式名) の形式で表示名を組み立て
-                $full_label = ($display_name !== $id) ? "{$display_name} ({$id})" : $id;
-                
-                // 判定用の文字列（名前と表示名を結合）
-                $check_str = $id . ' ' . $display_name;
-
-                // 画像モデル判定 (Imagen, Banana, nano-系, image-preview系)
-                if (preg_match('/(imagen|banana|nano-|image-preview)/i', $check_str)) {
-                    $image_models[$id] = $full_label;
-                } else {
-                    // それ以外はすべてテキストモデルとして扱う
-                    $text_models[$id] = $full_label;
-                }
-                
-                // 説明文を保存
-                $model_descriptions[$id] = $description;
-            }
+        foreach ($image_items as $item) {
+            $image_models[$item['id']] = $item['name'];
         }
 
         if (empty($text_models) && empty($image_models)) {
-            wp_send_json_error(['message' => __('利用可能なモデルが見つかりませんでした。', 'picot-ai-seo-writer')]);
+            wp_send_json_error(['message' => __('利用可能な Gemini モデルが見つかりませんでした。Google Gemini コネクターの接続を確認してください。', 'picot-ai-seo-writer')]);
         }
 
         update_option('picot_seo_writing_available_gemini_models', $text_models);
         update_option('picot_seo_writing_available_image_models', $image_models);
-        update_option('picot_seo_writing_gemini_model_descriptions', $model_descriptions);
-        
+
         wp_send_json_success([
             'models' => $text_models,
             'image_models' => $image_models,
-            'descriptions' => $model_descriptions
+            'descriptions' => [],
         ]);
     }
 
     /**
-     * Resolve a Gemini model ID for connection tests.
-     *
-     * @param string $api_key Gemini API key used to discover models when needed.
-     * @return string Model ID or empty string.
-     */
-    private function resolve_gemini_test_model($api_key)
-    {
-        $saved_model = get_option('picot_seo_writing_text_model', '');
-        if (!empty($saved_model)) {
-            return $saved_model;
-        }
-
-        $models = get_option('picot_seo_writing_available_gemini_models', []);
-        if (!empty($models) && is_array($models)) {
-            $first_model = array_key_first($models);
-            if (!empty($first_model)) {
-                return $first_model;
-            }
-        }
-
-        if (empty($api_key)) {
-            return '';
-        }
-
-        $url = 'https://generativelanguage.googleapis.com/v1beta/models?key=' . rawurlencode($api_key);
-        $response = wp_remote_get($url, ['timeout' => 30]);
-
-        if (is_wp_error($response)) {
-            return '';
-        }
-
-        $body = json_decode(wp_remote_retrieve_body($response), true);
-        if (empty($body['models']) || !is_array($body['models'])) {
-            return '';
-        }
-
-        foreach ($body['models'] as $model) {
-            if (empty($model['name'])) {
-                continue;
-            }
-
-            $id = str_replace('models/', '', $model['name']);
-            $display_name = isset($model['displayName']) ? $model['displayName'] : $id;
-            $check_str = $id . ' ' . $display_name;
-
-            if (!preg_match('/(imagen|banana|nano-|image-preview)/i', $check_str)) {
-                return $id;
-            }
-        }
-
-        return '';
-    }
-
-    /**
-     * AJAX: Test Connection
+     * AJAX: Test WordPress AI Client connection.
      */
     public function ajax_test_connection()
     {
@@ -577,37 +480,20 @@ class Settings_Page
             wp_send_json_error(['message' => __('この操作を実行する権限がありません。', 'picot-ai-seo-writer')]);
         }
 
-        $api_key = isset($_POST['api_key']) ? sanitize_text_field(wp_unslash($_POST['api_key'])) : get_option('picot_seo_writing_gemini_api_key');
-
-        if (empty($api_key)) {
-            wp_send_json_error(['message' => __('APIキーが入力されていません。', 'picot-ai-seo-writer')]);
+        if (!Ai_Client_Helper::is_available()) {
+            wp_send_json_error(['message' => __('WordPress AI Client が利用できません。Google Gemini コネクターをインストールしてください。', 'picot-ai-seo-writer')]);
         }
 
-        $test_model = $this->resolve_gemini_test_model($api_key);
-        if (empty($test_model)) {
-            wp_send_json_error(['message' => __('利用可能なモデルがありません。APIキーを確認するか、モデル一覧を更新してください。', 'picot-ai-seo-writer')]);
+        $builder = Ai_Client_Helper::create_google_prompt_builder(__('Hello', 'picot-ai-seo-writer'));
+        if (!$builder || !$builder->is_supported_for_text_generation()) {
+            wp_send_json_error(['message' => __('Google Gemini コネクターが設定されていません。設定 → コネクターで Gemini を接続してください。', 'picot-ai-seo-writer')]);
         }
 
-        $url = 'https://generativelanguage.googleapis.com/v1beta/models/' . rawurlencode($test_model) . ':generateContent?key=' . rawurlencode($api_key);
-        $response = wp_remote_post($url, [
-            'headers' => ['Content-Type' => 'application/json'],
-            'body' => wp_json_encode([
-                'contents' => [['parts' => [['text' => 'Hi']]]],
-            ]),
-            'timeout' => 30,
-        ]);
-
-        if (is_wp_error($response)) {
-            wp_send_json_error(['message' => __('通信エラー: ', 'picot-ai-seo-writer') . $response->get_error_message()]);
+        $result = $builder->generate_text();
+        if (is_wp_error($result)) {
+            wp_send_json_error(['message' => '❌ ' . $result->get_error_message()]);
         }
 
-        $code = wp_remote_retrieve_response_code($response);
-        if ($code === 200) {
-            wp_send_json_success(['message' => __('✅ Geminiへの接続に成功しました', 'picot-ai-seo-writer')]);
-        }
-
-        $body = json_decode(wp_remote_retrieve_body($response), true);
-        $msg = isset($body['error']['message']) ? $body['error']['message'] : __('接続に失敗しました。', 'picot-ai-seo-writer');
-        wp_send_json_error(['message' => '❌ ' . $msg]);
+        wp_send_json_success(['message' => __('✅ Google Gemini コネクターへの接続に成功しました', 'picot-ai-seo-writer')]);
     }
 }

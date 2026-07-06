@@ -1,11 +1,15 @@
 <?php
 /**
- * Image Generator Class - Gemini Edition
+ * Image Generator Class — WordPress AI Client
  *
  * @package PICOT_SEO_WRITING\API
  */
 
 namespace PICOT_SEO_WRITING\API;
+
+use PICOT_SEO_WRITING\Ai_Client_Helper;
+use WordPress\AiClient\Files\Enums\FileTypeEnum;
+use WordPress\AiClient\Providers\Http\DTO\RequestOptions;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -18,8 +22,10 @@ require_once __DIR__ . '/class-gemini-client.php';
  */
 class Image_Generator extends Gemini_Client
 {
-    /** 画像生成モデル */
-    const IMAGE_MODEL = 'imagen-3.0-generate-002';
+    /**
+     * Default image model when unset.
+     */
+    const DEFAULT_IMAGE_MODEL = 'google/gemini-2.5-flash-image';
 
     /**
      * プロンプトから画像を生成し、メディアライブラリに保存
@@ -31,8 +37,13 @@ class Image_Generator extends Gemini_Client
      */
     public function generate_image($prompt, $post_id = 0, $style = '')
     {
-        if (empty($this->api_key)) {
-            throw new \Exception(esc_html__('Gemini APIキーが設定されていません。', 'picot-ai-seo-writer'));
+        if (!Ai_Client_Helper::is_available()) {
+            throw new \Exception(
+                esc_html__(
+                    'WordPress AI Client is not available. Install and configure the Google Gemini connector under Settings → Connectors.',
+                    'picot-ai-seo-writer'
+                )
+            );
         }
 
         $base64 = $this->call_image_api($prompt, $style);
@@ -40,100 +51,65 @@ class Image_Generator extends Gemini_Client
     }
 
     /**
-     * 画像生成APIを呼び出し、Base64データを取得
+     * Generate image bytes through WordPress AI Client.
+     *
+     * @param string $prompt Prompt text.
+     * @param string $style  Image style slug.
+     * @return string Base64-encoded image data.
      */
     protected function call_image_api($prompt, $style = '')
     {
-        $model = get_option('picot_seo_writing_image_model', self::IMAGE_MODEL);
+        $model = get_option('picot_seo_writing_image_model', self::DEFAULT_IMAGE_MODEL);
+        [$provider, $model_id] = Ai_Client_Helper::parse_model_spec($model);
 
-        // スタイル指示の追加
-        if (empty($style)) {
+        if ($provider === '' || $model_id === '') {
+            throw new \Exception(
+                esc_html__(
+                    '画像モデルが設定されていません。設定画面でモデルを選択してください。',
+                    'picot-ai-seo-writer'
+                )
+            );
+        }
+
+        if ($style === '') {
             $style = get_option('picot_seo_writing_image_style', 'photorealistic');
         }
-        $style_desc = $this->get_image_style_description($style);
-        $final_prompt = $prompt . ', ' . $style_desc;
 
-        if (strpos($model, 'imagen') !== false) {
-            // Imagen 3 format
-            $url = "{$this->api_base}/models/{$model}:predict?key={$this->api_key}";
+        $final_prompt = $prompt . ', ' . $this->get_image_style_description($style);
 
-            $body = [
-                'instances' => [
-                    ['prompt' => $final_prompt]
-                ],
-                'parameters' => [
-                    'sampleCount' => 1,
-                    'aspectRatio' => '16:9',
-                    'outputOptions' => [
-                        'mimeType' => 'image/png'
-                    ]
-                ]
-            ];
+        $request_options = new RequestOptions();
+        $request_options->setTimeout((float) PICOT_SEO_WRITING_IMAGE_API_TIMEOUT);
 
-            $json_body = wp_json_encode($body);
-            if ($json_body === false) {
-                $body['instances'][0]['prompt'] = mb_convert_encoding($final_prompt, 'UTF-8', 'UTF-8');
-                $json_body = wp_json_encode($body);
+        $builder = wp_ai_client_prompt($final_prompt)
+            ->using_provider($provider)
+            ->using_model_preference($provider, $model_id)
+            ->using_request_options($request_options)
+            ->as_output_file_type(FileTypeEnum::inline());
+
+        if (!$builder->is_supported_for_image_generation()) {
+            throw new \Exception(
+                esc_html__(
+                    '選択した Gemini モデルは画像生成に対応していません。Google Gemini コネクターの接続設定を確認してください。',
+                    'picot-ai-seo-writer'
+                )
+            );
+        }
+
+        $result = $builder->generate_image_result();
+        if (is_wp_error($result)) {
+            throw new \Exception(esc_html($result->get_error_message()));
+        }
+
+        try {
+            $image_file = $result->toImageFile();
+            $base64 = sanitize_text_field(trim($image_file->getBase64Data() ?? ''));
+            if ($base64 === '') {
+                throw new \Exception(esc_html__('画像データが返されませんでした。', 'picot-ai-seo-writer'));
             }
-        } else {
-            // Gemini (Nano Banana) format
-            $url = "{$this->api_base}/models/{$model}:generateContent?key={$this->api_key}";
-
-            $body = [
-                'contents' => [
-                    [
-                        'parts' => [
-                            ['text' => 'Generate an image based on this description: ' . $final_prompt]
-                        ]
-                    ]
-                ]
-            ];
-
-            $json_body = wp_json_encode($body);
-            if ($json_body === false) {
-                $body['contents'][0]['parts'][0]['text'] = mb_convert_encoding('Generate an image based on this description: ' . $final_prompt, 'UTF-8', 'UTF-8');
-                $json_body = wp_json_encode($body);
-            }
+            return $base64;
+        } catch (\Throwable $e) {
+            throw new \Exception(esc_html($e->getMessage()));
         }
-
-        $response = wp_remote_post($url, [
-            'headers' => ['Content-Type' => 'application/json'],
-            'body'    => $json_body,
-            'timeout' => 120,
-        ]);
-
-        if (is_wp_error($response)) {
-            throw new \Exception(esc_html($response->get_error_message()));
-        }
-
-        $code = wp_remote_retrieve_response_code($response);
-        $data = json_decode(wp_remote_retrieve_body($response), true);
-
-        if ($code !== 200) {
-            $msg = $data['error']['message'] ?? 'Image generation API error';
-            /* translators: 1: Error code, 2: Error message */
-            throw new \Exception(sprintf(esc_html__('Image Gen Failed (%1$s): %2$s', 'picot-ai-seo-writer'), esc_html($code), esc_html($msg)));
-        }
-
-        if (strpos($model, 'imagen') !== false) {
-            if (isset($data['predictions'][0]['bytesBase64Encoded'])) {
-                return $data['predictions'][0]['bytesBase64Encoded'];
-            }
-        } else {
-            if (isset($data['candidates'][0]['content']['parts'])) {
-                foreach ($data['candidates'][0]['content']['parts'] as $part) {
-                    if (isset($part['inlineData']['data'])) {
-                        return $part['inlineData']['data'];
-                    }
-                }
-            }
-        }
-
-        if (empty($base64)) {
-            throw new \Exception('Image API returned empty base64 data.');
-        }
-
-        return $base64;
     }
 
     /**
@@ -225,13 +201,14 @@ class Image_Generator extends Gemini_Client
         $styles = [
             'photorealistic' => 'photorealistic, highly detailed, 8k resolution',
             'digital_art'    => 'digital art style, vibrant colors, clean lines',
-            'vector'         => 'vector illustration, flat design, minimalist',
-            'sketch'         => 'hand-drawn sketch, pencil drawing style',
-            'watercolor'     => 'watercolor painting style, soft edges, artistic',
-            'cyberpunk'      => 'cyberpunk style, neon lights, futuristic',
-            'anime'          => 'anime style, Japanese animation aesthetic',
-            'oil_painting'   => 'oil painting style, visible brushstrokes, classic',
+            'vector'         => 'flat vector illustration, clean shapes',
+            'sketch'         => 'pencil sketch style, hand-drawn look',
+            'watercolor'     => 'watercolor painting style, soft edges',
+            'cyberpunk'      => 'cyberpunk aesthetic, neon lights',
+            'anime'          => 'anime style illustration',
+            'oil_painting'   => 'oil painting style, textured brush strokes',
         ];
+
         return $styles[$style] ?? $styles['photorealistic'];
     }
 }

@@ -43,17 +43,10 @@ class Models_Endpoint extends REST_Controller
         \PICOT_SEO_WRITING\Logger::info('get_models called');
 
         try {
-            // APIキーの存在確認
-            $api_key = get_option('picot_seo_writing_gemini_api_key', '');
-            \PICOT_SEO_WRITING\Logger::debug('API Key check', [
-                'exists' => !empty($api_key),
-                'length' => strlen($api_key)
-            ]);
-
-            if (empty($api_key)) {
-                \PICOT_SEO_WRITING\Logger::error('API key is empty');
+            if (!\PICOT_SEO_WRITING\Ai_Client_Helper::supports_text_generation()) {
+                \PICOT_SEO_WRITING\Logger::error('WordPress AI Client is not configured for text generation');
                 return $this->error_response(
-                    esc_html__('Gemini APIキーが設定されていません。設定画面からAPIキーを入力してください。', 'picot-ai-seo-writer'),
+                    esc_html__('Google Gemini コネクターが未設定です。設定 → コネクターで Gemini を接続してください。', 'picot-ai-seo-writer'),
                     400
                 );
             }
@@ -64,14 +57,13 @@ class Models_Endpoint extends REST_Controller
             $text_models = $manager->list_models();
             \PICOT_SEO_WRITING\Logger::debug('Text models retrieved', ['count' => count($text_models)]);
 
-            // モデルIDのみの配列を作成
-            $text_model_ids = array_map(function ($m) {
-                return $m['id'];
-            }, $text_models);
+            $text_models_map = [];
+            foreach ($text_models as $model) {
+                $text_models_map[$model['id']] = $model['name'];
+            }
 
-            // オプションを更新
-            if (!empty($text_model_ids)) {
-                update_option('picot_seo_writing_available_gemini_models', $text_model_ids);
+            if (!empty($text_models_map)) {
+                update_option('picot_seo_writing_available_gemini_models', $text_models_map);
                 \PICOT_SEO_WRITING\Logger::info('Saved picot_seo_writing_available_gemini_models');
             }
 
@@ -82,7 +74,7 @@ class Models_Endpoint extends REST_Controller
             \PICOT_SEO_WRITING\Logger::error('Exception in get_models', [
                 'message' => $e->getMessage(),
                 'file' => $e->getFile(),
-                'line' => $e->getLine()
+                'line' => $e->getLine(),
             ]);
             return $this->error_response($e->getMessage(), 500);
         }

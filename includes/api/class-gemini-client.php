@@ -1,139 +1,129 @@
 <?php
 /**
- * Gemini API Client
+ * AI generation client (WordPress AI Client).
  *
  * @package PICOT_SEO_WRITING\API
  */
 
 namespace PICOT_SEO_WRITING\API;
 
+use PICOT_SEO_WRITING\Ai_Client_Helper;
+use WordPress\AiClient\Providers\Http\DTO\RequestOptions;
+use WordPress\AiClient\Tools\DTO\WebSearch;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
 /**
- * Gemini API Client Class
+ * Base client for text generation through WordPress AI Client.
  */
 class Gemini_Client
 {
     /**
-     * API Key
+     * Generate content via WordPress AI Client.
      *
-     * @var string
-     */
-    protected $api_key;
-
-    /**
-     * API Base URL
-     *
-     * @var string
-     */
-    protected $api_base = 'https://generativelanguage.googleapis.com/v1beta';
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->api_key = get_option('picot_seo_writing_gemini_api_key', '');
-    }
-
-    /**
-     * Generate Content via Gemini API
-     *
-     * @param string $model Model ID
-     * @param array $contents Contents array
-     * @param array $options Additional options (tools, safetySettings, etc.)
-     * @param int $timeout Timeout in seconds
-     * @return array Response data
-     * @throws \Exception API error
+     * @param string $model    Provider/model spec (e.g. google/gemini-2.5-flash).
+     * @param array  $contents Legacy Gemini-style contents array.
+     * @param array  $options  Generation options.
+     * @param int    $timeout  Request timeout in seconds.
+     * @return array Legacy response shape with candidates.
+     * @throws \Exception When AI is unavailable or generation fails.
      */
     public function generate_content($model, $contents, $options = [], $timeout = PICOT_SEO_WRITING_API_TIMEOUT)
     {
-        if (empty($this->api_key)) {
-            throw new \Exception(esc_html__('Gemini APIキーが設定されていません。', 'picot-ai-seo-writer'));
+        if (!Ai_Client_Helper::is_available()) {
+            throw new \Exception(
+                esc_html__(
+                    'WordPress AI Client is not available. Install and configure the Google Gemini connector under Settings → Connectors.',
+                    'picot-ai-seo-writer'
+                )
+            );
         }
 
-        $model = trim((string) $model);
-        if ($model === '') {
-            throw new \Exception(esc_html__('テキストモデルが設定されていません。設定画面でモデルを選択してください。', 'picot-ai-seo-writer'));
+        [$provider, $model_id] = Ai_Client_Helper::parse_model_spec($model);
+        if ($provider === '' || $model_id === '') {
+            throw new \Exception(
+                esc_html__(
+                    'テキストモデルが設定されていません。設定画面でモデルを選択してください。',
+                    'picot-ai-seo-writer'
+                )
+            );
         }
 
-        $gen_config = [
-            'temperature'     => $options['temperature'] ?? 0.7,
-            'maxOutputTokens' => $options['max_tokens']  ?? 8192,
-        ];
-        if (!empty($options['response_mime_type'])) {
-            $gen_config['responseMimeType'] = $options['response_mime_type'];
+        $prompt = $this->contents_to_prompt($contents);
+        if ($prompt === '') {
+            throw new \Exception(esc_html__('プロンプトが空です。', 'picot-ai-seo-writer'));
         }
 
-        // デフォルトオプションの設定
-        $body = [
-            'contents'         => $contents,
-            'generationConfig' => $gen_config,
-        ];
+        $request_options = new RequestOptions();
+        $request_options->setTimeout((float) $timeout);
 
-        // Google検索ツール (Grounding) の追加
-        if (isset($options['use_search']) && $options['use_search']) {
-            $body['tools'] = [
-                ['google_search' => new \stdClass()]
-            ];
+        $builder = wp_ai_client_prompt($prompt)
+            ->using_provider($provider)
+            ->using_model_preference($provider, $model_id)
+            ->using_max_tokens((int) ($options['max_tokens'] ?? 8192))
+            ->using_temperature((float) ($options['temperature'] ?? 0.7))
+            ->using_request_options($request_options);
+
+        if (!empty($options['response_mime_type']) && $options['response_mime_type'] === 'application/json') {
+            $builder->as_json_response();
         }
 
-        $clean_model = str_replace('models/', '', $model);
-        $url = "{$this->api_base}/models/{$clean_model}:generateContent?key={$this->api_key}";
-
-        $response = wp_remote_post($url, [
-            'headers' => ['Content-Type' => 'application/json'],
-            'body' => wp_json_encode($body),
-            'timeout' => $timeout,
-        ]);
-
-        if (is_wp_error($response)) {
-            throw new \Exception(esc_html($response->get_error_message()));
+        if (!empty($options['use_search'])) {
+            $builder->using_web_search(new WebSearch());
         }
 
-        $status_code = wp_remote_retrieve_response_code($response);
-        $result = json_decode(wp_remote_retrieve_body($response), true);
-
-        if ($status_code !== 200) {
-            $error_msg = $result['error']['message'] ?? __('Gemini APIエラーが発生しました。', 'picot-ai-seo-writer');
-            if (class_exists('PICOT_SEO_WRITING\Logger')) {
-                \PICOT_SEO_WRITING\Logger::error('Gemini API error', [
-                    'status' => $status_code,
-                    'model'  => $clean_model,
-                    'message' => $error_msg,
-                ]);
-            }
-            throw new \Exception(esc_html($error_msg));
+        if (!$builder->is_supported_for_text_generation()) {
+            throw new \Exception(
+                esc_html__(
+                    '選択した Gemini モデルはテキスト生成に対応していません。Google Gemini コネクターの接続設定を確認してください。',
+                    'picot-ai-seo-writer'
+                )
+            );
         }
 
-        return $result;
+        $result = $builder->generate_text_result();
+        return Ai_Client_Helper::result_to_legacy_response($result);
     }
 
     /**
-     * Extract text from Gemini response
+     * Extract text from a legacy response array.
      *
-     * @param array $response
+     * @param array $response Response array.
      * @return string
      */
     protected function extract_text($response)
     {
         if (isset($response['candidates'][0]['content']['parts'][0]['text'])) {
-            return $response['candidates'][0]['content']['parts'][0]['text'];
+            return (string) $response['candidates'][0]['content']['parts'][0]['text'];
         }
+
         return '';
     }
 
     /**
-     * Log Error
+     * @param array $contents Legacy contents array.
+     * @return string
      */
-    protected function log_error($message, $context = [])
+    private function contents_to_prompt($contents)
     {
-        if (class_exists('PICOT_SEO_WRITING\Logger')) {
-            // Loggerがあれば利用
-        } else {
-            // Log message removed for production.
+        if (!is_array($contents)) {
+            return '';
         }
+
+        $parts = [];
+        foreach ($contents as $content) {
+            if (!isset($content['parts']) || !is_array($content['parts'])) {
+                continue;
+            }
+            foreach ($content['parts'] as $part) {
+                if (!empty($part['text'])) {
+                    $parts[] = (string) $part['text'];
+                }
+            }
+        }
+
+        return trim(implode("\n\n", $parts));
     }
 }

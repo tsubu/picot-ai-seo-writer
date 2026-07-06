@@ -41,7 +41,6 @@
         data: {
           action: "picot_seo_writing_fetch_gemini_models",
           nonce: picot_seo_writing_admin.ajax_nonce,
-          api_key: $("#picot_seo_writing_gemini_api_key").val()
         },
         success: function (response) {
           if (response.success && response.data.models) {
@@ -115,15 +114,9 @@
     // 接続テストボタン
     $(document).on("click", ".picot-test-connection-btn", function () {
       const btn = $(this);
-      const provider = btn.data("provider"); // gemini
+      const provider = btn.data("provider") || "ai";
       const resultSpan = $("#picot-test-result-" + provider);
       const originalText = btn.text();
-
-      const apiKey = $("#picot_seo_writing_gemini_api_key").val();
-      if (!apiKey) {
-        resultSpan.text("❌ APIキーを入力してください").css("color", "#d63638");
-        return;
-      }
 
       btn.prop("disabled", true).text("テスト中...");
       resultSpan.text("通信中...").css("color", "#444");
@@ -135,8 +128,6 @@
         data: {
           action: "picot_seo_writing_test_connection",
           nonce: picot_seo_writing_admin.ajax_nonce,
-          provider: "gemini",
-          api_key: apiKey
         },
       })
         .done(function (response) {
