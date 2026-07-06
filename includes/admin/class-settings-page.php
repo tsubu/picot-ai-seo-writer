@@ -73,11 +73,7 @@ class Settings_Page
             'nonce' => wp_create_nonce('wp_rest'),
             'ajax_nonce' => wp_create_nonce('picot_seo_writing_admin_nonce'),
             'model_descriptions' => get_option('picot_seo_writing_gemini_model_descriptions', []),
-            'strings' => [
-                'fetching' => __('取得中...', 'picot-ai-seo-writer'),
-                'updateSuccess' => __('モデル一覧を更新しました', 'picot-ai-seo-writer'),
-                'updateFailed' => __('モデル一覧の取得に失敗しました', 'picot-ai-seo-writer'),
-            ],
+            'strings' => Admin::get_localized_strings(),
         ]);
     }
 

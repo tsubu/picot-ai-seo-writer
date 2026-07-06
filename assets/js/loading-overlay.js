@@ -5,7 +5,9 @@
     'use strict';
 
     var OVERLAY_ID = 'picot-ai-seo-writer-overlay';
-    var DEFAULT_SUBMESSAGE = 'AIが処理を実行しています。しばらくお待ちください...';
+    var overlayConfig = window.picotSeoWritingOverlayStrings || {};
+    var DEFAULT_SUBMESSAGE = overlayConfig.defaultSubmessage || 'AIが処理を実行しています。しばらくお待ちください...';
+    var DEFAULT_MESSAGE = overlayConfig.defaultMessage || '処理中...';
 
     function escapeHtml(text) {
         return String(text)
@@ -39,7 +41,7 @@
     }
 
     function show(message, submessage) {
-        var msg = message || '処理中...';
+        var msg = message || DEFAULT_MESSAGE;
         var sub = submessage || DEFAULT_SUBMESSAGE;
         var existing = document.getElementById(OVERLAY_ID);
 

@@ -2,7 +2,12 @@
  * Picot AI SEO Writer Setup Wizard JS - Gemini Edition
  */
 jQuery(document).ready(function($) {
-    
+    const strings = (picot_seo_writing_wizard && picot_seo_writing_wizard.strings) || {};
+
+    function s(key, fallback) {
+        return strings[key] || fallback;
+    }
+
     // ステップ制御の初期化
     let currentStep = 0;
     const $screens = $('.picot-wizard-screen');
@@ -17,23 +22,20 @@ jQuery(document).ready(function($) {
         for (let i = 0; i <= index; i++) {
             $indicators.eq(i).addClass('active');
         }
-        
-        // 戻るボタンの表示制御
+
         if (index === 0) {
             $prevBtn.hide();
         } else {
             $prevBtn.show();
         }
-        
-        // 次へ/送信ボタンの文言切り替え
+
         if (index === $screens.length - 1) {
-            $nextBtn.text(picot_seo_writing_wizard.strings.submit || '設定を保存して完了する');
+            $nextBtn.text(s('submit', '設定を保存して完了する'));
         } else {
-            $nextBtn.text(picot_seo_writing_wizard.strings.next || '次へ進む');
+            $nextBtn.text(s('next', '次へ進む'));
         }
     }
 
-    // 戻るボタンのクリック
     $prevBtn.on('click', function() {
         if (currentStep > 0) {
             currentStep--;
@@ -41,7 +43,6 @@ jQuery(document).ready(function($) {
         }
     });
 
-    // モデル説明文の保持用
     let modelDescriptions = picot_seo_writing_wizard.model_descriptions || {};
 
     function updateDescription($select, $descDiv) {
@@ -50,7 +51,6 @@ jQuery(document).ready(function($) {
         $descDiv.text(desc);
     }
 
-    // モデル選択変更時のイベント
     $(document).on('change', '#picot_seo_writing_text_model', function() {
         updateDescription($(this), $('#picot_seo_writing_text_model_description'));
     });
@@ -74,13 +74,12 @@ jQuery(document).ready(function($) {
         return fallback;
     }
 
-    // AI モデル取得関数
     function fetchGeminiModels($btn) {
         const deferred = $.Deferred();
-
         const originalText = $btn ? $btn.text() : null;
+
         if ($btn) {
-            $btn.prop('disabled', true).text(picot_seo_writing_wizard.strings.fetchingModels || '取得中...');
+            $btn.prop('disabled', true).text(s('fetchingModels', 'モデル一覧を取得中...'));
         }
 
         $.ajax({
@@ -94,7 +93,7 @@ jQuery(document).ready(function($) {
         }).done(function(response) {
             if (!response || !response.success) {
                 deferred.reject({
-                    message: getErrorMessage(response, picot_seo_writing_wizard.strings.errorFetching || 'モデル一覧の取得に失敗しました。')
+                    message: getErrorMessage(response, s('errorFetching', 'モデル一覧の取得に失敗しました。'))
                 });
                 return;
             }
@@ -125,14 +124,14 @@ jQuery(document).ready(function($) {
 
             deferred.resolve(response);
         }).fail(function(xhr) {
-            let message = '通信エラーが発生しました。';
+            let message = s('communicationErrorPlain', '通信エラーが発生しました。');
             if (xhr && xhr.responseText) {
                 try {
                     const parsed = JSON.parse(xhr.responseText);
                     message = getErrorMessage(parsed, message);
                 } catch (e) {
                     if (xhr.responseText === '-1' || xhr.responseText === '0') {
-                        message = 'セッションが切れています。ページを再読み込みして再度お試しください。';
+                        message = s('sessionExpiredWizard', 'セッションが切れています。ページを再読み込みして再度お試しください。');
                     }
                 }
             }
@@ -146,19 +145,18 @@ jQuery(document).ready(function($) {
         return deferred.promise();
     }
 
-    // モデル再取得ボタン
     $(document).on('click', '#picot-wizard-fetch-models', function() {
         fetchGeminiModels($(this)).fail(function(error) {
-            alert((error && error.message) || 'モデル一覧の取得に失敗しました。');
+            alert((error && error.message) || s('errorFetching', 'モデル一覧の取得に失敗しました。'));
         });
     });
+
     $nextBtn.on('click', function() {
         if (currentStep < $screens.length - 1) {
             const $currentScreen = $screens.eq(currentStep);
-            
-            // Step 1 (WordPress AI) から Step 2 へ進む際の処理
+
             if (getScreenStepId($currentScreen) === 'ai_setup') {
-                $nextBtn.prop('disabled', true).text(picot_seo_writing_wizard.strings.testing || '接続テスト中...');
+                $nextBtn.prop('disabled', true).text(s('testing', '接続テスト中...'));
 
                 $.ajax({
                     url: picot_seo_writing_wizard.ajax_url,
@@ -170,7 +168,7 @@ jQuery(document).ready(function($) {
                     }
                 }).done(function(response) {
                     if (!response || !response.success) {
-                        alert(getErrorMessage(response, 'Google Gemini コネクターへの接続に失敗しました。'));
+                        alert(getErrorMessage(response, s('geminiConnectionFailed', 'Google Gemini コネクターへの接続に失敗しました。')));
                         return;
                     }
 
@@ -178,15 +176,15 @@ jQuery(document).ready(function($) {
                         currentStep++;
                         updateStep(currentStep);
                     }).fail(function(error) {
-                        alert((error && error.message) || 'モデルの取得に失敗しました。');
+                        alert((error && error.message) || s('modelFetchFailed', 'モデルの取得に失敗しました。'));
                     });
                 }).fail(function() {
-                    alert('Google Gemini コネクターへの接続テストに失敗しました。');
+                    alert(s('geminiConnectionTestFailed', 'Google Gemini コネクターへの接続テストに失敗しました。'));
                 }).always(function() {
                     $nextBtn.prop('disabled', false).text(
                         currentStep === $screens.length - 1
-                            ? (picot_seo_writing_wizard.strings.submit || '設定を保存して完了する')
-                            : (picot_seo_writing_wizard.strings.next || '次へ進む')
+                            ? s('submit', '設定を保存して完了する')
+                            : s('next', '次へ進む')
                     );
                 });
                 return;
@@ -199,17 +197,14 @@ jQuery(document).ready(function($) {
         }
     });
 
-    // フォーカス時にパスワードを表示
     $(document).on('focus', '.picot-hover-show', function() {
         $(this).attr('type', 'text');
     }).on('blur', '.picot-hover-show', function() {
         $(this).attr('type', 'password');
     });
 
-    // 初期化実行
     if ($screens.length > 0) {
         updateStep(0);
-        // 初期選択モデルの説明を表示
         updateDescription($('#picot_seo_writing_text_model'), $('#picot_seo_writing_text_model_description'));
         updateDescription($('#picot_seo_writing_image_model'), $('#picot_seo_writing_image_model_description'));
     }

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Picot AI SEO Writer 1.0.0\n"
+"Project-Id-Version: Picot AI SEO Writer 1.0.3\n"
 "Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
-"POT-Creation-Date: 2026-07-04 11:58+0900\n"
-"PO-Revision-Date: 2026-07-04 11:58+0900\n"
+"POT-Creation-Date: 2026-07-07 01:40+0900\n"
+"PO-Revision-Date: 2026-07-07 01:40+0900\n"
 "Last-Translator: PICOT\n"
 "Language-Team: PICOT\n"
 "MIME-Version: 1.0\n"
@@ -19,25 +19,80 @@ msgid "Picot AI SEO Writer"
 msgstr "Picot AI SEO Writer"
 
 #: includes/admin/class-admin.php
-msgid "モデル一覧を取得中..."
-msgstr "モデル一覧を取得中..."
+msgid "カジュアル"
+msgstr "カジュアル"
 
 #: includes/admin/class-admin.php
-msgid "モデル一覧の取得に失敗しました。"
-msgstr "モデル一覧の取得に失敗しました。"
+msgid "プロフェッショナル"
+msgstr "プロフェッショナル"
+
+#: includes/admin/class-admin.php
+msgid "フレンドリー"
+msgstr "フレンドリー"
+
+#: includes/admin/class-admin.php
+msgid "専門的"
+msgstr "専門的"
 
 #: includes/admin/class-admin.php
 #: includes/admin/class-settings-page.php
-msgid "次へ進む"
-msgstr "次へ進む"
+msgid "実写風 (Photorealistic)"
+msgstr "実写風 (Photorealistic)"
 
 #: includes/admin/class-admin.php
-msgid "設定を保存して完了する"
-msgstr "設定を保存して完了する"
+#: includes/admin/class-settings-page.php
+msgid "デジタルアート"
+msgstr "デジタルアート"
 
 #: includes/admin/class-admin.php
-msgid "接続テスト中..."
-msgstr "接続テスト中..."
+#: includes/admin/class-settings-page.php
+msgid "ベクターイラスト"
+msgstr "ベクターイラスト"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "スケッチ風"
+msgstr "スケッチ風"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "水彩画風"
+msgstr "水彩画風"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "サイバーパンク"
+msgstr "サイバーパンク"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "アニメ風"
+msgstr "アニメ風"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "油絵風"
+msgstr "油絵風"
+
+#: includes/admin/class-admin.php
+msgid "記事生成設定"
+msgstr "記事生成設定"
+
+#: includes/admin/class-admin.php
+msgid "執筆スタイル"
+msgstr "執筆スタイル"
+
+#: includes/admin/class-admin.php
+msgid "画像生成"
+msgstr "画像生成"
+
+#: includes/admin/class-admin.php
+msgid "前回使用した情報"
+msgstr "前回使用した情報"
+
+#: includes/admin/class-admin.php
+msgid "参照URL一覧"
+msgstr "参照URL一覧"
 
 #: includes/admin/class-admin.php
 #: includes/admin/class-meta-box.php
@@ -48,6 +103,70 @@ msgstr "ターゲットワード"
 #: includes/admin/class-meta-box.php
 msgid "例: WordPress SEO"
 msgstr "例: WordPress SEO"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
+msgid "希望追加内容（任意）"
+msgstr "希望追加内容（任意）"
+
+#: includes/admin/class-admin.php
+msgid "記事に含めたい具体的な情報や要望を入力してください"
+msgstr "記事に含めたい具体的な情報や要望を入力してください"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "文章スタイル"
+msgstr "文章スタイル"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "画像スタイル"
+msgstr "画像スタイル"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
+msgid "記事を生成"
+msgstr "記事を生成"
+
+#: includes/admin/class-admin.php
+msgid "① 画像プロンプトを分析"
+msgstr "① 画像プロンプトを分析"
+
+#: includes/admin/class-admin.php
+msgid "記事を分析して画像提案(1 アイキャッチ + 5 本文)を生成し、Gemini で画像を生成して記事に挿入します。"
+msgstr "記事を分析して画像提案(1 アイキャッチ + 5 本文)を生成し、Gemini で画像を生成して記事に挿入します。"
+
+#: includes/admin/class-admin.php
+msgid "ワード: "
+msgstr "ワード: "
+
+#: includes/admin/class-admin.php
+msgid "要望: "
+msgstr "要望: "
+
+#: includes/admin/class-admin.php
+msgid "(空)"
+msgstr "(空)"
+
+#: includes/admin/class-admin.php
+msgid "⭐ アイキャッチ画像"
+msgstr "⭐ アイキャッチ画像"
+
+#: includes/admin/class-admin.php
+msgid "🖼️ 生成して設定"
+msgstr "🖼️ 生成して設定"
+
+#: includes/admin/class-admin.php
+msgid "🖼️ 生成して挿入"
+msgstr "🖼️ 生成して挿入"
+
+#: includes/admin/class-admin.php
+msgid "⚡ 全ての画像を生成して挿入"
+msgstr "⚡ 全ての画像を生成して挿入"
+
+#: includes/admin/class-admin.php
+msgid "✅ 生成完了"
+msgstr "✅ 生成完了"
 
 #: includes/admin/class-admin.php
 msgid "調査"
@@ -86,12 +205,48 @@ msgid "生成中..."
 msgstr "生成中..."
 
 #: includes/admin/class-admin.php
+msgid "分析中..."
+msgstr "分析中..."
+
+#: includes/admin/class-admin.php
 msgid "Geminiが執筆中..."
 msgstr "Geminiが執筆中..."
 
 #: includes/admin/class-admin.php
+msgid "AIが記事を生成中..."
+msgstr "AIが記事を生成中..."
+
+#: includes/admin/class-admin.php
+msgid "画像プロンプトを分析中..."
+msgstr "画像プロンプトを分析中..."
+
+#: includes/admin/class-admin.php
+msgid "アイキャッチ画像を生成中..."
+msgstr "アイキャッチ画像を生成中..."
+
+#: includes/admin/class-admin.php
+msgid "画像 %d を生成中..."
+msgstr "画像 %d を生成中..."
+
+#: includes/admin/class-admin.php
+msgid "全 %2$d 枚中 %1$d 枚目の画像を生成中..."
+msgstr "全 %2$d 枚中 %1$d 枚目の画像を生成中..."
+
+#: includes/admin/class-admin.php
+msgid "全画像を生成中...（時間がかかります）"
+msgstr "全画像を生成中...（時間がかかります）"
+
+#: includes/admin/class-admin.php
 msgid "これには数十秒かかる場合があります。"
 msgstr "これには数十秒かかる場合があります。"
+
+#: includes/admin/class-admin.php
+msgid "AIが処理を実行しています。しばらくお待ちください..."
+msgstr "AIが処理を実行しています。しばらくお待ちください..."
+
+#: includes/admin/class-admin.php
+msgid "処理中..."
+msgstr "処理中..."
 
 #: includes/admin/class-admin.php
 msgid "タイトル: "
@@ -102,12 +257,24 @@ msgid "タイトル生成に失敗しました"
 msgstr "タイトル生成に失敗しました"
 
 #: includes/admin/class-admin.php
+msgid "エディタに見出しを展開しました。自由に編集してください。"
+msgstr "エディタに見出しを展開しました。自由に編集してください。"
+
+#: includes/admin/class-admin.php
 msgid "記事を挿入しました"
 msgstr "記事を挿入しました"
 
 #: includes/admin/class-admin.php
+msgid "記事を生成しました！"
+msgstr "記事を生成しました！"
+
+#: includes/admin/class-admin.php
 msgid "記事生成に失敗しました"
 msgstr "記事生成に失敗しました"
+
+#: includes/admin/class-admin.php
+msgid "先に記事を生成してください"
+msgstr "先に記事を生成してください"
 
 #: includes/admin/class-admin.php
 msgid "希望追加内容"
@@ -143,6 +310,74 @@ msgid "画像提案に失敗しました"
 msgstr "画像提案に失敗しました"
 
 #: includes/admin/class-admin.php
+msgid "画像提案を取得しました！下のリストから生成してください。"
+msgstr "画像提案を取得しました！下のリストから生成してください。"
+
+#: includes/admin/class-admin.php
+msgid "画像プロンプト挿入に失敗しました"
+msgstr "画像プロンプト挿入に失敗しました"
+
+#: includes/admin/class-admin.php
+msgid "画像挿入ポイントを提案し、エディタ内に配置マーカーを挿入しました。"
+msgstr "画像挿入ポイントを提案し、エディタ内に配置マーカーを挿入しました。"
+
+#: includes/admin/class-admin.php
+msgid "画像挿入ポイントが見つかりませんでした。"
+msgstr "画像挿入ポイントが見つかりませんでした。"
+
+#: includes/admin/class-admin.php
+msgid "マーカーと提案をクリアしました"
+msgstr "マーカーと提案をクリアしました"
+
+#: includes/admin/class-admin.php
+msgid "提案とマーカーをクリア"
+msgstr "提案とマーカーをクリア"
+
+#: includes/admin/class-admin.php
+msgid "生成してアイキャッチに設定"
+msgstr "生成してアイキャッチに設定"
+
+#: includes/admin/class-admin.php
+msgid "生成して配置"
+msgstr "生成して配置"
+
+#: includes/admin/class-admin.php
+msgid "アイキャッチ画像を設定しました"
+msgstr "アイキャッチ画像を設定しました"
+
+#: includes/admin/class-admin.php
+msgid "アイキャッチ画像を設定・挿入しました！"
+msgstr "アイキャッチ画像を設定・挿入しました！"
+
+#: includes/admin/class-admin.php
+msgid "画像を挿入しました"
+msgstr "画像を挿入しました"
+
+#: includes/admin/class-admin.php
+msgid "画像を記事に挿入しました！"
+msgstr "画像を記事に挿入しました！"
+
+#: includes/admin/class-admin.php
+msgid "画像を生成中..."
+msgstr "画像を生成中..."
+
+#: includes/admin/class-admin.php
+msgid "画像生成に失敗しました"
+msgstr "画像生成に失敗しました"
+
+#: includes/admin/class-admin.php
+msgid "画像データが返されませんでした"
+msgstr "画像データが返されませんでした"
+
+#: includes/admin/class-admin.php
+msgid "すべての画像が生成済みです！"
+msgstr "すべての画像が生成済みです！"
+
+#: includes/admin/class-admin.php
+msgid "全画像の生成・挿入が完了しました！"
+msgstr "全画像の生成・挿入が完了しました！"
+
+#: includes/admin/class-admin.php
 msgid "日本語: "
 msgstr "日本語: "
 
@@ -151,25 +386,46 @@ msgid "英語: "
 msgstr "英語: "
 
 #: includes/admin/class-admin.php
+msgid "日本語: %d件"
+msgstr "日本語: %d件"
+
+#: includes/admin/class-admin.php
+msgid "英語: %d件"
+msgstr "英語: %d件"
+
+#: includes/admin/class-admin.php
 msgid "エラーが発生しました"
 msgstr "エラーが発生しました"
+
+#: includes/admin/class-admin.php
+msgid "不明なエラー"
+msgstr "不明なエラー"
+
+#: includes/admin/class-admin.php
+msgid "エラー: "
+msgstr "エラー: "
+
+#: includes/admin/class-admin.php
+msgid "通信エラー: "
+msgstr "通信エラー: "
+
+#: includes/admin/class-admin.php
+msgid "画像生成エラー: "
+msgstr "画像生成エラー: "
 
 #: includes/admin/class-admin.php
 msgid "成功しました"
 msgstr "成功しました"
 
 #: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
 msgid "取得中..."
 msgstr "取得中..."
 
 #: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
 msgid "モデル一覧を更新しました"
 msgstr "モデル一覧を更新しました"
 
 #: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
 msgid "モデル一覧の取得に失敗しました"
 msgstr "モデル一覧の取得に失敗しました"
 
@@ -178,16 +434,97 @@ msgid "参照URLを確認"
 msgstr "参照URLを確認"
 
 #: includes/admin/class-admin.php
+msgid "%s - 参照URL"
+msgstr "%s - 参照URL"
+
+#: includes/admin/class-admin.php
+msgid "日本国内の検索順位 (上位10件)"
+msgstr "日本国内の検索順位 (上位10件)"
+
+#: includes/admin/class-admin.php
+msgid "英語圏の検索順位 (上位5件)"
+msgstr "英語圏の検索順位 (上位5件)"
+
+#: includes/admin/class-admin.php
+msgid "閉じる"
+msgstr "閉じる"
+
+#: includes/admin/class-admin.php
+msgid "モデル一覧を取得中..."
+msgstr "モデル一覧を取得中..."
+
+#: includes/admin/class-admin.php
+msgid "モデル一覧の取得に失敗しました。"
+msgstr "モデル一覧の取得に失敗しました。"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "次へ進む"
+msgstr "次へ進む"
+
+#: includes/admin/class-admin.php
+msgid "設定を保存して完了する"
+msgstr "設定を保存して完了する"
+
+#: includes/admin/class-admin.php
+msgid "接続テスト中..."
+msgstr "接続テスト中..."
+
+#: includes/admin/class-admin.php
+msgid "通信エラーが発生しました。"
+msgstr "通信エラーが発生しました。"
+
+#: includes/admin/class-admin.php
+msgid "❌ 通信エラーが発生しました"
+msgstr "❌ 通信エラーが発生しました"
+
+#: includes/admin/class-admin.php
+msgid "セッションが切れています。ページを再読み込みして再度お試しください。"
+msgstr "セッションが切れています。ページを再読み込みして再度お試しください。"
+
+#: includes/admin/class-admin.php
+msgid "❌ セッションが切れています。ページを再読み込みしてください。"
+msgstr "❌ セッションが切れています。ページを再読み込みしてください。"
+
+#: includes/admin/class-admin.php
+msgid "テスト中..."
+msgstr "テスト中..."
+
+#: includes/admin/class-admin.php
+msgid "通信中..."
+msgstr "通信中..."
+
+#: includes/admin/class-admin.php
+msgid "✅ 接続に成功しました"
+msgstr "✅ 接続に成功しました"
+
+#: includes/admin/class-admin.php
+msgid "❌ 接続に失敗しました"
+msgstr "❌ 接続に失敗しました"
+
+#: includes/admin/class-admin.php
+msgid "取得に失敗しました"
+msgstr "取得に失敗しました"
+
+#: includes/admin/class-admin.php
+msgid "Google Gemini コネクターへの接続に失敗しました。"
+msgstr "Google Gemini コネクターへの接続に失敗しました。"
+
+#: includes/admin/class-admin.php
+msgid "Google Gemini コネクターへの接続テストに失敗しました。"
+msgstr "Google Gemini コネクターへの接続テストに失敗しました。"
+
+#: includes/admin/class-admin.php
+msgid "モデルの取得に失敗しました。"
+msgstr "モデルの取得に失敗しました。"
+
+#: includes/admin/class-admin.php
 msgid "設定"
 msgstr "設定"
 
 #: includes/admin/class-meta-box.php
 msgid "Gemini 記事生成"
 msgstr "Gemini 記事生成"
-
-#: includes/admin/class-meta-box.php
-msgid "希望追加内容（任意）"
-msgstr "希望追加内容（任意）"
 
 #: includes/admin/class-meta-box.php
 msgid "記事に含めたい具体的な情報や、トーン、構成案などがあれば入力してください"
@@ -213,49 +550,41 @@ msgstr "简体中文"
 msgid "繁體中文"
 msgstr "繁體中文"
 
-#: includes/admin/class-meta-box.php
-msgid "記事を生成"
-msgstr "記事を生成"
-
-#: includes/admin/class-settings-page.php
-msgid "APIキーを破棄しました。"
-msgstr "APIキーを破棄しました。"
-
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini 連携"
 msgstr "Google Gemini 連携"
 
 #: includes/admin/class-settings-page.php
-msgid "Googleの最新AIによる執筆と検索機能の設定"
-msgstr "Googleの最新AIによる執筆と検索機能の設定"
+msgid "Google Gemini コネクター（設定 → コネクター）の接続が必要です"
+msgstr "Google Gemini コネクター（設定 → コネクター）の接続が必要です"
 
 #: includes/admin/class-settings-page.php
-msgid "APIキー"
-msgstr "APIキー"
+msgid "接続状態"
+msgstr "接続状態"
 
 #: includes/admin/class-settings-page.php
-msgid "取得ガイド"
-msgstr "取得ガイド"
+msgid "✅ Google Gemini コネクターが接続され、テキスト生成が利用可能です。"
+msgstr "✅ Google Gemini コネクターが接続され、テキスト生成が利用可能です。"
+
+#: includes/admin/class-settings-page.php
+msgid "Google Gemini コネクターが未設定、またはテキスト生成に対応していません。"
+msgstr "Google Gemini コネクターが未設定、またはテキスト生成に対応していません。"
+
+#: includes/admin/class-settings-page.php
+msgid "AI コネクター設定を開く"
+msgstr "AI コネクター設定を開く"
 
 #: includes/admin/class-settings-page.php
 msgid "接続テスト"
 msgstr "接続テスト"
 
 #: includes/admin/class-settings-page.php
-msgid "Google AI Studioで取得したAPIキーを入力してください。"
-msgstr "Google AI Studioで取得したAPIキーを入力してください。"
-
-#: includes/admin/class-settings-page.php
 msgid ""
-"Picot AIO AI Content Optimizer や WordPress AI（Google コネクター）など、他の AI プラ"
-"グインで Gemini API キーが設定済みの場合、未設定時に自動で引き継ぎます。"
+"このプラグインは Google Gemini コネクターを使用します。API キーは設定 → コネクターで管理してください。このプラグインは"
+" WordPress AI Client 経由でリクエストします。"
 msgstr ""
-"Picot AIO AI Content Optimizer や WordPress AI（Google コネクター）など、他の AI プラ"
-"グインで Gemini API キーが設定済みの場合、未設定時に自動で引き継ぎます。"
-
-#: includes/admin/class-settings-page.php
-msgid "APIキーを破棄する"
-msgstr "APIキーを破棄する"
+"このプラグインは Google Gemini コネクターを使用します。API キーは設定 → コネクターで管理してください。このプラグインは"
+" WordPress AI Client 経由でリクエストします。"
 
 #: includes/admin/class-settings-page.php
 msgid "テキストモデル"
@@ -302,10 +631,6 @@ msgid "生成される文章のトーンなどを設定"
 msgstr "生成される文章のトーンなどを設定"
 
 #: includes/admin/class-settings-page.php
-msgid "文章スタイル"
-msgstr "文章スタイル"
-
-#: includes/admin/class-settings-page.php
 msgid "カジュアル (親しみやすい)"
 msgstr "カジュアル (親しみやすい)"
 
@@ -334,42 +659,6 @@ msgid "インフォマティブ (事実・解説)"
 msgstr "インフォマティブ (事実・解説)"
 
 #: includes/admin/class-settings-page.php
-msgid "画像スタイル"
-msgstr "画像スタイル"
-
-#: includes/admin/class-settings-page.php
-msgid "実写風 (Photorealistic)"
-msgstr "実写風 (Photorealistic)"
-
-#: includes/admin/class-settings-page.php
-msgid "デジタルアート"
-msgstr "デジタルアート"
-
-#: includes/admin/class-settings-page.php
-msgid "ベクターイラスト"
-msgstr "ベクターイラスト"
-
-#: includes/admin/class-settings-page.php
-msgid "スケッチ風"
-msgstr "スケッチ風"
-
-#: includes/admin/class-settings-page.php
-msgid "水彩画風"
-msgstr "水彩画風"
-
-#: includes/admin/class-settings-page.php
-msgid "サイバーパンク"
-msgstr "サイバーパンク"
-
-#: includes/admin/class-settings-page.php
-msgid "アニメ風"
-msgstr "アニメ風"
-
-#: includes/admin/class-settings-page.php
-msgid "油絵風"
-msgstr "油絵風"
-
-#: includes/admin/class-settings-page.php
 msgid "記事内に挿入される画像のトーンを指定します。"
 msgstr "記事内に挿入される画像のトーンを指定します。"
 
@@ -378,32 +667,36 @@ msgid "設定を保存"
 msgstr "設定を保存"
 
 #: includes/admin/class-settings-page.php
-msgid "Gemini 連携セットアップ"
-msgstr "Gemini 連携セットアップ"
+msgid "Google Gemini セットアップ"
+msgstr "Google Gemini セットアップ"
 
 #: includes/admin/class-settings-page.php
-msgid "1. Gemini APIキーを設定"
-msgstr "1. Gemini APIキーを設定"
+msgid "1. Google Gemini コネクターを設定"
+msgstr "1. Google Gemini コネクターを設定"
 
 #: includes/admin/class-settings-page.php
-msgid "Google AI Studioから無料でAPIキーを取得し、以下に貼り付けてください。"
-msgstr "Google AI Studioから無料でAPIキーを取得し、以下に貼り付けてください。"
+msgid ""
+"設定 → コネクターで Google（Gemini）コネクターをインストール・有効化し、API キーを接続してください。このプラグインは G"
+"emini を使用します。"
+msgstr ""
+"設定 → コネクターで Google（Gemini）コネクターをインストール・有効化し、API キーを接続してください。このプラグインは G"
+"emini を使用します。"
 
 #: includes/admin/class-settings-page.php
-msgid "APIキーを取得する (Google AI Studio)"
-msgstr "APIキーを取得する (Google AI Studio)"
+msgid "Gemini コネクターを接続後、「接続テスト」を実行してから次へ進んでください。"
+msgstr "Gemini コネクターを接続後、「接続テスト」を実行してから次へ進んでください。"
 
 #: includes/admin/class-settings-page.php
 msgid "2. 使用するモデルを選択"
 msgstr "2. 使用するモデルを選択"
 
 #: includes/admin/class-settings-page.php
-msgid "執筆に使用するGeminiモデルを選択してください。"
-msgstr "執筆に使用するGeminiモデルを選択してください。"
+msgid "執筆に使用する AI モデルを選択してください。"
+msgstr "執筆に使用する AI モデルを選択してください。"
 
 #: includes/admin/class-settings-page.php
-msgid "利用可能なモデルがありません。まずAPIキーを入力してください。"
-msgstr "利用可能なモデルがありません。まずAPIキーを入力してください。"
+msgid "利用可能な Gemini モデルがありません。Google Gemini コネクターを設定してから「再取得」を押してください。"
+msgstr "利用可能な Gemini モデルがありません。Google Gemini コネクターを設定してから「再取得」を押してください。"
 
 #: includes/admin/class-settings-page.php
 msgid "再取得"
@@ -430,77 +723,69 @@ msgid "この操作を実行する権限がありません。"
 msgstr "この操作を実行する権限がありません。"
 
 #: includes/admin/class-settings-page.php
-msgid "APIキーが必要です。"
-msgstr "APIキーが必要です。"
+msgid "WordPress AI Client が利用できません。Google Gemini コネクターをインストールしてください。"
+msgstr "WordPress AI Client が利用できません。Google Gemini コネクターをインストールしてください。"
 
 #: includes/admin/class-settings-page.php
-msgid "通信エラーが発生しました。"
-msgstr "通信エラーが発生しました。"
+msgid "利用可能な Gemini モデルが見つかりませんでした。Google Gemini コネクターの接続を確認してください。"
+msgstr "利用可能な Gemini モデルが見つかりませんでした。Google Gemini コネクターの接続を確認してください。"
 
 #: includes/admin/class-settings-page.php
-msgid "利用可能なモデルが見つかりませんでした。"
-msgstr "利用可能なモデルが見つかりませんでした。"
+msgid "Hello"
+msgstr "Hello"
 
 #: includes/admin/class-settings-page.php
-msgid "APIキーが入力されていません。"
-msgstr "APIキーが入力されていません。"
+msgid "Google Gemini コネクターが設定されていません。設定 → コネクターで Gemini を接続してください。"
+msgstr "Google Gemini コネクターが設定されていません。設定 → コネクターで Gemini を接続してください。"
 
 #: includes/admin/class-settings-page.php
-msgid "利用可能なモデルがありません。APIキーを確認するか、モデル一覧を更新してください。"
-msgstr "利用可能なモデルがありません。APIキーを確認するか、モデル一覧を更新してください。"
-
-#: includes/admin/class-settings-page.php
-msgid "通信エラー: "
-msgstr "通信エラー: "
-
-#: includes/admin/class-settings-page.php
-msgid "✅ Geminiへの接続に成功しました"
-msgstr "✅ Geminiへの接続に成功しました"
-
-#: includes/admin/class-settings-page.php
-msgid "接続に失敗しました。"
-msgstr "接続に失敗しました。"
+msgid "✅ Google Gemini コネクターへの接続に成功しました"
+msgstr "✅ Google Gemini コネクターへの接続に成功しました"
 
 #: includes/api/class-gemini-client.php
 #: includes/api/class-image-generator.php
-msgid "Gemini APIキーが設定されていません。"
-msgstr "Gemini APIキーが設定されていません。"
+msgid ""
+"WordPress AI Client is not available. Install and configure the Google"
+" Gemini connector under Settings → Connectors."
+msgstr ""
+"WordPress AI Client is not available. Install and configure the Google"
+" Gemini connector under Settings → Connectors."
 
 #: includes/api/class-gemini-client.php
 msgid "テキストモデルが設定されていません。設定画面でモデルを選択してください。"
 msgstr "テキストモデルが設定されていません。設定画面でモデルを選択してください。"
 
 #: includes/api/class-gemini-client.php
-msgid "Gemini APIエラーが発生しました。"
-msgstr "Gemini APIエラーが発生しました。"
+msgid "プロンプトが空です。"
+msgstr "プロンプトが空です。"
+
+#: includes/api/class-gemini-client.php
+msgid "選択した Gemini モデルはテキスト生成に対応していません。Google Gemini コネクターの接続設定を確認してください。"
+msgstr "選択した Gemini モデルはテキスト生成に対応していません。Google Gemini コネクターの接続設定を確認してください。"
 
 #: includes/api/class-image-generator.php
-msgid "Image Gen Failed (%1$s): %2$s"
-msgstr "Image Gen Failed (%1$s): %2$s"
+msgid "画像モデルが設定されていません。設定画面でモデルを選択してください。"
+msgstr "画像モデルが設定されていません。設定画面でモデルを選択してください。"
+
+#: includes/api/class-image-generator.php
+msgid "選択した Gemini モデルは画像生成に対応していません。Google Gemini コネクターの接続設定を確認してください。"
+msgstr "選択した Gemini モデルは画像生成に対応していません。Google Gemini コネクターの接続設定を確認してください。"
+
+#: includes/api/class-image-generator.php
+msgid "画像データが返されませんでした。"
+msgstr "画像データが返されませんでした。"
+
+#: includes/api/class-model-manager.php
+msgid "Gemini モデル一覧の取得に失敗しました。Google Gemini コネクターの API キーを確認してください。"
+msgstr "Gemini モデル一覧の取得に失敗しました。Google Gemini コネクターの API キーを確認してください。"
 
 #: includes/class-api-settings-sync.php
-msgid "他の AI プラグイン（%s）の設定から Gemini API キー等を自動で引き継ぎました。"
-msgstr "他の AI プラグイン（%s）の設定から Gemini API キー等を自動で引き継ぎました。"
+msgid "他の AI プラグイン（%s）のモデル設定を自動で引き継ぎました。"
+msgstr "他の AI プラグイン（%s）のモデル設定を自動で引き継ぎました。"
 
 #: includes/class-api-settings-sync.php
 msgid "Picot AIO AI Content Optimizer"
 msgstr "Picot AIO AI Content Optimizer"
-
-#: includes/class-api-settings-sync.php
-msgid "WordPress AI（Google コネクター）"
-msgstr "WordPress AI（Google コネクター）"
-
-#: includes/class-api-settings-sync.php
-msgid "Picot AI SEO Writer（旧設定）"
-msgstr "Picot AI SEO Writer（旧設定）"
-
-#: includes/class-api-settings-sync.php
-msgid "環境変数 GEMINI_API_KEY"
-msgstr "環境変数 GEMINI_API_KEY"
-
-#: includes/class-api-settings-sync.php
-msgid "環境変数 GOOGLE_API_KEY"
-msgstr "環境変数 GOOGLE_API_KEY"
 
 #: includes/rest/class-content-endpoint.php
 msgid "コンテンツが空です。"
@@ -544,8 +829,8 @@ msgid "プロンプトは必須です"
 msgstr "プロンプトは必須です"
 
 #: includes/rest/class-models-endpoint.php
-msgid "Gemini APIキーが設定されていません。設定画面からAPIキーを入力してください。"
-msgstr "Gemini APIキーが設定されていません。設定画面からAPIキーを入力してください。"
+msgid "Google Gemini コネクターが未設定です。設定 → コネクターで Gemini を接続してください。"
+msgstr "Google Gemini コネクターが未設定です。設定 → コネクターで Gemini を接続してください。"
 
 #: includes/rest/class-research-endpoint.php
 msgid "キーワードと投稿IDは必須です"
@@ -558,7 +843,3 @@ msgstr "調査データの保存に失敗しました"
 #: includes/rest/class-research-endpoint.php
 msgid "投稿IDは必須です"
 msgstr "投稿IDは必須です"
-
-#: view-logs.php
-msgid "このページは管理者権限が必要です。先にWordPressにログインしてください。"
-msgstr "このページは管理者権限が必要です。先にWordPressにログインしてください。"

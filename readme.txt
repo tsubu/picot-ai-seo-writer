@@ -3,8 +3,8 @@ Contributors: tsubu
 Tags: seo, ai, gemini, writing, content
 Requires at least: 7.0
 Tested up to: 7.0
-Requires PHP: 7.4
-Stable tag: 1.0.2
+Requires PHP: 8.3
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,6 +73,12 @@ The plugin is free. Gemini API usage may incur costs depending on your Google AI
 
 == Changelog ==
 
+= 1.0.3 =
+* Improved English UI translations for the settings page, setup wizard, block editor, and classic editor.
+* Localized loading overlay default messages.
+* Requires PHP 8.3.
+* Regenerated en_US and ja translation files (199 strings).
+
 = 1.0.2 =
 * Migrated all AI features to the WordPress AI Client (no direct provider HTTP calls).
 * Removed plugin-owned API key settings; credentials are managed under Settings → Connectors.
@@ -92,6 +98,9 @@ The plugin is free. Gemini API usage may incur costs depending on your Google AI
 * Reference URL resolution for grounded sources.
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+Improved English UI translations for the settings wizard, block editor, and classic editor. Requires PHP 8.3.
 
 = 1.0.2 =
 Requires WordPress 7.0+. Requires the Google Gemini connector under Settings → Connectors.

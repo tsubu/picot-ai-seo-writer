@@ -38,9 +38,25 @@
         currentFeaturedText = "";
         currentFeaturedPrompt = "";
         $("#picot-ai-seo-writer-image-suggestions").empty();
-        showMessage("マーカーと提案をクリアしました", "info");
+        showMessage(t("clearMarkersAndSuggestions", "マーカーと提案をクリアしました"), "info");
     });
   });
+
+  function t(key, fallback) {
+    const strings = picot_seo_writing_admin.strings || {};
+    return strings[key] || fallback || "";
+  }
+
+  function formatString(template, ...args) {
+    if (!template) {
+      return "";
+    }
+    let argIndex = 0;
+    return template.replace(/%(\d+\$)?[ds]/g, function (match, position) {
+      const index = position ? parseInt(position, 10) - 1 : argIndex++;
+      return args[index] !== undefined ? String(args[index]) : match;
+    });
+  }
 
   /**
    * 履歴を読み込み
@@ -91,11 +107,11 @@
       const urlsJa = item.locale_urls_ja ? item.locale_urls_ja.length : 0;
       const urlsEn = item.locale_urls_en ? item.locale_urls_en.length : 0;
       $item.append(
-        '<div class="urls">日本語: ' +
-          urlsJa +
-          "件 / 英語: " +
-          urlsEn +
-          "件</div>",
+        '<div class="urls">' +
+          escapeHtml(formatString(t("jaResultsCount", "日本語: %d件"), urlsJa)) +
+          " / " +
+          escapeHtml(formatString(t("enResultsCount", "英語: %d件"), urlsEn)) +
+          "</div>",
       );
 
       const $actions = $('<div class="actions" style="display:flex; flex-direction:column; gap:5px;"></div>');
@@ -239,7 +255,10 @@
             }
           }
 
-          showMessage((picot_seo_writing_admin.strings.titleLabel || "タイトル: ") + response.data.title + "\nエディタに見出しを展開しました。自由に編集してください。", "success");
+          showMessage(
+            (t("titleLabel", "タイトル: ") + response.data.title + "\n" + t("headingsExpandedMessage", "エディタに見出しを展開しました。自由に編集してください。")),
+            "success",
+          );
         }
       },
       error: function (xhr) {
@@ -369,9 +388,9 @@
           if (suggestions.length > 0) {
             autoEmbedMarkersClassic(suggestions);
             renderImageSuggestions(suggestions, featured);
-            showMessage("画像挿入ポイントを提案し、エディタ内に配置マーカーを挿入しました。", "success");
+            showMessage(t("imageSuggestionsEmbedded", "画像挿入ポイントを提案し、エディタ内に配置マーカーを挿入しました。"), "success");
           } else {
-            showMessage("画像挿入ポイントが見つかりませんでした。", "info");
+            showMessage(t("imageSuggestionsNotFound", "画像挿入ポイントが見つかりませんでした。"), "info");
           }
         }
       },
@@ -431,14 +450,14 @@
     $container.empty();
 
     // クリアボタンを追加
-    $container.append('<div style="margin-bottom:10px;"><button type="button" id="picot-ai-seo-writer-clear-markers-btn" class="button button-small" style="width:100%;">提案とマーカーをクリア</button></div>');
+    $container.append('<div style="margin-bottom:10px;"><button type="button" id="picot-ai-seo-writer-clear-markers-btn" class="button button-small" style="width:100%;">' + escapeHtml(t("clearSuggestionsButton", "提案とマーカーをクリア")) + '</button></div>');
 
     if (featuredText) {
       const $fItem = $('<div class="history-item" style="background:#fff3cd; border-color:#ffc107;"></div>');
-      $fItem.append('<div style="font-weight:bold; margin-bottom:5px;">⭐ アイキャッチ画像</div>');
+      $fItem.append('<div style="font-weight:bold; margin-bottom:5px;">' + escapeHtml(t("featuredImageLabel", "⭐ アイキャッチ画像")) + '</div>');
       $fItem.append('<div style="font-size:11px; margin-bottom:10px;">' + escapeHtml(featuredText) + '</div>');
       
-      const $fBtn = $('<button type="button" class="button button-primary">生成してアイキャッチに設定</button>');
+      const $fBtn = $('<button type="button" class="button button-primary">' + escapeHtml(t("generateAndSetFeaturedClassic", "生成してアイキャッチに設定")) + '</button>');
       $fBtn.on("click", function() {
         generateAndPlaceImageClassic({
           prompt: currentFeaturedPrompt || ('Professional blog featured image with text "' + featuredText + '" in center, clean background'),
@@ -454,7 +473,7 @@
       $item.append('<div style="font-weight:bold; font-size:11px;">📍 ' + escapeHtml(suggestion.location) + '</div>');
       $item.append('<div style="font-size:11px; margin-bottom:8px; color:#666;">' + escapeHtml(suggestion.description) + '</div>');
       
-      const $btn = $('<button type="button" class="button">生成して配置</button>');
+      const $btn = $('<button type="button" class="button">' + escapeHtml(t("generateAndPlaceClassic", "生成して配置")) + '</button>');
       $btn.on("click", function() {
         generateAndPlaceImageClassic(suggestion, index);
       });
@@ -468,7 +487,7 @@
    */
   function generateAndPlaceImageClassic(suggestion, index, isFeatured) {
     showLoading(true);
-    showMessage("画像を生成中...", "info");
+    showMessage(t("generatingImageClassic", "画像を生成中..."), "info");
 
     $.ajax({
       url: picot_seo_writing_admin.rest_url + "/generate-image",
@@ -491,7 +510,7 @@
             currentFeaturedText = "";
             currentFeaturedPrompt = "";
             renderImageSuggestions(currentImageSuggestions, "");
-            showMessage("アイキャッチ画像を設定しました", "success");
+            showMessage(t("featuredImageSetClassic", "アイキャッチ画像を設定しました"), "success");
           } else {
             const markerSearch = "PICOT_SEO_WRITING_MARKER:" + index + ":";
             const imageHtml = '<div style="text-align:center;"><img src="' + response.url + '" alt="' + escapeHtml(suggestion.description) + '" /><br /><small>' + escapeHtml(suggestion.description) + '</small></div>';
@@ -519,12 +538,12 @@
                 }
               }
             }
-            showMessage("画像を挿入しました", "success");
+            showMessage(t("imageInserted", "画像を挿入しました"), "success");
           }
         }
       },
       error: function (xhr) {
-        showMessage("画像生成に失敗しました", "error");
+        showMessage(t("imageGenerationFailed", "画像生成に失敗しました"), "error");
       },
       complete: function () {
         showLoading(false);
@@ -574,22 +593,22 @@
 
     let html = '<div id="picot-ai-seo-writer-url-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999999; display:flex; justify-content:center; align-items:center;">';
     html += '<div style="background:#fff; padding:20px; border-radius:4px; width:600px; max-width:90%; max-height:90vh; overflow-y:auto; position:relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">';
-    html += '<h2 style="margin-top:0; font-size:16px; border-bottom:1px solid #ccc; padding-bottom:10px;">' + escapeHtml(item.target_keyword) + ' - 参照URL</h2>';
+    html += '<h2 style="margin-top:0; font-size:16px; border-bottom:1px solid #ccc; padding-bottom:10px;">' + escapeHtml(formatString(t("referenceUrlsTitle", "%s - 参照URL"), item.target_keyword)) + '</h2>';
     
-    html += '<h3 style="font-size:15px; margin: 15px 0 10px;">日本国内の検索順位 (上位10件)</h3><ul style="list-style:disc; margin-left:20px; margin-bottom: 20px;">';
+    html += '<h3 style="font-size:15px; margin: 15px 0 10px;">' + escapeHtml(t("jaSearchRankings", "日本国内の検索順位 (上位10件)")) + '</h3><ul style="list-style:disc; margin-left:20px; margin-bottom: 20px;">';
     (item.locale_urls_ja || []).forEach(urlInfo => {
       html += '<li style="margin-bottom:5px;"><a href="' + escapeHtml(urlInfo.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(urlInfo.title || urlInfo.url) + '</a></li>';
     });
     html += '</ul>';
 
-    html += '<h3 style="font-size:15px; margin: 15px 0 10px;">英語圏の検索順位 (上位5件)</h3><ul style="list-style:disc; margin-left:20px; margin-bottom: 20px;">';
+    html += '<h3 style="font-size:15px; margin: 15px 0 10px;">' + escapeHtml(t("enSearchRankings", "英語圏の検索順位 (上位5件)")) + '</h3><ul style="list-style:disc; margin-left:20px; margin-bottom: 20px;">';
     (item.locale_urls_en || []).forEach(urlInfo => {
       html += '<li style="margin-bottom:5px;"><a href="' + escapeHtml(urlInfo.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(urlInfo.title || urlInfo.url) + '</a></li>';
     });
     html += '</ul>';
     
     html += '<div style="text-align:right; margin-top:20px; border-top:1px solid #ccc; padding-top:15px;">';
-    html += '<button type="button" class="button" id="picot-ai-seo-writer-close-modal">閉じる</button>';
+    html += '<button type="button" class="button" id="picot-ai-seo-writer-close-modal">' + escapeHtml(t("closeModal", "閉じる")) + '</button>';
     html += '</div>';
     html += '</div></div>';
     
