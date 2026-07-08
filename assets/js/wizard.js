@@ -30,9 +30,9 @@ jQuery(document).ready(function($) {
         }
 
         if (index === $screens.length - 1) {
-            $nextBtn.text(s('submit', '設定を保存して完了する'));
+            $nextBtn.text(s('submit', 'Save settings and finish'));
         } else {
-            $nextBtn.text(s('next', '次へ進む'));
+            $nextBtn.text(s('next', 'Next'));
         }
     }
 
@@ -79,7 +79,7 @@ jQuery(document).ready(function($) {
         const originalText = $btn ? $btn.text() : null;
 
         if ($btn) {
-            $btn.prop('disabled', true).text(s('fetchingModels', 'モデル一覧を取得中...'));
+            $btn.prop('disabled', true).text(s('fetchingModels', 'Fetching model list...'));
         }
 
         $.ajax({
@@ -93,7 +93,7 @@ jQuery(document).ready(function($) {
         }).done(function(response) {
             if (!response || !response.success) {
                 deferred.reject({
-                    message: getErrorMessage(response, s('errorFetching', 'モデル一覧の取得に失敗しました。'))
+                    message: getErrorMessage(response, s('errorFetching', 'Failed to fetch model list.'))
                 });
                 return;
             }
@@ -124,14 +124,14 @@ jQuery(document).ready(function($) {
 
             deferred.resolve(response);
         }).fail(function(xhr) {
-            let message = s('communicationErrorPlain', '通信エラーが発生しました。');
+            let message = s('communicationErrorPlain', 'A communication error occurred.');
             if (xhr && xhr.responseText) {
                 try {
                     const parsed = JSON.parse(xhr.responseText);
                     message = getErrorMessage(parsed, message);
                 } catch (e) {
                     if (xhr.responseText === '-1' || xhr.responseText === '0') {
-                        message = s('sessionExpiredWizard', 'セッションが切れています。ページを再読み込みして再度お試しください。');
+                        message = s('sessionExpiredWizard', 'Your session has expired. Reload the page and try again.');
                     }
                 }
             }
@@ -147,7 +147,7 @@ jQuery(document).ready(function($) {
 
     $(document).on('click', '#picot-wizard-fetch-models', function() {
         fetchGeminiModels($(this)).fail(function(error) {
-            alert((error && error.message) || s('errorFetching', 'モデル一覧の取得に失敗しました。'));
+            alert((error && error.message) || s('errorFetching', 'Failed to fetch model list.'));
         });
     });
 
@@ -156,7 +156,7 @@ jQuery(document).ready(function($) {
             const $currentScreen = $screens.eq(currentStep);
 
             if (getScreenStepId($currentScreen) === 'ai_setup') {
-                $nextBtn.prop('disabled', true).text(s('testing', '接続テスト中...'));
+                $nextBtn.prop('disabled', true).text(s('testing', 'Testing connection...'));
 
                 $.ajax({
                     url: picot_seo_writing_wizard.ajax_url,
@@ -168,7 +168,7 @@ jQuery(document).ready(function($) {
                     }
                 }).done(function(response) {
                     if (!response || !response.success) {
-                        alert(getErrorMessage(response, s('geminiConnectionFailed', 'Google Gemini コネクターへの接続に失敗しました。')));
+                        alert(getErrorMessage(response, s('geminiConnectionFailed', 'Failed to connect to the Google Gemini connector.')));
                         return;
                     }
 
@@ -176,15 +176,15 @@ jQuery(document).ready(function($) {
                         currentStep++;
                         updateStep(currentStep);
                     }).fail(function(error) {
-                        alert((error && error.message) || s('modelFetchFailed', 'モデルの取得に失敗しました。'));
+                        alert((error && error.message) || s('modelFetchFailed', 'Failed to fetch models.'));
                     });
                 }).fail(function() {
-                    alert(s('geminiConnectionTestFailed', 'Google Gemini コネクターへの接続テストに失敗しました。'));
+                    alert(s('geminiConnectionTestFailed', 'Google Gemini connector connection test failed.'));
                 }).always(function() {
                     $nextBtn.prop('disabled', false).text(
                         currentStep === $screens.length - 1
-                            ? s('submit', '設定を保存して完了する')
-                            : s('next', '次へ進む')
+                            ? s('submit', 'Save settings and finish')
+                            : s('next', 'Next')
                     );
                 });
                 return;

@@ -74,10 +74,7 @@ class Model_Manager extends Gemini_Client
                 'message' => $e->getMessage(),
             ]);
             throw new \Exception(
-                esc_html__(
-                    'Gemini モデル一覧の取得に失敗しました。Google Gemini コネクターの API キーを確認してください。',
-                    'picot-ai-seo-writer'
-                )
+                esc_html__('Failed to fetch Gemini models. Check the Google Gemini connector API key.', 'picot-ai-seo-writer')
             );
         }
 

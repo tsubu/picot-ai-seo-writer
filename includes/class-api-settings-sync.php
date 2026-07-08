@@ -164,7 +164,7 @@ class Api_Settings_Sync
 
         return sprintf(
             /* translators: %s: Source plugin label. */
-            __('他の AI プラグイン（%s）のモデル設定を自動で引き継ぎました。', 'picot-ai-seo-writer'),
+            __('Model settings were imported automatically from another AI plugin (%s).', 'picot-ai-seo-writer'),
             $source_label
         );
     }

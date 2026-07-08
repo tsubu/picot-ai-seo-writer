@@ -46,7 +46,7 @@ class Models_Endpoint extends REST_Controller
             if (!\PICOT_SEO_WRITING\Ai_Client_Helper::supports_text_generation()) {
                 \PICOT_SEO_WRITING\Logger::error('WordPress AI Client is not configured for text generation');
                 return $this->error_response(
-                    esc_html__('Google Gemini コネクターが未設定です。設定 → コネクターで Gemini を接続してください。', 'picot-ai-seo-writer'),
+                    esc_html__('Google Gemini connector is not configured. Connect Gemini under Settings → Connectors.', 'picot-ai-seo-writer'),
                     400
                 );
             }

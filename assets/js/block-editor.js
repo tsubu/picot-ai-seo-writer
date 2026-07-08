@@ -28,7 +28,6 @@
         const [additionalNotes, setAdditionalNotes] = useState(config.lastNotes || config.additional_notes || '');
         const [writingStyle, setWritingStyle]   = useState(config.currentStyle || 'casual');
         const [imageStyle, setImageStyle]       = useState(config.currentImageStyle || 'photorealistic');
-        const [language, setLanguage]           = useState('japanese');
         const [loading, setLoading]             = useState(false);
         const [imgLoading, setImgLoading]       = useState(false);
         const [imgSuccess, setImgSuccess]       = useState(!!config.imageSuggestions);
@@ -77,22 +76,22 @@
                 return undefined;
             }
 
-            let msg = t('generatingArticle', 'AIが記事を生成中...');
+            let msg = t('generatingArticle', 'AI is generating the article...');
             if (imgLoading) {
-                msg = t('analyzingImagePrompts', '画像プロンプトを分析中...');
+                msg = t('analyzingImagePrompts', 'Analyzing image prompts...');
             } else if (bulkInfo) {
                 msg = formatString(
-                    t('generatingBulkImage', '全 %2$d 枚中 %1$d 枚目の画像を生成中...'),
+                    t('generatingBulkImage', 'Generating image %1$d of %2$d...'),
                     bulkInfo.current,
                     bulkInfo.total
                 );
             } else if (generatingIdx === -2) {
-                msg = t('generatingFeaturedImage', 'アイキャッチ画像を生成中...');
+                msg = t('generatingFeaturedImage', 'Generating featured image...');
             } else if (generatingIdx >= 0) {
-                msg = formatString(t('generatingImageNumber', '画像 %d を生成中...'), generatingIdx + 1);
+                msg = formatString(t('generatingImageNumber', 'Generating image %d...'), generatingIdx + 1);
             }
 
-            window.PicotSeoWritingOverlay.show(msg, t('overlaySubmessage', 'これには数十秒かかる場合があります。'));
+            window.PicotSeoWritingOverlay.show(msg, t('overlaySubmessage', 'This may take several tens of seconds.'));
 
             return () => {
                 if (window.PicotSeoWritingOverlay) {
@@ -103,7 +102,7 @@
 
         const generateArticle = () => {
             if (!keyword.trim()) {
-                setMessage({ text: t('enterKeyword', 'ターゲットワードを入力してください'), type: 'error' });
+                setMessage({ text: t('enterKeyword', 'Please enter a target keyword'), type: 'error' });
                 return;
             }
             setLoading(true);
@@ -118,7 +117,7 @@
                 url: config.restUrl + config.namespace + '/generate-article-direct',
                 method: 'POST',
                 headers: { 'X-WP-Nonce': config.nonce },
-                data: { keyword, additional_notes: additionalNotes, writing_style: writingStyle, language, post_id: config.postId }
+                data: { keyword, additional_notes: additionalNotes, writing_style: writingStyle, post_id: config.postId }
             })
             .then(data => {
                 const r = data.data || data;
@@ -140,14 +139,14 @@
                     }).catch(e => console.error('PICOT SEO: Meta save error:', e));
                     setCurrentSources(r.sources || []);
                     setCurrentGenerationInfo({ keyword, additionalNotes });
-                    setMessage({ text: t('articleGenerated', '記事を生成しました！'), type: 'success' });
+                    setMessage({ text: t('articleGenerated', 'Article generated!'), type: 'success' });
                 } else {
-                    setMessage({ text: r.error || t('error', 'エラーが発生しました'), type: 'error' });
+                    setMessage({ text: r.error || t('error', 'An error occurred'), type: 'error' });
                 }
             })
             .catch(err => {
-                const msg = err.message || (err.data && err.data.message) || t('unknownError', '不明なエラー');
-                setMessage({ text: t('errorPrefix', 'エラー: ') + msg, type: 'error' });
+                const msg = err.message || (err.data && err.data.message) || t('unknownError', 'Unknown error');
+                setMessage({ text: t('errorPrefix', 'Error: ') + msg, type: 'error' });
             })
             .finally(() => setLoading(false));
         };
@@ -155,7 +154,7 @@
         const generateImagePrompts = () => {
             const content = wp.data.select('core/editor').getEditedPostAttribute('content');
             if (!content || !content.trim()) {
-                setMessage({ text: t('generateArticleFirst', '先に記事を生成してください'), type: 'error' });
+                setMessage({ text: t('generateArticleFirst', 'Generate an article first'), type: 'error' });
                 return;
             }
             setImgLoading(true);
@@ -179,14 +178,14 @@
                 if (data && data.success && data.data) {
                     setImgSuccess(true);
                     setImageSuggestions(data.data);
-                    setMessage({ text: t('imageSuggestionsReady', '画像提案を取得しました！下のリストから生成してください。'), type: 'success' });
+                    setMessage({ text: t('imageSuggestionsReady', 'Image suggestions are ready. Generate them from the list below.'), type: 'success' });
                 } else {
-                    setMessage({ text: (data && data.message) || t('imagePromptInsertFailed', '画像プロンプト挿入に失敗しました'), type: 'error' });
+                    setMessage({ text: (data && data.message) || t('imagePromptInsertFailed', 'Failed to insert image prompts'), type: 'error' });
                 }
             })
             .catch(err => {
                 const msg = (err && err.message) ? err.message : JSON.stringify(err);
-                setMessage({ text: t('communicationError', '通信エラー: ') + msg, type: 'error' });
+                setMessage({ text: t('communicationError', 'Communication error: ') + msg, type: 'error' });
             })
             .finally(() => setImgLoading(false));
         };
@@ -202,7 +201,7 @@
                 });
                 const r = result.data || result;
                 if (!r.url || !r.attachment_id) {
-                    throw new Error(r.message || t('noImageDataReturned', '画像データが返されませんでした'));
+                    throw new Error(r.message || t('noImageDataReturned', 'No image data was returned'));
                 }
 
                 if (isFeatured) {
@@ -214,15 +213,15 @@
                         caption: '',
                     });
                     wp.data.dispatch('core/block-editor').insertBlocks(imageBlock, 0);
-                    setMessage({ text: t('featuredImageSet', 'アイキャッチ画像を設定・挿入しました！'), type: 'success' });
+                    setMessage({ text: t('featuredImageSet', 'Featured image set and inserted!'), type: 'success' });
                 } else {
                     insertImageBlock(r.attachment_id, r.url, description, location);
-                    setMessage({ text: t('imageInsertedIntoPost', '画像を記事に挿入しました！'), type: 'success' });
+                    setMessage({ text: t('imageInsertedIntoPost', 'Image inserted into the post!'), type: 'success' });
                 }
                 setCompletedImages(prev => [...prev, isFeatured ? -2 : idx]);
             } catch (err) {
                 const msg = (err && err.message) ? err.message : JSON.stringify(err);
-                setMessage({ text: t('imageGenerationErrorPrefix', '画像生成エラー: ') + msg, type: 'error' });
+                setMessage({ text: t('imageGenerationErrorPrefix', 'Image generation error: ') + msg, type: 'error' });
             } finally {
                 setGeneratingIdx(-1);
             }
@@ -302,7 +301,7 @@
 
         const generateAllImages = async () => {
             if (!imageSuggestions) return;
-            setMessage({ text: t('generatingAllImages', '全画像を生成中...（時間がかかります）'), type: 'success' });
+            setMessage({ text: t('generatingAllImages', 'Generating all images... (this may take a while)'), type: 'success' });
 
             const allItems = [
                 { prompt: imageSuggestions.featured_prompt, description: imageSuggestions.featured_text, location: '', isFeatured: true, idx: -2 },
@@ -312,7 +311,7 @@
             const pendingItems = allItems.filter(item => !completedImages.includes(item.idx));
 
             if (pendingItems.length === 0) {
-                setMessage({ text: t('allImagesGenerated', 'すべての画像が生成済みです！'), type: 'success' });
+                setMessage({ text: t('allImagesGenerated', 'All images have already been generated!'), type: 'success' });
                 return;
             }
 
@@ -326,7 +325,7 @@
             }
 
             setBulkInfo(null);
-            setMessage({ text: t('allImagesComplete', '全画像の生成・挿入が完了しました！'), type: 'success' });
+            setMessage({ text: t('allImagesComplete', 'All images were generated and inserted!'), type: 'success' });
         };
 
         const isDisabled = loading || imgLoading || generatingIdx !== -1;
@@ -342,7 +341,7 @@
                         padding: '10px', marginBottom: '8px', background: '#fff8f5'
                     }
                 },
-                    el('strong', { style: { fontSize: '12px', color: '#f56e28' } }, t('featuredImageLabel', '⭐ アイキャッチ画像')),
+                    el('strong', { style: { fontSize: '12px', color: '#f56e28' } }, t('featuredImageLabel', 'Featured image')),
                     el('p', { style: { fontSize: '11px', margin: '4px 0', color: '#555' } }, featured_text),
                     !completedImages.includes(-2) ? el(Button, {
                         isSecondary: true,
@@ -350,7 +349,7 @@
                         isBusy: generatingIdx === -2,
                         disabled: isDisabled,
                         style: { width: '100%', justifyContent: 'center', marginTop: '6px', height: '32px', fontSize: '12px' }
-                    }, generatingIdx === -2 ? t('generating', '生成中...') : t('generateAndSetFeatured', '🖼️ 生成して設定')) : el('div', { style: { color: '#155724', fontSize: '12px', marginTop: '6px', textAlign: 'center', fontWeight: 'bold' } }, t('generationComplete', '✅ 生成完了'))
+                    }, generatingIdx === -2 ? t('generating', 'Generating...') : t('generateAndSetFeatured', 'Generate and set')) : el('div', { style: { color: '#155724', fontSize: '12px', marginTop: '6px', textAlign: 'center', fontWeight: 'bold' } }, t('generationComplete', 'Generated'))
                 ),
                 ...suggestions.map((s, i) =>
                     el('div', {
@@ -368,7 +367,7 @@
                             isBusy: generatingIdx === i,
                             disabled: isDisabled,
                             style: { width: '100%', justifyContent: 'center', marginTop: '4px', height: '30px', fontSize: '11px' }
-                        }, generatingIdx === i ? t('generating', '生成中...') : t('generateAndInsertImage', '🖼️ 生成して挿入')) : el('div', { style: { color: '#155724', fontSize: '11px', marginTop: '4px', textAlign: 'center', fontWeight: 'bold' } }, t('generationComplete', '✅ 生成完了'))
+                        }, generatingIdx === i ? t('generating', 'Generating...') : t('generateAndInsertImage', 'Generate and insert')) : el('div', { style: { color: '#155724', fontSize: '11px', marginTop: '4px', textAlign: 'center', fontWeight: 'bold' } }, t('generationComplete', 'Generated'))
                     )
                 ),
                 el(Button, {
@@ -379,7 +378,7 @@
                         width: '100%', justifyContent: 'center', marginTop: '8px', height: '40px',
                         background: '#1d2327', borderColor: '#1d2327'
                     }
-                }, t('generateAllImagesButton', '⚡ 全ての画像を生成して挿入'))
+                }, t('generateAllImagesButton', 'Generate and insert all images'))
             );
         };
 
@@ -389,23 +388,23 @@
             icon: el('span', { className: 'dashicons dashicons-admin-appearance' })
         },
             el('div', { className: 'picot-sidebar-content', style: { padding: '16px' } },
-                el(PanelBody, { title: t('articleGenerationSettings', '記事生成設定'), initialOpen: true },
+                el(PanelBody, { title: t('articleGenerationSettings', 'Article generation settings'), initialOpen: true },
                     el('div', { style: { marginBottom: '20px' } },
                         el(TextControl, {
-                            label: t('targetKeyword', 'ターゲットワード'),
+                            label: t('targetKeyword', 'Target keyword'),
                             value: keyword,
                             onChange: handleKeywordChange,
-                            placeholder: t('matchKeywordPlaceholder', '例: WordPress SEO'),
+                            placeholder: t('matchKeywordPlaceholder', 'e.g. WordPress SEO'),
                             disabled: isDisabled
                         })
                     ),
                     el('div', { style: { marginBottom: '20px' } },
                         el(TextareaControl, {
-                            label: t('additionalNotesOptional', '希望追加内容（任意）'),
+                            label: t('additionalNotesOptional', 'Additional notes (optional)'),
                             value: additionalNotes,
                             onChange: handleNotesChange,
                             rows: 5,
-                            placeholder: t('additionalNotesDetailedPlaceholder', '記事に含めたい具体的な情報や要望を入力してください'),
+                            placeholder: t('additionalNotesDetailedPlaceholder', 'Enter specific details or requests to include in the article'),
                             disabled: isDisabled
                         })
                     ),
@@ -416,7 +415,7 @@
                             isBusy: loading,
                             disabled: isDisabled,
                             style: { width: '100%', justifyContent: 'center', height: '40px' }
-                        }, loading ? t('generating', '生成中...') : t('generateArticleButton', '記事を生成'))
+                        }, loading ? t('generating', 'Generating...') : t('generateArticleButton', 'Generate article'))
                     ),
                     message.text && el('div', {
                         style: {
@@ -428,10 +427,10 @@
                     }, message.text)
                 ),
 
-                el(PanelBody, { title: t('writingStylePanel', '執筆スタイル'), initialOpen: false },
+                el(PanelBody, { title: t('writingStylePanel', 'Writing style'), initialOpen: false },
                     el('div', { style: { marginBottom: '20px' } },
                         el(SelectControl, {
-                            label: t('writingStyleLabel', '文章スタイル'),
+                            label: t('writingStyleLabel', 'Writing style'),
                             value: writingStyle,
                             options: writingStyleOptions,
                             onChange: handleStyleChange,
@@ -440,7 +439,7 @@
                     ),
                     el('div', { style: { marginBottom: '10px' } },
                         el(SelectControl, {
-                            label: t('imageStyleLabel', '画像スタイル'),
+                            label: t('imageStyleLabel', 'Image style'),
                             value: imageStyle,
                             options: imageStyleOptions,
                             onChange: handleImageStyleChange,
@@ -449,9 +448,9 @@
                     )
                 ),
 
-                el(PanelBody, { title: t('imageGenerationPanel', '画像生成'), initialOpen: false },
+                el(PanelBody, { title: t('imageGenerationPanel', 'Image generation'), initialOpen: false },
                     el('p', { style: { fontSize: '12px', color: '#666', marginBottom: '12px' } },
-                        t('imageGenerationDescription', '記事を分析して画像提案(1 アイキャッチ + 5 本文)を生成し、Gemini で画像を生成して記事に挿入します。')
+                        t('imageGenerationDescription', 'Analyze the article, suggest images (1 featured + 5 inline), generate them with Gemini, and insert them into the post.')
                     ),
                     el(Button, {
                         isSecondary: true,
@@ -459,18 +458,18 @@
                         isBusy: imgLoading,
                         disabled: isDisabled,
                         style: { width: '100%', justifyContent: 'center', height: '40px', marginBottom: '8px' }
-                    }, imgLoading ? t('analyzing', '分析中...') : t('analyzeImagePromptsButton', '① 画像プロンプトを分析')),
+                    }, imgLoading ? t('analyzing', 'Analyzing...') : t('analyzeImagePromptsButton', '1. Analyze image prompts')),
                     renderImageSuggestions()
                 ),
 
-                el(PanelBody, { title: t('lastUsedInfoPanel', '前回使用した情報'), initialOpen: false },
+                el(PanelBody, { title: t('lastUsedInfoPanel', 'Last used information'), initialOpen: false },
                     el('div', { style: { fontSize: '12px' } },
-                        el('p', {}, el('strong', {}, t('wordLabel', 'ワード: ')), currentGenerationInfo.keyword || t('emptyValue', '(空)')),
-                        el('p', {}, el('strong', {}, t('notesLabel', '要望: ')), currentGenerationInfo.additionalNotes || t('emptyValue', '(空)'))
+                        el('p', {}, el('strong', {}, t('wordLabel', 'Keyword: ')), currentGenerationInfo.keyword || t('emptyValue', '(empty)')),
+                        el('p', {}, el('strong', {}, t('notesLabel', 'Notes: ')), currentGenerationInfo.additionalNotes || t('emptyValue', '(empty)'))
                     )
                 ),
 
-                currentSources.length > 0 && el(PanelBody, { title: t('referenceUrlsPanel', '参照URL一覧'), initialOpen: true },
+                currentSources.length > 0 && el(PanelBody, { title: t('referenceUrlsPanel', 'Reference URLs'), initialOpen: true },
                     el('ul', { style: { margin: 0, paddingLeft: '16px', fontSize: '12px' } },
                         currentSources.map((src, idx) =>
                             el('li', { key: idx, style: { marginBottom: '6px', wordBreak: 'break-all' } },

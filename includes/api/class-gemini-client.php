@@ -44,16 +44,13 @@ class Gemini_Client
         [$provider, $model_id] = Ai_Client_Helper::parse_model_spec($model);
         if ($provider === '' || $model_id === '') {
             throw new \Exception(
-                esc_html__(
-                    'テキストモデルが設定されていません。設定画面でモデルを選択してください。',
-                    'picot-ai-seo-writer'
-                )
+                esc_html__('Text model is not set. Choose one on the settings screen.', 'picot-ai-seo-writer')
             );
         }
 
         $prompt = $this->contents_to_prompt($contents);
         if ($prompt === '') {
-            throw new \Exception(esc_html__('プロンプトが空です。', 'picot-ai-seo-writer'));
+            throw new \Exception(esc_html__('The prompt is empty.', 'picot-ai-seo-writer'));
         }
 
         $request_options = new RequestOptions();
@@ -76,10 +73,7 @@ class Gemini_Client
 
         if (!$builder->is_supported_for_text_generation()) {
             throw new \Exception(
-                esc_html__(
-                    '選択した Gemini モデルはテキスト生成に対応していません。Google Gemini コネクターの接続設定を確認してください。',
-                    'picot-ai-seo-writer'
-                )
+                esc_html__('The selected Gemini model does not support text generation. Check the Google Gemini connector settings.', 'picot-ai-seo-writer')
             );
         }
 

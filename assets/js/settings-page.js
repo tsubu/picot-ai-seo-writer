@@ -35,7 +35,7 @@
       const $select = $("#picot_seo_writing_text_model");
       const originalText = $button.text();
 
-      $button.prop("disabled", true).text(s("fetching", "取得中..."));
+      $button.prop("disabled", true).text(s("fetching", "Fetching..."));
 
       $.ajax({
         url: picot_seo_writing_admin.ajax_url,
@@ -77,13 +77,13 @@
               updateDescription($imgSelect, $('#picot_seo_writing_image_model_description'));
             }
 
-            alert(s("updateSuccess", "モデル一覧を更新しました"));
+            alert(s("updateSuccess", "Model list updated"));
           } else {
-            alert(response.data.message || s("fetchFailedGeneric", "取得に失敗しました"));
+            alert(response.data.message || s("fetchFailedGeneric", "Fetch failed"));
           }
         },
         error: function () {
-          alert(s("updateFailed", "モデル一覧の取得に失敗しました"));
+          alert(s("updateFailed", "Failed to fetch model list"));
         },
         complete: function () {
           $button.prop("disabled", false).text(originalText);
@@ -115,8 +115,8 @@
       const resultSpan = $("#picot-test-result-" + provider);
       const originalText = btn.text();
 
-      btn.prop("disabled", true).text(s("testingConnection", "テスト中..."));
-      resultSpan.text(s("communicating", "通信中...")).css("color", "#444");
+      btn.prop("disabled", true).text(s("testingConnection", "Testing..."));
+      resultSpan.text(s("communicating", "Connecting...")).css("color", "#444");
 
       $.ajax({
         url: picot_seo_writing_admin.ajax_url,
@@ -129,22 +129,22 @@
       })
         .done(function (response) {
           if (response && response.success) {
-            resultSpan.text(getErrorMessage(response, s("connectionSuccess", "✅ 接続に成功しました"))).css("color", "#155724");
+            resultSpan.text(getErrorMessage(response, s("connectionSuccess", "Connection successful"))).css("color", "#155724");
           } else {
             resultSpan
-              .text(getErrorMessage(response, s("connectionFailed", "❌ 接続に失敗しました")))
+              .text(getErrorMessage(response, s("connectionFailed", "Connection failed")))
               .css("color", "#d63638");
           }
         })
         .fail(function (xhr) {
-          let message = s("communicationErrorIcon", "❌ 通信エラーが発生しました");
+          let message = s("communicationErrorIcon", "Communication error");
           if (xhr && xhr.responseText) {
             try {
               const parsed = JSON.parse(xhr.responseText);
               message = getErrorMessage(parsed, message);
             } catch (e) {
               if (xhr.responseText === "-1" || xhr.responseText === "0") {
-                message = s("sessionExpiredSettings", "❌ セッションが切れています。ページを再読み込みしてください。");
+                message = s("sessionExpiredSettings", "Session expired. Please reload the page.");
               }
             }
           }

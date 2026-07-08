@@ -1,0 +1,850 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Picot AI SEO Writer 1.0.3\n"
+"Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
+"PO-Revision-Date: 2026-07-06 19:32+0000\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: picot-ai-seo-writer locale build\n"
+
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+msgid "Picot AI SEO Writer"
+msgstr "Picot AI SEO Writer"
+
+#: includes/admin/class-admin.php
+msgid "Casual"
+msgstr "ไม่เป็นทางการ"
+
+#: includes/admin/class-admin.php
+msgid "Professional"
+msgstr "มืออาชีพ"
+
+#: includes/admin/class-admin.php
+msgid "Friendly"
+msgstr "เป็นกันเอง"
+
+#: includes/admin/class-admin.php
+msgid "Technical"
+msgstr "เทคนิค"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Photorealistic"
+msgstr "เหมือนจริง"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Digital art"
+msgstr "ศิลปะดิจิทัล"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Vector illustration"
+msgstr "ภาพประกอบของเวกเตอร์"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Sketch"
+msgstr "ร่าง"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Watercolor"
+msgstr "สีน้ำ"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Cyberpunk"
+msgstr "ไซเบอร์พังค์"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Anime"
+msgstr "อะนิเมะ"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Oil painting"
+msgstr "ภาพวาดสีน้ำมัน"
+
+#: includes/admin/class-admin.php
+msgid "Article generation settings"
+msgstr "การตั้งค่าการสร้างบทความ"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Writing style"
+msgstr "สไตล์การเขียน"
+
+#: includes/admin/class-admin.php
+msgid "Image generation"
+msgstr "การสร้างภาพ"
+
+#: includes/admin/class-admin.php
+msgid "Last used information"
+msgstr "ข้อมูลที่ใช้ล่าสุด"
+
+#: includes/admin/class-admin.php
+msgid "Reference URLs"
+msgstr "URL อ้างอิง"
+
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+msgid "Target keyword"
+msgstr "คำหลักเป้าหมาย"
+
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+msgid "e.g. WordPress SEO"
+msgstr "เช่น เวิร์ดเพรส SEO"
+
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+msgid "Additional notes (optional)"
+msgstr "หมายเหตุเพิ่มเติม (ไม่บังคับ)"
+
+#: includes/admin/class-admin.php
+msgid "Enter specific details or requests to include in the article"
+msgstr "ป้อนรายละเอียดเฉพาะหรือคำขอที่จะรวมไว้ในบทความ"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Image style"
+msgstr "สไตล์ภาพ"
+
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+msgid "Generate article"
+msgstr "สร้างบทความ"
+
+#: includes/admin/class-admin.php
+msgid "1. Analyze image prompts"
+msgstr "1. วิเคราะห์พร้อมท์รูปภาพ"
+
+#: includes/admin/class-admin.php
+msgid ""
+"Analyze the article, suggest images (1 featured + 5 inline), generate them "
+"with Gemini, and insert them into the post."
+msgstr ""
+"วิเคราะห์บทความ แนะนำภาพ (1 ภาพเด่น + 5 ภาพอินไลน์) สร้างภาพด้วย Gemini "
+"และแทรกภาพลงในโพสต์"
+
+#: includes/admin/class-admin.php
+msgid "Keyword: "
+msgstr "คำสำคัญ:"
+
+#: includes/admin/class-admin.php
+msgid "Notes: "
+msgstr "หมายเหตุ:"
+
+#: includes/admin/class-admin.php
+msgid "(empty)"
+msgstr "(ว่างเปล่า)"
+
+#: includes/admin/class-admin.php
+msgid "Featured image"
+msgstr "ภาพเด่น"
+
+#: includes/admin/class-admin.php
+msgid "Generate and set"
+msgstr "สร้างและตั้งค่า"
+
+#: includes/admin/class-admin.php
+msgid "Generate and insert"
+msgstr "สร้างและแทรก"
+
+#: includes/admin/class-admin.php
+msgid "Generate and insert all images"
+msgstr "สร้างและแทรกรูปภาพทั้งหมด"
+
+#: includes/admin/class-admin.php
+msgid "Generated"
+msgstr "สร้างขึ้น"
+
+#: includes/admin/class-admin.php
+msgid "Research"
+msgstr "วิจัย"
+
+#: includes/admin/class-admin.php
+msgid "Researching..."
+msgstr "กำลังค้นคว้า..."
+
+#: includes/admin/class-admin.php
+msgid "Research completed"
+msgstr "การวิจัยเสร็จสมบูรณ์"
+
+#: includes/admin/class-admin.php
+msgid "Research failed"
+msgstr "การวิจัยล้มเหลว"
+
+#: includes/admin/class-admin.php
+msgid "Research history"
+msgstr "ประวัติการวิจัย"
+
+#: includes/admin/class-admin.php
+msgid "No research history"
+msgstr "ไม่มีประวัติการวิจัย"
+
+#: includes/admin/class-admin.php
+msgid "Generate title and headings"
+msgstr "สร้างชื่อและหัวเรื่อง"
+
+#: includes/admin/class-admin.php
+msgid "Generate article from headings"
+msgstr "สร้างบทความจากหัวข้อ"
+
+#: includes/admin/class-admin.php
+msgid "Generating..."
+msgstr "กำลังสร้าง..."
+
+#: includes/admin/class-admin.php
+msgid "Analyzing..."
+msgstr "กำลังวิเคราะห์..."
+
+#: includes/admin/class-admin.php
+msgid "Gemini is writing..."
+msgstr "ราศีเมถุนกำลังเขียน..."
+
+#: includes/admin/class-admin.php
+msgid "AI is generating the article..."
+msgstr "AI กำลังสร้างบทความ..."
+
+#: includes/admin/class-admin.php
+msgid "Analyzing image prompts..."
+msgstr "กำลังวิเคราะห์ข้อความแจ้งรูปภาพ..."
+
+#: includes/admin/class-admin.php
+msgid "Generating featured image..."
+msgstr "กำลังสร้างภาพเด่น..."
+
+#: includes/admin/class-admin.php
+msgid "Generating image %d..."
+msgstr "กำลังสร้างภาพ %d..."
+
+#: includes/admin/class-admin.php
+msgid "Generating image %1$d of %2$d..."
+msgstr "กำลังสร้างรูปภาพ %1$d จาก %2$d..."
+
+#: includes/admin/class-admin.php
+msgid "Generating all images... (this may take a while)"
+msgstr "กำลังสร้างภาพทั้งหมด... (อาจใช้เวลาสักครู่)"
+
+#: includes/admin/class-admin.php
+msgid "This may take several tens of seconds."
+msgstr "การดำเนินการนี้อาจใช้เวลาหลายสิบวินาที"
+
+#: includes/admin/class-admin.php
+msgid "AI is processing. Please wait..."
+msgstr "AI กำลังประมวลผล โปรดรอ..."
+
+#: includes/admin/class-admin.php
+msgid "Processing..."
+msgstr "กำลังประมวลผล..."
+
+#: includes/admin/class-admin.php
+msgid "Title: "
+msgstr "ชื่อ:"
+
+#: includes/admin/class-admin.php
+msgid "Failed to generate title"
+msgstr "ไม่สามารถสร้างชื่อได้"
+
+#: includes/admin/class-admin.php
+msgid "Headings were inserted into the editor. Edit them freely."
+msgstr "ส่วนหัวถูกแทรกลงในตัวแก้ไข แก้ไขได้อย่างอิสระ"
+
+#: includes/admin/class-admin.php
+msgid "Article inserted"
+msgstr "แทรกบทความแล้ว"
+
+#: includes/admin/class-admin.php
+msgid "Article generated!"
+msgstr "สร้างบทความแล้ว!"
+
+#: includes/admin/class-admin.php
+msgid "Failed to generate article"
+msgstr "ไม่สามารถสร้างบทความได้"
+
+#: includes/admin/class-admin.php
+msgid "Generate an article first"
+msgstr "สร้างบทความก่อน"
+
+#: includes/admin/class-admin.php
+msgid "Additional notes"
+msgstr "หมายเหตุเพิ่มเติม"
+
+#: includes/admin/class-admin.php
+msgid "Enter any extra requirements"
+msgstr "ป้อนข้อกำหนดเพิ่มเติม"
+
+#: includes/admin/class-admin.php
+msgid "Please enter a target keyword"
+msgstr "กรุณาใส่คำสำคัญเป้าหมาย"
+
+#: includes/admin/class-admin.php
+msgid "Please enter article content"
+msgstr "กรุณากรอกเนื้อหาบทความ"
+
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+msgid "Find image placement points"
+msgstr "ค้นหาจุดวางตำแหน่งรูปภาพ"
+
+#: includes/admin/class-admin.php
+msgid "Image placement points:\\n\\n"
+msgstr "จุดวางรูปภาพ:\\n\\n"
+
+#: includes/admin/class-admin.php
+msgid "Image: "
+msgstr "ภาพ:"
+
+#: includes/admin/class-admin.php
+msgid "Failed to suggest images"
+msgstr "ไม่สามารถแนะนำรูปภาพได้"
+
+#: includes/admin/class-admin.php
+msgid "Image suggestions are ready. Generate them from the list below."
+msgstr "คำแนะนำรูปภาพพร้อมแล้ว สร้างจากรายการด้านล่าง"
+
+#: includes/admin/class-admin.php
+msgid "Failed to insert image prompts"
+msgstr "ไม่สามารถแทรกข้อความแจ้งรูปภาพ"
+
+#: includes/admin/class-admin.php
+msgid ""
+"Image placement suggestions were added and markers were inserted in the "
+"editor."
+msgstr "มีการเพิ่มคำแนะนำการวางตำแหน่งรูปภาพและใส่เครื่องหมายในตัวแก้ไข"
+
+#: includes/admin/class-admin.php
+msgid "No image placement points were found."
+msgstr "ไม่พบจุดวางตำแหน่งรูปภาพ"
+
+#: includes/admin/class-admin.php
+msgid "Markers and suggestions cleared"
+msgstr "ล้างเครื่องหมายและข้อเสนอแนะแล้ว"
+
+#: includes/admin/class-admin.php
+msgid "Clear suggestions and markers"
+msgstr "คำแนะนำและเครื่องหมายที่ชัดเจน"
+
+#: includes/admin/class-admin.php
+msgid "Generate and set as featured image"
+msgstr "สร้างและตั้งเป็นภาพเด่น"
+
+#: includes/admin/class-admin.php
+msgid "Generate and place"
+msgstr "สร้างและวาง"
+
+#: includes/admin/class-admin.php
+msgid "Featured image set"
+msgstr "ชุดรูปภาพเด่น"
+
+#: includes/admin/class-admin.php
+msgid "Featured image set and inserted!"
+msgstr "ชุดรูปภาพเด่นและแทรกแล้ว!"
+
+#: includes/admin/class-admin.php
+msgid "Image inserted"
+msgstr "แทรกรูปภาพแล้ว"
+
+#: includes/admin/class-admin.php
+msgid "Image inserted into the post!"
+msgstr "ภาพที่แทรกอยู่ในโพสต์!"
+
+#: includes/admin/class-admin.php
+msgid "Generating image..."
+msgstr "กำลังสร้างภาพ..."
+
+#: includes/admin/class-admin.php
+msgid "Image generation failed"
+msgstr "การสร้างอิมเมจล้มเหลว"
+
+#: includes/admin/class-admin.php
+msgid "No image data was returned"
+msgstr "ไม่มีการส่งคืนข้อมูลรูปภาพ"
+
+#: includes/admin/class-admin.php
+msgid "All images have already been generated!"
+msgstr "ภาพทั้งหมดได้ถูกสร้างขึ้นแล้ว!"
+
+#: includes/admin/class-admin.php
+msgid "All images were generated and inserted!"
+msgstr "ภาพทั้งหมดถูกสร้างขึ้นและแทรก!"
+
+#: includes/admin/class-admin.php
+msgid "Japanese: "
+msgstr "ญี่ปุ่น:"
+
+#: includes/admin/class-admin.php
+msgid "English: "
+msgstr "ภาษาอังกฤษ:"
+
+#: includes/admin/class-admin.php
+msgid "Japanese: %d"
+msgstr "ภาษาญี่ปุ่น: %d"
+
+#: includes/admin/class-admin.php
+msgid "English: %d"
+msgstr "อังกฤษ: %d"
+
+#: includes/admin/class-admin.php
+msgid "An error occurred"
+msgstr "เกิดข้อผิดพลาด"
+
+#: includes/admin/class-admin.php
+msgid "Unknown error"
+msgstr "ข้อผิดพลาดที่ไม่รู้จัก"
+
+#: includes/admin/class-admin.php
+msgid "Error: "
+msgstr "ข้อผิดพลาด:"
+
+#: includes/admin/class-admin.php
+msgid "Communication error: "
+msgstr "ข้อผิดพลาดในการสื่อสาร:"
+
+#: includes/admin/class-admin.php
+msgid "Image generation error: "
+msgstr "ข้อผิดพลาดในการสร้างภาพ:"
+
+#: includes/admin/class-admin.php
+msgid "Success"
+msgstr "ความสำเร็จ"
+
+#: includes/admin/class-admin.php
+msgid "Fetching..."
+msgstr "กำลังดึงข้อมูล..."
+
+#: includes/admin/class-admin.php
+msgid "Model list updated"
+msgstr "อัปเดตรายการโมเดลแล้ว"
+
+#: includes/admin/class-admin.php
+msgid "Failed to fetch model list"
+msgstr "ดึงข้อมูลรายการโมเดลไม่สำเร็จ"
+
+#: includes/admin/class-admin.php
+msgid "Review reference URLs"
+msgstr "ตรวจสอบ URL อ้างอิง"
+
+#: includes/admin/class-admin.php
+msgid "%s - Reference URLs"
+msgstr "%s - URL อ้างอิง"
+
+#: includes/admin/class-admin.php
+msgid "Japan search rankings (top 10)"
+msgstr "อันดับการค้นหาของญี่ปุ่น (10 อันดับแรก)"
+
+#: includes/admin/class-admin.php
+msgid "English search rankings (top 5)"
+msgstr "อันดับการค้นหาภาษาอังกฤษ (5 อันดับแรก)"
+
+#: includes/admin/class-admin.php
+msgid "Close"
+msgstr "ปิด"
+
+#: includes/admin/class-admin.php
+msgid "Fetching model list..."
+msgstr "กำลังดึงรายการรุ่น..."
+
+#: includes/admin/class-admin.php
+msgid "Failed to fetch model list."
+msgstr "ดึงข้อมูลรายการโมเดลไม่สำเร็จ"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Next"
+msgstr "ต่อไป"
+
+#: includes/admin/class-admin.php
+msgid "Save settings and finish"
+msgstr "บันทึกการตั้งค่าและเสร็จสิ้น"
+
+#: includes/admin/class-admin.php
+msgid "Testing connection..."
+msgstr "กำลังทดสอบการเชื่อมต่อ..."
+
+#: includes/admin/class-admin.php
+msgid "A communication error occurred."
+msgstr "เกิดข้อผิดพลาดในการสื่อสาร"
+
+#: includes/admin/class-admin.php
+msgid "Communication error"
+msgstr "ข้อผิดพลาดในการสื่อสาร"
+
+#: includes/admin/class-admin.php
+msgid "Your session has expired. Reload the page and try again."
+msgstr "เซสชันของคุณหมดอายุแล้ว โหลดหน้านี้ซ้ำแล้วลองอีกครั้ง"
+
+#: includes/admin/class-admin.php
+msgid "Session expired. Please reload the page."
+msgstr "เซสชั่นหมดอายุแล้ว กรุณาโหลดหน้านี้ซ้ำ"
+
+#: includes/admin/class-admin.php
+msgid "Testing..."
+msgstr "กำลังทดสอบ..."
+
+#: includes/admin/class-admin.php
+msgid "Connecting..."
+msgstr "กำลังเชื่อมต่อ..."
+
+#: includes/admin/class-admin.php
+msgid "Connection successful"
+msgstr "การเชื่อมต่อสำเร็จ"
+
+#: includes/admin/class-admin.php
+msgid "Connection failed"
+msgstr "การเชื่อมต่อล้มเหลว"
+
+#: includes/admin/class-admin.php
+msgid "Fetch failed"
+msgstr "การดึงข้อมูลล้มเหลว"
+
+#: includes/admin/class-admin.php
+msgid "Failed to connect to the Google Gemini connector."
+msgstr "ไม่สามารถเชื่อมต่อกับตัวเชื่อมต่อ Google Gemini"
+
+#: includes/admin/class-admin.php
+msgid "Google Gemini connector connection test failed."
+msgstr "การทดสอบการเชื่อมต่อตัวเชื่อมต่อ Google Gemini ล้มเหลว"
+
+#: includes/admin/class-admin.php
+msgid "Failed to fetch models."
+msgstr "ดึงข้อมูลโมเดลไม่สำเร็จ"
+
+#: includes/admin/class-admin.php
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+#: includes/admin/class-meta-box.php
+msgid "Gemini article generation"
+msgstr "การสร้างบทความราศีเมถุน"
+
+#: includes/admin/class-meta-box.php
+msgid "Add specific details, tone, or outline notes for the article"
+msgstr "เพิ่มรายละเอียด น้ำเสียง หรือโครงร่างเฉพาะสำหรับบทความ"
+
+#: includes/admin/class-meta-box.php
+msgid "Output language"
+msgstr "ภาษาเอาท์พุต"
+
+#: includes/admin/class-meta-box.php
+msgid "Japanese"
+msgstr "ญี่ปุ่น"
+
+#: includes/admin/class-meta-box.php
+msgid "English"
+msgstr "ภาษาอังกฤษ"
+
+#: includes/admin/class-meta-box.php
+msgid "Simplified Chinese"
+msgstr "จีนตัวย่อ"
+
+#: includes/admin/class-meta-box.php
+msgid "Traditional Chinese"
+msgstr "จีนดั้งเดิม"
+
+#: includes/admin/class-settings-page.php
+msgid "Google Gemini integration"
+msgstr "การรวม Google ราศีเมถุน"
+
+#: includes/admin/class-settings-page.php
+msgid "The Google Gemini connector (Settings → Connectors) must be connected"
+msgstr "ต้องเชื่อมต่อตัวเชื่อมต่อ Google Gemini (การตั้งค่า → ตัวเชื่อมต่อ)"
+
+#: includes/admin/class-settings-page.php
+msgid "Connection status"
+msgstr "สถานะการเชื่อมต่อ"
+
+#: includes/admin/class-settings-page.php
+msgid "Google Gemini connector is connected and text generation is available."
+msgstr "เชื่อมต่อตัวเชื่อมต่อ Google Gemini แล้วและมีการสร้างข้อความ"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Google Gemini connector is not configured or does not support text "
+"generation."
+msgstr "ไม่ได้กำหนดค่าตัวเชื่อมต่อ Google Gemini หรือไม่รองรับการสร้างข้อความ"
+
+#: includes/admin/class-settings-page.php
+msgid "Open AI connector settings"
+msgstr "เปิดการตั้งค่าตัวเชื่อมต่อ AI"
+
+#: includes/admin/class-settings-page.php
+msgid "Connection test"
+msgstr "การทดสอบการเชื่อมต่อ"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"This plugin uses the Google Gemini connector. Manage API keys under Settings"
+" → Connectors. Requests are sent through the WordPress AI Client."
+msgstr ""
+"ปลั๊กอินนี้ใช้ตัวเชื่อมต่อ Google Gemini จัดการคีย์ API ภายใต้การตั้งค่า → "
+"ตัวเชื่อมต่อ คำขอจะถูกส่งผ่านไคลเอนต์ WordPress AI"
+
+#: includes/admin/class-settings-page.php
+msgid "Text model"
+msgstr "รูปแบบข้อความ"
+
+#: includes/admin/class-settings-page.php
+msgid "No models available. Refresh the model list first."
+msgstr "ไม่มีรุ่นที่มีจำหน่าย รีเฟรชรายการรุ่นก่อน"
+
+#: includes/admin/class-settings-page.php
+msgid "Refresh model list"
+msgstr "รีเฟรชรายการรุ่น"
+
+#: includes/admin/class-settings-page.php
+msgid "Recommended model: %s"
+msgstr "รุ่นที่แนะนำ: %s"
+
+#: includes/admin/class-settings-page.php
+msgid "Click \"Refresh model list\" to fetch available models."
+msgstr "คลิก \"รีเฟรชรายการโมเดล\" เพื่อดึงโมเดลที่มีอยู่"
+
+#: includes/admin/class-settings-page.php
+msgid "Image model"
+msgstr "โมเดลรูปภาพ"
+
+#: includes/admin/class-settings-page.php
+msgid "Choose the model used for image generation."
+msgstr "เลือกรุ่นที่ใช้สำหรับการสร้างภาพ"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Image generation models (such as Imagen) require a paid Google AI API plan "
+"with billing enabled. Image generation may not work with API keys that only "
+"include the free tier."
+msgstr ""
+"โมเดลการสร้างอิมเมจ (เช่น Imagen) ต้องใช้แผน Google AI API "
+"แบบชำระเงินและเปิดใช้งานการเรียกเก็บเงิน การสร้างอิมเมจอาจไม่ทำงานกับคีย์ "
+"API ที่มีเฉพาะ Free Tier เท่านั้น"
+
+#: includes/admin/class-settings-page.php
+msgid "Writing style settings"
+msgstr "การตั้งค่าสไตล์การเขียน"
+
+#: includes/admin/class-settings-page.php
+msgid "Configure the tone of generated content"
+msgstr "กำหนดโทนสีของเนื้อหาที่สร้างขึ้น"
+
+#: includes/admin/class-settings-page.php
+msgid "Casual (friendly)"
+msgstr "สบายๆ (เป็นกันเอง)"
+
+#: includes/admin/class-settings-page.php
+msgid "Professional (polished and trustworthy)"
+msgstr "มืออาชีพ (ขัดเกลาและเชื่อถือได้)"
+
+#: includes/admin/class-settings-page.php
+msgid "Friendly (warm)"
+msgstr "เป็นกันเอง (อบอุ่น)"
+
+#: includes/admin/class-settings-page.php
+msgid "Technical (precise)"
+msgstr "เทคนิค (แม่นยำ)"
+
+#: includes/admin/class-settings-page.php
+msgid "Humorous (light and fun)"
+msgstr "ตลก (เบาและสนุกสนาน)"
+
+#: includes/admin/class-settings-page.php
+msgid "Persuasive (passionate)"
+msgstr "โน้มน้าวใจ (หลงใหล)"
+
+#: includes/admin/class-settings-page.php
+msgid "Informative (factual)"
+msgstr "ข้อมูล (ข้อเท็จจริง)"
+
+#: includes/admin/class-settings-page.php
+msgid "Choose the tone for images inserted into articles."
+msgstr "เลือกโทนสีสำหรับรูปภาพที่แทรกลงในบทความ"
+
+#: includes/admin/class-settings-page.php
+msgid "Save settings"
+msgstr "บันทึกการตั้งค่า"
+
+#: includes/admin/class-settings-page.php
+msgid "Google Gemini setup"
+msgstr "การตั้งค่า Google ราศีเมถุน"
+
+#: includes/admin/class-settings-page.php
+msgid "1. Configure the Google Gemini connector"
+msgstr "1. กำหนดค่าตัวเชื่อมต่อ Google Gemini"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Install and activate the Google (Gemini) connector under Settings → "
+"Connectors, then connect your API key. This plugin uses Gemini."
+msgstr ""
+"ติดตั้งและเปิดใช้งานตัวเชื่อมต่อ Google (Gemini) ภายใต้การตั้งค่า → "
+"ตัวเชื่อมต่อ จากนั้นเชื่อมต่อคีย์ API ของคุณ ปลั๊กอินนี้ใช้ราศีเมถุน"
+
+#: includes/admin/class-settings-page.php
+msgid "After connecting Gemini, run the connection test before continuing."
+msgstr ""
+"หลังจากเชื่อมต่อ Gemini แล้ว ให้รันการทดสอบการเชื่อมต่อก่อนดำเนินการต่อ"
+
+#: includes/admin/class-settings-page.php
+msgid "2. Choose models"
+msgstr "2. เลือกรุ่น"
+
+#: includes/admin/class-settings-page.php
+msgid "Choose the AI model used for writing."
+msgstr "เลือกโมเดล AI ที่ใช้ในการเขียน"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"No Gemini models available. Configure the Google Gemini connector, then "
+"click Refresh."
+msgstr "ไม่มีรุ่น Gemini กำหนดค่าตัวเชื่อมต่อ Google Gemini จากนั้นคลิกรีเฟรช"
+
+#: includes/admin/class-settings-page.php
+msgid "Refresh"
+msgstr "รีเฟรช"
+
+#: includes/admin/class-settings-page.php
+msgid "Recommended text model: %s"
+msgstr "รูปแบบข้อความที่แนะนำ: %s"
+
+#: includes/admin/class-settings-page.php
+msgid "No models available."
+msgstr "ไม่มีรุ่นที่มีจำหน่าย"
+
+#: includes/admin/class-settings-page.php
+msgid "Back"
+msgstr "กลับ"
+
+#: includes/admin/class-settings-page.php
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: includes/admin/class-settings-page.php
+msgid "You do not have permission to perform this action."
+msgstr "คุณไม่ได้รับอนุญาตให้ดำเนินการนี้"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"WordPress AI Client is unavailable. Install the Google Gemini connector."
+msgstr ""
+"ไคลเอนต์ WordPress AI ไม่พร้อมใช้งาน ติดตั้งตัวเชื่อมต่อ Google Gemini"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"No Gemini models were found. Check the Google Gemini connector connection."
+msgstr "ไม่พบโมเดลราศีเมถุน ตรวจสอบการเชื่อมต่อตัวเชื่อมต่อ Google Gemini"
+
+#: includes/admin/class-settings-page.php
+msgid "Hello"
+msgstr "สวัสดี"
+
+#: includes/admin/class-settings-page.php
+#: includes/rest/class-models-endpoint.php
+msgid ""
+"Google Gemini connector is not configured. Connect Gemini under Settings → "
+"Connectors."
+msgstr ""
+"ไม่ได้กำหนดค่าตัวเชื่อมต่อ Google Gemini เชื่อมต่อราศีเมถุนภายใต้การตั้งค่า "
+"→ ตัวเชื่อมต่อ"
+
+#: includes/admin/class-settings-page.php
+msgid "Successfully connected to the Google Gemini connector."
+msgstr "เชื่อมต่อกับตัวเชื่อมต่อ Google Gemini เรียบร้อยแล้ว"
+
+#: includes/api/class-gemini-client.php includes/api/class-image-generator.php
+msgid ""
+"WordPress AI Client is not available. Install and configure the Google "
+"Gemini connector under Settings → Connectors."
+msgstr ""
+"ไคลเอนต์ WordPress AI ไม่พร้อมใช้งาน ติดตั้งและกำหนดค่าตัวเชื่อมต่อ Google "
+"Gemini ภายใต้การตั้งค่า → ตัวเชื่อมต่อ"
+
+#: includes/api/class-gemini-client.php
+msgid "Text model is not set. Choose one on the settings screen."
+msgstr "ไม่ได้ตั้งค่าโมเดลข้อความ เลือกหนึ่งรายการบนหน้าจอการตั้งค่า"
+
+#: includes/api/class-gemini-client.php
+msgid "The prompt is empty."
+msgstr "ข้อความแจ้งว่างเปล่า"
+
+#: includes/api/class-gemini-client.php
+msgid ""
+"The selected Gemini model does not support text generation. Check the Google"
+" Gemini connector settings."
+msgstr ""
+"รุ่น Gemini ที่เลือกไม่รองรับการสร้างข้อความ ตรวจสอบการตั้งค่าตัวเชื่อมต่อ "
+"Google Gemini"
+
+#: includes/api/class-image-generator.php
+msgid "Image model is not set. Choose one on the settings screen."
+msgstr "ไม่ได้ตั้งค่าโมเดลรูปภาพ เลือกหนึ่งรายการบนหน้าจอการตั้งค่า"
+
+#: includes/api/class-image-generator.php
+msgid ""
+"The selected Gemini model does not support image generation. Check the "
+"Google Gemini connector settings."
+msgstr ""
+"รุ่น Gemini ที่เลือกไม่รองรับการสร้างภาพ ตรวจสอบการตั้งค่าตัวเชื่อมต่อ "
+"Google Gemini"
+
+#: includes/api/class-image-generator.php
+msgid "No image data was returned."
+msgstr "ไม่มีการส่งคืนข้อมูลรูปภาพ"
+
+#: includes/api/class-model-manager.php
+msgid ""
+"Failed to fetch Gemini models. Check the Google Gemini connector API key."
+msgstr ""
+"ไม่สามารถเรียกแบบจำลองราศีเมถุน ตรวจสอบคีย์ API ของตัวเชื่อมต่อ Google "
+"Gemini"
+
+#: includes/class-api-settings-sync.php
+msgid ""
+"Model settings were imported automatically from another AI plugin (%s)."
+msgstr "การตั้งค่าโมเดลถูกนำเข้าโดยอัตโนมัติจากปลั๊กอิน AI อื่น (%s)"
+
+#: includes/class-api-settings-sync.php
+msgid "Picot AIO AI Content Optimizer"
+msgstr "Picot AIO AI Content Optimizer"
+
+#: includes/rest/class-content-endpoint.php
+msgid "Content is empty."
+msgstr "เนื้อหาว่างเปล่า"
+
+#: includes/rest/class-content-endpoint.php
+msgid "JSON parsing failed (%s)."
+msgstr "การแยกวิเคราะห์ JSON ล้มเหลว (%s)"
+
+#: includes/rest/class-content-endpoint.php
+msgid "Image suggestions saved for Optimizer."
+msgstr "คำแนะนำภาพที่บันทึกไว้สำหรับเครื่องมือเพิ่มประสิทธิภาพ"
+
+#: includes/rest/class-content-endpoint.php
+msgid "Target keyword is required"
+msgstr "จำเป็นต้องมีคีย์เวิร์ดเป้าหมาย"
+
+#: includes/rest/class-content-endpoint.php
+msgid "Research ID is required"
+msgstr "ต้องระบุรหัสการวิจัย"
+
+#: includes/rest/class-content-endpoint.php
+#: includes/rest/class-research-endpoint.php
+msgid "Research data not found"
+msgstr "ไม่พบข้อมูลการวิจัย"
+
+#: includes/rest/class-content-endpoint.php
+msgid "Research data contains no URLs"
+msgstr "ข้อมูลการวิจัยไม่มี URL"
+
+#: includes/rest/class-content-endpoint.php
+msgid "Generate title and headings first, or enter headings in the editor"
+msgstr "สร้างชื่อเรื่องและส่วนหัวก่อน หรือป้อนส่วนหัวในตัวแก้ไข"
+
+#: includes/rest/class-image-endpoint.php
+msgid "Article content is required"
+msgstr "จำเป็นต้องมีเนื้อหาบทความ"
+
+#: includes/rest/class-image-endpoint.php
+msgid "Prompt is required"
+msgstr "จำเป็นต้องมีพร้อมท์"
+
+#: includes/rest/class-research-endpoint.php
+msgid "Keyword and post ID are required"
+msgstr "จำเป็นต้องมีคีย์เวิร์ดและรหัสโพสต์"
+
+#: includes/rest/class-research-endpoint.php
+msgid "Failed to save research data"
+msgstr "บันทึกข้อมูลการวิจัยไม่สำเร็จ"
+
+#: includes/rest/class-research-endpoint.php
+msgid "Post ID is required"
+msgstr "จำเป็นต้องระบุรหัสประจำตัวผู้โพสต์"

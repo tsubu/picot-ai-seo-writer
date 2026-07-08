@@ -131,32 +131,32 @@ class Settings_Page
                             <span class="dashicons dashicons-admin-generic"></span>
                         </div>
                         <div>
-                            <p class="picot-card-title"><?php esc_html_e('Google Gemini 連携', 'picot-ai-seo-writer'); ?></p>
-                            <p class="picot-card-desc"><?php esc_html_e('Google Gemini コネクター（設定 → コネクター）の接続が必要です', 'picot-ai-seo-writer'); ?></p>
+                            <p class="picot-card-title"><?php esc_html_e('Google Gemini integration', 'picot-ai-seo-writer'); ?></p>
+                            <p class="picot-card-desc"><?php esc_html_e('The Google Gemini connector (Settings → Connectors) must be connected', 'picot-ai-seo-writer'); ?></p>
                         </div>
                     </div>
                     <div class="picot-card-body">
                         <table class="form-table" role="presentation"><tbody>
                         <tr>
-                            <th scope="row"><?php esc_html_e('接続状態', 'picot-ai-seo-writer'); ?></th>
+                            <th scope="row"><?php esc_html_e('Connection status', 'picot-ai-seo-writer'); ?></th>
                             <td>
                                 <?php if ($ai_configured) : ?>
-                                    <p style="margin: 0 0 10px; color: #155724;"><?php esc_html_e('✅ Google Gemini コネクターが接続され、テキスト生成が利用可能です。', 'picot-ai-seo-writer'); ?></p>
+                                    <p style="margin: 0 0 10px; color: #155724;"><?php esc_html_e('Google Gemini connector is connected and text generation is available.', 'picot-ai-seo-writer'); ?></p>
                                 <?php else : ?>
-                                    <p style="margin: 0 0 10px; color: #856404;"><?php esc_html_e('Google Gemini コネクターが未設定、またはテキスト生成に対応していません。', 'picot-ai-seo-writer'); ?></p>
+                                    <p style="margin: 0 0 10px; color: #856404;"><?php esc_html_e('Google Gemini connector is not configured or does not support text generation.', 'picot-ai-seo-writer'); ?></p>
                                 <?php endif; ?>
                                 <a href="<?php echo esc_url($ai_settings_url); ?>" class="button">
-                                    <?php esc_html_e('AI コネクター設定を開く', 'picot-ai-seo-writer'); ?>
+                                    <?php esc_html_e('Open AI connector settings', 'picot-ai-seo-writer'); ?>
                                 </a>
                                 <button type="button" class="button picot-test-connection-btn" data-provider="ai">
-                                    <?php esc_html_e('接続テスト', 'picot-ai-seo-writer'); ?>
+                                    <?php esc_html_e('Connection test', 'picot-ai-seo-writer'); ?>
                                 </button>
                                 <span class="picot-connection-test-result" id="picot-test-result-ai"></span>
-                                <p class="description"><?php esc_html_e('このプラグインは Google Gemini コネクターを使用します。API キーは設定 → コネクターで管理してください。このプラグインは WordPress AI Client 経由でリクエストします。', 'picot-ai-seo-writer'); ?></p>
+                                <p class="description"><?php esc_html_e('This plugin uses the Google Gemini connector. Manage API keys under Settings → Connectors. Requests are sent through the WordPress AI Client.', 'picot-ai-seo-writer'); ?></p>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="picot_seo_writing_text_model"><?php esc_html_e('テキストモデル', 'picot-ai-seo-writer'); ?></label></th>
+                            <th scope="row"><label for="picot_seo_writing_text_model"><?php esc_html_e('Text model', 'picot-ai-seo-writer'); ?></label></th>
                             <td>
                                 <div style="display: flex; gap: 10px; align-items: center;">
                                     <select id="picot_seo_writing_text_model" name="picot_seo_writing_text_model">
@@ -170,11 +170,11 @@ class Settings_Page
                                                 printf('<option value="%s" %s>%s</option>', esc_attr($val), selected($current_model, $val, false), esc_html($label));
                                             }
                                         } else {
-                                            echo '<option value="">' . esc_html__('利用可能なモデルがありません。まずモデル一覧を更新してください。', 'picot-ai-seo-writer') . '</option>';
+                                            echo '<option value="">' . esc_html__('No models available. Refresh the model list first.', 'picot-ai-seo-writer') . '</option>';
                                         }
                                         ?>
                                     </select>
-                                    <button type="button" id="fetch-gemini-models" class="button"><?php esc_html_e('モデル一覧を更新', 'picot-ai-seo-writer'); ?></button>
+                                    <button type="button" id="fetch-gemini-models" class="button"><?php esc_html_e('Refresh model list', 'picot-ai-seo-writer'); ?></button>
                                 </div>
                                 <div id="picot_seo_writing_text_model_description" class="picot-model-description" style="margin-top: 8px; font-size: 12px; color: #666; font-style: italic;"></div>
                                 <p class="description">
@@ -182,16 +182,16 @@ class Settings_Page
                                     if (!empty($models) && is_array($models)) {
                                         $first_label = reset($models);
                                         /* translators: %s: Recommended model name */
-                                        printf(esc_html__('推奨モデル: %s', 'picot-ai-seo-writer'), '<strong>' . esc_html($first_label) . '</strong>');
+                                        printf(esc_html__('Recommended model: %s', 'picot-ai-seo-writer'), '<strong>' . esc_html($first_label) . '</strong>');
                                     } else {
-                                        esc_html_e('「モデル一覧を更新」をクリックして、利用可能なモデルを取得してください。', 'picot-ai-seo-writer');
+                                        esc_html_e('Click "Refresh model list" to fetch available models.', 'picot-ai-seo-writer');
                                     }
                                     ?>
                                 </p>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="picot_seo_writing_image_model"><?php esc_html_e('画像生成モデル', 'picot-ai-seo-writer'); ?></label></th>
+                            <th scope="row"><label for="picot_seo_writing_image_model"><?php esc_html_e('Image model', 'picot-ai-seo-writer'); ?></label></th>
                             <td>
                                 <select id="picot_seo_writing_image_model" name="picot_seo_writing_image_model">
                                     <?php
@@ -210,8 +210,8 @@ class Settings_Page
                                     ?>
                                 </select>
                                 <div id="picot_seo_writing_image_model_description" class="picot-model-description" style="margin-top: 8px; font-size: 12px; color: #666; font-style: italic;"></div>
-                                <p class="description"><?php esc_html_e('画像生成に使用するモデルを選択します。', 'picot-ai-seo-writer'); ?></p>
-                                <p class="description"><?php esc_html_e('画像生成モデル（Imagen など）の利用には、Google AI の有料 API プラン（課金設定済み）が必要です。無料枠のみの API キーでは画像生成が利用できない場合があります。', 'picot-ai-seo-writer'); ?></p>
+                                <p class="description"><?php esc_html_e('Choose the model used for image generation.', 'picot-ai-seo-writer'); ?></p>
+                                <p class="description"><?php esc_html_e('Image generation models (such as Imagen) require a paid Google AI API plan with billing enabled. Image generation may not work with API keys that only include the free tier.', 'picot-ai-seo-writer'); ?></p>
                             </td>
                         </tr>
                         </tbody></table>
@@ -225,26 +225,26 @@ class Settings_Page
                             <span class="dashicons dashicons-admin-settings"></span>
                         </div>
                         <div>
-                            <p class="picot-card-title"><?php esc_html_e('執筆スタイル設定', 'picot-ai-seo-writer'); ?></p>
-                            <p class="picot-card-desc"><?php esc_html_e('生成される文章のトーンなどを設定', 'picot-ai-seo-writer'); ?></p>
+                            <p class="picot-card-title"><?php esc_html_e('Writing style settings', 'picot-ai-seo-writer'); ?></p>
+                            <p class="picot-card-desc"><?php esc_html_e('Configure the tone of generated content', 'picot-ai-seo-writer'); ?></p>
                         </div>
                     </div>
                     <div class="picot-card-body">
                         <table class="form-table" role="presentation"><tbody>
                         <tr>
-                            <th scope="row"><label for="picot_seo_writing_writing_style"><?php esc_html_e('文章スタイル', 'picot-ai-seo-writer'); ?></label></th>
+                            <th scope="row"><label for="picot_seo_writing_writing_style"><?php esc_html_e('Writing style', 'picot-ai-seo-writer'); ?></label></th>
                             <td>
                                 <select id="picot_seo_writing_writing_style" name="picot_seo_writing_writing_style">
                                     <?php
                                     $current_style = get_option('picot_seo_writing_writing_style', PICOT_SEO_WRITING_DEFAULT_WRITING_STYLE);
                                     $styles = [
-                                        'casual' => __('カジュアル (親しみやすい)', 'picot-ai-seo-writer'),
-                                        'professional' => __('プロフェッショナル (丁寧・信頼)', 'picot-ai-seo-writer'),
-                                        'friendly' => __('フレンドリー (温かみ)', 'picot-ai-seo-writer'),
-                                        'technical' => __('テクニカル (専門・正確)', 'picot-ai-seo-writer'),
-                                        'humorous' => __('ユーモア (軽快・面白い)', 'picot-ai-seo-writer'),
-                                        'persuasive' => __('説得力 (情熱・主張)', 'picot-ai-seo-writer'),
-                                        'informative' => __('インフォマティブ (事実・解説)', 'picot-ai-seo-writer'),
+                                        'casual' => __('Casual (friendly)', 'picot-ai-seo-writer'),
+                                        'professional' => __('Professional (polished and trustworthy)', 'picot-ai-seo-writer'),
+                                        'friendly' => __('Friendly (warm)', 'picot-ai-seo-writer'),
+                                        'technical' => __('Technical (precise)', 'picot-ai-seo-writer'),
+                                        'humorous' => __('Humorous (light and fun)', 'picot-ai-seo-writer'),
+                                        'persuasive' => __('Persuasive (passionate)', 'picot-ai-seo-writer'),
+                                        'informative' => __('Informative (factual)', 'picot-ai-seo-writer'),
                                     ];
                                     foreach ($styles as $key => $label) {
                                         printf('<option value="%s" %s>%s</option>', esc_attr($key), selected($current_style, $key, false), esc_html($label));
@@ -254,27 +254,27 @@ class Settings_Page
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="picot_seo_writing_image_style"><?php esc_html_e('画像スタイル', 'picot-ai-seo-writer'); ?></label></th>
+                            <th scope="row"><label for="picot_seo_writing_image_style"><?php esc_html_e('Image style', 'picot-ai-seo-writer'); ?></label></th>
                             <td>
                                 <select id="picot_seo_writing_image_style" name="picot_seo_writing_image_style">
                                     <?php
                                     $current_img_style = get_option('picot_seo_writing_image_style', 'photorealistic');
                                     $img_styles = [
-                                        'photorealistic' => __('実写風 (Photorealistic)', 'picot-ai-seo-writer'),
-                                        'digital_art' => __('デジタルアート', 'picot-ai-seo-writer'),
-                                        'vector' => __('ベクターイラスト', 'picot-ai-seo-writer'),
-                                        'sketch' => __('スケッチ風', 'picot-ai-seo-writer'),
-                                        'watercolor' => __('水彩画風', 'picot-ai-seo-writer'),
-                                        'cyberpunk' => __('サイバーパンク', 'picot-ai-seo-writer'),
-                                        'anime' => __('アニメ風', 'picot-ai-seo-writer'),
-                                        'oil_painting' => __('油絵風', 'picot-ai-seo-writer'),
+                                        'photorealistic' => __('Photorealistic', 'picot-ai-seo-writer'),
+                                        'digital_art' => __('Digital art', 'picot-ai-seo-writer'),
+                                        'vector' => __('Vector illustration', 'picot-ai-seo-writer'),
+                                        'sketch' => __('Sketch', 'picot-ai-seo-writer'),
+                                        'watercolor' => __('Watercolor', 'picot-ai-seo-writer'),
+                                        'cyberpunk' => __('Cyberpunk', 'picot-ai-seo-writer'),
+                                        'anime' => __('Anime', 'picot-ai-seo-writer'),
+                                        'oil_painting' => __('Oil painting', 'picot-ai-seo-writer'),
                                     ];
                                     foreach ($img_styles as $key => $label) {
                                         printf('<option value="%s" %s>%s</option>', esc_attr($key), selected($current_img_style, $key, false), esc_html($label));
                                     }
                                     ?>
                                 </select>
-                                <p class="description"><?php esc_html_e('記事内に挿入される画像のトーンを指定します。', 'picot-ai-seo-writer'); ?></p>
+                                <p class="description"><?php esc_html_e('Choose the tone for images inserted into articles.', 'picot-ai-seo-writer'); ?></p>
                             </td>
                         </tr>
                         </tbody></table>
@@ -282,7 +282,7 @@ class Settings_Page
                 </div>
 
                 <div class="picot-settings-actions">
-                    <?php submit_button(__('設定を保存', 'picot-ai-seo-writer'), 'primary', 'submit', false); ?>
+                    <?php submit_button(__('Save settings', 'picot-ai-seo-writer'), 'primary', 'submit', false); ?>
                 </div>
             </form>
         </div>
@@ -307,7 +307,7 @@ class Settings_Page
                                 <path d="M12 6L13.1 8.9L16 10L13.1 11.1L12 14L10.9 11.1L8 10L10.9 8.9L12 6Z" fill="#8E75FF" />
                             </svg>
                         </div>
-                        <h2 style="margin:0;"><?php esc_html_e('Google Gemini セットアップ', 'picot-ai-seo-writer'); ?></h2>
+                        <h2 style="margin:0;"><?php esc_html_e('Google Gemini setup', 'picot-ai-seo-writer'); ?></h2>
                     </div>
                     <div class="picot-wizard-steps">
                         <div class="picot-wizard-step-indicator active" data-step="0">1</div>
@@ -323,36 +323,36 @@ class Settings_Page
                     <div class="picot-wizard-content">
                         <!-- Step 1: WordPress AI -->
                         <div class="picot-wizard-screen active" data-step-id="ai_setup">
-                        <h3><?php esc_html_e('1. Google Gemini コネクターを設定', 'picot-ai-seo-writer'); ?></h3>
-                        <p><?php esc_html_e('設定 → コネクターで Google（Gemini）コネクターをインストール・有効化し、API キーを接続してください。このプラグインは Gemini を使用します。', 'picot-ai-seo-writer'); ?></p>
+                        <h3><?php esc_html_e('1. Configure the Google Gemini connector', 'picot-ai-seo-writer'); ?></h3>
+                        <p><?php esc_html_e('Install and activate the Google (Gemini) connector under Settings → Connectors, then connect your API key. This plugin uses Gemini.', 'picot-ai-seo-writer'); ?></p>
 
                         <div style="margin: 15px 0;">
                             <a href="<?php echo esc_url($ai_settings_url); ?>" class="button">
-                                <?php esc_html_e('AI コネクター設定を開く', 'picot-ai-seo-writer'); ?>
+                                <?php esc_html_e('Open AI connector settings', 'picot-ai-seo-writer'); ?>
                             </a>
                         </div>
 
                         <p style="margin-top: 10px;">
                             <?php if ($ai_configured) : ?>
-                                <?php esc_html_e('✅ Google Gemini コネクターが接続され、テキスト生成が利用可能です。', 'picot-ai-seo-writer'); ?>
+                                <?php esc_html_e('Google Gemini connector is connected and text generation is available.', 'picot-ai-seo-writer'); ?>
                             <?php else : ?>
-                                <?php esc_html_e('Gemini コネクターを接続後、「接続テスト」を実行してから次へ進んでください。', 'picot-ai-seo-writer'); ?>
+                                <?php esc_html_e('After connecting Gemini, run the connection test before continuing.', 'picot-ai-seo-writer'); ?>
                             <?php endif; ?>
                         </p>
 
                         <button type="button" class="button picot-test-connection-btn" data-provider="ai">
-                            <?php esc_html_e('接続テスト', 'picot-ai-seo-writer'); ?>
+                            <?php esc_html_e('Connection test', 'picot-ai-seo-writer'); ?>
                         </button>
                         <div id="picot-wizard-test-result" style="margin-top: 10px;"></div>
                     </div>
 
                     <!-- Step 2: Model selection -->
                     <div class="picot-wizard-screen" data-step-id="model_selection" style="display:none;">
-                        <h3><?php esc_html_e('2. 使用するモデルを選択', 'picot-ai-seo-writer'); ?></h3>
-                        <p><?php esc_html_e('執筆に使用する AI モデルを選択してください。', 'picot-ai-seo-writer'); ?></p>
+                        <h3><?php esc_html_e('2. Choose models', 'picot-ai-seo-writer'); ?></h3>
+                        <p><?php esc_html_e('Choose the AI model used for writing.', 'picot-ai-seo-writer'); ?></p>
                         
                         <div class="picot-wizard-field">
-                            <label for="picot_seo_writing_text_model"><?php esc_html_e('テキストモデル', 'picot-ai-seo-writer'); ?></label>
+                            <label for="picot_seo_writing_text_model"><?php esc_html_e('Text model', 'picot-ai-seo-writer'); ?></label>
                             <div style="display: flex; gap: 10px; flex-direction: column;">
                                 <div style="display: flex; gap: 10px;">
                                     <select id="picot_seo_writing_text_model" name="picot_seo_writing_text_model" style="flex: 1;">
@@ -365,11 +365,11 @@ class Settings_Page
                                                 printf('<option value="%s" %s>%s</option>', esc_attr($val), selected($current_model, $val, false), esc_html($label));
                                             }
                                         } else {
-                                            echo '<option value="">' . esc_html__('利用可能な Gemini モデルがありません。Google Gemini コネクターを設定してから「再取得」を押してください。', 'picot-ai-seo-writer') . '</option>';
+                                            echo '<option value="">' . esc_html__('No Gemini models available. Configure the Google Gemini connector, then click Refresh.', 'picot-ai-seo-writer') . '</option>';
                                         }
                                         ?>
                                     </select>
-                                    <button type="button" id="picot-wizard-fetch-models" class="button"><?php esc_html_e('再取得', 'picot-ai-seo-writer'); ?></button>
+                                    <button type="button" id="picot-wizard-fetch-models" class="button"><?php esc_html_e('Refresh', 'picot-ai-seo-writer'); ?></button>
                                 </div>
                                 <div id="picot_seo_writing_text_model_description" class="picot-model-description" style="margin-top: 8px; font-size: 12px; color: #666; font-style: italic;"></div>
                             </div>
@@ -380,13 +380,13 @@ class Settings_Page
                             if (!empty($models)) {
                                 $first_label = reset($models);
                                 /* translators: %s: Recommended model name */
-                                printf(esc_html__('推奨テキストモデル: %s', 'picot-ai-seo-writer'), '<strong>' . esc_html($first_label) . '</strong>');
+                                printf(esc_html__('Recommended text model: %s', 'picot-ai-seo-writer'), '<strong>' . esc_html($first_label) . '</strong>');
                             }
                             ?>
                         </p>
 
                         <div class="picot-wizard-field">
-                            <label for="picot_seo_writing_image_model"><?php esc_html_e('画像生成モデル', 'picot-ai-seo-writer'); ?></label>
+                            <label for="picot_seo_writing_image_model"><?php esc_html_e('Image model', 'picot-ai-seo-writer'); ?></label>
                             <select name="picot_seo_writing_image_model" id="picot_seo_writing_image_model" style="width: 100%;">
                                 <?php
                                 $current_img_model = get_option('picot_seo_writing_image_model', '');
@@ -397,20 +397,20 @@ class Settings_Page
                                         printf('<option value="%s" %s>%s</option>', esc_attr($val), selected($current_img_model, $val, false), esc_html($label));
                                     }
                                 } else {
-                                    echo '<option value="">' . esc_html__('利用可能なモデルがありません。', 'picot-ai-seo-writer') . '</option>';
+                                    echo '<option value="">' . esc_html__('No models available.', 'picot-ai-seo-writer') . '</option>';
                                 }
                                 ?>
                             </select>
                             <div id="picot_seo_writing_image_model_description" class="picot-model-description" style="margin-top: 8px; font-size: 12px; color: #666; font-style: italic;"></div>
-                            <p class="description"><?php esc_html_e('画像生成モデル（Imagen など）の利用には、Google AI の有料 API プラン（課金設定済み）が必要です。無料枠のみの API キーでは画像生成が利用できない場合があります。', 'picot-ai-seo-writer'); ?></p>
+                            <p class="description"><?php esc_html_e('Image generation models (such as Imagen) require a paid Google AI API plan with billing enabled. Image generation may not work with API keys that only include the free tier.', 'picot-ai-seo-writer'); ?></p>
                         </div>
                     </div>
 
                     <div class="picot-wizard-footer">
-                        <button type="button" id="picot-prev-btn" class="button" style="display:none;"><?php esc_html_e('戻る', 'picot-ai-seo-writer'); ?></button>
+                        <button type="button" id="picot-prev-btn" class="button" style="display:none;"><?php esc_html_e('Back', 'picot-ai-seo-writer'); ?></button>
                         <div style="flex-grow: 1;"></div>
-                        <a href="<?php echo esc_url(admin_url('options-general.php?page=' . self::PAGE_SLUG)); ?>" class="button button-link"><?php esc_html_e('キャンセル', 'picot-ai-seo-writer'); ?></a>
-                        <button type="button" id="picot-next-btn" class="button button-primary"><?php esc_html_e('次へ進む', 'picot-ai-seo-writer'); ?></button>
+                        <a href="<?php echo esc_url(admin_url('options-general.php?page=' . self::PAGE_SLUG)); ?>" class="button button-link"><?php esc_html_e('Cancel', 'picot-ai-seo-writer'); ?></a>
+                        <button type="button" id="picot-next-btn" class="button button-primary"><?php esc_html_e('Next', 'picot-ai-seo-writer'); ?></button>
                     </div>
                 </form>
             </div>
@@ -426,11 +426,11 @@ class Settings_Page
         check_ajax_referer('picot_seo_writing_admin_nonce', 'nonce');
 
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(['message' => __('この操作を実行する権限がありません。', 'picot-ai-seo-writer')]);
+            wp_send_json_error(['message' => __('You do not have permission to perform this action.', 'picot-ai-seo-writer')]);
         }
 
         if (!Ai_Client_Helper::is_available()) {
-            wp_send_json_error(['message' => __('WordPress AI Client が利用できません。Google Gemini コネクターをインストールしてください。', 'picot-ai-seo-writer')]);
+            wp_send_json_error(['message' => __('WordPress AI Client is unavailable. Install the Google Gemini connector.', 'picot-ai-seo-writer')]);
         }
 
         try {
@@ -452,7 +452,7 @@ class Settings_Page
         }
 
         if (empty($text_models) && empty($image_models)) {
-            wp_send_json_error(['message' => __('利用可能な Gemini モデルが見つかりませんでした。Google Gemini コネクターの接続を確認してください。', 'picot-ai-seo-writer')]);
+            wp_send_json_error(['message' => __('No Gemini models were found. Check the Google Gemini connector connection.', 'picot-ai-seo-writer')]);
         }
 
         update_option('picot_seo_writing_available_gemini_models', $text_models);
@@ -473,23 +473,23 @@ class Settings_Page
         check_ajax_referer('picot_seo_writing_admin_nonce', 'nonce');
 
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(['message' => __('この操作を実行する権限がありません。', 'picot-ai-seo-writer')]);
+            wp_send_json_error(['message' => __('You do not have permission to perform this action.', 'picot-ai-seo-writer')]);
         }
 
         if (!Ai_Client_Helper::is_available()) {
-            wp_send_json_error(['message' => __('WordPress AI Client が利用できません。Google Gemini コネクターをインストールしてください。', 'picot-ai-seo-writer')]);
+            wp_send_json_error(['message' => __('WordPress AI Client is unavailable. Install the Google Gemini connector.', 'picot-ai-seo-writer')]);
         }
 
         $builder = Ai_Client_Helper::create_google_prompt_builder(__('Hello', 'picot-ai-seo-writer'));
         if (!$builder || !$builder->is_supported_for_text_generation()) {
-            wp_send_json_error(['message' => __('Google Gemini コネクターが設定されていません。設定 → コネクターで Gemini を接続してください。', 'picot-ai-seo-writer')]);
+            wp_send_json_error(['message' => __('Google Gemini connector is not configured. Connect Gemini under Settings → Connectors.', 'picot-ai-seo-writer')]);
         }
 
         $result = $builder->generate_text();
         if (is_wp_error($result)) {
-            wp_send_json_error(['message' => '❌ ' . $result->get_error_message()]);
+            wp_send_json_error(['message' => $result->get_error_message()]);
         }
 
-        wp_send_json_success(['message' => __('✅ Google Gemini コネクターへの接続に成功しました', 'picot-ai-seo-writer')]);
+        wp_send_json_success(['message' => __('Successfully connected to the Google Gemini connector.', 'picot-ai-seo-writer')]);
     }
 }

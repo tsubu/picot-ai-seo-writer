@@ -3,13 +3,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Picot AI SEO Writer 1.0.3\n"
 "Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
-"PO-Revision-Date: 2026-07-07 16:24+0000\n"
-"Language: ja\n"
+"PO-Revision-Date: 2026-07-06 19:30+0000\n"
+"Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: picot-ai-seo-writer ja build\n"
+"Plural-Forms: \n"
+"X-Generator: picot-ai-seo-writer locale build\n"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Picot AI SEO Writer"
@@ -17,585 +17,593 @@ msgstr "Picot AI SEO Writer"
 
 #: includes/admin/class-admin.php
 msgid "Casual"
-msgstr "カジュアル"
+msgstr "Kasual"
 
 #: includes/admin/class-admin.php
 msgid "Professional"
-msgstr "プロフェッショナル"
+msgstr "Profesional"
 
 #: includes/admin/class-admin.php
 msgid "Friendly"
-msgstr "フレンドリー"
+msgstr "Ramah"
 
 #: includes/admin/class-admin.php
 msgid "Technical"
-msgstr "専門的"
+msgstr "Teknis"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Photorealistic"
-msgstr "フォトリアル"
+msgstr "Fotorealistik"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Digital art"
-msgstr "デジタルアート"
+msgstr "Seni digital"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Vector illustration"
-msgstr "ベクターイラスト"
+msgstr "Ilustrasi vektor"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Sketch"
-msgstr "スケッチ風"
+msgstr "Sketsa"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Watercolor"
-msgstr "水彩画風"
+msgstr "Cat air"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Cyberpunk"
-msgstr "サイバーパンク"
+msgstr "dunia maya"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Anime"
-msgstr "アニメ風"
+msgstr "anime"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Oil painting"
-msgstr "油絵風"
+msgstr "Lukisan cat minyak"
 
 #: includes/admin/class-admin.php
 msgid "Article generation settings"
-msgstr "記事生成設定"
+msgstr "Pengaturan pembuatan artikel"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Writing style"
-msgstr "執筆スタイル"
+msgstr "Gaya penulisan"
 
 #: includes/admin/class-admin.php
 msgid "Image generation"
-msgstr "画像生成"
+msgstr "Pembuatan gambar"
 
 #: includes/admin/class-admin.php
 msgid "Last used information"
-msgstr "前回使用した情報"
+msgstr "Informasi yang terakhir digunakan"
 
 #: includes/admin/class-admin.php
 msgid "Reference URLs"
-msgstr "参照 URL 一覧"
+msgstr "URL referensi"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Target keyword"
-msgstr "ターゲットキーワード"
+msgstr "Kata kunci sasaran"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "e.g. WordPress SEO"
-msgstr "例: WordPress SEO"
+msgstr "misalnya SEO WordPress"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Additional notes (optional)"
-msgstr "追加メモ (任意)"
+msgstr "Catatan tambahan (opsional)"
 
 #: includes/admin/class-admin.php
 msgid "Enter specific details or requests to include in the article"
-msgstr "記事に含めたい具体的な情報や要望を入力してください"
+msgstr ""
+"Masukkan detail spesifik atau permintaan untuk disertakan dalam artikel"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Image style"
-msgstr "画像スタイル"
+msgstr "Gaya gambar"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Generate article"
-msgstr "記事を生成"
+msgstr "Hasilkan artikel"
 
 #: includes/admin/class-admin.php
 msgid "1. Analyze image prompts"
-msgstr "1. 画像プロンプトを分析"
+msgstr "1. Analisis petunjuk gambar"
 
 #: includes/admin/class-admin.php
 msgid ""
 "Analyze the article, suggest images (1 featured + 5 inline), generate them "
 "with Gemini, and insert them into the post."
-msgstr "記事を分析して画像を提案 (アイキャッチ 1 枚 + 本文 5 枚) し、Gemini で生成して記事に挿入します。"
+msgstr ""
+"Analisis artikel, sarankan gambar (1 unggulan + 5 sebaris), buat dengan "
+"Gemini, dan masukkan ke dalam postingan."
 
 #: includes/admin/class-admin.php
 msgid "Keyword: "
-msgstr "ワード:"
+msgstr "Kata kunci:"
 
 #: includes/admin/class-admin.php
 msgid "Notes: "
-msgstr "要望:"
+msgstr "Catatan:"
 
 #: includes/admin/class-admin.php
 msgid "(empty)"
-msgstr "(空)"
+msgstr "(kosong)"
 
 #: includes/admin/class-admin.php
 msgid "Featured image"
-msgstr "アイキャッチ画像"
+msgstr "Gambar unggulan"
 
 #: includes/admin/class-admin.php
 msgid "Generate and set"
-msgstr "生成して設定"
+msgstr "Hasilkan dan atur"
 
 #: includes/admin/class-admin.php
 msgid "Generate and insert"
-msgstr "生成して挿入"
+msgstr "Hasilkan dan masukkan"
 
 #: includes/admin/class-admin.php
 msgid "Generate and insert all images"
-msgstr "すべての画像を生成して挿入"
+msgstr "Hasilkan dan masukkan semua gambar"
 
 #: includes/admin/class-admin.php
 msgid "Generated"
-msgstr "生成完了"
+msgstr "Dihasilkan"
 
 #: includes/admin/class-admin.php
 msgid "Research"
-msgstr "調査"
+msgstr "Riset"
 
 #: includes/admin/class-admin.php
 msgid "Researching..."
-msgstr "調査中..."
+msgstr "Meneliti..."
 
 #: includes/admin/class-admin.php
 msgid "Research completed"
-msgstr "調査が完了しました"
+msgstr "Penelitian selesai"
 
 #: includes/admin/class-admin.php
 msgid "Research failed"
-msgstr "調査に失敗しました"
+msgstr "Penelitian gagal"
 
 #: includes/admin/class-admin.php
 msgid "Research history"
-msgstr "調査履歴"
+msgstr "Sejarah penelitian"
 
 #: includes/admin/class-admin.php
 msgid "No research history"
-msgstr "調査履歴がありません"
+msgstr "Tidak ada riwayat penelitian"
 
 #: includes/admin/class-admin.php
 msgid "Generate title and headings"
-msgstr "タイトルと見出しを作成"
+msgstr "Hasilkan judul dan judul"
 
 #: includes/admin/class-admin.php
 msgid "Generate article from headings"
-msgstr "見出しから記事を作成"
+msgstr "Hasilkan artikel dari judul"
 
 #: includes/admin/class-admin.php
 msgid "Generating..."
-msgstr "生成中..."
+msgstr "Menghasilkan..."
 
 #: includes/admin/class-admin.php
 msgid "Analyzing..."
-msgstr "分析中..."
+msgstr "Menganalisis..."
 
 #: includes/admin/class-admin.php
 msgid "Gemini is writing..."
-msgstr "Gemini が執筆中..."
+msgstr "Gemini sedang menulis..."
 
 #: includes/admin/class-admin.php
 msgid "AI is generating the article..."
-msgstr "AI が記事を生成中..."
+msgstr "AI sedang membuat artikel..."
 
 #: includes/admin/class-admin.php
 msgid "Analyzing image prompts..."
-msgstr "画像プロンプトを分析中..."
+msgstr "Menganalisis perintah gambar..."
 
 #: includes/admin/class-admin.php
 msgid "Generating featured image..."
-msgstr "アイキャッチ画像を生成中..."
+msgstr "Menghasilkan gambar unggulan..."
 
 #: includes/admin/class-admin.php
 msgid "Generating image %d..."
-msgstr "画像 %d を生成中..."
+msgstr "Menghasilkan gambar %d..."
 
 #: includes/admin/class-admin.php
 msgid "Generating image %1$d of %2$d..."
-msgstr "全 %2$d 枚中 %1$d 枚目の画像を生成中..."
+msgstr "Menghasilkan gambar %1$d dari %2$d..."
 
 #: includes/admin/class-admin.php
 msgid "Generating all images... (this may take a while)"
-msgstr "全画像を生成中...(時間がかかります)"
+msgstr "Menghasilkan semua gambar... (ini mungkin memakan waktu cukup lama)"
 
 #: includes/admin/class-admin.php
 msgid "This may take several tens of seconds."
-msgstr "これには数十秒かかる場合があります。"
+msgstr "Ini mungkin memakan waktu beberapa puluh detik."
 
 #: includes/admin/class-admin.php
 msgid "AI is processing. Please wait..."
-msgstr "AI が処理を実行しています。しばらくお待ちください..."
+msgstr "AI sedang memproses. Harap tunggu..."
 
 #: includes/admin/class-admin.php
 msgid "Processing..."
-msgstr "処理中..."
+msgstr "Pengolahan..."
 
 #: includes/admin/class-admin.php
 msgid "Title: "
-msgstr "タイトル:"
+msgstr "Judul:"
 
 #: includes/admin/class-admin.php
 msgid "Failed to generate title"
-msgstr "タイトル生成に失敗しました"
+msgstr "Gagal membuat judul"
 
 #: includes/admin/class-admin.php
 msgid "Headings were inserted into the editor. Edit them freely."
-msgstr "エディターに見出しを展開しました。自由に編集してください。"
+msgstr "Judul dimasukkan ke dalam editor. Edit dengan bebas."
 
 #: includes/admin/class-admin.php
 msgid "Article inserted"
-msgstr "記事を挿入しました"
+msgstr "Artikel dimasukkan"
 
 #: includes/admin/class-admin.php
 msgid "Article generated!"
-msgstr "記事を生成しました !"
+msgstr "Artikel dihasilkan!"
 
 #: includes/admin/class-admin.php
 msgid "Failed to generate article"
-msgstr "記事生成に失敗しました"
+msgstr "Gagal membuat artikel"
 
 #: includes/admin/class-admin.php
 msgid "Generate an article first"
-msgstr "先に記事を生成してください"
+msgstr "Buat artikel terlebih dahulu"
 
 #: includes/admin/class-admin.php
 msgid "Additional notes"
-msgstr "希望追加内容"
+msgstr "Catatan tambahan"
 
 #: includes/admin/class-admin.php
 msgid "Enter any extra requirements"
-msgstr "追加したい情報や要望を入力してください"
+msgstr "Masukkan persyaratan tambahan apa pun"
 
 #: includes/admin/class-admin.php
 msgid "Please enter a target keyword"
-msgstr "ターゲットキーワードを入力してください"
+msgstr "Silakan masukkan kata kunci target"
 
 #: includes/admin/class-admin.php
 msgid "Please enter article content"
-msgstr "記事内容を入力してください"
+msgstr "Silakan masukkan konten artikel"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Find image placement points"
-msgstr "画像挿入ポイント探索"
+msgstr "Temukan titik penempatan gambar"
 
 #: includes/admin/class-admin.php
 msgid "Image placement points:\\n\\n"
-msgstr "画像挿入ポイント:\\n\\n"
+msgstr "Titik penempatan gambar:\\n\\n"
 
 #: includes/admin/class-admin.php
 msgid "Image: "
-msgstr "画像:"
+msgstr "Gambar:"
 
 #: includes/admin/class-admin.php
 msgid "Failed to suggest images"
-msgstr "画像提案に失敗しました"
+msgstr "Gagal menyarankan gambar"
 
 #: includes/admin/class-admin.php
 msgid "Image suggestions are ready. Generate them from the list below."
-msgstr "画像提案を取得しました。下のリストから生成してください。"
+msgstr "Saran gambar sudah siap. Hasilkan mereka dari daftar di bawah."
 
 #: includes/admin/class-admin.php
 msgid "Failed to insert image prompts"
-msgstr "画像プロンプト挿入に失敗しました"
+msgstr "Gagal menyisipkan perintah gambar"
 
 #: includes/admin/class-admin.php
 msgid ""
 "Image placement suggestions were added and markers were inserted in the "
 "editor."
-msgstr "画像挿入ポイントを提案し、エディタ内に配置マーカーを挿入しました。"
+msgstr ""
+"Saran penempatan gambar ditambahkan dan penanda dimasukkan ke dalam editor."
 
 #: includes/admin/class-admin.php
 msgid "No image placement points were found."
-msgstr "画像挿入ポイントが見つかりませんでした。"
+msgstr "Tidak ada titik penempatan gambar yang ditemukan."
 
 #: includes/admin/class-admin.php
 msgid "Markers and suggestions cleared"
-msgstr "マーカーと提案をクリアしました"
+msgstr "Penanda dan saran dihapus"
 
 #: includes/admin/class-admin.php
 msgid "Clear suggestions and markers"
-msgstr "提案とマーカーをクリア"
+msgstr "Hapus saran dan penanda"
 
 #: includes/admin/class-admin.php
 msgid "Generate and set as featured image"
-msgstr "生成してアイキャッチに設定"
+msgstr "Hasilkan dan tetapkan sebagai gambar unggulan"
 
 #: includes/admin/class-admin.php
 msgid "Generate and place"
-msgstr "生成して配置"
+msgstr "Hasilkan dan tempatkan"
 
 #: includes/admin/class-admin.php
 msgid "Featured image set"
-msgstr "アイキャッチ画像を設定しました"
+msgstr "Kumpulan gambar unggulan"
 
 #: includes/admin/class-admin.php
 msgid "Featured image set and inserted!"
-msgstr "アイキャッチ画像を設定・挿入しました !"
+msgstr "Kumpulan gambar unggulan dan disisipkan!"
 
 #: includes/admin/class-admin.php
 msgid "Image inserted"
-msgstr "画像を挿入しました"
+msgstr "Gambar dimasukkan"
 
 #: includes/admin/class-admin.php
 msgid "Image inserted into the post!"
-msgstr "画像を記事に挿入しました !"
+msgstr "Gambar dimasukkan ke dalam postingan!"
 
 #: includes/admin/class-admin.php
 msgid "Generating image..."
-msgstr "画像を生成中..."
+msgstr "Menghasilkan gambar..."
 
 #: includes/admin/class-admin.php
 msgid "Image generation failed"
-msgstr "画像生成に失敗しました"
+msgstr "Pembuatan gambar gagal"
 
 #: includes/admin/class-admin.php
 msgid "No image data was returned"
-msgstr "画像データが返されませんでした"
+msgstr "Tidak ada data gambar yang dikembalikan"
 
 #: includes/admin/class-admin.php
 msgid "All images have already been generated!"
-msgstr "すべての画像は生成済みです !"
+msgstr "Semua gambar telah dibuat!"
 
 #: includes/admin/class-admin.php
 msgid "All images were generated and inserted!"
-msgstr "すべての画像の生成・挿入が完了しました !"
+msgstr "Semua gambar dibuat dan disisipkan!"
 
 #: includes/admin/class-admin.php
 msgid "Japanese: "
-msgstr "日本語:"
+msgstr "Jepang:"
 
 #: includes/admin/class-admin.php
 msgid "English: "
-msgstr "英語:"
+msgstr "Bahasa inggris:"
 
 #: includes/admin/class-admin.php
 msgid "Japanese: %d"
-msgstr "日本語: %d 件"
+msgstr "Jepang: %d"
 
 #: includes/admin/class-admin.php
 msgid "English: %d"
-msgstr "英語: %d 件"
+msgstr "Bahasa Inggris: %d"
 
 #: includes/admin/class-admin.php
 msgid "An error occurred"
-msgstr "エラーが発生しました"
+msgstr "Terjadi kesalahan"
 
 #: includes/admin/class-admin.php
 msgid "Unknown error"
-msgstr "不明なエラー"
+msgstr "Kesalahan tidak diketahui"
 
 #: includes/admin/class-admin.php
 msgid "Error: "
-msgstr "エラー:"
+msgstr "Kesalahan:"
 
 #: includes/admin/class-admin.php
 msgid "Communication error: "
-msgstr "通信エラー:"
+msgstr "Kesalahan komunikasi:"
 
 #: includes/admin/class-admin.php
 msgid "Image generation error: "
-msgstr "画像生成エラー:"
+msgstr "Kesalahan pembuatan gambar:"
 
 #: includes/admin/class-admin.php
 msgid "Success"
-msgstr "成功しました"
+msgstr "Kesuksesan"
 
 #: includes/admin/class-admin.php
 msgid "Fetching..."
-msgstr "取得中..."
+msgstr "Mengambil..."
 
 #: includes/admin/class-admin.php
 msgid "Model list updated"
-msgstr "モデル一覧を更新しました"
+msgstr "Daftar model diperbarui"
 
 #: includes/admin/class-admin.php
 msgid "Failed to fetch model list"
-msgstr "モデル一覧の取得に失敗しました"
+msgstr "Gagal mengambil daftar model"
 
 #: includes/admin/class-admin.php
 msgid "Review reference URLs"
-msgstr "参照 URL を確認"
+msgstr "Tinjau URL referensi"
 
 #: includes/admin/class-admin.php
 msgid "%s - Reference URLs"
-msgstr "%s - 参照 URL"
+msgstr "%s - URL Referensi"
 
 #: includes/admin/class-admin.php
 msgid "Japan search rankings (top 10)"
-msgstr "日本国内の検索順位 (上位 10 件)"
+msgstr "Peringkat pencarian Jepang (10 teratas)"
 
 #: includes/admin/class-admin.php
 msgid "English search rankings (top 5)"
-msgstr "英語圏の検索順位 (上位 5 件)"
+msgstr "Peringkat pencarian bahasa Inggris (5 teratas)"
 
 #: includes/admin/class-admin.php
 msgid "Close"
-msgstr "閉じる"
+msgstr "Menutup"
 
 #: includes/admin/class-admin.php
 msgid "Fetching model list..."
-msgstr "モデル一覧を取得中..."
+msgstr "Mengambil daftar model..."
 
 #: includes/admin/class-admin.php
 msgid "Failed to fetch model list."
-msgstr "モデル一覧の取得に失敗しました。"
+msgstr "Gagal mengambil daftar model."
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Next"
-msgstr "次へ進む"
+msgstr "Berikutnya"
 
 #: includes/admin/class-admin.php
 msgid "Save settings and finish"
-msgstr "設定を保存して完了する"
+msgstr "Simpan pengaturan dan selesai"
 
 #: includes/admin/class-admin.php
 msgid "Testing connection..."
-msgstr "接続テスト中..."
+msgstr "Menguji koneksi..."
 
 #: includes/admin/class-admin.php
 msgid "A communication error occurred."
-msgstr "通信エラーが発生しました。"
+msgstr "Terjadi kesalahan komunikasi."
 
 #: includes/admin/class-admin.php
 msgid "Communication error"
-msgstr "通信エラーが発生しました"
+msgstr "Kesalahan komunikasi"
 
 #: includes/admin/class-admin.php
 msgid "Your session has expired. Reload the page and try again."
-msgstr "セッションが切れています。ページを再読み込みして再度お試しください。"
+msgstr "Sesi Anda telah berakhir. Muat ulang halaman dan coba lagi."
 
 #: includes/admin/class-admin.php
 msgid "Session expired. Please reload the page."
-msgstr "セッションが切れています。ページを再読み込みしてください。"
+msgstr "Sesi berakhir. Silakan muat ulang halaman tersebut."
 
 #: includes/admin/class-admin.php
 msgid "Testing..."
-msgstr "テスト中..."
+msgstr "Menguji..."
 
 #: includes/admin/class-admin.php
 msgid "Connecting..."
-msgstr "通信中..."
+msgstr "Menghubungkan..."
 
 #: includes/admin/class-admin.php
 msgid "Connection successful"
-msgstr "接続に成功しました"
+msgstr "Koneksi berhasil"
 
 #: includes/admin/class-admin.php
 msgid "Connection failed"
-msgstr "接続に失敗しました"
+msgstr "Koneksi gagal"
 
 #: includes/admin/class-admin.php
 msgid "Fetch failed"
-msgstr "取得に失敗しました"
+msgstr "Pengambilan gagal"
 
 #: includes/admin/class-admin.php
 msgid "Failed to connect to the Google Gemini connector."
-msgstr "Google Gemini コネクターへの接続に失敗しました。"
+msgstr "Gagal menyambung ke konektor Google Gemini."
 
 #: includes/admin/class-admin.php
 msgid "Google Gemini connector connection test failed."
-msgstr "Google Gemini コネクターへの接続テストに失敗しました。"
+msgstr "Uji koneksi konektor Google Gemini gagal."
 
 #: includes/admin/class-admin.php
 msgid "Failed to fetch models."
-msgstr "モデルの取得に失敗しました。"
+msgstr "Gagal mengambil model."
 
 #: includes/admin/class-admin.php
 msgid "Settings"
-msgstr "設定"
+msgstr "Pengaturan"
 
 #: includes/admin/class-meta-box.php
 msgid "Gemini article generation"
-msgstr "Gemini 記事生成"
+msgstr "Generasi artikel Gemini"
 
 #: includes/admin/class-meta-box.php
 msgid "Add specific details, tone, or outline notes for the article"
-msgstr "記事に含めたい具体的な情報や、トーン、構成案などがあれば入力してください"
+msgstr ""
+"Tambahkan detail spesifik, nada, atau catatan kerangka untuk artikel "
+"tersebut"
 
 #: includes/admin/class-meta-box.php
 msgid "Output language"
-msgstr "出力言語"
+msgstr "Bahasa keluaran"
 
 #: includes/admin/class-meta-box.php
 msgid "Japanese"
-msgstr "日本語"
+msgstr "Jepang"
 
 #: includes/admin/class-meta-box.php
 msgid "English"
-msgstr "英語"
+msgstr "Bahasa inggris"
 
 #: includes/admin/class-meta-box.php
 msgid "Simplified Chinese"
-msgstr "简体中文"
+msgstr "Cina Sederhana"
 
 #: includes/admin/class-meta-box.php
 msgid "Traditional Chinese"
-msgstr "繁體中文"
+msgstr "Cina Tradisional"
 
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini integration"
-msgstr "Google Gemini 連携"
+msgstr "Integrasi Google Gemini"
 
 #: includes/admin/class-settings-page.php
 msgid "The Google Gemini connector (Settings → Connectors) must be connected"
-msgstr "Google Gemini コネクター (設定 → コネクター) の接続が必要です"
+msgstr "Konektor Google Gemini (Pengaturan → Konektor) harus terhubung"
 
 #: includes/admin/class-settings-page.php
 msgid "Connection status"
-msgstr "接続状態"
+msgstr "Status koneksi"
 
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini connector is connected and text generation is available."
-msgstr "Google Gemini コネクターが接続され、テキスト生成が利用可能です。"
+msgstr "Konektor Google Gemini terhubung dan pembuatan teks tersedia."
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "Google Gemini connector is not configured or does not support text "
 "generation."
-msgstr "Google Gemini コネクターが未設定、またはテキスト生成に対応していません。"
+msgstr ""
+"Konektor Google Gemini tidak dikonfigurasi atau tidak mendukung pembuatan "
+"teks."
 
 #: includes/admin/class-settings-page.php
 msgid "Open AI connector settings"
-msgstr "AI コネクター設定を開く"
+msgstr "Buka pengaturan konektor AI"
 
 #: includes/admin/class-settings-page.php
 msgid "Connection test"
-msgstr "接続テスト"
+msgstr "Tes koneksi"
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "This plugin uses the Google Gemini connector. Manage API keys under Settings"
 " → Connectors. Requests are sent through the WordPress AI Client."
 msgstr ""
-"このプラグインは Google Gemini コネクターを使用します。API キーは設定 → コネクターで管理してください。リクエストは "
-"WordPress AI Client 経由で送信されます。"
+"Plugin ini menggunakan konektor Google Gemini. Kelola kunci API di bawah "
+"Pengaturan → Konektor. Permintaan dikirim melalui Klien AI WordPress."
 
 #: includes/admin/class-settings-page.php
 msgid "Text model"
-msgstr "テキストモデル"
+msgstr "Model teks"
 
 #: includes/admin/class-settings-page.php
 msgid "No models available. Refresh the model list first."
-msgstr "利用可能なモデルがありません。まずモデル一覧を更新してください。"
+msgstr "Tidak ada model yang tersedia. Segarkan daftar model terlebih dahulu."
 
 #: includes/admin/class-settings-page.php
 msgid "Refresh model list"
-msgstr "モデル一覧を更新"
+msgstr "Segarkan daftar model"
 
 #: includes/admin/class-settings-page.php
 msgid "Recommended model: %s"
-msgstr "推奨モデル: %s"
+msgstr "Model yang direkomendasikan: %s"
 
 #: includes/admin/class-settings-page.php
 msgid "Click \"Refresh model list\" to fetch available models."
-msgstr "「モデル一覧を更新」をクリックして、利用可能なモデルを取得してください。"
+msgstr "Klik \"Segarkan daftar model\" untuk mengambil model yang tersedia."
 
 #: includes/admin/class-settings-page.php
 msgid "Image model"
-msgstr "画像生成モデル"
+msgstr "Model gambar"
 
 #: includes/admin/class-settings-page.php
 msgid "Choose the model used for image generation."
-msgstr "画像生成に使用するモデルを選択します。"
+msgstr "Pilih model yang digunakan untuk pembuatan gambar."
 
 #: includes/admin/class-settings-page.php
 msgid ""
@@ -603,180 +611,194 @@ msgid ""
 "with billing enabled. Image generation may not work with API keys that only "
 "include the free tier."
 msgstr ""
-"画像生成モデル (Imagen など) の利用には、Google AI の有料 API プラン (課金設定済み) が必要です。無料枠のみの API "
-"キーでは画像生成が利用できない場合があります。"
+"Model pembuatan gambar (seperti Imagen) memerlukan paket Google AI API "
+"berbayar dengan penagihan diaktifkan. Pembuatan gambar mungkin tidak "
+"berfungsi dengan kunci API yang hanya menyertakan tingkat gratis."
 
 #: includes/admin/class-settings-page.php
 msgid "Writing style settings"
-msgstr "執筆スタイル設定"
+msgstr "Pengaturan gaya penulisan"
 
 #: includes/admin/class-settings-page.php
 msgid "Configure the tone of generated content"
-msgstr "生成される文章のトーンなどを設定"
+msgstr "Konfigurasikan nada konten yang dihasilkan"
 
 #: includes/admin/class-settings-page.php
 msgid "Casual (friendly)"
-msgstr "カジュアル (親しみやすい)"
+msgstr "Santai (ramah)"
 
 #: includes/admin/class-settings-page.php
 msgid "Professional (polished and trustworthy)"
-msgstr "プロフェッショナル (丁寧・信頼)"
+msgstr "Profesional (terpoles dan dapat dipercaya)"
 
 #: includes/admin/class-settings-page.php
 msgid "Friendly (warm)"
-msgstr "フレンドリー (温かみ)"
+msgstr "Ramah (hangat)"
 
 #: includes/admin/class-settings-page.php
 msgid "Technical (precise)"
-msgstr "テクニカル (専門・正確)"
+msgstr "Teknis (tepat)"
 
 #: includes/admin/class-settings-page.php
 msgid "Humorous (light and fun)"
-msgstr "ユーモア (軽快・面白い)"
+msgstr "Humoris (ringan dan menyenangkan)"
 
 #: includes/admin/class-settings-page.php
 msgid "Persuasive (passionate)"
-msgstr "説得力 (情熱・主張)"
+msgstr "Persuasif (bersemangat)"
 
 #: includes/admin/class-settings-page.php
 msgid "Informative (factual)"
-msgstr "インフォマティブ (事実・解説)"
+msgstr "Informatif (faktual)"
 
 #: includes/admin/class-settings-page.php
 msgid "Choose the tone for images inserted into articles."
-msgstr "記事内に挿入される画像のトーンを指定します。"
+msgstr "Pilih nada untuk gambar yang dimasukkan ke dalam artikel."
 
 #: includes/admin/class-settings-page.php
 msgid "Save settings"
-msgstr "設定を保存"
+msgstr "Simpan pengaturan"
 
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini setup"
-msgstr "Google Gemini セットアップ"
+msgstr "Penyiapan Google Gemini"
 
 #: includes/admin/class-settings-page.php
 msgid "1. Configure the Google Gemini connector"
-msgstr "1. Google Gemini コネクターを設定"
+msgstr "1. Konfigurasikan konektor Google Gemini"
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "Install and activate the Google (Gemini) connector under Settings → "
 "Connectors, then connect your API key. This plugin uses Gemini."
 msgstr ""
-"設定 → コネクターで Google (Gemini) コネクターをインストール・有効化し、API キーを接続してください。このプラグインは "
-"Gemini を使用します。"
+"Instal dan aktifkan konektor Google (Gemini) di bawah Pengaturan → Konektor,"
+" lalu sambungkan kunci API Anda. Plugin ini menggunakan Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid "After connecting Gemini, run the connection test before continuing."
-msgstr "Gemini コネクターを接続後、「接続テスト」を実行してから次へ進んでください。"
+msgstr ""
+"Setelah menghubungkan Gemini, jalankan tes koneksi sebelum melanjutkan."
 
 #: includes/admin/class-settings-page.php
 msgid "2. Choose models"
-msgstr "2. 使用するモデルを選択"
+msgstr "2. Pilih model"
 
 #: includes/admin/class-settings-page.php
 msgid "Choose the AI model used for writing."
-msgstr "執筆に使用する AI モデルを選択してください。"
+msgstr "Pilih model AI yang digunakan untuk menulis."
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "No Gemini models available. Configure the Google Gemini connector, then "
 "click Refresh."
-msgstr "利用可能な Gemini モデルがありません。Google Gemini コネクターを設定してから「再取得」を押してください。"
+msgstr ""
+"Tidak ada model Gemini yang tersedia. Konfigurasikan konektor Google Gemini,"
+" lalu klik Refresh."
 
 #: includes/admin/class-settings-page.php
 msgid "Refresh"
-msgstr "再取得"
+msgstr "Menyegarkan"
 
 #: includes/admin/class-settings-page.php
 msgid "Recommended text model: %s"
-msgstr "推奨テキストモデル: %s"
+msgstr "Model teks yang direkomendasikan: %s"
 
 #: includes/admin/class-settings-page.php
 msgid "No models available."
-msgstr "利用可能なモデルがありません。"
+msgstr "Tidak ada model yang tersedia."
 
 #: includes/admin/class-settings-page.php
 msgid "Back"
-msgstr "戻る"
+msgstr "Kembali"
 
 #: includes/admin/class-settings-page.php
 msgid "Cancel"
-msgstr "キャンセル"
+msgstr "Membatalkan"
 
 #: includes/admin/class-settings-page.php
 msgid "You do not have permission to perform this action."
-msgstr "この操作を実行する権限がありません。"
+msgstr "Anda tidak memiliki izin untuk melakukan tindakan ini."
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "WordPress AI Client is unavailable. Install the Google Gemini connector."
-msgstr "WordPress AI Client が利用できません。Google Gemini コネクターをインストールしてください。"
+msgstr "Klien AI WordPress tidak tersedia. Pasang konektor Google Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "No Gemini models were found. Check the Google Gemini connector connection."
-msgstr "利用可能な Gemini モデルが見つかりませんでした。Google Gemini コネクターの接続を確認してください。"
+msgstr ""
+"Tidak ada model Gemini yang ditemukan. Periksa sambungan konektor Google "
+"Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid "Hello"
-msgstr "こんにちは"
+msgstr "Halo"
 
 #: includes/admin/class-settings-page.php
 #: includes/rest/class-models-endpoint.php
 msgid ""
 "Google Gemini connector is not configured. Connect Gemini under Settings → "
 "Connectors."
-msgstr "Google Gemini コネクターが未設定です。設定 → コネクターで Gemini を接続してください。"
+msgstr ""
+"Konektor Google Gemini tidak dikonfigurasi. Hubungkan Gemini di bawah "
+"Pengaturan → Konektor."
 
 #: includes/admin/class-settings-page.php
 msgid "Successfully connected to the Google Gemini connector."
-msgstr "Google Gemini コネクターへの接続に成功しました。"
+msgstr "Berhasil terhubung ke konektor Google Gemini."
 
 #: includes/api/class-gemini-client.php includes/api/class-image-generator.php
 msgid ""
 "WordPress AI Client is not available. Install and configure the Google "
 "Gemini connector under Settings → Connectors."
 msgstr ""
-"WordPress AI Client が利用できません。設定 → コネクターで Google Gemini コネクターをインストールしてください。"
+"Klien AI WordPress tidak tersedia. Instal dan konfigurasikan konektor Google"
+" Gemini di bawah Pengaturan → Konektor."
 
 #: includes/api/class-gemini-client.php
 msgid "Text model is not set. Choose one on the settings screen."
-msgstr "テキストモデルが設定されていません。設定画面でモデルを選択してください。"
+msgstr "Model teks tidak disetel. Pilih salah satu di layar pengaturan."
 
 #: includes/api/class-gemini-client.php
 msgid "The prompt is empty."
-msgstr "プロンプトが空です。"
+msgstr "Perintahnya kosong."
 
 #: includes/api/class-gemini-client.php
 msgid ""
 "The selected Gemini model does not support text generation. Check the Google"
 " Gemini connector settings."
-msgstr "選択した Gemini モデルはテキスト生成に対応していません。Google Gemini コネクターの接続設定を確認してください。"
+msgstr ""
+"Model Gemini yang dipilih tidak mendukung pembuatan teks. Periksa pengaturan"
+" konektor Google Gemini."
 
 #: includes/api/class-image-generator.php
 msgid "Image model is not set. Choose one on the settings screen."
-msgstr "画像モデルが設定されていません。設定画面でモデルを選択してください。"
+msgstr "Model gambar tidak disetel. Pilih salah satu di layar pengaturan."
 
 #: includes/api/class-image-generator.php
 msgid ""
 "The selected Gemini model does not support image generation. Check the "
 "Google Gemini connector settings."
-msgstr "選択した Gemini モデルは画像生成に対応していません。Google Gemini コネクターの接続設定を確認してください。"
+msgstr ""
+"Model Gemini yang dipilih tidak mendukung pembuatan gambar. Periksa "
+"pengaturan konektor Google Gemini."
 
 #: includes/api/class-image-generator.php
 msgid "No image data was returned."
-msgstr "画像データが返されませんでした。"
+msgstr "Tidak ada data gambar yang dikembalikan."
 
 #: includes/api/class-model-manager.php
 msgid ""
 "Failed to fetch Gemini models. Check the Google Gemini connector API key."
-msgstr "Gemini モデル一覧の取得に失敗しました。Google Gemini コネクターの API キーを確認してください。"
+msgstr ""
+"Gagal mengambil model Gemini. Periksa kunci API konektor Google Gemini."
 
 #: includes/class-api-settings-sync.php
 msgid ""
 "Model settings were imported automatically from another AI plugin (%s)."
-msgstr "別の AI プラグイン (%s) からモデル設定を自動インポートしました。"
+msgstr "Pengaturan model diimpor secara otomatis dari plugin AI lain (%s)."
 
 #: includes/class-api-settings-sync.php
 msgid "Picot AIO AI Content Optimizer"
@@ -784,53 +806,53 @@ msgstr "Picot AIO AI Content Optimizer"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Content is empty."
-msgstr "コンテンツが空です。"
+msgstr "Konten kosong."
 
 #: includes/rest/class-content-endpoint.php
 msgid "JSON parsing failed (%s)."
-msgstr "JSON の解析に失敗しました (%s)。"
+msgstr "Penguraian JSON gagal (%s)."
 
 #: includes/rest/class-content-endpoint.php
 msgid "Image suggestions saved for Optimizer."
-msgstr "画像提案を Optimizer に保存しました。"
+msgstr "Saran gambar disimpan untuk Pengoptimal."
 
 #: includes/rest/class-content-endpoint.php
 msgid "Target keyword is required"
-msgstr "ターゲットキーワードは必須です"
+msgstr "Kata kunci target wajib diisi"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Research ID is required"
-msgstr "調査 ID は必須です"
+msgstr "ID penelitian diperlukan"
 
 #: includes/rest/class-content-endpoint.php
 #: includes/rest/class-research-endpoint.php
 msgid "Research data not found"
-msgstr "調査データが見つかりません"
+msgstr "Data penelitian tidak ditemukan"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Research data contains no URLs"
-msgstr "調査データに URL が含まれていません"
+msgstr "Data penelitian tidak mengandung URL"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Generate title and headings first, or enter headings in the editor"
-msgstr "先にタイトルと見出しを生成するか、エディターに見出しを入力してください"
+msgstr "Buat judul dan judul terlebih dahulu, atau masukkan judul di editor"
 
 #: includes/rest/class-image-endpoint.php
 msgid "Article content is required"
-msgstr "記事内容は必須です"
+msgstr "Konten artikel wajib diisi"
 
 #: includes/rest/class-image-endpoint.php
 msgid "Prompt is required"
-msgstr "プロンプトは必須です"
+msgstr "Dibutuhkan segera"
 
 #: includes/rest/class-research-endpoint.php
 msgid "Keyword and post ID are required"
-msgstr "キーワードと投稿 ID は必須です"
+msgstr "Kata kunci dan ID postingan diperlukan"
 
 #: includes/rest/class-research-endpoint.php
 msgid "Failed to save research data"
-msgstr "調査データの保存に失敗しました"
+msgstr "Gagal menyimpan data penelitian"
 
 #: includes/rest/class-research-endpoint.php
 msgid "Post ID is required"
-msgstr "投稿 ID は必須です"
+msgstr "ID postingan diperlukan"

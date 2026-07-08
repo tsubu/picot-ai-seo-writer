@@ -68,7 +68,7 @@ class Research_Endpoint extends REST_Controller
 
         if (empty($keyword) || empty($post_id)) {
             \PICOT_SEO_WRITING\Logger::error('Missing keyword or post_id');
-            return $this->error_response(esc_html__('キーワードと投稿IDは必須です', 'picot-ai-seo-writer'));
+            return $this->error_response(esc_html__('Keyword and post ID are required', 'picot-ai-seo-writer'));
         }
 
         try {
@@ -97,7 +97,7 @@ class Research_Endpoint extends REST_Controller
                     'post_id' => $post_id,
                     'keyword' => $keyword
                 ]);
-                return $this->error_response(esc_html__('調査データの保存に失敗しました', 'picot-ai-seo-writer'), 500);
+                return $this->error_response(esc_html__('Failed to save research data', 'picot-ai-seo-writer'), 500);
             }
 
             \PICOT_SEO_WRITING\Logger::info('Research created successfully', [
@@ -138,7 +138,7 @@ class Research_Endpoint extends REST_Controller
 
         if (empty($post_id)) {
             \PICOT_SEO_WRITING\Logger::error('Missing post_id in get_history');
-            return $this->error_response(esc_html__('投稿IDは必須です', 'picot-ai-seo-writer'));
+            return $this->error_response(esc_html__('Post ID is required', 'picot-ai-seo-writer'));
         }
 
         try {
@@ -175,7 +175,7 @@ class Research_Endpoint extends REST_Controller
             $research = $repository->get_by_id($id);
 
             if (!$research) {
-                return $this->error_response(esc_html__('調査データが見つかりません', 'picot-ai-seo-writer'), 404);
+                return $this->error_response(esc_html__('Research data not found', 'picot-ai-seo-writer'), 404);
             }
 
             return $this->success_response($research);

@@ -324,18 +324,20 @@ class Admin
                 $handle = 'picot-ai-seo-writer-settings';
             }
 
-            wp_localize_script(
-                $handle,
-                'picot_seo_writing_admin',
-                [
-                    'rest_url' => rest_url('picot-ai-seo-writer/v1'),
-                    'nonce' => wp_create_nonce('wp_rest'),
-                    'post_id' => get_the_ID(),
-                    'writingStyleOptions' => $this->get_writing_style_options(),
-                    'imageStyleOptions' => $this->get_image_style_options(),
-                    'strings' => self::get_localized_strings(),
-                ]
-            );
+            if (!$this->is_block_editor()) {
+                wp_localize_script(
+                    $handle,
+                    'picot_seo_writing_admin',
+                    [
+                        'rest_url' => rest_url('picot-ai-seo-writer/v1'),
+                        'nonce' => wp_create_nonce('wp_rest'),
+                        'post_id' => get_the_ID(),
+                        'writingStyleOptions' => $this->get_writing_style_options(),
+                        'imageStyleOptions' => $this->get_image_style_options(),
+                        'strings' => self::get_localized_strings(),
+                    ]
+                );
+            }
         }
     }
 
@@ -358,11 +360,42 @@ class Admin
     private function get_writing_style_options()
     {
         return [
-            ['label' => __('カジュアル', 'picot-ai-seo-writer'), 'value' => 'casual'],
-            ['label' => __('プロフェッショナル', 'picot-ai-seo-writer'), 'value' => 'professional'],
-            ['label' => __('フレンドリー', 'picot-ai-seo-writer'), 'value' => 'friendly'],
-            ['label' => __('専門的', 'picot-ai-seo-writer'), 'value' => 'technical'],
+            ['label' => __('Casual', 'picot-ai-seo-writer'), 'value' => 'casual'],
+            ['label' => __('Professional', 'picot-ai-seo-writer'), 'value' => 'professional'],
+            ['label' => __('Friendly', 'picot-ai-seo-writer'), 'value' => 'friendly'],
+            ['label' => __('Technical', 'picot-ai-seo-writer'), 'value' => 'technical'],
         ];
+    }
+
+    /**
+     * 出力言語（管理画面のユーザー言語から自動判定）
+     *
+     * @return string
+     */
+    public static function get_default_output_language()
+    {
+        return self::locale_to_output_language(get_user_locale());
+    }
+
+    /**
+     * WordPress ロケールを出力言語コードへ変換
+     *
+     * @param string $locale ロケール
+     * @return string
+     */
+    public static function locale_to_output_language($locale)
+    {
+        if (strpos($locale, 'ja') === 0) {
+            return 'japanese';
+        }
+        if (strpos($locale, 'zh_CN') === 0) {
+            return 'simplified_chinese';
+        }
+        if (strpos($locale, 'zh_TW') === 0 || strpos($locale, 'zh_HK') === 0) {
+            return 'traditional_chinese';
+        }
+
+        return 'english';
     }
 
     /**
@@ -373,14 +406,14 @@ class Admin
     private function get_image_style_options()
     {
         return [
-            ['label' => __('実写風 (Photorealistic)', 'picot-ai-seo-writer'), 'value' => 'photorealistic'],
-            ['label' => __('デジタルアート', 'picot-ai-seo-writer'), 'value' => 'digital_art'],
-            ['label' => __('ベクターイラスト', 'picot-ai-seo-writer'), 'value' => 'vector'],
-            ['label' => __('スケッチ風', 'picot-ai-seo-writer'), 'value' => 'sketch'],
-            ['label' => __('水彩画風', 'picot-ai-seo-writer'), 'value' => 'watercolor'],
-            ['label' => __('サイバーパンク', 'picot-ai-seo-writer'), 'value' => 'cyberpunk'],
-            ['label' => __('アニメ風', 'picot-ai-seo-writer'), 'value' => 'anime'],
-            ['label' => __('油絵風', 'picot-ai-seo-writer'), 'value' => 'oil_painting'],
+            ['label' => __('Photorealistic', 'picot-ai-seo-writer'), 'value' => 'photorealistic'],
+            ['label' => __('Digital art', 'picot-ai-seo-writer'), 'value' => 'digital_art'],
+            ['label' => __('Vector illustration', 'picot-ai-seo-writer'), 'value' => 'vector'],
+            ['label' => __('Sketch', 'picot-ai-seo-writer'), 'value' => 'sketch'],
+            ['label' => __('Watercolor', 'picot-ai-seo-writer'), 'value' => 'watercolor'],
+            ['label' => __('Cyberpunk', 'picot-ai-seo-writer'), 'value' => 'cyberpunk'],
+            ['label' => __('Anime', 'picot-ai-seo-writer'), 'value' => 'anime'],
+            ['label' => __('Oil painting', 'picot-ai-seo-writer'), 'value' => 'oil_painting'],
         ];
     }
 
@@ -393,117 +426,117 @@ class Admin
     {
         return [
             'title' => __('Picot AI SEO Writer', 'picot-ai-seo-writer'),
-            'articleGenerationSettings' => __('記事生成設定', 'picot-ai-seo-writer'),
-            'writingStylePanel' => __('執筆スタイル', 'picot-ai-seo-writer'),
-            'imageGenerationPanel' => __('画像生成', 'picot-ai-seo-writer'),
-            'lastUsedInfoPanel' => __('前回使用した情報', 'picot-ai-seo-writer'),
-            'referenceUrlsPanel' => __('参照URL一覧', 'picot-ai-seo-writer'),
-            'targetKeyword' => __('ターゲットワード', 'picot-ai-seo-writer'),
-            'matchKeywordPlaceholder' => __('例: WordPress SEO', 'picot-ai-seo-writer'),
-            'additionalNotesOptional' => __('希望追加内容（任意）', 'picot-ai-seo-writer'),
-            'additionalNotesDetailedPlaceholder' => __('記事に含めたい具体的な情報や要望を入力してください', 'picot-ai-seo-writer'),
-            'writingStyleLabel' => __('文章スタイル', 'picot-ai-seo-writer'),
-            'imageStyleLabel' => __('画像スタイル', 'picot-ai-seo-writer'),
-            'generateArticleButton' => __('記事を生成', 'picot-ai-seo-writer'),
-            'analyzeImagePromptsButton' => __('① 画像プロンプトを分析', 'picot-ai-seo-writer'),
-            'imageGenerationDescription' => __('記事を分析して画像提案(1 アイキャッチ + 5 本文)を生成し、Gemini で画像を生成して記事に挿入します。', 'picot-ai-seo-writer'),
-            'wordLabel' => __('ワード: ', 'picot-ai-seo-writer'),
-            'notesLabel' => __('要望: ', 'picot-ai-seo-writer'),
-            'emptyValue' => __('(空)', 'picot-ai-seo-writer'),
-            'featuredImageLabel' => __('⭐ アイキャッチ画像', 'picot-ai-seo-writer'),
-            'generateAndSetFeatured' => __('🖼️ 生成して設定', 'picot-ai-seo-writer'),
-            'generateAndInsertImage' => __('🖼️ 生成して挿入', 'picot-ai-seo-writer'),
-            'generateAllImagesButton' => __('⚡ 全ての画像を生成して挿入', 'picot-ai-seo-writer'),
-            'generationComplete' => __('✅ 生成完了', 'picot-ai-seo-writer'),
-            'research' => __('調査', 'picot-ai-seo-writer'),
-            'researching' => __('調査中...', 'picot-ai-seo-writer'),
-            'researchCompleted' => __('調査が完了しました', 'picot-ai-seo-writer'),
-            'researchFailed' => __('調査に失敗しました', 'picot-ai-seo-writer'),
-            'researchHistory' => __('調査履歴', 'picot-ai-seo-writer'),
-            'researchHistoryEmpty' => __('調査履歴がありません', 'picot-ai-seo-writer'),
-            'generateTitle' => __('タイトルと見出しを作成', 'picot-ai-seo-writer'),
-            'generateArticle' => __('見出しから記事を作成', 'picot-ai-seo-writer'),
-            'generating' => __('生成中...', 'picot-ai-seo-writer'),
-            'analyzing' => __('分析中...', 'picot-ai-seo-writer'),
-            'writingInProgress' => __('Geminiが執筆中...', 'picot-ai-seo-writer'),
-            'generatingArticle' => __('AIが記事を生成中...', 'picot-ai-seo-writer'),
-            'analyzingImagePrompts' => __('画像プロンプトを分析中...', 'picot-ai-seo-writer'),
-            'generatingFeaturedImage' => __('アイキャッチ画像を生成中...', 'picot-ai-seo-writer'),
+            'articleGenerationSettings' => __('Article generation settings', 'picot-ai-seo-writer'),
+            'writingStylePanel' => __('Writing style', 'picot-ai-seo-writer'),
+            'imageGenerationPanel' => __('Image generation', 'picot-ai-seo-writer'),
+            'lastUsedInfoPanel' => __('Last used information', 'picot-ai-seo-writer'),
+            'referenceUrlsPanel' => __('Reference URLs', 'picot-ai-seo-writer'),
+            'targetKeyword' => __('Target keyword', 'picot-ai-seo-writer'),
+            'matchKeywordPlaceholder' => __('e.g. WordPress SEO', 'picot-ai-seo-writer'),
+            'additionalNotesOptional' => __('Additional notes (optional)', 'picot-ai-seo-writer'),
+            'additionalNotesDetailedPlaceholder' => __('Enter specific details or requests to include in the article', 'picot-ai-seo-writer'),
+            'writingStyleLabel' => __('Writing style', 'picot-ai-seo-writer'),
+            'imageStyleLabel' => __('Image style', 'picot-ai-seo-writer'),
+            'generateArticleButton' => __('Generate article', 'picot-ai-seo-writer'),
+            'analyzeImagePromptsButton' => __('1. Analyze image prompts', 'picot-ai-seo-writer'),
+            'imageGenerationDescription' => __('Analyze the article, suggest images (1 featured + 5 inline), generate them with Gemini, and insert them into the post.', 'picot-ai-seo-writer'),
+            'wordLabel' => __('Keyword: ', 'picot-ai-seo-writer'),
+            'notesLabel' => __('Notes: ', 'picot-ai-seo-writer'),
+            'emptyValue' => __('(empty)', 'picot-ai-seo-writer'),
+            'featuredImageLabel' => __('Featured image', 'picot-ai-seo-writer'),
+            'generateAndSetFeatured' => __('Generate and set', 'picot-ai-seo-writer'),
+            'generateAndInsertImage' => __('Generate and insert', 'picot-ai-seo-writer'),
+            'generateAllImagesButton' => __('Generate and insert all images', 'picot-ai-seo-writer'),
+            'generationComplete' => __('Generated', 'picot-ai-seo-writer'),
+            'research' => __('Research', 'picot-ai-seo-writer'),
+            'researching' => __('Researching...', 'picot-ai-seo-writer'),
+            'researchCompleted' => __('Research completed', 'picot-ai-seo-writer'),
+            'researchFailed' => __('Research failed', 'picot-ai-seo-writer'),
+            'researchHistory' => __('Research history', 'picot-ai-seo-writer'),
+            'researchHistoryEmpty' => __('No research history', 'picot-ai-seo-writer'),
+            'generateTitle' => __('Generate title and headings', 'picot-ai-seo-writer'),
+            'generateArticle' => __('Generate article from headings', 'picot-ai-seo-writer'),
+            'generating' => __('Generating...', 'picot-ai-seo-writer'),
+            'analyzing' => __('Analyzing...', 'picot-ai-seo-writer'),
+            'writingInProgress' => __('Gemini is writing...', 'picot-ai-seo-writer'),
+            'generatingArticle' => __('AI is generating the article...', 'picot-ai-seo-writer'),
+            'analyzingImagePrompts' => __('Analyzing image prompts...', 'picot-ai-seo-writer'),
+            'generatingFeaturedImage' => __('Generating featured image...', 'picot-ai-seo-writer'),
             /* translators: %d: image number. */
-            'generatingImageNumber' => __('画像 %d を生成中...', 'picot-ai-seo-writer'),
+            'generatingImageNumber' => __('Generating image %d...', 'picot-ai-seo-writer'),
             /* translators: 1: current image number, 2: total image count. */
-            'generatingBulkImage' => __('全 %2$d 枚中 %1$d 枚目の画像を生成中...', 'picot-ai-seo-writer'),
-            'generatingAllImages' => __('全画像を生成中...（時間がかかります）', 'picot-ai-seo-writer'),
-            'overlaySubmessage' => __('これには数十秒かかる場合があります。', 'picot-ai-seo-writer'),
-            'overlayDefaultMessage' => __('AIが処理を実行しています。しばらくお待ちください...', 'picot-ai-seo-writer'),
-            'processing' => __('処理中...', 'picot-ai-seo-writer'),
-            'titleLabel' => __('タイトル: ', 'picot-ai-seo-writer'),
-            'titleGenerationFailed' => __('タイトル生成に失敗しました', 'picot-ai-seo-writer'),
-            'headingsExpandedMessage' => __('エディタに見出しを展開しました。自由に編集してください。', 'picot-ai-seo-writer'),
-            'articleInserted' => __('記事を挿入しました', 'picot-ai-seo-writer'),
-            'articleGenerated' => __('記事を生成しました！', 'picot-ai-seo-writer'),
-            'articleGenerationFailed' => __('記事生成に失敗しました', 'picot-ai-seo-writer'),
-            'generateArticleFirst' => __('先に記事を生成してください', 'picot-ai-seo-writer'),
-            'additionalNotes' => __('希望追加内容', 'picot-ai-seo-writer'),
-            'additionalNotesPlaceholder' => __('追加したい情報や要望を入力してください', 'picot-ai-seo-writer'),
-            'enterKeyword' => __('ターゲットワードを入力してください', 'picot-ai-seo-writer'),
-            'enterContent' => __('記事内容を入力してください', 'picot-ai-seo-writer'),
-            'suggestImages' => __('画像挿入ポイント探索', 'picot-ai-seo-writer'),
-            'imagePointsLabel' => __('画像挿入ポイント:\n\n', 'picot-ai-seo-writer'),
-            'imageLabel' => __('画像: ', 'picot-ai-seo-writer'),
-            'suggestionFailed' => __('画像提案に失敗しました', 'picot-ai-seo-writer'),
-            'imageSuggestionsReady' => __('画像提案を取得しました！下のリストから生成してください。', 'picot-ai-seo-writer'),
-            'imagePromptInsertFailed' => __('画像プロンプト挿入に失敗しました', 'picot-ai-seo-writer'),
-            'imageSuggestionsEmbedded' => __('画像挿入ポイントを提案し、エディタ内に配置マーカーを挿入しました。', 'picot-ai-seo-writer'),
-            'imageSuggestionsNotFound' => __('画像挿入ポイントが見つかりませんでした。', 'picot-ai-seo-writer'),
-            'clearMarkersAndSuggestions' => __('マーカーと提案をクリアしました', 'picot-ai-seo-writer'),
-            'clearSuggestionsButton' => __('提案とマーカーをクリア', 'picot-ai-seo-writer'),
-            'generateAndSetFeaturedClassic' => __('生成してアイキャッチに設定', 'picot-ai-seo-writer'),
-            'generateAndPlaceClassic' => __('生成して配置', 'picot-ai-seo-writer'),
-            'featuredImageSetClassic' => __('アイキャッチ画像を設定しました', 'picot-ai-seo-writer'),
-            'featuredImageSet' => __('アイキャッチ画像を設定・挿入しました！', 'picot-ai-seo-writer'),
-            'imageInserted' => __('画像を挿入しました', 'picot-ai-seo-writer'),
-            'imageInsertedIntoPost' => __('画像を記事に挿入しました！', 'picot-ai-seo-writer'),
-            'generatingImageClassic' => __('画像を生成中...', 'picot-ai-seo-writer'),
-            'imageGenerationFailed' => __('画像生成に失敗しました', 'picot-ai-seo-writer'),
-            'noImageDataReturned' => __('画像データが返されませんでした', 'picot-ai-seo-writer'),
-            'allImagesGenerated' => __('すべての画像が生成済みです！', 'picot-ai-seo-writer'),
-            'allImagesComplete' => __('全画像の生成・挿入が完了しました！', 'picot-ai-seo-writer'),
-            'jaLabel' => __('日本語: ', 'picot-ai-seo-writer'),
-            'enLabel' => __('英語: ', 'picot-ai-seo-writer'),
-            'jaResultsCount' => __('日本語: %d件', 'picot-ai-seo-writer'),
-            'enResultsCount' => __('英語: %d件', 'picot-ai-seo-writer'),
-            'error' => __('エラーが発生しました', 'picot-ai-seo-writer'),
-            'unknownError' => __('不明なエラー', 'picot-ai-seo-writer'),
-            'errorPrefix' => __('エラー: ', 'picot-ai-seo-writer'),
-            'communicationError' => __('通信エラー: ', 'picot-ai-seo-writer'),
-            'imageGenerationErrorPrefix' => __('画像生成エラー: ', 'picot-ai-seo-writer'),
-            'success' => __('成功しました', 'picot-ai-seo-writer'),
-            'fetching' => __('取得中...', 'picot-ai-seo-writer'),
-            'updateSuccess' => __('モデル一覧を更新しました', 'picot-ai-seo-writer'),
-            'updateFailed' => __('モデル一覧の取得に失敗しました', 'picot-ai-seo-writer'),
-            'checkReferenceUrls' => __('参照URLを確認', 'picot-ai-seo-writer'),
-            'referenceUrlsTitle' => __('%s - 参照URL', 'picot-ai-seo-writer'),
-            'jaSearchRankings' => __('日本国内の検索順位 (上位10件)', 'picot-ai-seo-writer'),
-            'enSearchRankings' => __('英語圏の検索順位 (上位5件)', 'picot-ai-seo-writer'),
-            'closeModal' => __('閉じる', 'picot-ai-seo-writer'),
-            'fetchingModels' => __('モデル一覧を取得中...', 'picot-ai-seo-writer'),
-            'errorFetching' => __('モデル一覧の取得に失敗しました。', 'picot-ai-seo-writer'),
-            'next' => __('次へ進む', 'picot-ai-seo-writer'),
-            'submit' => __('設定を保存して完了する', 'picot-ai-seo-writer'),
-            'testing' => __('接続テスト中...', 'picot-ai-seo-writer'),
-            'communicationErrorPlain' => __('通信エラーが発生しました。', 'picot-ai-seo-writer'),
-            'communicationErrorIcon' => __('❌ 通信エラーが発生しました', 'picot-ai-seo-writer'),
-            'sessionExpiredWizard' => __('セッションが切れています。ページを再読み込みして再度お試しください。', 'picot-ai-seo-writer'),
-            'sessionExpiredSettings' => __('❌ セッションが切れています。ページを再読み込みしてください。', 'picot-ai-seo-writer'),
-            'testingConnection' => __('テスト中...', 'picot-ai-seo-writer'),
-            'communicating' => __('通信中...', 'picot-ai-seo-writer'),
-            'connectionSuccess' => __('✅ 接続に成功しました', 'picot-ai-seo-writer'),
-            'connectionFailed' => __('❌ 接続に失敗しました', 'picot-ai-seo-writer'),
-            'fetchFailedGeneric' => __('取得に失敗しました', 'picot-ai-seo-writer'),
-            'geminiConnectionFailed' => __('Google Gemini コネクターへの接続に失敗しました。', 'picot-ai-seo-writer'),
-            'geminiConnectionTestFailed' => __('Google Gemini コネクターへの接続テストに失敗しました。', 'picot-ai-seo-writer'),
-            'modelFetchFailed' => __('モデルの取得に失敗しました。', 'picot-ai-seo-writer'),
+            'generatingBulkImage' => __('Generating image %1$d of %2$d...', 'picot-ai-seo-writer'),
+            'generatingAllImages' => __('Generating all images... (this may take a while)', 'picot-ai-seo-writer'),
+            'overlaySubmessage' => __('This may take several tens of seconds.', 'picot-ai-seo-writer'),
+            'overlayDefaultMessage' => __('AI is processing. Please wait...', 'picot-ai-seo-writer'),
+            'processing' => __('Processing...', 'picot-ai-seo-writer'),
+            'titleLabel' => __('Title: ', 'picot-ai-seo-writer'),
+            'titleGenerationFailed' => __('Failed to generate title', 'picot-ai-seo-writer'),
+            'headingsExpandedMessage' => __('Headings were inserted into the editor. Edit them freely.', 'picot-ai-seo-writer'),
+            'articleInserted' => __('Article inserted', 'picot-ai-seo-writer'),
+            'articleGenerated' => __('Article generated!', 'picot-ai-seo-writer'),
+            'articleGenerationFailed' => __('Failed to generate article', 'picot-ai-seo-writer'),
+            'generateArticleFirst' => __('Generate an article first', 'picot-ai-seo-writer'),
+            'additionalNotes' => __('Additional notes', 'picot-ai-seo-writer'),
+            'additionalNotesPlaceholder' => __('Enter any extra requirements', 'picot-ai-seo-writer'),
+            'enterKeyword' => __('Please enter a target keyword', 'picot-ai-seo-writer'),
+            'enterContent' => __('Please enter article content', 'picot-ai-seo-writer'),
+            'suggestImages' => __('Find image placement points', 'picot-ai-seo-writer'),
+            'imagePointsLabel' => __("Image placement points:\n\n", 'picot-ai-seo-writer'),
+            'imageLabel' => __('Image: ', 'picot-ai-seo-writer'),
+            'suggestionFailed' => __('Failed to suggest images', 'picot-ai-seo-writer'),
+            'imageSuggestionsReady' => __('Image suggestions are ready. Generate them from the list below.', 'picot-ai-seo-writer'),
+            'imagePromptInsertFailed' => __('Failed to insert image prompts', 'picot-ai-seo-writer'),
+            'imageSuggestionsEmbedded' => __('Image placement suggestions were added and markers were inserted in the editor.', 'picot-ai-seo-writer'),
+            'imageSuggestionsNotFound' => __('No image placement points were found.', 'picot-ai-seo-writer'),
+            'clearMarkersAndSuggestions' => __('Markers and suggestions cleared', 'picot-ai-seo-writer'),
+            'clearSuggestionsButton' => __('Clear suggestions and markers', 'picot-ai-seo-writer'),
+            'generateAndSetFeaturedClassic' => __('Generate and set as featured image', 'picot-ai-seo-writer'),
+            'generateAndPlaceClassic' => __('Generate and place', 'picot-ai-seo-writer'),
+            'featuredImageSetClassic' => __('Featured image set', 'picot-ai-seo-writer'),
+            'featuredImageSet' => __('Featured image set and inserted!', 'picot-ai-seo-writer'),
+            'imageInserted' => __('Image inserted', 'picot-ai-seo-writer'),
+            'imageInsertedIntoPost' => __('Image inserted into the post!', 'picot-ai-seo-writer'),
+            'generatingImageClassic' => __('Generating image...', 'picot-ai-seo-writer'),
+            'imageGenerationFailed' => __('Image generation failed', 'picot-ai-seo-writer'),
+            'noImageDataReturned' => __('No image data was returned', 'picot-ai-seo-writer'),
+            'allImagesGenerated' => __('All images have already been generated!', 'picot-ai-seo-writer'),
+            'allImagesComplete' => __('All images were generated and inserted!', 'picot-ai-seo-writer'),
+            'jaLabel' => __('Japanese: ', 'picot-ai-seo-writer'),
+            'enLabel' => __('English: ', 'picot-ai-seo-writer'),
+            'jaResultsCount' => __('Japanese: %d', 'picot-ai-seo-writer'),
+            'enResultsCount' => __('English: %d', 'picot-ai-seo-writer'),
+            'error' => __('An error occurred', 'picot-ai-seo-writer'),
+            'unknownError' => __('Unknown error', 'picot-ai-seo-writer'),
+            'errorPrefix' => __('Error: ', 'picot-ai-seo-writer'),
+            'communicationError' => __('Communication error: ', 'picot-ai-seo-writer'),
+            'imageGenerationErrorPrefix' => __('Image generation error: ', 'picot-ai-seo-writer'),
+            'success' => __('Success', 'picot-ai-seo-writer'),
+            'fetching' => __('Fetching...', 'picot-ai-seo-writer'),
+            'updateSuccess' => __('Model list updated', 'picot-ai-seo-writer'),
+            'updateFailed' => __('Failed to fetch model list', 'picot-ai-seo-writer'),
+            'checkReferenceUrls' => __('Review reference URLs', 'picot-ai-seo-writer'),
+            'referenceUrlsTitle' => __('%s - Reference URLs', 'picot-ai-seo-writer'),
+            'jaSearchRankings' => __('Japan search rankings (top 10)', 'picot-ai-seo-writer'),
+            'enSearchRankings' => __('English search rankings (top 5)', 'picot-ai-seo-writer'),
+            'closeModal' => __('Close', 'picot-ai-seo-writer'),
+            'fetchingModels' => __('Fetching model list...', 'picot-ai-seo-writer'),
+            'errorFetching' => __('Failed to fetch model list.', 'picot-ai-seo-writer'),
+            'next' => __('Next', 'picot-ai-seo-writer'),
+            'submit' => __('Save settings and finish', 'picot-ai-seo-writer'),
+            'testing' => __('Testing connection...', 'picot-ai-seo-writer'),
+            'communicationErrorPlain' => __('A communication error occurred.', 'picot-ai-seo-writer'),
+            'communicationErrorIcon' => __('Communication error', 'picot-ai-seo-writer'),
+            'sessionExpiredWizard' => __('Your session has expired. Reload the page and try again.', 'picot-ai-seo-writer'),
+            'sessionExpiredSettings' => __('Session expired. Please reload the page.', 'picot-ai-seo-writer'),
+            'testingConnection' => __('Testing...', 'picot-ai-seo-writer'),
+            'communicating' => __('Connecting...', 'picot-ai-seo-writer'),
+            'connectionSuccess' => __('Connection successful', 'picot-ai-seo-writer'),
+            'connectionFailed' => __('Connection failed', 'picot-ai-seo-writer'),
+            'fetchFailedGeneric' => __('Fetch failed', 'picot-ai-seo-writer'),
+            'geminiConnectionFailed' => __('Failed to connect to the Google Gemini connector.', 'picot-ai-seo-writer'),
+            'geminiConnectionTestFailed' => __('Google Gemini connector connection test failed.', 'picot-ai-seo-writer'),
+            'modelFetchFailed' => __('Failed to fetch models.', 'picot-ai-seo-writer'),
         ];
     }
 
@@ -563,7 +596,7 @@ class Admin
         $settings_link = sprintf(
             '<a href="%s">%s</a>',
             admin_url('options-general.php?page=picot-ai-seo-writer'),
-            __('設定', 'picot-ai-seo-writer')
+            __('Settings', 'picot-ai-seo-writer')
         );
         array_unshift($links, $settings_link);
         return $links;

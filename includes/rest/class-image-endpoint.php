@@ -49,7 +49,7 @@ class Image_Endpoint extends REST_Controller
         $content = $request->get_param('content');
 
         if (empty($content)) {
-            return $this->error_response(esc_html__('記事内容は必須です', 'picot-ai-seo-writer'));
+            return $this->error_response(esc_html__('Article content is required', 'picot-ai-seo-writer'));
         }
 
         try {
@@ -79,7 +79,7 @@ class Image_Endpoint extends REST_Controller
         $image_style = $request->get_param('image_style');
 
         if (empty($prompt)) {
-            return $this->error_response(esc_html__('プロンプトは必須です', 'picot-ai-seo-writer'));
+            return $this->error_response(esc_html__('Prompt is required', 'picot-ai-seo-writer'));
         }
 
         try {

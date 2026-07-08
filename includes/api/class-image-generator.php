@@ -64,10 +64,7 @@ class Image_Generator extends Gemini_Client
 
         if ($provider === '' || $model_id === '') {
             throw new \Exception(
-                esc_html__(
-                    '画像モデルが設定されていません。設定画面でモデルを選択してください。',
-                    'picot-ai-seo-writer'
-                )
+                esc_html__('Image model is not set. Choose one on the settings screen.', 'picot-ai-seo-writer')
             );
         }
 
@@ -88,10 +85,7 @@ class Image_Generator extends Gemini_Client
 
         if (!$builder->is_supported_for_image_generation()) {
             throw new \Exception(
-                esc_html__(
-                    '選択した Gemini モデルは画像生成に対応していません。Google Gemini コネクターの接続設定を確認してください。',
-                    'picot-ai-seo-writer'
-                )
+                esc_html__('The selected Gemini model does not support image generation. Check the Google Gemini connector settings.', 'picot-ai-seo-writer')
             );
         }
 
@@ -104,7 +98,7 @@ class Image_Generator extends Gemini_Client
             $image_file = $result->toImageFile();
             $base64 = sanitize_text_field(trim($image_file->getBase64Data() ?? ''));
             if ($base64 === '') {
-                throw new \Exception(esc_html__('画像データが返されませんでした。', 'picot-ai-seo-writer'));
+                throw new \Exception(esc_html__('No image data was returned.', 'picot-ai-seo-writer'));
             }
             return $base64;
         } catch (\Throwable $e) {

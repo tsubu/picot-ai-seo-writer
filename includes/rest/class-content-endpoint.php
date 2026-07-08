@@ -8,6 +8,7 @@
 
 namespace PICOT_SEO_WRITING\REST;
 
+use PICOT_SEO_WRITING\Admin\Admin;
 use PICOT_SEO_WRITING\API\Content_Generator;
 use PICOT_SEO_WRITING\API\Grounding_Url_Resolver;
 use PICOT_SEO_WRITING\Database\Research_Repository;
@@ -110,7 +111,7 @@ class Content_Endpoint extends REST_Controller
             $content = $request->get_param('content');
             $post_id = (int) $request->get_param('post_id');
             if (empty($content)) {
-                throw new \Exception(esc_html__('コンテンツが空です。', 'picot-ai-seo-writer'));
+                throw new \Exception(esc_html__('Content is empty.', 'picot-ai-seo-writer'));
             }
 
             $generator = new Content_Generator();
@@ -156,7 +157,7 @@ class Content_Endpoint extends REST_Controller
                     'success' => false,
                     'message' => sprintf(
                         /* translators: %s: JSON parse error message. */
-                        esc_html__('JSON解析失敗 (%s)。', 'picot-ai-seo-writer'),
+                        esc_html__('JSON parsing failed (%s).', 'picot-ai-seo-writer'),
                         $json_err
                     ),
                 ], 500);
@@ -178,7 +179,7 @@ class Content_Endpoint extends REST_Controller
             remove_filter('http_request_timeout', $http_timeout_filter);
             return new \WP_REST_Response([
                 'success' => true,
-                'message' => esc_html__('画像提案を Optimizer に保存しました。', 'picot-ai-seo-writer'),
+                'message' => esc_html__('Image suggestions saved for Optimizer.', 'picot-ai-seo-writer'),
                 'data'    => $data
             ], 200);
 
@@ -214,7 +215,7 @@ class Content_Endpoint extends REST_Controller
 
         $keyword = $request->get_param('keyword');
         $additional_notes = $request->get_param('additional_notes') ?? '';
-        $language = $request->get_param('language') ?? 'japanese';
+        $language = Admin::get_default_output_language();
         $post_id = (int) $request->get_param('post_id');
         $writing_style_param = $request->get_param('writing_style');
 
@@ -229,7 +230,7 @@ class Content_Endpoint extends REST_Controller
                 ob_end_clean();
             }
             remove_filter('http_request_timeout', $http_timeout_filter);
-            return $this->error_response(esc_html__('ターゲットワードは必須です', 'picot-ai-seo-writer'));
+            return $this->error_response(esc_html__('Target keyword is required', 'picot-ai-seo-writer'));
         }
 
         try {
@@ -458,9 +459,10 @@ class Content_Endpoint extends REST_Controller
     {
         $research_id = $request->get_param('research_id');
         $additional_notes = $request->get_param('additional_notes') ?? '';
+        $language = Admin::get_default_output_language();
 
         if (empty($research_id)) {
-            return $this->error_response(esc_html__('調査IDは必須です', 'picot-ai-seo-writer'));
+            return $this->error_response(esc_html__('Research ID is required', 'picot-ai-seo-writer'));
         }
 
         try {
@@ -469,7 +471,7 @@ class Content_Endpoint extends REST_Controller
             $research = $repository->get_by_id($research_id);
 
             if (!$research) {
-                return $this->error_response(esc_html__('調査データが見つかりません', 'picot-ai-seo-writer'), 404);
+                return $this->error_response(esc_html__('Research data not found', 'picot-ai-seo-writer'), 404);
             }
 
             // 仕様書の要件: 全URLから取得した内容を考慮
@@ -480,7 +482,7 @@ class Content_Endpoint extends REST_Controller
             );
 
             if (empty($urls)) {
-                return $this->error_response(esc_html__('調査データにURLが含まれていません', 'picot-ai-seo-writer'), 400);
+                return $this->error_response(esc_html__('Research data contains no URLs', 'picot-ai-seo-writer'), 400);
             }
 
             // スタイルを取得
@@ -494,7 +496,8 @@ class Content_Endpoint extends REST_Controller
                 $research['target_keyword'],
                 $urls,
                 $additional_notes,
-                $style
+                $style,
+                $language
             );
 
             // データベースを更新
@@ -528,9 +531,10 @@ class Content_Endpoint extends REST_Controller
         $research_id = $request->get_param('research_id');
         $additional_notes = $request->get_param('additional_notes') ?? '';
         $current_content = $request->get_param('current_content') ?? '';
+        $language = Admin::get_default_output_language();
 
         if (empty($research_id)) {
-            return $this->error_response(esc_html__('調査IDは必須です', 'picot-ai-seo-writer'));
+            return $this->error_response(esc_html__('Research ID is required', 'picot-ai-seo-writer'));
         }
 
         try {
@@ -539,11 +543,11 @@ class Content_Endpoint extends REST_Controller
             $research = $repository->get_by_id($research_id);
 
             if (!$research) {
-                return $this->error_response(esc_html__('調査データが見つかりません', 'picot-ai-seo-writer'), 404);
+                return $this->error_response(esc_html__('Research data not found', 'picot-ai-seo-writer'), 404);
             }
 
             if (empty($research['generated_headings']) && empty($current_content)) {
-                return $this->error_response(esc_html__('先にタイトルと見出しを生成するか、エディタに見出しを入力してください', 'picot-ai-seo-writer'));
+                return $this->error_response(esc_html__('Generate title and headings first, or enter headings in the editor', 'picot-ai-seo-writer'));
             }
 
             // 見出し構成を決定
@@ -559,7 +563,8 @@ class Content_Endpoint extends REST_Controller
             $content = $generator->generate_article(
                 $target_headings,
                 $additional_notes,
-                $style
+                $style,
+                $language
             );
 
             return $this->success_response(['content' => $content]);

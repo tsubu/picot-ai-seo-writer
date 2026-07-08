@@ -3,13 +3,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Picot AI SEO Writer 1.0.3\n"
 "Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
-"PO-Revision-Date: 2026-07-07 16:24+0000\n"
-"Language: ja\n"
+"PO-Revision-Date: 2026-07-06 19:30+0000\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: picot-ai-seo-writer ja build\n"
+"Plural-Forms: \n"
+"X-Generator: picot-ai-seo-writer locale build\n"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Picot AI SEO Writer"
@@ -17,585 +17,595 @@ msgstr "Picot AI SEO Writer"
 
 #: includes/admin/class-admin.php
 msgid "Casual"
-msgstr "カジュアル"
+msgstr "Bình thường"
 
 #: includes/admin/class-admin.php
 msgid "Professional"
-msgstr "プロフェッショナル"
+msgstr "Chuyên nghiệp"
 
 #: includes/admin/class-admin.php
 msgid "Friendly"
-msgstr "フレンドリー"
+msgstr "Thân thiện"
 
 #: includes/admin/class-admin.php
 msgid "Technical"
-msgstr "専門的"
+msgstr "Kỹ thuật"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Photorealistic"
-msgstr "フォトリアル"
+msgstr "ảnh thực tế"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Digital art"
-msgstr "デジタルアート"
+msgstr "nghệ thuật kỹ thuật số"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Vector illustration"
-msgstr "ベクターイラスト"
+msgstr "Minh hoạ vector"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Sketch"
-msgstr "スケッチ風"
+msgstr "phác thảo"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Watercolor"
-msgstr "水彩画風"
+msgstr "Màu nước"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Cyberpunk"
-msgstr "サイバーパンク"
+msgstr "Cyberpunk"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Anime"
-msgstr "アニメ風"
+msgstr "Anime"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Oil painting"
-msgstr "油絵風"
+msgstr "Tranh sơn dầu"
 
 #: includes/admin/class-admin.php
 msgid "Article generation settings"
-msgstr "記事生成設定"
+msgstr "Cài đặt tạo bài viết"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Writing style"
-msgstr "執筆スタイル"
+msgstr "phong cách viết"
 
 #: includes/admin/class-admin.php
 msgid "Image generation"
-msgstr "画像生成"
+msgstr "Tạo hình ảnh"
 
 #: includes/admin/class-admin.php
 msgid "Last used information"
-msgstr "前回使用した情報"
+msgstr "Thông tin được sử dụng lần cuối"
 
 #: includes/admin/class-admin.php
 msgid "Reference URLs"
-msgstr "参照 URL 一覧"
+msgstr "URL tham chiếu"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Target keyword"
-msgstr "ターゲットキーワード"
+msgstr "Từ khóa mục tiêu"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "e.g. WordPress SEO"
-msgstr "例: WordPress SEO"
+msgstr "ví dụ. SEO WordPress"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Additional notes (optional)"
-msgstr "追加メモ (任意)"
+msgstr "Ghi chú bổ sung (tùy chọn)"
 
 #: includes/admin/class-admin.php
 msgid "Enter specific details or requests to include in the article"
-msgstr "記事に含めたい具体的な情報や要望を入力してください"
+msgstr "Nhập chi tiết hoặc yêu cầu cụ thể để đưa vào bài viết"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Image style"
-msgstr "画像スタイル"
+msgstr "Phong cách hình ảnh"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Generate article"
-msgstr "記事を生成"
+msgstr "Tạo bài viết"
 
 #: includes/admin/class-admin.php
 msgid "1. Analyze image prompts"
-msgstr "1. 画像プロンプトを分析"
+msgstr "1. Phân tích lời nhắc hình ảnh"
 
 #: includes/admin/class-admin.php
 msgid ""
 "Analyze the article, suggest images (1 featured + 5 inline), generate them "
 "with Gemini, and insert them into the post."
-msgstr "記事を分析して画像を提案 (アイキャッチ 1 枚 + 本文 5 枚) し、Gemini で生成して記事に挿入します。"
+msgstr ""
+"Phân tích bài viết, đề xuất hình ảnh (1 hình ảnh nổi bật + 5 hình ảnh nội "
+"tuyến), tạo chúng bằng Gemini và chèn chúng vào bài viết."
 
 #: includes/admin/class-admin.php
 msgid "Keyword: "
-msgstr "ワード:"
+msgstr "từ khóa:"
 
 #: includes/admin/class-admin.php
 msgid "Notes: "
-msgstr "要望:"
+msgstr "Ghi chú:"
 
 #: includes/admin/class-admin.php
 msgid "(empty)"
-msgstr "(空)"
+msgstr "(trống)"
 
 #: includes/admin/class-admin.php
 msgid "Featured image"
-msgstr "アイキャッチ画像"
+msgstr "Hình ảnh nổi bật"
 
 #: includes/admin/class-admin.php
 msgid "Generate and set"
-msgstr "生成して設定"
+msgstr "Tạo và thiết lập"
 
 #: includes/admin/class-admin.php
 msgid "Generate and insert"
-msgstr "生成して挿入"
+msgstr "Tạo và chèn"
 
 #: includes/admin/class-admin.php
 msgid "Generate and insert all images"
-msgstr "すべての画像を生成して挿入"
+msgstr "Tạo và chèn tất cả hình ảnh"
 
 #: includes/admin/class-admin.php
 msgid "Generated"
-msgstr "生成完了"
+msgstr "Đã tạo"
 
 #: includes/admin/class-admin.php
 msgid "Research"
-msgstr "調査"
+msgstr "Nghiên cứu"
 
 #: includes/admin/class-admin.php
 msgid "Researching..."
-msgstr "調査中..."
+msgstr "Đang nghiên cứu..."
 
 #: includes/admin/class-admin.php
 msgid "Research completed"
-msgstr "調査が完了しました"
+msgstr "Nghiên cứu đã hoàn thành"
 
 #: includes/admin/class-admin.php
 msgid "Research failed"
-msgstr "調査に失敗しました"
+msgstr "Nghiên cứu thất bại"
 
 #: includes/admin/class-admin.php
 msgid "Research history"
-msgstr "調査履歴"
+msgstr "Lịch sử nghiên cứu"
 
 #: includes/admin/class-admin.php
 msgid "No research history"
-msgstr "調査履歴がありません"
+msgstr "Không có lịch sử nghiên cứu"
 
 #: includes/admin/class-admin.php
 msgid "Generate title and headings"
-msgstr "タイトルと見出しを作成"
+msgstr "Tạo tiêu đề và tiêu đề"
 
 #: includes/admin/class-admin.php
 msgid "Generate article from headings"
-msgstr "見出しから記事を作成"
+msgstr "Tạo bài viết từ tiêu đề"
 
 #: includes/admin/class-admin.php
 msgid "Generating..."
-msgstr "生成中..."
+msgstr "Đang tạo..."
 
 #: includes/admin/class-admin.php
 msgid "Analyzing..."
-msgstr "分析中..."
+msgstr "Đang phân tích..."
 
 #: includes/admin/class-admin.php
 msgid "Gemini is writing..."
-msgstr "Gemini が執筆中..."
+msgstr "Song Tử đang viết..."
 
 #: includes/admin/class-admin.php
 msgid "AI is generating the article..."
-msgstr "AI が記事を生成中..."
+msgstr "AI đang tạo ra bài viết..."
 
 #: includes/admin/class-admin.php
 msgid "Analyzing image prompts..."
-msgstr "画像プロンプトを分析中..."
+msgstr "Phân tích lời nhắc hình ảnh..."
 
 #: includes/admin/class-admin.php
 msgid "Generating featured image..."
-msgstr "アイキャッチ画像を生成中..."
+msgstr "Đang tạo hình ảnh đặc trưng..."
 
 #: includes/admin/class-admin.php
 msgid "Generating image %d..."
-msgstr "画像 %d を生成中..."
+msgstr "Đang tạo hình ảnh %d..."
 
 #: includes/admin/class-admin.php
 msgid "Generating image %1$d of %2$d..."
-msgstr "全 %2$d 枚中 %1$d 枚目の画像を生成中..."
+msgstr "Đang tạo hình ảnh %1$d của %2$d..."
 
 #: includes/admin/class-admin.php
 msgid "Generating all images... (this may take a while)"
-msgstr "全画像を生成中...(時間がかかります)"
+msgstr "Đang tạo tất cả hình ảnh... (việc này có thể mất một lúc)"
 
 #: includes/admin/class-admin.php
 msgid "This may take several tens of seconds."
-msgstr "これには数十秒かかる場合があります。"
+msgstr "Việc này có thể mất vài chục giây."
 
 #: includes/admin/class-admin.php
 msgid "AI is processing. Please wait..."
-msgstr "AI が処理を実行しています。しばらくお待ちください..."
+msgstr "AI đang xử lý. Vui lòng chờ..."
 
 #: includes/admin/class-admin.php
 msgid "Processing..."
-msgstr "処理中..."
+msgstr "Xử lý..."
 
 #: includes/admin/class-admin.php
 msgid "Title: "
-msgstr "タイトル:"
+msgstr "Tiêu đề:"
 
 #: includes/admin/class-admin.php
 msgid "Failed to generate title"
-msgstr "タイトル生成に失敗しました"
+msgstr "Không tạo được tiêu đề"
 
 #: includes/admin/class-admin.php
 msgid "Headings were inserted into the editor. Edit them freely."
-msgstr "エディターに見出しを展開しました。自由に編集してください。"
+msgstr ""
+"Các tiêu đề đã được chèn vào trình soạn thảo. Chỉnh sửa chúng một cách tự "
+"do."
 
 #: includes/admin/class-admin.php
 msgid "Article inserted"
-msgstr "記事を挿入しました"
+msgstr "Bài viết được chèn"
 
 #: includes/admin/class-admin.php
 msgid "Article generated!"
-msgstr "記事を生成しました !"
+msgstr "Bài viết được tạo ra!"
 
 #: includes/admin/class-admin.php
 msgid "Failed to generate article"
-msgstr "記事生成に失敗しました"
+msgstr "Không tạo được bài viết"
 
 #: includes/admin/class-admin.php
 msgid "Generate an article first"
-msgstr "先に記事を生成してください"
+msgstr "Tạo một bài viết đầu tiên"
 
 #: includes/admin/class-admin.php
 msgid "Additional notes"
-msgstr "希望追加内容"
+msgstr "Ghi chú bổ sung"
 
 #: includes/admin/class-admin.php
 msgid "Enter any extra requirements"
-msgstr "追加したい情報や要望を入力してください"
+msgstr "Nhập bất kỳ yêu cầu bổ sung"
 
 #: includes/admin/class-admin.php
 msgid "Please enter a target keyword"
-msgstr "ターゲットキーワードを入力してください"
+msgstr "Vui lòng nhập từ khóa mục tiêu"
 
 #: includes/admin/class-admin.php
 msgid "Please enter article content"
-msgstr "記事内容を入力してください"
+msgstr "Vui lòng nhập nội dung bài viết"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Find image placement points"
-msgstr "画像挿入ポイント探索"
+msgstr "Tìm điểm đặt hình ảnh"
 
 #: includes/admin/class-admin.php
 msgid "Image placement points:\\n\\n"
-msgstr "画像挿入ポイント:\\n\\n"
+msgstr "Điểm đặt hình ảnh:\\n\\n"
 
 #: includes/admin/class-admin.php
 msgid "Image: "
-msgstr "画像:"
+msgstr "Hình ảnh:"
 
 #: includes/admin/class-admin.php
 msgid "Failed to suggest images"
-msgstr "画像提案に失敗しました"
+msgstr "Không thể đề xuất hình ảnh"
 
 #: includes/admin/class-admin.php
 msgid "Image suggestions are ready. Generate them from the list below."
-msgstr "画像提案を取得しました。下のリストから生成してください。"
+msgstr "Gợi ý hình ảnh đã sẵn sàng. Tạo chúng từ danh sách dưới đây."
 
 #: includes/admin/class-admin.php
 msgid "Failed to insert image prompts"
-msgstr "画像プロンプト挿入に失敗しました"
+msgstr "Không chèn được lời nhắc hình ảnh"
 
 #: includes/admin/class-admin.php
 msgid ""
 "Image placement suggestions were added and markers were inserted in the "
 "editor."
-msgstr "画像挿入ポイントを提案し、エディタ内に配置マーカーを挿入しました。"
+msgstr ""
+"Đề xuất vị trí hình ảnh đã được thêm và điểm đánh dấu được chèn vào trình "
+"chỉnh sửa."
 
 #: includes/admin/class-admin.php
 msgid "No image placement points were found."
-msgstr "画像挿入ポイントが見つかりませんでした。"
+msgstr "Không tìm thấy điểm vị trí hình ảnh nào."
 
 #: includes/admin/class-admin.php
 msgid "Markers and suggestions cleared"
-msgstr "マーカーと提案をクリアしました"
+msgstr "Đã xóa điểm đánh dấu và đề xuất"
 
 #: includes/admin/class-admin.php
 msgid "Clear suggestions and markers"
-msgstr "提案とマーカーをクリア"
+msgstr "Xóa đề xuất và điểm đánh dấu"
 
 #: includes/admin/class-admin.php
 msgid "Generate and set as featured image"
-msgstr "生成してアイキャッチに設定"
+msgstr "Tạo và đặt làm hình ảnh nổi bật"
 
 #: includes/admin/class-admin.php
 msgid "Generate and place"
-msgstr "生成して配置"
+msgstr "Tạo và đặt"
 
 #: includes/admin/class-admin.php
 msgid "Featured image set"
-msgstr "アイキャッチ画像を設定しました"
+msgstr "Bộ ảnh nổi bật"
 
 #: includes/admin/class-admin.php
 msgid "Featured image set and inserted!"
-msgstr "アイキャッチ画像を設定・挿入しました !"
+msgstr "Bộ ảnh nổi bật và chèn vào!"
 
 #: includes/admin/class-admin.php
 msgid "Image inserted"
-msgstr "画像を挿入しました"
+msgstr "Đã chèn hình ảnh"
 
 #: includes/admin/class-admin.php
 msgid "Image inserted into the post!"
-msgstr "画像を記事に挿入しました !"
+msgstr "Hình ảnh chèn vào bài viết!"
 
 #: includes/admin/class-admin.php
 msgid "Generating image..."
-msgstr "画像を生成中..."
+msgstr "Đang tạo hình ảnh..."
 
 #: includes/admin/class-admin.php
 msgid "Image generation failed"
-msgstr "画像生成に失敗しました"
+msgstr "Tạo hình ảnh không thành công"
 
 #: includes/admin/class-admin.php
 msgid "No image data was returned"
-msgstr "画像データが返されませんでした"
+msgstr "Không có dữ liệu hình ảnh nào được trả về"
 
 #: includes/admin/class-admin.php
 msgid "All images have already been generated!"
-msgstr "すべての画像は生成済みです !"
+msgstr "Tất cả hình ảnh đã được tạo ra!"
 
 #: includes/admin/class-admin.php
 msgid "All images were generated and inserted!"
-msgstr "すべての画像の生成・挿入が完了しました !"
+msgstr "Tất cả hình ảnh đã được tạo và chèn!"
 
 #: includes/admin/class-admin.php
 msgid "Japanese: "
-msgstr "日本語:"
+msgstr "Tiếng Nhật:"
 
 #: includes/admin/class-admin.php
 msgid "English: "
-msgstr "英語:"
+msgstr "Tiếng Anh:"
 
 #: includes/admin/class-admin.php
 msgid "Japanese: %d"
-msgstr "日本語: %d 件"
+msgstr "Tiếng Nhật: %d"
 
 #: includes/admin/class-admin.php
 msgid "English: %d"
-msgstr "英語: %d 件"
+msgstr "Tiếng Anh: %d"
 
 #: includes/admin/class-admin.php
 msgid "An error occurred"
-msgstr "エラーが発生しました"
+msgstr "Đã xảy ra lỗi"
 
 #: includes/admin/class-admin.php
 msgid "Unknown error"
-msgstr "不明なエラー"
+msgstr "Lỗi không xác định"
 
 #: includes/admin/class-admin.php
 msgid "Error: "
-msgstr "エラー:"
+msgstr "Lỗi:"
 
 #: includes/admin/class-admin.php
 msgid "Communication error: "
-msgstr "通信エラー:"
+msgstr "Lỗi giao tiếp:"
 
 #: includes/admin/class-admin.php
 msgid "Image generation error: "
-msgstr "画像生成エラー:"
+msgstr "Lỗi tạo hình ảnh:"
 
 #: includes/admin/class-admin.php
 msgid "Success"
-msgstr "成功しました"
+msgstr "Thành công"
 
 #: includes/admin/class-admin.php
 msgid "Fetching..."
-msgstr "取得中..."
+msgstr "Đang tìm nạp..."
 
 #: includes/admin/class-admin.php
 msgid "Model list updated"
-msgstr "モデル一覧を更新しました"
+msgstr "Đã cập nhật danh sách mẫu"
 
 #: includes/admin/class-admin.php
 msgid "Failed to fetch model list"
-msgstr "モデル一覧の取得に失敗しました"
+msgstr "Không tìm nạp được danh sách mô hình"
 
 #: includes/admin/class-admin.php
 msgid "Review reference URLs"
-msgstr "参照 URL を確認"
+msgstr "Xem lại URL tham chiếu"
 
 #: includes/admin/class-admin.php
 msgid "%s - Reference URLs"
-msgstr "%s - 参照 URL"
+msgstr "%s - URL tham chiếu"
 
 #: includes/admin/class-admin.php
 msgid "Japan search rankings (top 10)"
-msgstr "日本国内の検索順位 (上位 10 件)"
+msgstr "Bảng xếp hạng tìm kiếm Nhật Bản (top 10)"
 
 #: includes/admin/class-admin.php
 msgid "English search rankings (top 5)"
-msgstr "英語圏の検索順位 (上位 5 件)"
+msgstr "Thứ hạng tìm kiếm tiếng Anh (top 5)"
 
 #: includes/admin/class-admin.php
 msgid "Close"
-msgstr "閉じる"
+msgstr "Đóng"
 
 #: includes/admin/class-admin.php
 msgid "Fetching model list..."
-msgstr "モデル一覧を取得中..."
+msgstr "Đang tìm nạp danh sách mô hình..."
 
 #: includes/admin/class-admin.php
 msgid "Failed to fetch model list."
-msgstr "モデル一覧の取得に失敗しました。"
+msgstr "Không tìm nạp được danh sách mô hình."
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Next"
-msgstr "次へ進む"
+msgstr "Kế tiếp"
 
 #: includes/admin/class-admin.php
 msgid "Save settings and finish"
-msgstr "設定を保存して完了する"
+msgstr "Lưu cài đặt và hoàn tất"
 
 #: includes/admin/class-admin.php
 msgid "Testing connection..."
-msgstr "接続テスト中..."
+msgstr "Đang kiểm tra kết nối..."
 
 #: includes/admin/class-admin.php
 msgid "A communication error occurred."
-msgstr "通信エラーが発生しました。"
+msgstr "Đã xảy ra lỗi giao tiếp."
 
 #: includes/admin/class-admin.php
 msgid "Communication error"
-msgstr "通信エラーが発生しました"
+msgstr "Lỗi giao tiếp"
 
 #: includes/admin/class-admin.php
 msgid "Your session has expired. Reload the page and try again."
-msgstr "セッションが切れています。ページを再読み込みして再度お試しください。"
+msgstr "Phiên của bạn đã hết hạn. Tải lại trang và thử lại."
 
 #: includes/admin/class-admin.php
 msgid "Session expired. Please reload the page."
-msgstr "セッションが切れています。ページを再読み込みしてください。"
+msgstr "Phiên đã hết hạn. Vui lòng tải lại trang."
 
 #: includes/admin/class-admin.php
 msgid "Testing..."
-msgstr "テスト中..."
+msgstr "Đang thử nghiệm..."
 
 #: includes/admin/class-admin.php
 msgid "Connecting..."
-msgstr "通信中..."
+msgstr "Đang kết nối..."
 
 #: includes/admin/class-admin.php
 msgid "Connection successful"
-msgstr "接続に成功しました"
+msgstr "Kết nối thành công"
 
 #: includes/admin/class-admin.php
 msgid "Connection failed"
-msgstr "接続に失敗しました"
+msgstr "Kết nối không thành công"
 
 #: includes/admin/class-admin.php
 msgid "Fetch failed"
-msgstr "取得に失敗しました"
+msgstr "Tìm nạp không thành công"
 
 #: includes/admin/class-admin.php
 msgid "Failed to connect to the Google Gemini connector."
-msgstr "Google Gemini コネクターへの接続に失敗しました。"
+msgstr "Không kết nối được với trình kết nối Google Gemini."
 
 #: includes/admin/class-admin.php
 msgid "Google Gemini connector connection test failed."
-msgstr "Google Gemini コネクターへの接続テストに失敗しました。"
+msgstr "Kiểm tra kết nối trình kết nối Google Gemini không thành công."
 
 #: includes/admin/class-admin.php
 msgid "Failed to fetch models."
-msgstr "モデルの取得に失敗しました。"
+msgstr "Không tìm nạp được mô hình."
 
 #: includes/admin/class-admin.php
 msgid "Settings"
-msgstr "設定"
+msgstr "Cài đặt"
 
 #: includes/admin/class-meta-box.php
 msgid "Gemini article generation"
-msgstr "Gemini 記事生成"
+msgstr "Thế hệ bài viết Song Tử"
 
 #: includes/admin/class-meta-box.php
 msgid "Add specific details, tone, or outline notes for the article"
-msgstr "記事に含めたい具体的な情報や、トーン、構成案などがあれば入力してください"
+msgstr "Thêm chi tiết cụ thể, giọng điệu hoặc ghi chú phác thảo cho bài viết"
 
 #: includes/admin/class-meta-box.php
 msgid "Output language"
-msgstr "出力言語"
+msgstr "Ngôn ngữ đầu ra"
 
 #: includes/admin/class-meta-box.php
 msgid "Japanese"
-msgstr "日本語"
+msgstr "tiếng Nhật"
 
 #: includes/admin/class-meta-box.php
 msgid "English"
-msgstr "英語"
+msgstr "Tiếng Anh"
 
 #: includes/admin/class-meta-box.php
 msgid "Simplified Chinese"
-msgstr "简体中文"
+msgstr "Tiếng Trung giản thể"
 
 #: includes/admin/class-meta-box.php
 msgid "Traditional Chinese"
-msgstr "繁體中文"
+msgstr "Tiếng Trung phồn thể"
 
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini integration"
-msgstr "Google Gemini 連携"
+msgstr "Tích hợp Google Gemini"
 
 #: includes/admin/class-settings-page.php
 msgid "The Google Gemini connector (Settings → Connectors) must be connected"
-msgstr "Google Gemini コネクター (設定 → コネクター) の接続が必要です"
+msgstr ""
+"Trình kết nối Google Gemini (Cài đặt → Trình kết nối) phải được kết nối"
 
 #: includes/admin/class-settings-page.php
 msgid "Connection status"
-msgstr "接続状態"
+msgstr "Trạng thái kết nối"
 
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini connector is connected and text generation is available."
-msgstr "Google Gemini コネクターが接続され、テキスト生成が利用可能です。"
+msgstr ""
+"Trình kết nối Google Gemini đã được kết nối và tính năng tạo văn bản có sẵn."
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "Google Gemini connector is not configured or does not support text "
 "generation."
-msgstr "Google Gemini コネクターが未設定、またはテキスト生成に対応していません。"
+msgstr ""
+"Trình kết nối Google Gemini không được định cấu hình hoặc không hỗ trợ tạo "
+"văn bản."
 
 #: includes/admin/class-settings-page.php
 msgid "Open AI connector settings"
-msgstr "AI コネクター設定を開く"
+msgstr "Mở cài đặt trình kết nối AI"
 
 #: includes/admin/class-settings-page.php
 msgid "Connection test"
-msgstr "接続テスト"
+msgstr "Kiểm tra kết nối"
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "This plugin uses the Google Gemini connector. Manage API keys under Settings"
 " → Connectors. Requests are sent through the WordPress AI Client."
 msgstr ""
-"このプラグインは Google Gemini コネクターを使用します。API キーは設定 → コネクターで管理してください。リクエストは "
-"WordPress AI Client 経由で送信されます。"
+"Plugin này sử dụng trình kết nối Google Gemini. Quản lý khóa API trong Cài "
+"đặt → Trình kết nối. Yêu cầu được gửi qua WordPress AI Client."
 
 #: includes/admin/class-settings-page.php
 msgid "Text model"
-msgstr "テキストモデル"
+msgstr "Mẫu văn bản"
 
 #: includes/admin/class-settings-page.php
 msgid "No models available. Refresh the model list first."
-msgstr "利用可能なモデルがありません。まずモデル一覧を更新してください。"
+msgstr "Không có mô hình có sẵn. Làm mới danh sách mô hình đầu tiên."
 
 #: includes/admin/class-settings-page.php
 msgid "Refresh model list"
-msgstr "モデル一覧を更新"
+msgstr "Làm mới danh sách mô hình"
 
 #: includes/admin/class-settings-page.php
 msgid "Recommended model: %s"
-msgstr "推奨モデル: %s"
+msgstr "Mẫu được đề xuất: %s"
 
 #: includes/admin/class-settings-page.php
 msgid "Click \"Refresh model list\" to fetch available models."
-msgstr "「モデル一覧を更新」をクリックして、利用可能なモデルを取得してください。"
+msgstr "Nhấp vào \"Làm mới danh sách mẫu\" để tìm nạp các mẫu có sẵn."
 
 #: includes/admin/class-settings-page.php
 msgid "Image model"
-msgstr "画像生成モデル"
+msgstr "Mô hình hình ảnh"
 
 #: includes/admin/class-settings-page.php
 msgid "Choose the model used for image generation."
-msgstr "画像生成に使用するモデルを選択します。"
+msgstr "Chọn mô hình được sử dụng để tạo hình ảnh."
 
 #: includes/admin/class-settings-page.php
 msgid ""
@@ -603,180 +613,196 @@ msgid ""
 "with billing enabled. Image generation may not work with API keys that only "
 "include the free tier."
 msgstr ""
-"画像生成モデル (Imagen など) の利用には、Google AI の有料 API プラン (課金設定済み) が必要です。無料枠のみの API "
-"キーでは画像生成が利用できない場合があります。"
+"Các mô hình tạo hình ảnh (chẳng hạn như Imagen) yêu cầu gói Google AI API "
+"trả phí có bật tính năng thanh toán. Việc tạo hình ảnh có thể không hoạt "
+"động với các khóa API chỉ bao gồm bậc miễn phí."
 
 #: includes/admin/class-settings-page.php
 msgid "Writing style settings"
-msgstr "執筆スタイル設定"
+msgstr "Cài đặt kiểu viết"
 
 #: includes/admin/class-settings-page.php
 msgid "Configure the tone of generated content"
-msgstr "生成される文章のトーンなどを設定"
+msgstr "Định cấu hình giai điệu của nội dung được tạo"
 
 #: includes/admin/class-settings-page.php
 msgid "Casual (friendly)"
-msgstr "カジュアル (親しみやすい)"
+msgstr "Bình thường (thân thiện)"
 
 #: includes/admin/class-settings-page.php
 msgid "Professional (polished and trustworthy)"
-msgstr "プロフェッショナル (丁寧・信頼)"
+msgstr "Chuyên nghiệp (đánh bóng và đáng tin cậy)"
 
 #: includes/admin/class-settings-page.php
 msgid "Friendly (warm)"
-msgstr "フレンドリー (温かみ)"
+msgstr "Thân thiện (ấm áp)"
 
 #: includes/admin/class-settings-page.php
 msgid "Technical (precise)"
-msgstr "テクニカル (専門・正確)"
+msgstr "Kỹ thuật (chính xác)"
 
 #: includes/admin/class-settings-page.php
 msgid "Humorous (light and fun)"
-msgstr "ユーモア (軽快・面白い)"
+msgstr "Hài hước (nhẹ nhàng và vui vẻ)"
 
 #: includes/admin/class-settings-page.php
 msgid "Persuasive (passionate)"
-msgstr "説得力 (情熱・主張)"
+msgstr "Có sức thuyết phục (đam mê)"
 
 #: includes/admin/class-settings-page.php
 msgid "Informative (factual)"
-msgstr "インフォマティブ (事実・解説)"
+msgstr "Thông tin (thực tế)"
 
 #: includes/admin/class-settings-page.php
 msgid "Choose the tone for images inserted into articles."
-msgstr "記事内に挿入される画像のトーンを指定します。"
+msgstr "Chọn tông màu cho hình ảnh chèn vào bài viết."
 
 #: includes/admin/class-settings-page.php
 msgid "Save settings"
-msgstr "設定を保存"
+msgstr "Lưu cài đặt"
 
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini setup"
-msgstr "Google Gemini セットアップ"
+msgstr "Thiết lập Google Gemini"
 
 #: includes/admin/class-settings-page.php
 msgid "1. Configure the Google Gemini connector"
-msgstr "1. Google Gemini コネクターを設定"
+msgstr "1. Định cấu hình trình kết nối Google Gemini"
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "Install and activate the Google (Gemini) connector under Settings → "
 "Connectors, then connect your API key. This plugin uses Gemini."
 msgstr ""
-"設定 → コネクターで Google (Gemini) コネクターをインストール・有効化し、API キーを接続してください。このプラグインは "
-"Gemini を使用します。"
+"Cài đặt và kích hoạt trình kết nối Google (Gemini) trong Cài đặt → Trình kết"
+" nối, sau đó kết nối khóa API của bạn. Plugin này sử dụng Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid "After connecting Gemini, run the connection test before continuing."
-msgstr "Gemini コネクターを接続後、「接続テスト」を実行してから次へ進んでください。"
+msgstr "Sau khi kết nối Gemini, hãy chạy kiểm tra kết nối trước khi tiếp tục."
 
 #: includes/admin/class-settings-page.php
 msgid "2. Choose models"
-msgstr "2. 使用するモデルを選択"
+msgstr "2. Chọn mẫu mã"
 
 #: includes/admin/class-settings-page.php
 msgid "Choose the AI model used for writing."
-msgstr "執筆に使用する AI モデルを選択してください。"
+msgstr "Chọn mô hình AI được sử dụng để viết."
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "No Gemini models available. Configure the Google Gemini connector, then "
 "click Refresh."
-msgstr "利用可能な Gemini モデルがありません。Google Gemini コネクターを設定してから「再取得」を押してください。"
+msgstr ""
+"Không có mẫu Gemini nào có sẵn. Định cấu hình trình kết nối Google Gemini, "
+"sau đó nhấp vào Làm mới."
 
 #: includes/admin/class-settings-page.php
 msgid "Refresh"
-msgstr "再取得"
+msgstr "Làm cho khỏe lại"
 
 #: includes/admin/class-settings-page.php
 msgid "Recommended text model: %s"
-msgstr "推奨テキストモデル: %s"
+msgstr "Mẫu văn bản được đề xuất: %s"
 
 #: includes/admin/class-settings-page.php
 msgid "No models available."
-msgstr "利用可能なモデルがありません。"
+msgstr "Không có mô hình có sẵn."
 
 #: includes/admin/class-settings-page.php
 msgid "Back"
-msgstr "戻る"
+msgstr "Mặt sau"
 
 #: includes/admin/class-settings-page.php
 msgid "Cancel"
-msgstr "キャンセル"
+msgstr "Hủy bỏ"
 
 #: includes/admin/class-settings-page.php
 msgid "You do not have permission to perform this action."
-msgstr "この操作を実行する権限がありません。"
+msgstr "Bạn không có quyền thực hiện hành động này."
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "WordPress AI Client is unavailable. Install the Google Gemini connector."
-msgstr "WordPress AI Client が利用できません。Google Gemini コネクターをインストールしてください。"
+msgstr ""
+"Ứng dụng khách WordPress AI không khả dụng. Cài đặt trình kết nối Google "
+"Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "No Gemini models were found. Check the Google Gemini connector connection."
-msgstr "利用可能な Gemini モデルが見つかりませんでした。Google Gemini コネクターの接続を確認してください。"
+msgstr ""
+"Không có mô hình Gemini nào được tìm thấy. Kiểm tra kết nối trình kết nối "
+"Google Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid "Hello"
-msgstr "こんにちは"
+msgstr "Xin chào"
 
 #: includes/admin/class-settings-page.php
 #: includes/rest/class-models-endpoint.php
 msgid ""
 "Google Gemini connector is not configured. Connect Gemini under Settings → "
 "Connectors."
-msgstr "Google Gemini コネクターが未設定です。設定 → コネクターで Gemini を接続してください。"
+msgstr ""
+"Trình kết nối Google Gemini chưa được định cấu hình. Kết nối Gemini trong "
+"Cài đặt → Trình kết nối."
 
 #: includes/admin/class-settings-page.php
 msgid "Successfully connected to the Google Gemini connector."
-msgstr "Google Gemini コネクターへの接続に成功しました。"
+msgstr "Đã kết nối thành công với trình kết nối Google Gemini."
 
 #: includes/api/class-gemini-client.php includes/api/class-image-generator.php
 msgid ""
 "WordPress AI Client is not available. Install and configure the Google "
 "Gemini connector under Settings → Connectors."
 msgstr ""
-"WordPress AI Client が利用できません。設定 → コネクターで Google Gemini コネクターをインストールしてください。"
+"Ứng dụng khách WordPress AI không có sẵn. Cài đặt và định cấu hình trình kết"
+" nối Google Gemini trong Cài đặt → Trình kết nối."
 
 #: includes/api/class-gemini-client.php
 msgid "Text model is not set. Choose one on the settings screen."
-msgstr "テキストモデルが設定されていません。設定画面でモデルを選択してください。"
+msgstr "Mẫu văn bản chưa được đặt. Chọn một trên màn hình cài đặt."
 
 #: includes/api/class-gemini-client.php
 msgid "The prompt is empty."
-msgstr "プロンプトが空です。"
+msgstr "Lời nhắc trống."
 
 #: includes/api/class-gemini-client.php
 msgid ""
 "The selected Gemini model does not support text generation. Check the Google"
 " Gemini connector settings."
-msgstr "選択した Gemini モデルはテキスト生成に対応していません。Google Gemini コネクターの接続設定を確認してください。"
+msgstr ""
+"Mô hình Gemini đã chọn không hỗ trợ tạo văn bản. Kiểm tra cài đặt trình kết "
+"nối Google Gemini."
 
 #: includes/api/class-image-generator.php
 msgid "Image model is not set. Choose one on the settings screen."
-msgstr "画像モデルが設定されていません。設定画面でモデルを選択してください。"
+msgstr "Mô hình hình ảnh chưa được thiết lập. Chọn một trên màn hình cài đặt."
 
 #: includes/api/class-image-generator.php
 msgid ""
 "The selected Gemini model does not support image generation. Check the "
 "Google Gemini connector settings."
-msgstr "選択した Gemini モデルは画像生成に対応していません。Google Gemini コネクターの接続設定を確認してください。"
+msgstr ""
+"Mô hình Gemini đã chọn không hỗ trợ tạo hình ảnh. Kiểm tra cài đặt trình kết"
+" nối Google Gemini."
 
 #: includes/api/class-image-generator.php
 msgid "No image data was returned."
-msgstr "画像データが返されませんでした。"
+msgstr "Không có dữ liệu hình ảnh được trả lại."
 
 #: includes/api/class-model-manager.php
 msgid ""
 "Failed to fetch Gemini models. Check the Google Gemini connector API key."
-msgstr "Gemini モデル一覧の取得に失敗しました。Google Gemini コネクターの API キーを確認してください。"
+msgstr ""
+"Không tìm nạp được mô hình Gemini. Kiểm tra khóa API của trình kết nối "
+"Google Gemini."
 
 #: includes/class-api-settings-sync.php
 msgid ""
 "Model settings were imported automatically from another AI plugin (%s)."
-msgstr "別の AI プラグイン (%s) からモデル設定を自動インポートしました。"
+msgstr "Cài đặt mô hình được nhập tự động từ một plugin AI khác (%s)."
 
 #: includes/class-api-settings-sync.php
 msgid "Picot AIO AI Content Optimizer"
@@ -784,53 +810,53 @@ msgstr "Picot AIO AI Content Optimizer"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Content is empty."
-msgstr "コンテンツが空です。"
+msgstr "Nội dung trống."
 
 #: includes/rest/class-content-endpoint.php
 msgid "JSON parsing failed (%s)."
-msgstr "JSON の解析に失敗しました (%s)。"
+msgstr "Phân tích cú pháp JSON không thành công (%s)."
 
 #: includes/rest/class-content-endpoint.php
 msgid "Image suggestions saved for Optimizer."
-msgstr "画像提案を Optimizer に保存しました。"
+msgstr "Đề xuất hình ảnh được lưu cho Trình tối ưu hóa."
 
 #: includes/rest/class-content-endpoint.php
 msgid "Target keyword is required"
-msgstr "ターゲットキーワードは必須です"
+msgstr "Từ khóa mục tiêu là bắt buộc"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Research ID is required"
-msgstr "調査 ID は必須です"
+msgstr "ID nghiên cứu là bắt buộc"
 
 #: includes/rest/class-content-endpoint.php
 #: includes/rest/class-research-endpoint.php
 msgid "Research data not found"
-msgstr "調査データが見つかりません"
+msgstr "Không tìm thấy dữ liệu nghiên cứu"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Research data contains no URLs"
-msgstr "調査データに URL が含まれていません"
+msgstr "Dữ liệu nghiên cứu không chứa URL"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Generate title and headings first, or enter headings in the editor"
-msgstr "先にタイトルと見出しを生成するか、エディターに見出しを入力してください"
+msgstr "Tạo tiêu đề và tiêu đề trước hoặc nhập tiêu đề vào trình chỉnh sửa"
 
 #: includes/rest/class-image-endpoint.php
 msgid "Article content is required"
-msgstr "記事内容は必須です"
+msgstr "Nội dung bài viết là bắt buộc"
 
 #: includes/rest/class-image-endpoint.php
 msgid "Prompt is required"
-msgstr "プロンプトは必須です"
+msgstr "Cần có lời nhắc"
 
 #: includes/rest/class-research-endpoint.php
 msgid "Keyword and post ID are required"
-msgstr "キーワードと投稿 ID は必須です"
+msgstr "Bắt buộc phải có từ khóa và ID bài đăng"
 
 #: includes/rest/class-research-endpoint.php
 msgid "Failed to save research data"
-msgstr "調査データの保存に失敗しました"
+msgstr "Không lưu được dữ liệu nghiên cứu"
 
 #: includes/rest/class-research-endpoint.php
 msgid "Post ID is required"
-msgstr "投稿 ID は必須です"
+msgstr "ID bài đăng là bắt buộc"
