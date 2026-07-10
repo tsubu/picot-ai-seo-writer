@@ -54,9 +54,10 @@ class Image_Endpoint extends REST_Controller
 
         try {
             $generator = new Image_Generator();
-            $suggestions = $generator->suggest_image_points($content);
+            $result = $generator->suggest_image_points($content);
 
-            return $this->success_response(['suggestions' => $suggestions]);
+            // suggest_image_points already returns featured_* + suggestions.
+            return $this->success_response($result);
         } catch (\Exception $e) {
             return $this->error_response($e->getMessage(), 500);
         }

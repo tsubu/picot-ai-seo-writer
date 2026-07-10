@@ -4,7 +4,7 @@ Tags: seo, ai, gemini, writing, content
 Requires at least: 7.0
 Tested up to: 7.0
 Requires PHP: 8.3
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,7 +65,22 @@ Yes. The plugin supports both the block editor and the classic editor.
 
 The plugin is free. Gemini API usage may incur costs depending on your Google AI plan and usage.
 
+== Screenshots ==
+
+1. Block editor sidebar: enter a target keyword, optional notes, and choose writing and image styles.
+2. One-click article generation creates a full SEO-friendly post from your keyword in the editor.
+3. Image prompt analysis suggests one featured image and five inline images based on your article.
+4. Generate and insert AI images into the post, including the featured image in the block editor.
+5. Settings page: connect Google Gemini via WordPress AI Client and select text and image models.
+
 == Changelog ==
+
+= 1.0.4 =
+* Added Advanced settings for role settings (detailed writing style), common article generation prompts, and shared image prompts.
+* Added the "Use detailed role settings" writing style option and applied role/common prompts to generation.
+* Prevented consecutive image placement by spacing suggestions and skipping adjacent inserts.
+* Improved Japanese translations for WordPress.org style guide compliance.
+* Fixed missing translators comments for placeholder strings.
 
 = 1.0.3 =
 * Improved English UI translations for the settings page, setup wizard, block editor, and classic editor.
@@ -92,6 +107,9 @@ The plugin is free. Gemini API usage may incur costs depending on your Google AI
 * Reference URL resolution for grounded sources.
 
 == Upgrade Notice ==
+
+= 1.0.4 =
+Adds advanced role/common prompts, safer image placement spacing, and Japanese translation style-guide fixes.
 
 = 1.0.3 =
 Improved English UI translations for the settings wizard, block editor, and classic editor. Requires PHP 8.3.

@@ -429,10 +429,16 @@
 
       // 簡易検索と置換
       const pos = content.indexOf(searchText);
-      if (pos !== -1) {
-        const insertPos = pos + searchText.length;
-        content = content.slice(0, insertPos) + "\n" + marker + "\n" + content.slice(insertPos);
+      if (pos === -1) return;
+
+      const insertPos = pos + searchText.length;
+      const nearby = content.slice(Math.max(0, insertPos - 250), insertPos + 250);
+      // Skip if another image or marker is already nearby.
+      if (/<img[\s>]/i.test(nearby) || /PICOT_SEO_WRITING_MARKER:/i.test(nearby)) {
+        return;
       }
+
+      content = content.slice(0, insertPos) + "\n" + marker + "\n" + content.slice(insertPos);
     });
 
     if (isTinyMCE) {
@@ -523,6 +529,11 @@
               if (startPos !== -1) {
                 const endPos = content.indexOf(" -->", startPos);
                 if (endPos !== -1) {
+                  const nearby = content.slice(Math.max(0, startPos - 250), endPos + 4 + 250);
+                  if (/<img[\s>]/i.test(nearby)) {
+                    showMessage(t("imageSkippedAdjacent", "Skipped inserting an image next to another image."), "info");
+                    return;
+                  }
                   content = content.slice(0, startPos) + imageHtml + content.slice(endPos + 4);
                   tinyMCE.activeEditor.setContent(content);
                 }
@@ -533,6 +544,11 @@
               if (startPos !== -1) {
                 const endPos = content.indexOf(" -->", startPos);
                 if (endPos !== -1) {
+                  const nearby = content.slice(Math.max(0, startPos - 250), endPos + 4 + 250);
+                  if (/<img[\s>]/i.test(nearby)) {
+                    showMessage(t("imageSkippedAdjacent", "Skipped inserting an image next to another image."), "info");
+                    return;
+                  }
                   content = content.slice(0, startPos) + imageHtml + content.slice(endPos + 4);
                   $("#content").val(content);
                 }

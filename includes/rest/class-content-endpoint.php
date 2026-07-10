@@ -167,6 +167,11 @@ class Content_Endpoint extends REST_Controller
                 $data['suggestions'] = [];
             }
 
+            // 近接する挿入候補を間引き、画像が連続しないようにする
+            if (is_array($data['suggestions'])) {
+                $data['suggestions'] = $this->filter_spaced_image_suggestions($content, $data['suggestions']);
+            }
+
             // Optimizer のメタキーに保存
             if ($post_id > 0) {
                 update_post_meta($post_id, '_picot_aio_optimizer_image_suggestions',         wp_slash(wp_json_encode($data['suggestions'], JSON_UNESCAPED_UNICODE)));
@@ -575,6 +580,74 @@ class Content_Endpoint extends REST_Controller
             ]);
             return $this->error_response($e->getMessage(), 500);
         }
+    }
+
+    /**
+     * Keep only image suggestions that are spaced apart in the article.
+     *
+     * Drops candidates whose location is too close to an already accepted one,
+     * so generated images do not appear back-to-back.
+     *
+     * @param string $content     Original article HTML/content.
+     * @param array  $suggestions Suggestion list from the model.
+     * @return array Filtered suggestions.
+     */
+    private function filter_spaced_image_suggestions($content, array $suggestions)
+    {
+        $plain = wp_strip_all_tags((string) $content);
+        $plain = html_entity_decode($plain, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $plain = preg_replace('/\s+/u', ' ', $plain);
+        $plain = trim((string) $plain);
+
+        if ($plain === '') {
+            return array_values($suggestions);
+        }
+
+        // Require roughly one short paragraph of text between images.
+        $min_gap = 180;
+        $accepted = [];
+        $accepted_positions = [];
+
+        foreach ($suggestions as $suggestion) {
+            if (!is_array($suggestion)) {
+                continue;
+            }
+
+            $location = isset($suggestion['location']) ? trim((string) $suggestion['location']) : '';
+            if ($location === '') {
+                continue;
+            }
+
+            $pos = mb_strpos($plain, $location);
+            if ($pos === false) {
+                // Fall back to a shorter snippet when the model paraphrases slightly.
+                $short = mb_substr($location, 0, 20);
+                if ($short !== '') {
+                    $pos = mb_strpos($plain, $short);
+                }
+            }
+
+            if ($pos === false) {
+                continue;
+            }
+
+            $too_close = false;
+            foreach ($accepted_positions as $accepted_pos) {
+                if (abs((int) $pos - (int) $accepted_pos) < $min_gap) {
+                    $too_close = true;
+                    break;
+                }
+            }
+
+            if ($too_close) {
+                continue;
+            }
+
+            $accepted[] = $suggestion;
+            $accepted_positions[] = (int) $pos;
+        }
+
+        return $accepted;
     }
 
     /**

@@ -75,6 +75,9 @@ class Activator
         $defaults = [
             'picot_seo_writing_text_model' => '',
             'picot_seo_writing_writing_style' => PICOT_SEO_WRITING_DEFAULT_WRITING_STYLE,
+            'picot_seo_writing_writing_style_detail' => '',
+            'picot_seo_writing_common_prompt' => '',
+            'picot_seo_writing_image_common_prompt' => '',
             'picot_seo_writing_image_style' => 'photorealistic',
             'picot_seo_writing_available_gemini_models' => [],
         ];

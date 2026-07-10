@@ -74,6 +74,11 @@ class Image_Generator extends Gemini_Client
 
         $final_prompt = $prompt . ', ' . $this->get_image_style_description($style);
 
+        $image_common_prompt = trim((string) get_option('picot_seo_writing_image_common_prompt', ''));
+        if ($image_common_prompt !== '') {
+            $final_prompt .= ', ' . $image_common_prompt;
+        }
+
         $request_options = new RequestOptions();
         $request_options->setTimeout((float) PICOT_SEO_WRITING_IMAGE_API_TIMEOUT);
 
@@ -160,7 +165,8 @@ class Image_Generator extends Gemini_Client
         $prompt = "あなたは記事のビジュアル編集者です。以下の記事内容を分析し、画像を挿入すべき最適な箇所を5箇所提案してください。\n\n" .
                   "重要ルール:\n" .
                   "1. 'location' フィールドには、画像を挿入したい直前の文章（記事内に実際に存在する一文）を正確に書き出してください。一部でも改変しないでください。\n" .
-                  "2. 見出しの直後や、段落の切り替わりなど、視覚的に効果的な場所を選んでください。\n\n" .
+                  "2. 見出しの直後や、段落の切り替わりなど、視覚的に効果的な場所を選んでください。\n" .
+                  "3. 画像が連続しないよう、各挿入箇所の間に必ず1段落以上の本文を挟んでください。隣接する段落への連続配置は禁止です。\n\n" .
                   "記事内容:\n" . mb_substr(wp_strip_all_tags($content), 0, 10000) . "\n\n" .
                   "JSONフォーマットで返答:\n" .
                   "{\"featured_text\":\"\",\"featured_prompt\":\"\",\"suggestions\":[{\"location\":\"\",\"description\":\"\",\"prompt\":\"\"}]}";
@@ -177,14 +183,80 @@ class Image_Generator extends Gemini_Client
                 $text = $response['candidates'][0]['content']['parts'][0]['text'] ?? '{}';
             }
             $parsed = json_decode($text, true) ?: [];
+            $suggestions = is_array($parsed['suggestions'] ?? null) ? $parsed['suggestions'] : [];
+            $suggestions = $this->filter_spaced_image_suggestions($content, $suggestions);
+
             return [
                 'featured_text'   => $parsed['featured_text']   ?? '',
                 'featured_prompt' => $parsed['featured_prompt'] ?? '',
-                'suggestions'     => $parsed['suggestions']     ?? [],
+                'suggestions'     => $suggestions,
             ];
         } catch (\Exception $e) {
             return ['featured_text' => '', 'featured_prompt' => '', 'suggestions' => []];
         }
+    }
+
+    /**
+     * Keep only image suggestions that are spaced apart in the article.
+     *
+     * @param string $content     Original article HTML/content.
+     * @param array  $suggestions Suggestion list from the model.
+     * @return array Filtered suggestions.
+     */
+    private function filter_spaced_image_suggestions($content, array $suggestions)
+    {
+        $plain = wp_strip_all_tags((string) $content);
+        $plain = html_entity_decode($plain, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $plain = preg_replace('/\s+/u', ' ', $plain);
+        $plain = trim((string) $plain);
+
+        if ($plain === '') {
+            return array_values($suggestions);
+        }
+
+        $min_gap = 180;
+        $accepted = [];
+        $accepted_positions = [];
+
+        foreach ($suggestions as $suggestion) {
+            if (!is_array($suggestion)) {
+                continue;
+            }
+
+            $location = isset($suggestion['location']) ? trim((string) $suggestion['location']) : '';
+            if ($location === '') {
+                continue;
+            }
+
+            $pos = mb_strpos($plain, $location);
+            if ($pos === false) {
+                $short = mb_substr($location, 0, 20);
+                if ($short !== '') {
+                    $pos = mb_strpos($plain, $short);
+                }
+            }
+
+            if ($pos === false) {
+                continue;
+            }
+
+            $too_close = false;
+            foreach ($accepted_positions as $accepted_pos) {
+                if (abs((int) $pos - (int) $accepted_pos) < $min_gap) {
+                    $too_close = true;
+                    break;
+                }
+            }
+
+            if ($too_close) {
+                continue;
+            }
+
+            $accepted[] = $suggestion;
+            $accepted_positions[] = (int) $pos;
+        }
+
+        return $accepted;
     }
 
     /**

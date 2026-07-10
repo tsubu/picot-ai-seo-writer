@@ -1,19 +1,22 @@
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: Picot AI SEO Writer 1.0.3\n"
+"Project-Id-Version: Picot AI SEO Writer 1.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
-"PO-Revision-Date: 2026-07-06 19:28+0000\n"
-"Language: zh_TW\n"
+"POT-Creation-Date: 2026-07-10 12:47+0900\n"
+"PO-Revision-Date: 2026-07-10 12:47+0900\n"
+"Last-Translator: PICOT\n"
+"Language-Team: PICOT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: picot-ai-seo-writer locale build\n"
+"X-Generator: Picot AI SEO Writer i18n sync\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
 msgid "Picot AI SEO Writer"
-msgstr "Picot AI SEO Writer"
+msgstr "Picot AI SEO作家"
 
 #: includes/admin/class-admin.php
 msgid "Casual"
@@ -31,35 +34,48 @@ msgstr "友善的"
 msgid "Technical"
 msgstr "技術的"
 
-#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "Use detailed role settings"
+msgstr "使用詳細的角色設置"
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
 msgid "Photorealistic"
 msgstr "逼真"
 
-#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
 msgid "Digital art"
 msgstr "數位藝術"
 
-#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
 msgid "Vector illustration"
 msgstr "向量圖"
 
-#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
 msgid "Sketch"
 msgstr "草圖"
 
-#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
 msgid "Watercolor"
 msgstr "水彩"
 
-#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
 msgid "Cyberpunk"
 msgstr "賽博朋克"
 
-#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
 msgid "Anime"
 msgstr "日本卡通"
 
-#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
 msgid "Oil painting"
 msgstr "油畫"
 
@@ -67,7 +83,8 @@ msgstr "油畫"
 msgid "Article generation settings"
 msgstr "文章生成設定"
 
-#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
 msgid "Writing style"
 msgstr "寫作風格"
 
@@ -83,15 +100,18 @@ msgstr "最後使用的信息"
 msgid "Reference URLs"
 msgstr "參考網址"
 
-#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
 msgid "Target keyword"
 msgstr "目標關鍵字"
 
-#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
 msgid "e.g. WordPress SEO"
 msgstr "例如WordPress 搜尋引擎優化"
 
-#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
 msgid "Additional notes (optional)"
 msgstr "附加說明（可選）"
 
@@ -99,11 +119,13 @@ msgstr "附加說明（可選）"
 msgid "Enter specific details or requests to include in the article"
 msgstr "輸入要包含在文章中的具體詳細資訊或請求"
 
-#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
 msgid "Image style"
 msgstr "圖像風格"
 
-#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
 msgid "Generate article"
 msgstr "生成文章"
 
@@ -113,8 +135,8 @@ msgstr "1.分析圖片提示"
 
 #: includes/admin/class-admin.php
 msgid ""
-"Analyze the article, suggest images (1 featured + 5 inline), generate them "
-"with Gemini, and insert them into the post."
+"Analyze the article, suggest images (1 featured + 5 inline), generate "
+"them with Gemini, and insert them into the post."
 msgstr "分析文章，建議圖像（1 個精選 + 5 個內聯），使用 Gemini 生成它們，並將它們插入到帖子中。"
 
 #: includes/admin/class-admin.php
@@ -273,7 +295,8 @@ msgstr "請輸入目標關鍵字"
 msgid "Please enter article content"
 msgstr "請輸入文章內容"
 
-#: includes/admin/class-admin.php includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-meta-box.php
 msgid "Find image placement points"
 msgstr "尋找影像放置點"
 
@@ -299,8 +322,8 @@ msgstr "插入圖片提示失敗"
 
 #: includes/admin/class-admin.php
 msgid ""
-"Image placement suggestions were added and markers were inserted in the "
-"editor."
+"Image placement suggestions were added and markers were inserted in th"
+"e editor."
 msgstr "新增了圖像放置建議，並在編輯器中插入了標記。"
 
 #: includes/admin/class-admin.php
@@ -338,6 +361,10 @@ msgstr "插入影像"
 #: includes/admin/class-admin.php
 msgid "Image inserted into the post!"
 msgstr "圖片已插入貼文！"
+
+#: includes/admin/class-admin.php
+msgid "Skipped inserting an image next to another image."
+msgstr "跳過將圖像插入到另一個圖像旁邊。"
 
 #: includes/admin/class-admin.php
 msgid "Generating image..."
@@ -439,7 +466,8 @@ msgstr "正在取得型號列表..."
 msgid "Failed to fetch model list."
 msgstr "取得型號清單失敗。"
 
-#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
 msgid "Next"
 msgstr "下一個"
 
@@ -511,26 +539,6 @@ msgstr "雙子座文章生成"
 msgid "Add specific details, tone, or outline notes for the article"
 msgstr "為文章加上具體細節、語氣或大綱註釋"
 
-#: includes/admin/class-meta-box.php
-msgid "Output language"
-msgstr "輸出語言"
-
-#: includes/admin/class-meta-box.php
-msgid "Japanese"
-msgstr "日本人"
-
-#: includes/admin/class-meta-box.php
-msgid "English"
-msgstr "英語"
-
-#: includes/admin/class-meta-box.php
-msgid "Simplified Chinese"
-msgstr "簡體中文"
-
-#: includes/admin/class-meta-box.php
-msgid "Traditional Chinese"
-msgstr "繁體中文"
-
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini integration"
 msgstr "Google雙子座整合"
@@ -549,8 +557,8 @@ msgstr "Google Gemini 連接器已連接並且可以產生文字。"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Google Gemini connector is not configured or does not support text "
-"generation."
+"Google Gemini connector is not configured or does not support text gen"
+"eration."
 msgstr "Google Gemini 連接器未配置或不支援文字產生。"
 
 #: includes/admin/class-settings-page.php
@@ -563,10 +571,10 @@ msgstr "連接測試"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"This plugin uses the Google Gemini connector. Manage API keys under Settings"
-" → Connectors. Requests are sent through the WordPress AI Client."
-msgstr ""
-"該插件使用 Google Gemini 連接器。在「設定」→「連接器」下管理 API 金鑰。請求透過 WordPress AI 用戶端發送。"
+"This plugin uses the Google Gemini connector. Manage API keys under Se"
+"ttings → Connectors. Requests are sent through the WordPress AI Client"
+"."
+msgstr "該插件使用 Google Gemini 連接器。在「設定」→「連接器」下管理 API 金鑰。請求透過 WordPress AI 用戶端發送。"
 
 #: includes/admin/class-settings-page.php
 msgid "Text model"
@@ -598,11 +606,12 @@ msgstr "選擇用於影像生成的模型。"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Image generation models (such as Imagen) require a paid Google AI API plan "
-"with billing enabled. Image generation may not work with API keys that only "
-"include the free tier."
+"Image generation models (such as Imagen) require a paid Google AI API "
+"plan with billing enabled. Image generation may not work with API keys"
+" that only include the free tier."
 msgstr ""
-"圖像生成模型（例如 Imagen）需要啟用計費功能的付費 Google AI API 計劃。影像產生可能不適用於僅包含免費方案的 API 金鑰。"
+"圖像生成模型（例如 Imagen）需要啟用計費功能的付費 Google AI API 計劃。影像產生可能不適用於僅包含免費方案的 API 金"
+"鑰。"
 
 #: includes/admin/class-settings-page.php
 msgid "Writing style settings"
@@ -645,6 +654,58 @@ msgid "Choose the tone for images inserted into articles."
 msgstr "選擇插入文章中的圖像的基調。"
 
 #: includes/admin/class-settings-page.php
+msgid "Advanced settings"
+msgstr "進階設定"
+
+#: includes/admin/class-settings-page.php
+msgid "Optional detailed instructions for content generation"
+msgstr "內容產生的可選詳細說明"
+
+#: includes/admin/class-settings-page.php
+msgid "Role settings<br>(Writing style details)"
+msgstr "角色設定<br>（寫作風格細節）"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Example: Use short sentences. Prefer concrete examples. Avoid jargon. "
+"Address the reader as “you”."
+msgstr "範例：使用短句。更喜歡具體的例子。避免行話。稱呼讀者為「你」。"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Describe the writing style in detail. These instructions are added to "
+"the generation prompt."
+msgstr "詳細描述寫作風格。這些指令被加入到生成提示中。"
+
+#: includes/admin/class-settings-page.php
+msgid "Common article generation prompt"
+msgstr "常見文章產生提示"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Example: Always include practical tips. Prefer bullet lists for steps."
+" Do not invent statistics."
+msgstr "範例：始終包含實用技巧。優選步驟清單。不要發明統計數據。"
+
+#: includes/admin/class-settings-page.php
+msgid "These instructions are always added to article generation prompts."
+msgstr "這些說明始終會加入到文章產生提示中。"
+
+#: includes/admin/class-settings-page.php
+msgid "Shared image prompt"
+msgstr "共享圖片提示"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Example: Clean composition, no text in the image, natural lighting, bl"
+"og-ready illustration."
+msgstr "例如：構圖乾淨、圖像中沒有文字、自然採光、適合部落格使用的插圖。"
+
+#: includes/admin/class-settings-page.php
+msgid "These instructions are always added to image generation prompts."
+msgstr "這些說明始終會添加到圖像生成提示中。"
+
+#: includes/admin/class-settings-page.php
 msgid "Save settings"
 msgstr "儲存設定"
 
@@ -658,8 +719,8 @@ msgstr "1.設定Google Gemini連接器"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Install and activate the Google (Gemini) connector under Settings → "
-"Connectors, then connect your API key. This plugin uses Gemini."
+"Install and activate the Google (Gemini) connector under Settings → Co"
+"nnectors, then connect your API key. This plugin uses Gemini."
 msgstr "在「設定」→「連接器」下安裝並啟動 Google (Gemini) 連接器，然後連接您的 API 金鑰。該插件使用 Gemini。"
 
 #: includes/admin/class-settings-page.php
@@ -676,8 +737,8 @@ msgstr "選擇用於寫作的 AI 模型。"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"No Gemini models available. Configure the Google Gemini connector, then "
-"click Refresh."
+"No Gemini models available. Configure the Google Gemini connector, the"
+"n click Refresh."
 msgstr "沒有可用的 Gemini 型號。配置 Google Gemini 連接器，然後按一下「刷新」。"
 
 #: includes/admin/class-settings-page.php
@@ -706,12 +767,14 @@ msgstr "您沒有執行此操作的權限。"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"WordPress AI Client is unavailable. Install the Google Gemini connector."
+"WordPress AI Client is unavailable. Install the Google Gemini connecto"
+"r."
 msgstr "WordPress AI 用戶端不可用。安裝 Google Gemini 連接器。"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"No Gemini models were found. Check the Google Gemini connector connection."
+"No Gemini models were found. Check the Google Gemini connector connect"
+"ion."
 msgstr "沒有找到 Gemini 模型。檢查 Google Gemini 連接器連接。"
 
 #: includes/admin/class-settings-page.php
@@ -721,18 +784,19 @@ msgstr "你好"
 #: includes/admin/class-settings-page.php
 #: includes/rest/class-models-endpoint.php
 msgid ""
-"Google Gemini connector is not configured. Connect Gemini under Settings → "
-"Connectors."
+"Google Gemini connector is not configured. Connect Gemini under Settin"
+"gs → Connectors."
 msgstr "未配置 Google Gemini 連接器。在「設定」→「連接器」下連接 Gemini。"
 
 #: includes/admin/class-settings-page.php
 msgid "Successfully connected to the Google Gemini connector."
 msgstr "已成功連接至 Google Gemini 連接器。"
 
-#: includes/api/class-gemini-client.php includes/api/class-image-generator.php
+#: includes/api/class-gemini-client.php
+#: includes/api/class-image-generator.php
 msgid ""
-"WordPress AI Client is not available. Install and configure the Google "
-"Gemini connector under Settings → Connectors."
+"WordPress AI Client is not available. Install and configure the Google"
+" Gemini connector under Settings → Connectors."
 msgstr "WordPress AI 用戶端不可用。在「設定」→「連接器」下安裝並設定 Google Gemini 連接器。"
 
 #: includes/api/class-gemini-client.php
@@ -745,8 +809,8 @@ msgstr "提示為空。"
 
 #: includes/api/class-gemini-client.php
 msgid ""
-"The selected Gemini model does not support text generation. Check the Google"
-" Gemini connector settings."
+"The selected Gemini model does not support text generation. Check the "
+"Google Gemini connector settings."
 msgstr "所選的 Gemini 模型不支援文字生成。檢查 Google Gemini 連接器設定。"
 
 #: includes/api/class-image-generator.php
@@ -755,8 +819,8 @@ msgstr "未設定圖像模型。在設定畫面上選擇一項。"
 
 #: includes/api/class-image-generator.php
 msgid ""
-"The selected Gemini model does not support image generation. Check the "
-"Google Gemini connector settings."
+"The selected Gemini model does not support image generation. Check the"
+" Google Gemini connector settings."
 msgstr "所選的 Gemini 型號不支援影像生成。檢查 Google Gemini 連接器設定。"
 
 #: includes/api/class-image-generator.php
@@ -765,17 +829,19 @@ msgstr "沒有返回圖像資料。"
 
 #: includes/api/class-model-manager.php
 msgid ""
-"Failed to fetch Gemini models. Check the Google Gemini connector API key."
+"Failed to fetch Gemini models. Check the Google Gemini connector API k"
+"ey."
 msgstr "無法取得 Gemini 模型。检查 Google Gemini 连接器 API 密钥。"
 
 #: includes/class-api-settings-sync.php
 msgid ""
-"Model settings were imported automatically from another AI plugin (%s)."
+"Model settings were imported automatically from another AI plugin (%s)"
+"."
 msgstr "模型設定是從另一個 AI 插件 (%s) 自動匯入的。"
 
 #: includes/class-api-settings-sync.php
 msgid "Picot AIO AI Content Optimizer"
-msgstr "Picot AIO AI Content Optimizer"
+msgstr "Picot AIO AI 內容優化器"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Content is empty."

@@ -1,9 +1,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Picot AI SEO Writer 1.0.3\n"
+"Project-Id-Version: Picot AI SEO Writer 1.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
-"PO-Revision-Date: 2026-07-07 16:24+0000\n"
+"POT-Creation-Date: 2026-07-10 12:47+0900\n"
+"PO-Revision-Date: 2026-07-10 03:49+0000\n"
+"Last-Translator: PICOT\n"
+"Language-Team: PICOT\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,6 +33,10 @@ msgstr "フレンドリー"
 #: includes/admin/class-admin.php
 msgid "Technical"
 msgstr "専門的"
+
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
+msgid "Use detailed role settings"
+msgstr "詳細ロール設定を使用"
 
 #: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Photorealistic"
@@ -119,7 +126,7 @@ msgstr "記事を分析して画像を提案 (アイキャッチ 1 枚 + 本文 
 
 #: includes/admin/class-admin.php
 msgid "Keyword: "
-msgstr "ワード:"
+msgstr "キーワード:"
 
 #: includes/admin/class-admin.php
 msgid "Notes: "
@@ -301,7 +308,7 @@ msgstr "画像プロンプト挿入に失敗しました"
 msgid ""
 "Image placement suggestions were added and markers were inserted in the "
 "editor."
-msgstr "画像挿入ポイントを提案し、エディタ内に配置マーカーを挿入しました。"
+msgstr "画像挿入ポイントを提案し、エディター内に配置マーカーを挿入しました。"
 
 #: includes/admin/class-admin.php
 msgid "No image placement points were found."
@@ -338,6 +345,10 @@ msgstr "画像を挿入しました"
 #: includes/admin/class-admin.php
 msgid "Image inserted into the post!"
 msgstr "画像を記事に挿入しました !"
+
+#: includes/admin/class-admin.php
+msgid "Skipped inserting an image next to another image."
+msgstr "別の画像の隣への挿入をスキップしました。"
 
 #: includes/admin/class-admin.php
 msgid "Generating image..."
@@ -511,26 +522,6 @@ msgstr "Gemini 記事生成"
 msgid "Add specific details, tone, or outline notes for the article"
 msgstr "記事に含めたい具体的な情報や、トーン、構成案などがあれば入力してください"
 
-#: includes/admin/class-meta-box.php
-msgid "Output language"
-msgstr "出力言語"
-
-#: includes/admin/class-meta-box.php
-msgid "Japanese"
-msgstr "日本語"
-
-#: includes/admin/class-meta-box.php
-msgid "English"
-msgstr "英語"
-
-#: includes/admin/class-meta-box.php
-msgid "Simplified Chinese"
-msgstr "简体中文"
-
-#: includes/admin/class-meta-box.php
-msgid "Traditional Chinese"
-msgstr "繁體中文"
-
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini integration"
 msgstr "Google Gemini 連携"
@@ -645,6 +636,58 @@ msgstr "インフォマティブ (事実・解説)"
 #: includes/admin/class-settings-page.php
 msgid "Choose the tone for images inserted into articles."
 msgstr "記事内に挿入される画像のトーンを指定します。"
+
+#: includes/admin/class-settings-page.php
+msgid "Advanced settings"
+msgstr "詳細設定"
+
+#: includes/admin/class-settings-page.php
+msgid "Optional detailed instructions for content generation"
+msgstr "コンテンツ生成向けの任意の詳細指示"
+
+#: includes/admin/class-settings-page.php
+msgid "Role settings<br>(Writing style details)"
+msgstr "ロール設定<br>(執筆スタイル詳細設定)"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Example: Use short sentences. Prefer concrete examples. Avoid jargon. "
+"Address the reader as “you”."
+msgstr "例: 短い文を使う。具体例を優先する。専門用語を避ける。読者を「あなた」と呼ぶ。"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Describe the writing style in detail. These instructions are added to the "
+"generation prompt."
+msgstr "執筆スタイルを詳細に記述してください。これらの指示は生成プロンプトに追加されます。"
+
+#: includes/admin/class-settings-page.php
+msgid "Common article generation prompt"
+msgstr "記事生成共通プロンプト"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Example: Always include practical tips. Prefer bullet lists for steps. Do "
+"not invent statistics."
+msgstr "例: 実践的なヒントを必ず含める。手順は箇条書きを優先する。統計を捏造しない。"
+
+#: includes/admin/class-settings-page.php
+msgid "These instructions are always added to article generation prompts."
+msgstr "これらの指示は記事生成プロンプトに常に追加されます。"
+
+#: includes/admin/class-settings-page.php
+msgid "Shared image prompt"
+msgstr "画像用共有プロンプト"
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Example: Clean composition, no text in the image, natural lighting, blog-"
+"ready illustration."
+msgstr "例: すっきりした構図、画像内に文字を入れない、自然光、ブログ向けイラスト。"
+
+#: includes/admin/class-settings-page.php
+msgid "These instructions are always added to image generation prompts."
+msgstr "これらの指示は画像生成プロンプトに常に追加されます。"
 
 #: includes/admin/class-settings-page.php
 msgid "Save settings"

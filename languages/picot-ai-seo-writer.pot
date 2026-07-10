@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Picot AI SEO Writer 1.0.3\n"
+"Project-Id-Version: Picot AI SEO Writer 1.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
-"POT-Creation-Date: 2026-07-07 02:40+0900\n"
-"PO-Revision-Date: 2026-07-07 02:40+0900\n"
+"POT-Creation-Date: 2026-07-10 12:47+0900\n"
+"PO-Revision-Date: 2026-07-10 12:47+0900\n"
 "Last-Translator: PICOT\n"
 "Language-Team: PICOT\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,11 @@ msgstr ""
 
 #: includes/admin/class-admin.php
 msgid "Technical"
+msgstr ""
+
+#: includes/admin/class-admin.php
+#: includes/admin/class-settings-page.php
+msgid "Use detailed role settings"
 msgstr ""
 
 #: includes/admin/class-admin.php
@@ -356,6 +361,10 @@ msgid "Image inserted into the post!"
 msgstr ""
 
 #: includes/admin/class-admin.php
+msgid "Skipped inserting an image next to another image."
+msgstr ""
+
+#: includes/admin/class-admin.php
 msgid "Generating image..."
 msgstr ""
 
@@ -528,26 +537,6 @@ msgstr ""
 msgid "Add specific details, tone, or outline notes for the article"
 msgstr ""
 
-#: includes/admin/class-meta-box.php
-msgid "Output language"
-msgstr ""
-
-#: includes/admin/class-meta-box.php
-msgid "Japanese"
-msgstr ""
-
-#: includes/admin/class-meta-box.php
-msgid "English"
-msgstr ""
-
-#: includes/admin/class-meta-box.php
-msgid "Simplified Chinese"
-msgstr ""
-
-#: includes/admin/class-meta-box.php
-msgid "Traditional Chinese"
-msgstr ""
-
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini integration"
 msgstr ""
@@ -658,6 +647,58 @@ msgstr ""
 
 #: includes/admin/class-settings-page.php
 msgid "Choose the tone for images inserted into articles."
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "Advanced settings"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "Optional detailed instructions for content generation"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "Role settings<br>(Writing style details)"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Example: Use short sentences. Prefer concrete examples. Avoid jargon. "
+"Address the reader as “you”."
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Describe the writing style in detail. These instructions are added to "
+"the generation prompt."
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "Common article generation prompt"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Example: Always include practical tips. Prefer bullet lists for steps."
+" Do not invent statistics."
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "These instructions are always added to article generation prompts."
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "Shared image prompt"
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid ""
+"Example: Clean composition, no text in the image, natural lighting, bl"
+"og-ready illustration."
+msgstr ""
+
+#: includes/admin/class-settings-page.php
+msgid "These instructions are always added to image generation prompts."
 msgstr ""
 
 #: includes/admin/class-settings-page.php

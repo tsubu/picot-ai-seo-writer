@@ -210,6 +210,46 @@
     background-color: #fff;
 }
 
+/* 詳細設定（折りたたみ） */
+.picot-settings-details {
+    padding: 0;
+}
+
+.picot-settings-details > .picot-details-summary {
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: none;
+}
+
+.picot-settings-details > .picot-details-summary::-webkit-details-marker {
+    display: none;
+}
+
+.picot-settings-details[open] > .picot-details-summary {
+    border-bottom: 1px solid #dcdcde;
+}
+
+.picot-details-summary-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.picot-details-toggle {
+    margin-left: auto;
+    color: #646970;
+    transition: transform 0.15s ease;
+}
+
+.picot-settings-details[open] > .picot-details-summary .picot-details-toggle {
+    transform: rotate(180deg);
+}
+
+.picot-settings-details .picot-card-body textarea.large-text {
+    width: 100%;
+    max-width: 100%;
+}
+
 /* 設定保存ボタンブロック */
 .picot-settings-actions {
     background: #fff;

@@ -86,6 +86,9 @@ class Settings_Page
         register_setting(self::OPTION_GROUP, 'picot_seo_writing_image_model', ['sanitize_callback' => 'sanitize_text_field']);
         register_setting(self::OPTION_GROUP, 'picot_seo_writing_writing_style', ['sanitize_callback' => 'sanitize_text_field']);
         register_setting(self::OPTION_GROUP, 'picot_seo_writing_image_style', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting(self::OPTION_GROUP, 'picot_seo_writing_writing_style_detail', ['sanitize_callback' => 'sanitize_textarea_field']);
+        register_setting(self::OPTION_GROUP, 'picot_seo_writing_common_prompt', ['sanitize_callback' => 'sanitize_textarea_field']);
+        register_setting(self::OPTION_GROUP, 'picot_seo_writing_image_common_prompt', ['sanitize_callback' => 'sanitize_textarea_field']);
     }
 
     /**
@@ -245,6 +248,7 @@ class Settings_Page
                                         'humorous' => __('Humorous (light and fun)', 'picot-ai-seo-writer'),
                                         'persuasive' => __('Persuasive (passionate)', 'picot-ai-seo-writer'),
                                         'informative' => __('Informative (factual)', 'picot-ai-seo-writer'),
+                                        'detailed_role' => __('Use detailed role settings', 'picot-ai-seo-writer'),
                                     ];
                                     foreach ($styles as $key => $label) {
                                         printf('<option value="%s" %s>%s</option>', esc_attr($key), selected($current_style, $key, false), esc_html($label));
@@ -280,6 +284,72 @@ class Settings_Page
                         </tbody></table>
                     </div>
                 </div>
+
+                <!-- ── 詳細設定（折りたたみ） ── -->
+                <details class="picot-settings-card picot-settings-details">
+                    <summary class="picot-card-header picot-details-summary">
+                        <div class="picot-card-icon icon-settings">
+                            <span class="dashicons dashicons-admin-generic"></span>
+                        </div>
+                        <div class="picot-details-summary-text">
+                            <p class="picot-card-title"><?php esc_html_e('Advanced settings', 'picot-ai-seo-writer'); ?></p>
+                            <p class="picot-card-desc"><?php esc_html_e('Optional detailed instructions for content generation', 'picot-ai-seo-writer'); ?></p>
+                        </div>
+                        <span class="picot-details-toggle dashicons dashicons-arrow-down-alt2" aria-hidden="true"></span>
+                    </summary>
+                    <div class="picot-card-body">
+                        <table class="form-table" role="presentation"><tbody>
+                        <tr>
+                            <th scope="row"><label for="picot_seo_writing_writing_style_detail"><?php echo wp_kses(__('Role settings<br>(Writing style details)', 'picot-ai-seo-writer'), ['br' => []]); ?></label></th>
+                            <td>
+                                <?php
+                                $writing_style_detail = get_option('picot_seo_writing_writing_style_detail', '');
+                                ?>
+                                <textarea
+                                    id="picot_seo_writing_writing_style_detail"
+                                    name="picot_seo_writing_writing_style_detail"
+                                    rows="8"
+                                    class="large-text"
+                                    placeholder="<?php echo esc_attr__('Example: Use short sentences. Prefer concrete examples. Avoid jargon. Address the reader as “you”.', 'picot-ai-seo-writer'); ?>"
+                                ><?php echo esc_textarea($writing_style_detail); ?></textarea>
+                                <p class="description"><?php esc_html_e('Describe the writing style in detail. These instructions are added to the generation prompt.', 'picot-ai-seo-writer'); ?></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="picot_seo_writing_common_prompt"><?php esc_html_e('Common article generation prompt', 'picot-ai-seo-writer'); ?></label></th>
+                            <td>
+                                <?php
+                                $common_prompt = get_option('picot_seo_writing_common_prompt', '');
+                                ?>
+                                <textarea
+                                    id="picot_seo_writing_common_prompt"
+                                    name="picot_seo_writing_common_prompt"
+                                    rows="8"
+                                    class="large-text"
+                                    placeholder="<?php echo esc_attr__('Example: Always include practical tips. Prefer bullet lists for steps. Do not invent statistics.', 'picot-ai-seo-writer'); ?>"
+                                ><?php echo esc_textarea($common_prompt); ?></textarea>
+                                <p class="description"><?php esc_html_e('These instructions are always added to article generation prompts.', 'picot-ai-seo-writer'); ?></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="picot_seo_writing_image_common_prompt"><?php esc_html_e('Shared image prompt', 'picot-ai-seo-writer'); ?></label></th>
+                            <td>
+                                <?php
+                                $image_common_prompt = get_option('picot_seo_writing_image_common_prompt', '');
+                                ?>
+                                <textarea
+                                    id="picot_seo_writing_image_common_prompt"
+                                    name="picot_seo_writing_image_common_prompt"
+                                    rows="8"
+                                    class="large-text"
+                                    placeholder="<?php echo esc_attr__('Example: Clean composition, no text in the image, natural lighting, blog-ready illustration.', 'picot-ai-seo-writer'); ?>"
+                                ><?php echo esc_textarea($image_common_prompt); ?></textarea>
+                                <p class="description"><?php esc_html_e('These instructions are always added to image generation prompts.', 'picot-ai-seo-writer'); ?></p>
+                            </td>
+                        </tr>
+                        </tbody></table>
+                    </div>
+                </details>
 
                 <div class="picot-settings-actions">
                     <?php submit_button(__('Save settings', 'picot-ai-seo-writer'), 'primary', 'submit', false); ?>

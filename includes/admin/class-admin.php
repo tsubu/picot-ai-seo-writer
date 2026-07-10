@@ -364,6 +364,7 @@ class Admin
             ['label' => __('Professional', 'picot-ai-seo-writer'), 'value' => 'professional'],
             ['label' => __('Friendly', 'picot-ai-seo-writer'), 'value' => 'friendly'],
             ['label' => __('Technical', 'picot-ai-seo-writer'), 'value' => 'technical'],
+            ['label' => __('Use detailed role settings', 'picot-ai-seo-writer'), 'value' => 'detailed_role'],
         ];
     }
 
@@ -497,6 +498,7 @@ class Admin
             'featuredImageSet' => __('Featured image set and inserted!', 'picot-ai-seo-writer'),
             'imageInserted' => __('Image inserted', 'picot-ai-seo-writer'),
             'imageInsertedIntoPost' => __('Image inserted into the post!', 'picot-ai-seo-writer'),
+            'imageSkippedAdjacent' => __('Skipped inserting an image next to another image.', 'picot-ai-seo-writer'),
             'generatingImageClassic' => __('Generating image...', 'picot-ai-seo-writer'),
             'imageGenerationFailed' => __('Image generation failed', 'picot-ai-seo-writer'),
             'noImageDataReturned' => __('No image data was returned', 'picot-ai-seo-writer'),
@@ -504,7 +506,9 @@ class Admin
             'allImagesComplete' => __('All images were generated and inserted!', 'picot-ai-seo-writer'),
             'jaLabel' => __('Japanese: ', 'picot-ai-seo-writer'),
             'enLabel' => __('English: ', 'picot-ai-seo-writer'),
+            /* translators: %d: Number of Japanese search results. */
             'jaResultsCount' => __('Japanese: %d', 'picot-ai-seo-writer'),
+            /* translators: %d: Number of English search results. */
             'enResultsCount' => __('English: %d', 'picot-ai-seo-writer'),
             'error' => __('An error occurred', 'picot-ai-seo-writer'),
             'unknownError' => __('Unknown error', 'picot-ai-seo-writer'),
@@ -516,6 +520,7 @@ class Admin
             'updateSuccess' => __('Model list updated', 'picot-ai-seo-writer'),
             'updateFailed' => __('Failed to fetch model list', 'picot-ai-seo-writer'),
             'checkReferenceUrls' => __('Review reference URLs', 'picot-ai-seo-writer'),
+            /* translators: %s: Target keyword. */
             'referenceUrlsTitle' => __('%s - Reference URLs', 'picot-ai-seo-writer'),
             'jaSearchRankings' => __('Japan search rankings (top 10)', 'picot-ai-seo-writer'),
             'enSearchRankings' => __('English search rankings (top 5)', 'picot-ai-seo-writer'),

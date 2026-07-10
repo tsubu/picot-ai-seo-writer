@@ -212,10 +212,19 @@
                         alt: description || '',
                         caption: '',
                     });
-                    wp.data.dispatch('core/block-editor').insertBlocks(imageBlock, 0);
+                    const rootBlocks = wp.data.select('core/block-editor').getBlocks();
+                    const firstBlock = rootBlocks[0];
+                    // Featured image at top: skip body insert if the first block is already an image.
+                    if (!(firstBlock && firstBlock.name === 'core/image')) {
+                        wp.data.dispatch('core/block-editor').insertBlocks(imageBlock, 0);
+                    }
                     setMessage({ text: t('featuredImageSet', 'Featured image set and inserted!'), type: 'success' });
                 } else {
-                    insertImageBlock(r.attachment_id, r.url, description, location);
+                    const inserted = insertImageBlock(r.attachment_id, r.url, description, location);
+                    if (!inserted) {
+                        setMessage({ text: t('imageSkippedAdjacent', 'Skipped inserting an image next to another image.'), type: 'info' });
+                        return;
+                    }
                     setMessage({ text: t('imageInsertedIntoPost', 'Image inserted into the post!'), type: 'success' });
                 }
                 setCompletedImages(prev => [...prev, isFeatured ? -2 : idx]);
@@ -285,7 +294,17 @@
                 }
 
                 const index = editorSelect.getBlockIndex(topLevelId);
-                wp.data.dispatch('core/block-editor').insertBlocks([imageBlock], index + 1, undefined, true);
+                const rootClientId = editorSelect.getBlockRootClientId(topLevelId) || '';
+                const siblingBlocks = editorSelect.getBlocks(rootClientId);
+                const prevBlock = index >= 0 ? siblingBlocks[index] : null;
+                const nextBlock = siblingBlocks[index + 1] || null;
+
+                // Avoid placing two images back-to-back.
+                if ((prevBlock && prevBlock.name === 'core/image') || (nextBlock && nextBlock.name === 'core/image')) {
+                    return false;
+                }
+
+                wp.data.dispatch('core/block-editor').insertBlocks([imageBlock], index + 1, rootClientId || undefined, true);
 
                 setTimeout(() => {
                     const element = document.querySelector(`[data-block="${imageBlock.clientId}"]`);
@@ -293,10 +312,16 @@
                         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
                 }, 500);
-            } else {
-                const allRootBlocks = wp.data.select('core/block-editor').getBlocks();
-                wp.data.dispatch('core/block-editor').insertBlocks([imageBlock], allRootBlocks.length, undefined, true);
+                return true;
             }
+
+            const allRootBlocks = wp.data.select('core/block-editor').getBlocks();
+            const lastBlock = allRootBlocks[allRootBlocks.length - 1];
+            if (lastBlock && lastBlock.name === 'core/image') {
+                return false;
+            }
+            wp.data.dispatch('core/block-editor').insertBlocks([imageBlock], allRootBlocks.length, undefined, true);
+            return true;
         };
 
         const generateAllImages = async () => {

@@ -105,7 +105,8 @@ class Content_Generator extends Gemini_Client
             if (!empty($additional_notes)) {
                 $prompt .= "追加要望: {$additional_notes}\n";
             }
-            $prompt .= "文章スタイル: {$style_desc}\n";
+            $prompt .= $this->format_style_prompt_line($style, $style_desc, $language_code);
+            $prompt .= $this->format_common_prompt_block($language_code);
             $prompt .= "出力言語: {$lang}\n\n";
             $prompt .= "【任務: 生成の第一歩 - サブタイトルの決定】\n";
             $prompt .= "1. **13件の分析**: Google検索ツールを使用して、国内10件・米国3件の計13件の記事構成を徹底分析してください。\n";
@@ -127,7 +128,8 @@ class Content_Generator extends Gemini_Client
         if (!empty($additional_notes)) {
             $prompt .= "Additional requirements: {$additional_notes}\n";
         }
-        $prompt .= "Writing style: {$style_desc}\n";
+        $prompt .= $this->format_style_prompt_line($style, $style_desc, $language_code);
+        $prompt .= $this->format_common_prompt_block($language_code);
         $prompt .= "Output language: {$lang}\n\n";
         $prompt .= "[Task: Step 1 - Define subtitles]\n";
         $prompt .= "1. **Analyze 13 articles**: Use Google Search to analyze 10 Japan-market and 3 US-market top-ranking article structures.\n";
@@ -162,7 +164,8 @@ class Content_Generator extends Gemini_Client
             if (!empty($additional_notes)) {
                 $prompt .= "追加要望: {$additional_notes}\n";
             }
-            $prompt .= "文章スタイル: {$style_desc}\n";
+            $prompt .= $this->format_style_prompt_line($style, $style_desc, $language_code);
+            $prompt .= $this->format_common_prompt_block($language_code);
             $prompt .= "出力言語: {$lang}\n\n";
 
             $prompt .= "【執筆ガイドライン】\n";
@@ -187,7 +190,8 @@ class Content_Generator extends Gemini_Client
         if (!empty($additional_notes)) {
             $prompt .= "Additional requirements: {$additional_notes}\n";
         }
-        $prompt .= "Writing style: {$style_desc}\n";
+        $prompt .= $this->format_style_prompt_line($style, $style_desc, $language_code);
+        $prompt .= $this->format_common_prompt_block($language_code);
         $prompt .= "Output language: {$lang}\n\n";
 
         $prompt .= "[Writing guidelines]\n";
@@ -264,7 +268,8 @@ class Content_Generator extends Gemini_Client
             if (!empty($additional_notes)) {
                 $prompt .= "- 追加要望: {$additional_notes}\n";
             }
-            $prompt .= "- 文章スタイル: {$style_desc}\n";
+            $prompt .= $this->format_style_prompt_line($style, $style_desc, $language_code, true);
+            $prompt .= $this->format_common_prompt_block($language_code, true);
             $prompt .= "- 出力言語: {$lang}\n\n";
 
             $prompt .= "【執筆ルール（厳守）】\n";
@@ -295,7 +300,8 @@ class Content_Generator extends Gemini_Client
         if (!empty($additional_notes)) {
             $prompt .= "- Additional requirements: {$additional_notes}\n";
         }
-        $prompt .= "- Writing style: {$style_desc}\n";
+        $prompt .= $this->format_style_prompt_line($style, $style_desc, $language_code, true);
+        $prompt .= $this->format_common_prompt_block($language_code, true);
         $prompt .= "- Output language: {$lang}\n\n";
 
         $prompt .= "[Writing rules - strict]\n";
@@ -348,7 +354,9 @@ class Content_Generator extends Gemini_Client
         $prompt .= "- Total = 1 featured + 5 body = 6 images.\n";
         $prompt .= "- ALL prompt values MUST be under 120 characters. Be concise.\n";
         $prompt .= "- location must be exact verbatim text from the article.\n";
-        $prompt .= "- description/featured_text in article language; prompt always in English.\n\n";
+        $prompt .= "- description/featured_text in article language; prompt always in English.\n";
+        $prompt .= "- Space images evenly through the article. Never place two body images in adjacent paragraphs or consecutive sections.\n";
+        $prompt .= "- Each location must be separated by substantial text (at least one full paragraph between image points).\n\n";
 
         $prompt .= "Article:\n" . $plain;
 
@@ -375,14 +383,40 @@ class Content_Generator extends Gemini_Client
         return trim($updated_content);
     }
 
+    /**
+     * Resolve writing style text for prompts.
+     *
+     * When style is detailed_role, use the Advanced settings role text.
+     *
+     * @param string $style Style key.
+     * @param string $lang Language label (unused, kept for call-site compatibility).
+     * @param string $language_code Language code.
+     * @return string
+     */
     private function get_style_description($style, $lang, $language_code)
     {
+        unset($lang);
+
+        if ($style === 'detailed_role') {
+            $detail = trim((string) get_option('picot_seo_writing_writing_style_detail', ''));
+            if ($detail !== '') {
+                return $detail;
+            }
+
+            return $language_code === 'japanese'
+                ? '設定画面のロール設定（執筆スタイル詳細設定）に従う'
+                : 'Follow the role settings (writing style details) from plugin settings';
+        }
+
         if ($language_code === 'japanese') {
             $styles = [
                 'professional' => 'プロフェッショナルで信頼感のある',
                 'casual' => '親しみやすくカジュアルな',
                 'friendly' => 'フレンドリーで優しい',
                 'technical' => '専門的で技術的な解説を含む',
+                'humorous' => 'ユーモアがあり軽快で面白い',
+                'persuasive' => '説得力があり情熱的な',
+                'informative' => '事実に基づき分かりやすく解説する',
             ];
         } else {
             $styles = [
@@ -390,10 +424,64 @@ class Content_Generator extends Gemini_Client
                 'casual' => 'friendly and casual',
                 'friendly' => 'warm and approachable',
                 'technical' => 'technical with expert explanations',
+                'humorous' => 'light, fun, and humorous',
+                'persuasive' => 'persuasive and passionate',
+                'informative' => 'factual and informative',
             ];
         }
 
         return $styles[$style] ?? $styles[PICOT_SEO_WRITING_DEFAULT_WRITING_STYLE];
+    }
+
+    /**
+     * Format the writing-style / role-settings line for prompts.
+     *
+     * @param string $style Style key.
+     * @param string $style_desc Resolved style description.
+     * @param string $language_code Language code.
+     * @param bool   $list_item Whether to prefix with "- ".
+     * @return string
+     */
+    private function format_style_prompt_line($style, $style_desc, $language_code, $list_item = false)
+    {
+        $prefix = $list_item ? '- ' : '';
+
+        if ($style === 'detailed_role') {
+            if ($language_code === 'japanese') {
+                return "{$prefix}ロール設定（執筆スタイル詳細）:\n{$style_desc}\n";
+            }
+
+            return "{$prefix}Role settings (writing style details):\n{$style_desc}\n";
+        }
+
+        if ($language_code === 'japanese') {
+            return "{$prefix}文章スタイル: {$style_desc}\n";
+        }
+
+        return "{$prefix}Writing style: {$style_desc}\n";
+    }
+
+    /**
+     * Format the common article generation prompt block.
+     *
+     * @param string $language_code Language code.
+     * @param bool   $list_item Whether to prefix with "- ".
+     * @return string
+     */
+    private function format_common_prompt_block($language_code, $list_item = false)
+    {
+        $common_prompt = trim((string) get_option('picot_seo_writing_common_prompt', ''));
+        if ($common_prompt === '') {
+            return '';
+        }
+
+        $prefix = $list_item ? '- ' : '';
+
+        if ($language_code === 'japanese') {
+            return "{$prefix}記事生成共通プロンプト:\n{$common_prompt}\n";
+        }
+
+        return "{$prefix}Common article generation prompt:\n{$common_prompt}\n";
     }
 
     /**
