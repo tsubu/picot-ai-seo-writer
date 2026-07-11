@@ -1,22 +1,22 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Picot AI SEO Writer 1.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
-"POT-Creation-Date: 2026-07-10 12:47+0900\n"
-"PO-Revision-Date: 2026-07-10 12:47+0900\n"
+"POT-Creation-Date: 2026-07-11 19:12+0900\n"
+"PO-Revision-Date: 2026-07-11 19:12+0900\n"
 "Last-Translator: PICOT\n"
 "Language-Team: PICOT\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Picot AI SEO Writer i18n sync\n"
-"Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Picot AI SEO Writer i18n sync\n"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Picot AI SEO Writer"
-msgstr "Nhà văn SEO Picot AI"
+msgstr "Picot AI SEO Writer"
 
 #: includes/admin/class-admin.php
 msgid "Casual"
@@ -34,48 +34,39 @@ msgstr "Thân thiện"
 msgid "Technical"
 msgstr "Kỹ thuật"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Use detailed role settings"
 msgstr "Sử dụng cài đặt vai trò chi tiết"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Photorealistic"
 msgstr "ảnh thực tế"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Digital art"
 msgstr "nghệ thuật kỹ thuật số"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Vector illustration"
 msgstr "Minh hoạ vector"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Sketch"
 msgstr "phác thảo"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Watercolor"
 msgstr "Màu nước"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Cyberpunk"
 msgstr "Cyberpunk"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Anime"
 msgstr "Anime"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Oil painting"
 msgstr "Tranh sơn dầu"
 
@@ -83,8 +74,7 @@ msgstr "Tranh sơn dầu"
 msgid "Article generation settings"
 msgstr "Cài đặt tạo bài viết"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Writing style"
 msgstr "phong cách viết"
 
@@ -100,18 +90,15 @@ msgstr "Thông tin được sử dụng lần cuối"
 msgid "Reference URLs"
 msgstr "URL tham chiếu"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Target keyword"
 msgstr "Từ khóa mục tiêu"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "e.g. WordPress SEO"
 msgstr "ví dụ. SEO WordPress"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Additional notes (optional)"
 msgstr "Ghi chú bổ sung (tùy chọn)"
 
@@ -119,13 +106,11 @@ msgstr "Ghi chú bổ sung (tùy chọn)"
 msgid "Enter specific details or requests to include in the article"
 msgstr "Nhập chi tiết hoặc yêu cầu cụ thể để đưa vào bài viết"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Image style"
 msgstr "Phong cách hình ảnh"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Generate article"
 msgstr "Tạo bài viết"
 
@@ -135,11 +120,11 @@ msgstr "1. Phân tích lời nhắc hình ảnh"
 
 #: includes/admin/class-admin.php
 msgid ""
-"Analyze the article, suggest images (1 featured + 5 inline), generate "
-"them with Gemini, and insert them into the post."
+"Analyze the article, suggest images (1 featured + 5 inline), generate them "
+"with Gemini, and insert them into the post."
 msgstr ""
-"Phân tích bài viết, đề xuất hình ảnh (1 hình ảnh nổi bật + 5 hình ảnh "
-"nội tuyến), tạo chúng bằng Gemini và chèn chúng vào bài viết."
+"Phân tích bài viết, đề xuất hình ảnh (1 hình ảnh nổi bật + 5 hình ảnh nội "
+"tuyến), tạo chúng bằng Gemini và chèn chúng vào bài viết."
 
 #: includes/admin/class-admin.php
 msgid "Keyword: "
@@ -264,8 +249,8 @@ msgstr "Không tạo được tiêu đề"
 #: includes/admin/class-admin.php
 msgid "Headings were inserted into the editor. Edit them freely."
 msgstr ""
-"Các tiêu đề đã được chèn vào trình soạn thảo. Chỉnh sửa chúng một cách"
-" tự do."
+"Các tiêu đề đã được chèn vào trình soạn thảo. Chỉnh sửa chúng một cách tự "
+"do."
 
 #: includes/admin/class-admin.php
 msgid "Article inserted"
@@ -299,8 +284,7 @@ msgstr "Vui lòng nhập từ khóa mục tiêu"
 msgid "Please enter article content"
 msgstr "Vui lòng nhập nội dung bài viết"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Find image placement points"
 msgstr "Tìm điểm đặt hình ảnh"
 
@@ -326,11 +310,11 @@ msgstr "Không chèn được lời nhắc hình ảnh"
 
 #: includes/admin/class-admin.php
 msgid ""
-"Image placement suggestions were added and markers were inserted in th"
-"e editor."
+"Image placement suggestions were added and markers were inserted in the "
+"editor."
 msgstr ""
-"Đề xuất vị trí hình ảnh đã được thêm và điểm đánh dấu được chèn vào tr"
-"ình chỉnh sửa."
+"Đề xuất vị trí hình ảnh đã được thêm và điểm đánh dấu được chèn vào trình "
+"chỉnh sửa."
 
 #: includes/admin/class-admin.php
 msgid "No image placement points were found."
@@ -472,8 +456,7 @@ msgstr "Đang tìm nạp danh sách mô hình..."
 msgid "Failed to fetch model list."
 msgstr "Không tìm nạp được danh sách mô hình."
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Next"
 msgstr "Kế tiếp"
 
@@ -552,8 +535,7 @@ msgstr "Tích hợp Google Gemini"
 #: includes/admin/class-settings-page.php
 msgid "The Google Gemini connector (Settings → Connectors) must be connected"
 msgstr ""
-"Trình kết nối Google Gemini (Cài đặt → Trình kết nối) phải được kết nố"
-"i"
+"Trình kết nối Google Gemini (Cài đặt → Trình kết nối) phải được kết nối"
 
 #: includes/admin/class-settings-page.php
 msgid "Connection status"
@@ -562,16 +544,15 @@ msgstr "Trạng thái kết nối"
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini connector is connected and text generation is available."
 msgstr ""
-"Trình kết nối Google Gemini đã được kết nối và tính năng tạo văn bản c"
-"ó sẵn."
+"Trình kết nối Google Gemini đã được kết nối và tính năng tạo văn bản có sẵn."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Google Gemini connector is not configured or does not support text gen"
-"eration."
+"Google Gemini connector is not configured or does not support text "
+"generation."
 msgstr ""
-"Trình kết nối Google Gemini không được định cấu hình hoặc không hỗ trợ"
-" tạo văn bản."
+"Trình kết nối Google Gemini không được định cấu hình hoặc không hỗ trợ tạo "
+"văn bản."
 
 #: includes/admin/class-settings-page.php
 msgid "Open AI connector settings"
@@ -583,12 +564,11 @@ msgstr "Kiểm tra kết nối"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"This plugin uses the Google Gemini connector. Manage API keys under Se"
-"ttings → Connectors. Requests are sent through the WordPress AI Client"
-"."
+"This plugin uses the Google Gemini connector. Manage API keys under Settings"
+" → Connectors. Requests are sent through the WordPress AI Client."
 msgstr ""
-"Plugin này sử dụng trình kết nối Google Gemini. Quản lý khóa API trong"
-" Cài đặt → Trình kết nối. Yêu cầu được gửi qua WordPress AI Client."
+"Plugin này sử dụng trình kết nối Google Gemini. Quản lý khóa API trong Cài "
+"đặt → Trình kết nối. Yêu cầu được gửi qua WordPress AI Client."
 
 #: includes/admin/class-settings-page.php
 msgid "Text model"
@@ -620,13 +600,13 @@ msgstr "Chọn mô hình được sử dụng để tạo hình ảnh."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Image generation models (such as Imagen) require a paid Google AI API "
-"plan with billing enabled. Image generation may not work with API keys"
-" that only include the free tier."
+"Image generation models (such as Imagen) require a paid Google AI API plan "
+"with billing enabled. Image generation may not work with API keys that only "
+"include the free tier."
 msgstr ""
-"Các mô hình tạo hình ảnh (chẳng hạn như Imagen) yêu cầu gói Google AI "
-"API trả phí có bật tính năng thanh toán. Việc tạo hình ảnh có thể khôn"
-"g hoạt động với các khóa API chỉ bao gồm bậc miễn phí."
+"Các mô hình tạo hình ảnh (chẳng hạn như Imagen) yêu cầu gói Google AI API "
+"trả phí có bật tính năng thanh toán. Việc tạo hình ảnh có thể không hoạt "
+"động với các khóa API chỉ bao gồm bậc miễn phí."
 
 #: includes/admin/class-settings-page.php
 msgid "Writing style settings"
@@ -685,28 +665,28 @@ msgid ""
 "Example: Use short sentences. Prefer concrete examples. Avoid jargon. "
 "Address the reader as “you”."
 msgstr ""
-"Ví dụ: Sử dụng câu ngắn. Ưu tiên ví dụ cụ thể. Tránh biệt ngữ. Gọi ngư"
-"ời đọc là “bạn”."
+"Ví dụ: Sử dụng câu ngắn. Ưu tiên ví dụ cụ thể. Tránh biệt ngữ. Gọi người đọc"
+" là “bạn”."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Describe the writing style in detail. These instructions are added to "
-"the generation prompt."
+"Describe the writing style in detail. These instructions are added to the "
+"generation prompt."
 msgstr ""
-"Mô tả chi tiết phong cách viết. Các hướng dẫn này được thêm vào lời nh"
-"ắc tạo."
+"Mô tả chi tiết phong cách viết. Các hướng dẫn này được thêm vào lời nhắc "
+"tạo."
 
 #: includes/admin/class-settings-page.php
 msgid "Common article generation prompt"
-msgstr "Lời nhắc tạo bài viết phổ biến"
+msgstr "Prompt tạo bài viết dùng chung"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Example: Always include practical tips. Prefer bullet lists for steps."
-" Do not invent statistics."
+"Example: Always include practical tips. Prefer bullet lists for steps. Do "
+"not invent statistics."
 msgstr ""
-"Ví dụ: Luôn kèm theo những lời khuyên thiết thực. Ưu tiên danh sách dấ"
-"u đầu dòng cho các bước. Đừng phát minh ra số liệu thống kê."
+"Ví dụ: Luôn kèm theo những lời khuyên thiết thực. Ưu tiên danh sách dấu đầu "
+"dòng cho các bước. Đừng phát minh ra số liệu thống kê."
 
 #: includes/admin/class-settings-page.php
 msgid "These instructions are always added to article generation prompts."
@@ -714,15 +694,15 @@ msgstr "Những hướng dẫn này luôn được thêm vào lời nhắc tạo
 
 #: includes/admin/class-settings-page.php
 msgid "Shared image prompt"
-msgstr "Lời nhắc hình ảnh được chia sẻ"
+msgstr "Prompt hình ảnh dùng chung"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Example: Clean composition, no text in the image, natural lighting, bl"
-"og-ready illustration."
+"Example: Clean composition, no text in the image, natural lighting, blog-"
+"ready illustration."
 msgstr ""
-"Ví dụ: Bố cục rõ ràng, không có văn bản trong ảnh, ánh sáng tự nhiên, "
-"hình minh họa sẵn sàng cho blog."
+"Ví dụ: Bố cục rõ ràng, không có văn bản trong ảnh, ánh sáng tự nhiên, hình "
+"minh họa sẵn sàng cho blog."
 
 #: includes/admin/class-settings-page.php
 msgid "These instructions are always added to image generation prompts."
@@ -742,12 +722,11 @@ msgstr "1. Định cấu hình trình kết nối Google Gemini"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Install and activate the Google (Gemini) connector under Settings → Co"
-"nnectors, then connect your API key. This plugin uses Gemini."
+"Install and activate the Google (Gemini) connector under Settings → "
+"Connectors, then connect your API key. This plugin uses Gemini."
 msgstr ""
-"Cài đặt và kích hoạt trình kết nối Google (Gemini) trong Cài đặt → Trì"
-"nh kết nối, sau đó kết nối khóa API của bạn. Plugin này sử dụng Gemini"
-"."
+"Cài đặt và kích hoạt trình kết nối Google (Gemini) trong Cài đặt → Trình kết"
+" nối, sau đó kết nối khóa API của bạn. Plugin này sử dụng Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid "After connecting Gemini, run the connection test before continuing."
@@ -763,11 +742,11 @@ msgstr "Chọn mô hình AI được sử dụng để viết."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"No Gemini models available. Configure the Google Gemini connector, the"
-"n click Refresh."
+"No Gemini models available. Configure the Google Gemini connector, then "
+"click Refresh."
 msgstr ""
-"Không có mẫu Gemini nào có sẵn. Định cấu hình trình kết nối Google Gem"
-"ini, sau đó nhấp vào Làm mới."
+"Không có mẫu Gemini nào có sẵn. Định cấu hình trình kết nối Google Gemini, "
+"sau đó nhấp vào Làm mới."
 
 #: includes/admin/class-settings-page.php
 msgid "Refresh"
@@ -795,19 +774,17 @@ msgstr "Bạn không có quyền thực hiện hành động này."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"WordPress AI Client is unavailable. Install the Google Gemini connecto"
-"r."
+"WordPress AI Client is unavailable. Install the Google Gemini connector."
 msgstr ""
-"Ứng dụng khách WordPress AI không khả dụng. Cài đặt trình kết nối Goog"
-"le Gemini."
+"Ứng dụng khách WordPress AI không khả dụng. Cài đặt trình kết nối Google "
+"Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"No Gemini models were found. Check the Google Gemini connector connect"
-"ion."
+"No Gemini models were found. Check the Google Gemini connector connection."
 msgstr ""
-"Không có mô hình Gemini nào được tìm thấy. Kiểm tra kết nối trình kết "
-"nối Google Gemini."
+"Không có mô hình Gemini nào được tìm thấy. Kiểm tra kết nối trình kết nối "
+"Google Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid "Hello"
@@ -816,24 +793,23 @@ msgstr "Xin chào"
 #: includes/admin/class-settings-page.php
 #: includes/rest/class-models-endpoint.php
 msgid ""
-"Google Gemini connector is not configured. Connect Gemini under Settin"
-"gs → Connectors."
+"Google Gemini connector is not configured. Connect Gemini under Settings → "
+"Connectors."
 msgstr ""
-"Trình kết nối Google Gemini chưa được định cấu hình. Kết nối Gemini tr"
-"ong Cài đặt → Trình kết nối."
+"Trình kết nối Google Gemini chưa được định cấu hình. Kết nối Gemini trong "
+"Cài đặt → Trình kết nối."
 
 #: includes/admin/class-settings-page.php
 msgid "Successfully connected to the Google Gemini connector."
 msgstr "Đã kết nối thành công với trình kết nối Google Gemini."
 
-#: includes/api/class-gemini-client.php
-#: includes/api/class-image-generator.php
+#: includes/api/class-gemini-client.php includes/api/class-image-generator.php
 msgid ""
-"WordPress AI Client is not available. Install and configure the Google"
-" Gemini connector under Settings → Connectors."
+"WordPress AI Client is not available. Install and configure the Google "
+"Gemini connector under Settings → Connectors."
 msgstr ""
-"Ứng dụng khách WordPress AI không có sẵn. Cài đặt và định cấu hình trì"
-"nh kết nối Google Gemini trong Cài đặt → Trình kết nối."
+"Ứng dụng khách WordPress AI không có sẵn. Cài đặt và định cấu hình trình kết"
+" nối Google Gemini trong Cài đặt → Trình kết nối."
 
 #: includes/api/class-gemini-client.php
 msgid "Text model is not set. Choose one on the settings screen."
@@ -845,11 +821,11 @@ msgstr "Lời nhắc trống."
 
 #: includes/api/class-gemini-client.php
 msgid ""
-"The selected Gemini model does not support text generation. Check the "
-"Google Gemini connector settings."
+"The selected Gemini model does not support text generation. Check the Google"
+" Gemini connector settings."
 msgstr ""
-"Mô hình Gemini đã chọn không hỗ trợ tạo văn bản. Kiểm tra cài đặt trìn"
-"h kết nối Google Gemini."
+"Mô hình Gemini đã chọn không hỗ trợ tạo văn bản. Kiểm tra cài đặt trình kết "
+"nối Google Gemini."
 
 #: includes/api/class-image-generator.php
 msgid "Image model is not set. Choose one on the settings screen."
@@ -857,11 +833,11 @@ msgstr "Mô hình hình ảnh chưa được thiết lập. Chọn một trên m
 
 #: includes/api/class-image-generator.php
 msgid ""
-"The selected Gemini model does not support image generation. Check the"
-" Google Gemini connector settings."
+"The selected Gemini model does not support image generation. Check the "
+"Google Gemini connector settings."
 msgstr ""
-"Mô hình Gemini đã chọn không hỗ trợ tạo hình ảnh. Kiểm tra cài đặt trì"
-"nh kết nối Google Gemini."
+"Mô hình Gemini đã chọn không hỗ trợ tạo hình ảnh. Kiểm tra cài đặt trình kết"
+" nối Google Gemini."
 
 #: includes/api/class-image-generator.php
 msgid "No image data was returned."
@@ -869,21 +845,19 @@ msgstr "Không có dữ liệu hình ảnh được trả lại."
 
 #: includes/api/class-model-manager.php
 msgid ""
-"Failed to fetch Gemini models. Check the Google Gemini connector API k"
-"ey."
+"Failed to fetch Gemini models. Check the Google Gemini connector API key."
 msgstr ""
-"Không tìm nạp được mô hình Gemini. Kiểm tra khóa API của trình kết nối"
-" Google Gemini."
+"Không tìm nạp được mô hình Gemini. Kiểm tra khóa API của trình kết nối "
+"Google Gemini."
 
 #: includes/class-api-settings-sync.php
 msgid ""
-"Model settings were imported automatically from another AI plugin (%s)"
-"."
+"Model settings were imported automatically from another AI plugin (%s)."
 msgstr "Cài đặt mô hình được nhập tự động từ một plugin AI khác (%s)."
 
 #: includes/class-api-settings-sync.php
 msgid "Picot AIO AI Content Optimizer"
-msgstr "Trình tối ưu hóa nội dung AI của Picot AIO"
+msgstr "Picot AIO AI Content Optimizer"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Content is empty."

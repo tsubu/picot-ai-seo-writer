@@ -1,22 +1,22 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Picot AI SEO Writer 1.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
-"POT-Creation-Date: 2026-07-10 12:47+0900\n"
-"PO-Revision-Date: 2026-07-10 12:47+0900\n"
+"POT-Creation-Date: 2026-07-11 19:12+0900\n"
+"PO-Revision-Date: 2026-07-11 19:12+0900\n"
 "Last-Translator: PICOT\n"
 "Language-Team: PICOT\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Picot AI SEO Writer i18n sync\n"
-"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Picot AI SEO Writer i18n sync\n"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Picot AI SEO Writer"
-msgstr "Redactor SEO de Picot AI"
+msgstr "Picot AI SEO Writer"
 
 #: includes/admin/class-admin.php
 msgid "Casual"
@@ -34,48 +34,39 @@ msgstr "Amigable"
 msgid "Technical"
 msgstr "Técnico"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Use detailed role settings"
 msgstr "Utilice configuraciones de roles detalladas"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Photorealistic"
 msgstr "Fotorrealista"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Digital art"
 msgstr "arte digital"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Vector illustration"
 msgstr "Ilustración vectorial"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Sketch"
 msgstr "Bosquejo"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Watercolor"
 msgstr "Acuarela"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Cyberpunk"
 msgstr "ciberpunk"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Anime"
 msgstr "animado"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Oil painting"
 msgstr "Pintura al óleo"
 
@@ -83,8 +74,7 @@ msgstr "Pintura al óleo"
 msgid "Article generation settings"
 msgstr "Configuración de generación de artículos"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Writing style"
 msgstr "Estilo de escritura"
 
@@ -100,34 +90,28 @@ msgstr "Última información utilizada"
 msgid "Reference URLs"
 msgstr "URL de referencia"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Target keyword"
 msgstr "Palabra clave objetivo"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "e.g. WordPress SEO"
 msgstr "p.ej. SEO en WordPress"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Additional notes (optional)"
 msgstr "Notas adicionales (opcional)"
 
 #: includes/admin/class-admin.php
 msgid "Enter specific details or requests to include in the article"
 msgstr ""
-"Ingrese detalles específicos o solicitudes para incluir en el artículo"
-"."
+"Ingrese detalles específicos o solicitudes para incluir en el artículo."
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Image style"
 msgstr "Estilo de imagen"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Generate article"
 msgstr "Generar artículo"
 
@@ -137,11 +121,11 @@ msgstr "1. Analizar indicaciones de imágenes"
 
 #: includes/admin/class-admin.php
 msgid ""
-"Analyze the article, suggest images (1 featured + 5 inline), generate "
-"them with Gemini, and insert them into the post."
+"Analyze the article, suggest images (1 featured + 5 inline), generate them "
+"with Gemini, and insert them into the post."
 msgstr ""
-"Analiza el artículo, sugiere imágenes (1 destacada + 5 en línea), gene"
-"ralas con Gemini e insértalas en la publicación."
+"Analiza el artículo, sugiere imágenes (1 destacada + 5 en línea), generalas "
+"con Gemini e insértalas en la publicación."
 
 #: includes/admin/class-admin.php
 msgid "Keyword: "
@@ -299,8 +283,7 @@ msgstr "Por favor ingrese una palabra clave objetivo"
 msgid "Please enter article content"
 msgstr "Por favor ingrese el contenido del artículo"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Find image placement points"
 msgstr "Buscar puntos de colocación de imágenes"
 
@@ -319,8 +302,8 @@ msgstr "No se han podido sugerir imágenes."
 #: includes/admin/class-admin.php
 msgid "Image suggestions are ready. Generate them from the list below."
 msgstr ""
-"Las sugerencias de imágenes están listas. Generarlos a partir de la li"
-"sta a continuación."
+"Las sugerencias de imágenes están listas. Generarlos a partir de la lista a "
+"continuación."
 
 #: includes/admin/class-admin.php
 msgid "Failed to insert image prompts"
@@ -328,11 +311,11 @@ msgstr "No se pudieron insertar mensajes de imagen"
 
 #: includes/admin/class-admin.php
 msgid ""
-"Image placement suggestions were added and markers were inserted in th"
-"e editor."
+"Image placement suggestions were added and markers were inserted in the "
+"editor."
 msgstr ""
-"Se agregaron sugerencias de ubicación de imágenes y se insertaron marc"
-"adores en el editor."
+"Se agregaron sugerencias de ubicación de imágenes y se insertaron marcadores"
+" en el editor."
 
 #: includes/admin/class-admin.php
 msgid "No image placement points were found."
@@ -474,8 +457,7 @@ msgstr "Obteniendo lista de modelos..."
 msgid "Failed to fetch model list."
 msgstr "No se pudo recuperar la lista de modelos."
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Next"
 msgstr "Próximo"
 
@@ -497,7 +479,8 @@ msgstr "Error de comunicación"
 
 #: includes/admin/class-admin.php
 msgid "Your session has expired. Reload the page and try again."
-msgstr "Tu sesión ha caducado. Vuelve a cargar la página e inténtalo de nuevo."
+msgstr ""
+"Tu sesión ha caducado. Vuelve a cargar la página e inténtalo de nuevo."
 
 #: includes/admin/class-admin.php
 msgid "Session expired. Please reload the page."
@@ -546,8 +529,7 @@ msgstr "Generación de artículos Géminis"
 #: includes/admin/class-meta-box.php
 msgid "Add specific details, tone, or outline notes for the article"
 msgstr ""
-"Agregue detalles específicos, tono o notas de esquema para el artículo"
-"."
+"Agregue detalles específicos, tono o notas de esquema para el artículo."
 
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini integration"
@@ -556,8 +538,7 @@ msgstr "Integración de Google Géminis"
 #: includes/admin/class-settings-page.php
 msgid "The Google Gemini connector (Settings → Connectors) must be connected"
 msgstr ""
-"El conector Google Gemini (Configuración → Conectores) debe estar cone"
-"ctado"
+"El conector Google Gemini (Configuración → Conectores) debe estar conectado"
 
 #: includes/admin/class-settings-page.php
 msgid "Connection status"
@@ -566,16 +547,16 @@ msgstr "Estado de conexión"
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini connector is connected and text generation is available."
 msgstr ""
-"El conector Google Gemini está conectado y la generación de texto está"
-" disponible."
+"El conector Google Gemini está conectado y la generación de texto está "
+"disponible."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Google Gemini connector is not configured or does not support text gen"
-"eration."
+"Google Gemini connector is not configured or does not support text "
+"generation."
 msgstr ""
-"El conector Google Gemini no está configurado o no admite la generació"
-"n de texto."
+"El conector Google Gemini no está configurado o no admite la generación de "
+"texto."
 
 #: includes/admin/class-settings-page.php
 msgid "Open AI connector settings"
@@ -587,13 +568,12 @@ msgstr "Prueba de conexión"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"This plugin uses the Google Gemini connector. Manage API keys under Se"
-"ttings → Connectors. Requests are sent through the WordPress AI Client"
-"."
+"This plugin uses the Google Gemini connector. Manage API keys under Settings"
+" → Connectors. Requests are sent through the WordPress AI Client."
 msgstr ""
-"Este complemento utiliza el conector Google Gemini. Administre las cla"
-"ves API en Configuración → Conectores. Las solicitudes se envían a tra"
-"vés del Cliente AI de WordPress."
+"Este complemento utiliza el conector Google Gemini. Administre las claves "
+"API en Configuración → Conectores. Las solicitudes se envían a través del "
+"Cliente AI de WordPress."
 
 #: includes/admin/class-settings-page.php
 msgid "Text model"
@@ -614,8 +594,8 @@ msgstr "Modelo recomendado: %s"
 #: includes/admin/class-settings-page.php
 msgid "Click \"Refresh model list\" to fetch available models."
 msgstr ""
-"Haga clic en \"Actualizar lista de modelos\" para buscar los modelos dis"
-"ponibles."
+"Haga clic en \"Actualizar lista de modelos\" para buscar los modelos "
+"disponibles."
 
 #: includes/admin/class-settings-page.php
 msgid "Image model"
@@ -627,14 +607,13 @@ msgstr "Elija el modelo utilizado para la generación de imágenes."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Image generation models (such as Imagen) require a paid Google AI API "
-"plan with billing enabled. Image generation may not work with API keys"
-" that only include the free tier."
+"Image generation models (such as Imagen) require a paid Google AI API plan "
+"with billing enabled. Image generation may not work with API keys that only "
+"include the free tier."
 msgstr ""
-"Los modelos de generación de imágenes (como Imagen) requieren un plan "
-"pago de API de Google AI con facturación habilitada. Es posible que la"
-" generación de imágenes no funcione con claves API que solo incluyen e"
-"l nivel gratuito."
+"Los modelos de generación de imágenes (como Imagen) requieren un plan pago "
+"de API de Google AI con facturación habilitada. Es posible que la generación"
+" de imágenes no funcione con claves API que solo incluyen el nivel gratuito."
 
 #: includes/admin/class-settings-page.php
 msgid "Writing style settings"
@@ -693,52 +672,52 @@ msgid ""
 "Example: Use short sentences. Prefer concrete examples. Avoid jargon. "
 "Address the reader as “you”."
 msgstr ""
-"Ejemplo: utilice oraciones cortas. Prefiere ejemplos concretos. Evite "
-"la jerga. Dirígete al lector como \"tú\"."
+"Ejemplo: utilice oraciones cortas. Prefiere ejemplos concretos. Evite la "
+"jerga. Dirígete al lector como \"tú\"."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Describe the writing style in detail. These instructions are added to "
-"the generation prompt."
+"Describe the writing style in detail. These instructions are added to the "
+"generation prompt."
 msgstr ""
-"Describe detalladamente el estilo de escritura. Estas instrucciones se"
-" agregan al mensaje de generación."
+"Describe detalladamente el estilo de escritura. Estas instrucciones se "
+"agregan al mensaje de generación."
 
 #: includes/admin/class-settings-page.php
 msgid "Common article generation prompt"
-msgstr "Mensaje común de generación de artículos"
+msgstr "Prompt común de generación de artículos"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Example: Always include practical tips. Prefer bullet lists for steps."
-" Do not invent statistics."
+"Example: Always include practical tips. Prefer bullet lists for steps. Do "
+"not invent statistics."
 msgstr ""
-"Ejemplo: incluya siempre consejos prácticos. Prefiere listas con viñet"
-"as para los pasos. No inventes estadísticas."
+"Ejemplo: incluya siempre consejos prácticos. Prefiere listas con viñetas "
+"para los pasos. No inventes estadísticas."
 
 #: includes/admin/class-settings-page.php
 msgid "These instructions are always added to article generation prompts."
 msgstr ""
-"Estas instrucciones siempre se agregan a las indicaciones de generació"
-"n de artículos."
+"Estas instrucciones siempre se agregan a las indicaciones de generación de "
+"artículos."
 
 #: includes/admin/class-settings-page.php
 msgid "Shared image prompt"
-msgstr "Mensaje de imagen compartida"
+msgstr "Prompt de imagen compartido"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Example: Clean composition, no text in the image, natural lighting, bl"
-"og-ready illustration."
+"Example: Clean composition, no text in the image, natural lighting, blog-"
+"ready illustration."
 msgstr ""
-"Ejemplo: composición limpia, sin texto en la imagen, iluminación natur"
-"al, ilustración lista para blog."
+"Ejemplo: composición limpia, sin texto en la imagen, iluminación natural, "
+"ilustración lista para blog."
 
 #: includes/admin/class-settings-page.php
 msgid "These instructions are always added to image generation prompts."
 msgstr ""
-"Estas instrucciones siempre se agregan a las indicaciones de generació"
-"n de imágenes."
+"Estas instrucciones siempre se agregan a las indicaciones de generación de "
+"imágenes."
 
 #: includes/admin/class-settings-page.php
 msgid "Save settings"
@@ -754,17 +733,17 @@ msgstr "1. Configurar el conector Google Gemini"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Install and activate the Google (Gemini) connector under Settings → Co"
-"nnectors, then connect your API key. This plugin uses Gemini."
+"Install and activate the Google (Gemini) connector under Settings → "
+"Connectors, then connect your API key. This plugin uses Gemini."
 msgstr ""
-"Instale y active el conector de Google (Gemini) en Configuración → Con"
-"ectores, luego conecte su clave API. Este complemento utiliza Gemini."
+"Instale y active el conector de Google (Gemini) en Configuración → "
+"Conectores, luego conecte su clave API. Este complemento utiliza Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid "After connecting Gemini, run the connection test before continuing."
 msgstr ""
-"Después de conectar Gemini, ejecute la prueba de conexión antes de con"
-"tinuar."
+"Después de conectar Gemini, ejecute la prueba de conexión antes de "
+"continuar."
 
 #: includes/admin/class-settings-page.php
 msgid "2. Choose models"
@@ -776,11 +755,11 @@ msgstr "Elija el modelo de IA utilizado para escribir."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"No Gemini models available. Configure the Google Gemini connector, the"
-"n click Refresh."
+"No Gemini models available. Configure the Google Gemini connector, then "
+"click Refresh."
 msgstr ""
-"No hay modelos Gemini disponibles. Configure el conector Google Gemini"
-" y luego haga clic en Actualizar."
+"No hay modelos Gemini disponibles. Configure el conector Google Gemini y "
+"luego haga clic en Actualizar."
 
 #: includes/admin/class-settings-page.php
 msgid "Refresh"
@@ -808,19 +787,17 @@ msgstr "No tienes permiso para realizar esta acción."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"WordPress AI Client is unavailable. Install the Google Gemini connecto"
-"r."
+"WordPress AI Client is unavailable. Install the Google Gemini connector."
 msgstr ""
-"El cliente AI de WordPress no está disponible. Instale el conector Goo"
-"gle Gemini."
+"El cliente AI de WordPress no está disponible. Instale el conector Google "
+"Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"No Gemini models were found. Check the Google Gemini connector connect"
-"ion."
+"No Gemini models were found. Check the Google Gemini connector connection."
 msgstr ""
-"No se encontraron modelos de Géminis. Verifique la conexión del conect"
-"or Google Gemini."
+"No se encontraron modelos de Géminis. Verifique la conexión del conector "
+"Google Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid "Hello"
@@ -829,21 +806,20 @@ msgstr "Hola"
 #: includes/admin/class-settings-page.php
 #: includes/rest/class-models-endpoint.php
 msgid ""
-"Google Gemini connector is not configured. Connect Gemini under Settin"
-"gs → Connectors."
+"Google Gemini connector is not configured. Connect Gemini under Settings → "
+"Connectors."
 msgstr ""
-"El conector Google Gemini no está configurado. Conecte Gemini en Confi"
-"guración → Conectores."
+"El conector Google Gemini no está configurado. Conecte Gemini en "
+"Configuración → Conectores."
 
 #: includes/admin/class-settings-page.php
 msgid "Successfully connected to the Google Gemini connector."
 msgstr "Se conectó exitosamente al conector Google Gemini."
 
-#: includes/api/class-gemini-client.php
-#: includes/api/class-image-generator.php
+#: includes/api/class-gemini-client.php includes/api/class-image-generator.php
 msgid ""
-"WordPress AI Client is not available. Install and configure the Google"
-" Gemini connector under Settings → Connectors."
+"WordPress AI Client is not available. Install and configure the Google "
+"Gemini connector under Settings → Connectors."
 msgstr ""
 "El cliente AI de WordPress no está disponible. Instale y configure el "
 "conector Google Gemini en Configuración → Conectores."
@@ -851,8 +827,8 @@ msgstr ""
 #: includes/api/class-gemini-client.php
 msgid "Text model is not set. Choose one on the settings screen."
 msgstr ""
-"El modelo de texto no está configurado. Elija uno en la pantalla de co"
-"nfiguración."
+"El modelo de texto no está configurado. Elija uno en la pantalla de "
+"configuración."
 
 #: includes/api/class-gemini-client.php
 msgid "The prompt is empty."
@@ -860,25 +836,25 @@ msgstr "El mensaje está vacío."
 
 #: includes/api/class-gemini-client.php
 msgid ""
-"The selected Gemini model does not support text generation. Check the "
-"Google Gemini connector settings."
+"The selected Gemini model does not support text generation. Check the Google"
+" Gemini connector settings."
 msgstr ""
-"El modelo Gemini seleccionado no admite la generación de texto. Verifi"
-"que la configuración del conector Google Gemini."
+"El modelo Gemini seleccionado no admite la generación de texto. Verifique la"
+" configuración del conector Google Gemini."
 
 #: includes/api/class-image-generator.php
 msgid "Image model is not set. Choose one on the settings screen."
 msgstr ""
-"El modelo de imagen no está configurado. Elija uno en la pantalla de c"
-"onfiguración."
+"El modelo de imagen no está configurado. Elija uno en la pantalla de "
+"configuración."
 
 #: includes/api/class-image-generator.php
 msgid ""
-"The selected Gemini model does not support image generation. Check the"
-" Google Gemini connector settings."
+"The selected Gemini model does not support image generation. Check the "
+"Google Gemini connector settings."
 msgstr ""
-"El modelo Gemini seleccionado no admite la generación de imágenes. Ver"
-"ifique la configuración del conector Google Gemini."
+"El modelo Gemini seleccionado no admite la generación de imágenes. Verifique"
+" la configuración del conector Google Gemini."
 
 #: includes/api/class-image-generator.php
 msgid "No image data was returned."
@@ -886,23 +862,21 @@ msgstr "No se devolvieron datos de imagen."
 
 #: includes/api/class-model-manager.php
 msgid ""
-"Failed to fetch Gemini models. Check the Google Gemini connector API k"
-"ey."
+"Failed to fetch Gemini models. Check the Google Gemini connector API key."
 msgstr ""
-"No se pudieron recuperar los modelos Gemini. Verifique la clave API de"
-"l conector Google Gemini."
+"No se pudieron recuperar los modelos Gemini. Verifique la clave API del "
+"conector Google Gemini."
 
 #: includes/class-api-settings-sync.php
 msgid ""
-"Model settings were imported automatically from another AI plugin (%s)"
-"."
+"Model settings were imported automatically from another AI plugin (%s)."
 msgstr ""
-"La configuración del modelo se importó automáticamente desde otro comp"
-"lemento de IA (%s)."
+"La configuración del modelo se importó automáticamente desde otro "
+"complemento de IA (%s)."
 
 #: includes/class-api-settings-sync.php
 msgid "Picot AIO AI Content Optimizer"
-msgstr "Optimizador de contenido de IA Picot AIO"
+msgstr "Picot AIO AI Content Optimizer"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Content is empty."
@@ -936,8 +910,8 @@ msgstr "Los datos de la investigación no contienen URL"
 #: includes/rest/class-content-endpoint.php
 msgid "Generate title and headings first, or enter headings in the editor"
 msgstr ""
-"Genere el título y los encabezados primero, o ingrese los títulos en e"
-"l editor"
+"Genere el título y los encabezados primero, o ingrese los títulos en el "
+"editor"
 
 #: includes/rest/class-image-endpoint.php
 msgid "Article content is required"

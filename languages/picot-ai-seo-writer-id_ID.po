@@ -1,22 +1,22 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Picot AI SEO Writer 1.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
-"POT-Creation-Date: 2026-07-10 12:47+0900\n"
-"PO-Revision-Date: 2026-07-10 12:47+0900\n"
+"POT-Creation-Date: 2026-07-11 19:12+0900\n"
+"PO-Revision-Date: 2026-07-11 19:12+0900\n"
 "Last-Translator: PICOT\n"
 "Language-Team: PICOT\n"
+"Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Picot AI SEO Writer i18n sync\n"
-"Language: id_ID\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Picot AI SEO Writer i18n sync\n"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Picot AI SEO Writer"
-msgstr "Penulis SEO Picot AI"
+msgstr "Picot AI SEO Writer"
 
 #: includes/admin/class-admin.php
 msgid "Casual"
@@ -34,48 +34,39 @@ msgstr "Ramah"
 msgid "Technical"
 msgstr "Teknis"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Use detailed role settings"
 msgstr "Gunakan pengaturan peran yang mendetail"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Photorealistic"
 msgstr "Fotorealistik"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Digital art"
 msgstr "Seni digital"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Vector illustration"
 msgstr "Ilustrasi vektor"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Sketch"
 msgstr "Sketsa"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Watercolor"
 msgstr "Cat air"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Cyberpunk"
 msgstr "dunia maya"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Anime"
 msgstr "anime"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Oil painting"
 msgstr "Lukisan cat minyak"
 
@@ -83,8 +74,7 @@ msgstr "Lukisan cat minyak"
 msgid "Article generation settings"
 msgstr "Pengaturan pembuatan artikel"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Writing style"
 msgstr "Gaya penulisan"
 
@@ -100,34 +90,28 @@ msgstr "Informasi yang terakhir digunakan"
 msgid "Reference URLs"
 msgstr "URL referensi"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Target keyword"
 msgstr "Kata kunci sasaran"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "e.g. WordPress SEO"
 msgstr "misalnya SEO WordPress"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Additional notes (optional)"
 msgstr "Catatan tambahan (opsional)"
 
 #: includes/admin/class-admin.php
 msgid "Enter specific details or requests to include in the article"
 msgstr ""
-"Masukkan detail spesifik atau permintaan untuk disertakan dalam artike"
-"l"
+"Masukkan detail spesifik atau permintaan untuk disertakan dalam artikel"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Image style"
 msgstr "Gaya gambar"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Generate article"
 msgstr "Hasilkan artikel"
 
@@ -137,11 +121,11 @@ msgstr "1. Analisis petunjuk gambar"
 
 #: includes/admin/class-admin.php
 msgid ""
-"Analyze the article, suggest images (1 featured + 5 inline), generate "
-"them with Gemini, and insert them into the post."
+"Analyze the article, suggest images (1 featured + 5 inline), generate them "
+"with Gemini, and insert them into the post."
 msgstr ""
-"Analisis artikel, sarankan gambar (1 unggulan + 5 sebaris), buat denga"
-"n Gemini, dan masukkan ke dalam postingan."
+"Analisis artikel, sarankan gambar (1 unggulan + 5 sebaris), buat dengan "
+"Gemini, dan masukkan ke dalam postingan."
 
 #: includes/admin/class-admin.php
 msgid "Keyword: "
@@ -299,8 +283,7 @@ msgstr "Silakan masukkan kata kunci target"
 msgid "Please enter article content"
 msgstr "Silakan masukkan konten artikel"
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-meta-box.php
+#: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Find image placement points"
 msgstr "Temukan titik penempatan gambar"
 
@@ -326,11 +309,10 @@ msgstr "Gagal menyisipkan perintah gambar"
 
 #: includes/admin/class-admin.php
 msgid ""
-"Image placement suggestions were added and markers were inserted in th"
-"e editor."
+"Image placement suggestions were added and markers were inserted in the "
+"editor."
 msgstr ""
-"Saran penempatan gambar ditambahkan dan penanda dimasukkan ke dalam ed"
-"itor."
+"Saran penempatan gambar ditambahkan dan penanda dimasukkan ke dalam editor."
 
 #: includes/admin/class-admin.php
 msgid "No image placement points were found."
@@ -472,8 +454,7 @@ msgstr "Mengambil daftar model..."
 msgid "Failed to fetch model list."
 msgstr "Gagal mengambil daftar model."
 
-#: includes/admin/class-admin.php
-#: includes/admin/class-settings-page.php
+#: includes/admin/class-admin.php includes/admin/class-settings-page.php
 msgid "Next"
 msgstr "Berikutnya"
 
@@ -544,8 +525,8 @@ msgstr "Generasi artikel Gemini"
 #: includes/admin/class-meta-box.php
 msgid "Add specific details, tone, or outline notes for the article"
 msgstr ""
-"Tambahkan detail spesifik, nada, atau catatan kerangka untuk artikel t"
-"ersebut"
+"Tambahkan detail spesifik, nada, atau catatan kerangka untuk artikel "
+"tersebut"
 
 #: includes/admin/class-settings-page.php
 msgid "Google Gemini integration"
@@ -565,11 +546,11 @@ msgstr "Konektor Google Gemini terhubung dan pembuatan teks tersedia."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Google Gemini connector is not configured or does not support text gen"
-"eration."
+"Google Gemini connector is not configured or does not support text "
+"generation."
 msgstr ""
-"Konektor Google Gemini tidak dikonfigurasi atau tidak mendukung pembua"
-"tan teks."
+"Konektor Google Gemini tidak dikonfigurasi atau tidak mendukung pembuatan "
+"teks."
 
 #: includes/admin/class-settings-page.php
 msgid "Open AI connector settings"
@@ -581,13 +562,11 @@ msgstr "Tes koneksi"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"This plugin uses the Google Gemini connector. Manage API keys under Se"
-"ttings → Connectors. Requests are sent through the WordPress AI Client"
-"."
+"This plugin uses the Google Gemini connector. Manage API keys under Settings"
+" → Connectors. Requests are sent through the WordPress AI Client."
 msgstr ""
-"Plugin ini menggunakan konektor Google Gemini. Kelola kunci API di baw"
-"ah Pengaturan → Konektor. Permintaan dikirim melalui Klien AI WordPres"
-"s."
+"Plugin ini menggunakan konektor Google Gemini. Kelola kunci API di bawah "
+"Pengaturan → Konektor. Permintaan dikirim melalui Klien AI WordPress."
 
 #: includes/admin/class-settings-page.php
 msgid "Text model"
@@ -619,12 +598,12 @@ msgstr "Pilih model yang digunakan untuk pembuatan gambar."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Image generation models (such as Imagen) require a paid Google AI API "
-"plan with billing enabled. Image generation may not work with API keys"
-" that only include the free tier."
+"Image generation models (such as Imagen) require a paid Google AI API plan "
+"with billing enabled. Image generation may not work with API keys that only "
+"include the free tier."
 msgstr ""
-"Model pembuatan gambar (seperti Imagen) memerlukan paket Google AI API"
-" berbayar dengan penagihan diaktifkan. Pembuatan gambar mungkin tidak "
+"Model pembuatan gambar (seperti Imagen) memerlukan paket Google AI API "
+"berbayar dengan penagihan diaktifkan. Pembuatan gambar mungkin tidak "
 "berfungsi dengan kunci API yang hanya menyertakan tingkat gratis."
 
 #: includes/admin/class-settings-page.php
@@ -684,28 +663,28 @@ msgid ""
 "Example: Use short sentences. Prefer concrete examples. Avoid jargon. "
 "Address the reader as “you”."
 msgstr ""
-"Contoh: Gunakan kalimat pendek. Lebih suka contoh konkrit. Hindari jar"
-"gon. Sapa pembaca sebagai “Anda”."
+"Contoh: Gunakan kalimat pendek. Lebih suka contoh konkrit. Hindari jargon. "
+"Sapa pembaca sebagai “Anda”."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Describe the writing style in detail. These instructions are added to "
-"the generation prompt."
+"Describe the writing style in detail. These instructions are added to the "
+"generation prompt."
 msgstr ""
-"Jelaskan gaya penulisan secara detail. Instruksi ini ditambahkan ke pr"
-"ompt pembuatan."
+"Jelaskan gaya penulisan secara detail. Instruksi ini ditambahkan ke prompt "
+"pembuatan."
 
 #: includes/admin/class-settings-page.php
 msgid "Common article generation prompt"
-msgstr "Permintaan pembuatan artikel umum"
+msgstr "Prompt pembuatan artikel bersama"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Example: Always include practical tips. Prefer bullet lists for steps."
-" Do not invent statistics."
+"Example: Always include practical tips. Prefer bullet lists for steps. Do "
+"not invent statistics."
 msgstr ""
-"Contoh: Selalu sertakan tips praktis. Lebih suka daftar poin untuk lan"
-"gkah-langkah. Jangan menciptakan statistik."
+"Contoh: Selalu sertakan tips praktis. Lebih suka daftar poin untuk langkah-"
+"langkah. Jangan menciptakan statistik."
 
 #: includes/admin/class-settings-page.php
 msgid "These instructions are always added to article generation prompts."
@@ -713,15 +692,15 @@ msgstr "Petunjuk ini selalu ditambahkan ke petunjuk pembuatan artikel."
 
 #: includes/admin/class-settings-page.php
 msgid "Shared image prompt"
-msgstr "Perintah gambar bersama"
+msgstr "Prompt gambar bersama"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Example: Clean composition, no text in the image, natural lighting, bl"
-"og-ready illustration."
+"Example: Clean composition, no text in the image, natural lighting, blog-"
+"ready illustration."
 msgstr ""
-"Contoh: Komposisi bersih, tidak ada teks pada gambar, pencahayaan alam"
-"i, ilustrasi siap blog."
+"Contoh: Komposisi bersih, tidak ada teks pada gambar, pencahayaan alami, "
+"ilustrasi siap blog."
 
 #: includes/admin/class-settings-page.php
 msgid "These instructions are always added to image generation prompts."
@@ -741,17 +720,16 @@ msgstr "1. Konfigurasikan konektor Google Gemini"
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"Install and activate the Google (Gemini) connector under Settings → Co"
-"nnectors, then connect your API key. This plugin uses Gemini."
+"Install and activate the Google (Gemini) connector under Settings → "
+"Connectors, then connect your API key. This plugin uses Gemini."
 msgstr ""
-"Instal dan aktifkan konektor Google (Gemini) di bawah Pengaturan → Kon"
-"ektor, lalu sambungkan kunci API Anda. Plugin ini menggunakan Gemini."
+"Instal dan aktifkan konektor Google (Gemini) di bawah Pengaturan → Konektor,"
+" lalu sambungkan kunci API Anda. Plugin ini menggunakan Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid "After connecting Gemini, run the connection test before continuing."
 msgstr ""
-"Setelah menghubungkan Gemini, jalankan tes koneksi sebelum melanjutkan"
-"."
+"Setelah menghubungkan Gemini, jalankan tes koneksi sebelum melanjutkan."
 
 #: includes/admin/class-settings-page.php
 msgid "2. Choose models"
@@ -763,11 +741,11 @@ msgstr "Pilih model AI yang digunakan untuk menulis."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"No Gemini models available. Configure the Google Gemini connector, the"
-"n click Refresh."
+"No Gemini models available. Configure the Google Gemini connector, then "
+"click Refresh."
 msgstr ""
-"Tidak ada model Gemini yang tersedia. Konfigurasikan konektor Google G"
-"emini, lalu klik Refresh."
+"Tidak ada model Gemini yang tersedia. Konfigurasikan konektor Google Gemini,"
+" lalu klik Refresh."
 
 #: includes/admin/class-settings-page.php
 msgid "Refresh"
@@ -795,17 +773,15 @@ msgstr "Anda tidak memiliki izin untuk melakukan tindakan ini."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"WordPress AI Client is unavailable. Install the Google Gemini connecto"
-"r."
+"WordPress AI Client is unavailable. Install the Google Gemini connector."
 msgstr "Klien AI WordPress tidak tersedia. Pasang konektor Google Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid ""
-"No Gemini models were found. Check the Google Gemini connector connect"
-"ion."
+"No Gemini models were found. Check the Google Gemini connector connection."
 msgstr ""
-"Tidak ada model Gemini yang ditemukan. Periksa sambungan konektor Goog"
-"le Gemini."
+"Tidak ada model Gemini yang ditemukan. Periksa sambungan konektor Google "
+"Gemini."
 
 #: includes/admin/class-settings-page.php
 msgid "Hello"
@@ -814,8 +790,8 @@ msgstr "Halo"
 #: includes/admin/class-settings-page.php
 #: includes/rest/class-models-endpoint.php
 msgid ""
-"Google Gemini connector is not configured. Connect Gemini under Settin"
-"gs → Connectors."
+"Google Gemini connector is not configured. Connect Gemini under Settings → "
+"Connectors."
 msgstr ""
 "Konektor Google Gemini tidak dikonfigurasi. Hubungkan Gemini di bawah "
 "Pengaturan → Konektor."
@@ -824,14 +800,13 @@ msgstr ""
 msgid "Successfully connected to the Google Gemini connector."
 msgstr "Berhasil terhubung ke konektor Google Gemini."
 
-#: includes/api/class-gemini-client.php
-#: includes/api/class-image-generator.php
+#: includes/api/class-gemini-client.php includes/api/class-image-generator.php
 msgid ""
-"WordPress AI Client is not available. Install and configure the Google"
-" Gemini connector under Settings → Connectors."
+"WordPress AI Client is not available. Install and configure the Google "
+"Gemini connector under Settings → Connectors."
 msgstr ""
-"Klien AI WordPress tidak tersedia. Instal dan konfigurasikan konektor "
-"Google Gemini di bawah Pengaturan → Konektor."
+"Klien AI WordPress tidak tersedia. Instal dan konfigurasikan konektor Google"
+" Gemini di bawah Pengaturan → Konektor."
 
 #: includes/api/class-gemini-client.php
 msgid "Text model is not set. Choose one on the settings screen."
@@ -843,11 +818,11 @@ msgstr "Perintahnya kosong."
 
 #: includes/api/class-gemini-client.php
 msgid ""
-"The selected Gemini model does not support text generation. Check the "
-"Google Gemini connector settings."
+"The selected Gemini model does not support text generation. Check the Google"
+" Gemini connector settings."
 msgstr ""
-"Model Gemini yang dipilih tidak mendukung pembuatan teks. Periksa peng"
-"aturan konektor Google Gemini."
+"Model Gemini yang dipilih tidak mendukung pembuatan teks. Periksa pengaturan"
+" konektor Google Gemini."
 
 #: includes/api/class-image-generator.php
 msgid "Image model is not set. Choose one on the settings screen."
@@ -855,11 +830,11 @@ msgstr "Model gambar tidak disetel. Pilih salah satu di layar pengaturan."
 
 #: includes/api/class-image-generator.php
 msgid ""
-"The selected Gemini model does not support image generation. Check the"
-" Google Gemini connector settings."
+"The selected Gemini model does not support image generation. Check the "
+"Google Gemini connector settings."
 msgstr ""
-"Model Gemini yang dipilih tidak mendukung pembuatan gambar. Periksa pe"
-"ngaturan konektor Google Gemini."
+"Model Gemini yang dipilih tidak mendukung pembuatan gambar. Periksa "
+"pengaturan konektor Google Gemini."
 
 #: includes/api/class-image-generator.php
 msgid "No image data was returned."
@@ -867,21 +842,18 @@ msgstr "Tidak ada data gambar yang dikembalikan."
 
 #: includes/api/class-model-manager.php
 msgid ""
-"Failed to fetch Gemini models. Check the Google Gemini connector API k"
-"ey."
+"Failed to fetch Gemini models. Check the Google Gemini connector API key."
 msgstr ""
-"Gagal mengambil model Gemini. Periksa kunci API konektor Google Gemini"
-"."
+"Gagal mengambil model Gemini. Periksa kunci API konektor Google Gemini."
 
 #: includes/class-api-settings-sync.php
 msgid ""
-"Model settings were imported automatically from another AI plugin (%s)"
-"."
+"Model settings were imported automatically from another AI plugin (%s)."
 msgstr "Pengaturan model diimpor secara otomatis dari plugin AI lain (%s)."
 
 #: includes/class-api-settings-sync.php
 msgid "Picot AIO AI Content Optimizer"
-msgstr "Pengoptimal Konten Picot AIO AI"
+msgstr "Picot AIO AI Content Optimizer"
 
 #: includes/rest/class-content-endpoint.php
 msgid "Content is empty."
