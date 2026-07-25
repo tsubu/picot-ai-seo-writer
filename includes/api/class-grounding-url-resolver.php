@@ -87,17 +87,46 @@ class Grounding_Url_Resolver
     }
 
     /**
-     * Google Grounding の内部リダイレクト URL かどうか
+     * Google Grounding のリダイレクトを許可するホスト（完全一致 or サブドメイン）。
+     *
+     * @var string[]
+     */
+    private static $allowed_grounding_hosts = [
+        'vertexaisearch.cloud.google.com',
+        'googleapis.com',
+        'cloud.google.com',
+        'google.com',
+        'www.google.com',
+    ];
+
+    /**
+     * Google Grounding の内部リダイレクト URL かどうか。
+     * ホスト名を厳密に判定し、URL 内の部分一致による偽装を防ぐ。
      *
      * @param string $url URL
      * @return bool
      */
     public static function is_internal_grounding_url($url)
     {
-        return (bool) preg_match(
-            '/vertexaisearch|googleapis\.com|\.cloud\.google\.com|google\.com\/search/i',
-            $url
-        );
+        $host = wp_parse_url((string) $url, PHP_URL_HOST);
+        if (!is_string($host) || $host === '') {
+            return false;
+        }
+
+        $host = strtolower($host);
+
+        foreach (self::$allowed_grounding_hosts as $allowed) {
+            if ($host === $allowed || substr($host, -(strlen($allowed) + 1)) === '.' . $allowed) {
+                // google.com は /search 経由のみをリダイレクト対象とする。
+                if ($allowed === 'google.com' || $allowed === 'www.google.com') {
+                    $path = (string) wp_parse_url($url, PHP_URL_PATH);
+                    return strpos($path, '/search') === 0 || strpos($path, '/url') === 0;
+                }
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -126,12 +155,18 @@ class Grounding_Url_Resolver
     {
         $current = $url;
         $args    = [
-            'timeout'     => PICOT_SEO_WRITING_GROUNDING_RESOLVE_TIMEOUT,
-            'redirection' => 0,
-            'user-agent'  => 'Mozilla/5.0 (compatible; PICOT-SEO-Bot/1.0)',
+            'timeout'           => PICOT_SEO_WRITING_GROUNDING_RESOLVE_TIMEOUT,
+            'redirection'       => 0,
+            'reject_unsafe_urls' => true, // ローカル/プライベート IP への到達を WP 側で拒否する。
+            'user-agent'        => 'Mozilla/5.0 (compatible; PICOT-SEO-Bot/1.0)',
         ];
 
         for ($hop = 0; $hop < $max_hops; $hop++) {
+            // 開始 URL は Google の許可ホストに限定。以降のホップも安全性を検証する。
+            if (!self::is_internal_grounding_url($current) && !wp_http_validate_url($current)) {
+                break;
+            }
+
             $response = wp_remote_head($current, $args);
             if (is_wp_error($response)) {
                 $response = wp_remote_get($current, array_merge($args, [
@@ -154,7 +189,8 @@ class Grounding_Url_Resolver
                 }
                 $current = $this->make_absolute_url($current, $location);
                 if (!self::is_internal_grounding_url($current)) {
-                    return esc_url_raw($current);
+                    // 外部の最終 URL は安全性を検証してから返す（プライベート IP 等を除外）。
+                    return wp_http_validate_url($current) ? esc_url_raw($current) : $url;
                 }
                 continue;
             }

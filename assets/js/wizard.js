@@ -51,6 +51,37 @@ jQuery(document).ready(function($) {
         $descDiv.text(desc);
     }
 
+    function getRecommendedModelLabel(models) {
+        let fallback = '';
+        let recommended = '';
+        $.each(models || {}, function(id, label) {
+            if (!fallback) {
+                fallback = label;
+            }
+            if (!recommended) {
+                const haystack = String(id) + ' ' + String(label);
+                if (haystack.toLowerCase().indexOf('-lite') !== -1) {
+                    recommended = label;
+                }
+            }
+        });
+        return recommended || fallback;
+    }
+
+    function updateRecommendedModelText(models, selector, templateKey, templateFallback) {
+        const $el = $(selector);
+        if (!$el.length) {
+            return;
+        }
+        const label = getRecommendedModelLabel(models);
+        if (!label) {
+            return;
+        }
+        const template = s(templateKey, templateFallback);
+        const safeLabel = $('<div>').text(label).html();
+        $el.html(template.replace('%s', '<strong>' + safeLabel + '</strong>'));
+    }
+
     $(document).on('change', '#picot_seo_writing_text_model', function() {
         updateDescription($(this), $('#picot_seo_writing_text_model_description'));
     });
@@ -106,20 +137,35 @@ jQuery(document).ready(function($) {
             const currentValue = $modelSelect.val();
             $modelSelect.empty();
             $.each(response.data.models || {}, function(id, label) {
-                const selected = (id === currentValue) ? 'selected' : '';
-                $modelSelect.append(`<option value="${id}" ${selected}>${label}</option>`);
+                // 属性/テキストとして設定し、AI 由来の値による HTML 実行を防ぐ。
+                const $opt = $('<option></option>').attr('value', id).text(label);
+                if (id === currentValue) { $opt.prop('selected', true); }
+                $modelSelect.append($opt);
             });
             updateDescription($modelSelect, $('#picot_seo_writing_text_model_description'));
+            updateRecommendedModelText(
+                response.data.models || {},
+                '.picot-recommended-text-model',
+                'recommendedTextModel',
+                'Recommended text model: %s'
+            );
 
             const $imgModelSelect = $('#picot_seo_writing_image_model');
             const currentImgValue = $imgModelSelect.val();
             if ($imgModelSelect.length && response.data.image_models) {
                 $imgModelSelect.empty();
                 $.each(response.data.image_models, function(id, label) {
-                    const selected = (id === currentImgValue) ? 'selected' : '';
-                    $imgModelSelect.append(`<option value="${id}" ${selected}>${label}</option>`);
+                    const $opt = $('<option></option>').attr('value', id).text(label);
+                    if (id === currentImgValue) { $opt.prop('selected', true); }
+                    $imgModelSelect.append($opt);
                 });
                 updateDescription($imgModelSelect, $('#picot_seo_writing_image_model_description'));
+                updateRecommendedModelText(
+                    response.data.image_models,
+                    '.picot-recommended-image-model',
+                    'recommendedImageModel',
+                    'Recommended image model: %s'
+                );
             }
 
             deferred.resolve(response);

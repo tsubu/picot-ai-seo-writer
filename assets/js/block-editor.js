@@ -4,7 +4,7 @@
     const { registerPlugin } = wp.plugins;
     const { PluginSidebar } = wp.editPost;
     const { PanelBody, TextControl, TextareaControl, SelectControl, Button } = wp.components;
-    const { useState, useEffect, createElement: el } = wp.element;
+    const { useState, useEffect, createElement: el, Fragment } = wp.element;
 
     const formatString = (template, ...args) => {
         if (!template) {
@@ -17,12 +17,30 @@
         });
     };
 
+    // AI 由来の URL をそのままリンクにしないための最小限の検証。
+    const safeUrl = (value) => {
+        const url = String(value == null ? '' : value).trim();
+        return /^https?:\/\//i.test(url) ? url : null;
+    };
+
     const PICOT_SEO_WRITINGSidebar = () => {
         const config = window.picotSeoWriting || window.picot_seo_writing_admin || {};
         const strings = config.strings || {};
         const t = (key, fallback = '') => strings[key] || fallback;
         const writingStyleOptions = config.writingStyleOptions || [];
         const imageStyleOptions = config.imageStyleOptions || [];
+        const isPaidApiPlan = !!config.isPaidApiPlan;
+        const getPostId = () => {
+            try {
+                const liveId = wp.data.select('core/editor').getCurrentPostId();
+                if (liveId) {
+                    return liveId;
+                }
+            } catch (e) {
+                // Editor store may be unavailable during early boot.
+            }
+            return config.postId || config.post_id || 0;
+        };
 
         const [keyword, setKeyword]             = useState(config.lastKeyword || config.target_keyword || '');
         const [additionalNotes, setAdditionalNotes] = useState(config.lastNotes || config.additional_notes || '');
@@ -117,7 +135,7 @@
                 url: config.restUrl + config.namespace + '/generate-article-direct',
                 method: 'POST',
                 headers: { 'X-WP-Nonce': config.nonce },
-                data: { keyword, additional_notes: additionalNotes, writing_style: writingStyle, post_id: config.postId }
+                data: { keyword, additional_notes: additionalNotes, writing_style: writingStyle, post_id: getPostId() }
             })
             .then(data => {
                 const r = data.data || data;
@@ -135,7 +153,7 @@
                         url: config.restUrl + config.namespace + '/save-meta',
                         method: 'POST',
                         headers: { 'X-WP-Nonce': config.nonce },
-                        data: { post_id: config.postId, keyword, notes: additionalNotes, sources: JSON.stringify(r.sources || []) }
+                        data: { post_id: getPostId(), keyword, notes: additionalNotes, sources: JSON.stringify(r.sources || []) }
                     }).catch(e => console.error('PICOT SEO: Meta save error:', e));
                     setCurrentSources(r.sources || []);
                     setCurrentGenerationInfo({ keyword, additionalNotes });
@@ -152,6 +170,10 @@
         };
 
         const generateImagePrompts = () => {
+            if (!isPaidApiPlan) {
+                setMessage({ text: t('imageGenPaidRequired', 'Image generation requires a paid Gemini API plan. Set Gemini API plan to Paid on the settings screen.'), type: 'error' });
+                return;
+            }
             const content = wp.data.select('core/editor').getEditedPostAttribute('content');
             if (!content || !content.trim()) {
                 setMessage({ text: t('generateArticleFirst', 'Generate an article first'), type: 'error' });
@@ -168,7 +190,7 @@
                 url: config.restUrl + config.namespace + '/insert-image-prompts',
                 method: 'POST',
                 headers: { 'X-WP-Nonce': config.nonce },
-                data: { content, post_id: config.postId }
+                data: { content, post_id: getPostId() }
             })
             .then(data => {
                 if (data && data.code && data.message) {
@@ -191,13 +213,17 @@
         };
 
         const generateSingleImage = async (prompt, description, location, isFeatured, idx) => {
+            if (!isPaidApiPlan) {
+                setMessage({ text: t('imageGenPaidRequired', 'Image generation requires a paid Gemini API plan. Set Gemini API plan to Paid on the settings screen.'), type: 'error' });
+                return false;
+            }
             setGeneratingIdx(isFeatured ? -2 : idx);
             try {
                 const result = await wp.apiFetch({
                     url: config.restUrl + config.namespace + '/generate-image',
                     method: 'POST',
                     headers: { 'X-WP-Nonce': config.nonce },
-                    data: { prompt, post_id: config.postId, image_style: imageStyle }
+                    data: { prompt, post_id: getPostId(), image_style: imageStyle }
                 });
                 const r = result.data || result;
                 if (!r.url || !r.attachment_id) {
@@ -223,14 +249,17 @@
                     const inserted = insertImageBlock(r.attachment_id, r.url, description, location);
                     if (!inserted) {
                         setMessage({ text: t('imageSkippedAdjacent', 'Skipped inserting an image next to another image.'), type: 'info' });
-                        return;
+                        setCompletedImages(prev => [...prev, isFeatured ? -2 : idx]);
+                        return true;
                     }
                     setMessage({ text: t('imageInsertedIntoPost', 'Image inserted into the post!'), type: 'success' });
                 }
                 setCompletedImages(prev => [...prev, isFeatured ? -2 : idx]);
+                return true;
             } catch (err) {
                 const msg = (err && err.message) ? err.message : JSON.stringify(err);
                 setMessage({ text: t('imageGenerationErrorPrefix', 'Image generation error: ') + msg, type: 'error' });
+                return false;
             } finally {
                 setGeneratingIdx(-1);
             }
@@ -342,15 +371,29 @@
 
             setBulkInfo({ current: 1, total: pendingItems.length });
 
+            let successCount = 0;
+            let failCount = 0;
             for (let i = 0; i < pendingItems.length; i++) {
                 const item = pendingItems[i];
                 setBulkInfo({ current: i + 1, total: pendingItems.length });
-                await generateSingleImage(item.prompt, item.description, item.location, item.isFeatured, item.idx);
+                const ok = await generateSingleImage(item.prompt, item.description, item.location, item.isFeatured, item.idx);
+                if (ok) { successCount++; } else { failCount++; }
                 await new Promise(r => setTimeout(r, 1000));
             }
 
             setBulkInfo(null);
-            setMessage({ text: t('allImagesComplete', 'All images were generated and inserted!'), type: 'success' });
+            if (failCount === 0) {
+                setMessage({ text: t('allImagesComplete', 'All images were generated and inserted!'), type: 'success' });
+            } else {
+                setMessage({
+                    text: formatString(
+                        t('imagesCompletedWithErrors', 'Done: %1$d succeeded, %2$d failed.'),
+                        successCount,
+                        failCount
+                    ),
+                    type: failCount === pendingItems.length ? 'error' : 'info'
+                });
+            }
         };
 
         const isDisabled = loading || imgLoading || generatingIdx !== -1;
@@ -453,7 +496,7 @@
                 ),
 
                 el(PanelBody, { title: t('writingStylePanel', 'Writing style'), initialOpen: false },
-                    el('div', { style: { marginBottom: '20px' } },
+                    el('div', { style: { marginBottom: isPaidApiPlan ? '20px' : '10px' } },
                         el(SelectControl, {
                             label: t('writingStyleLabel', 'Writing style'),
                             value: writingStyle,
@@ -462,7 +505,7 @@
                             disabled: isDisabled
                         })
                     ),
-                    el('div', { style: { marginBottom: '10px' } },
+                    isPaidApiPlan && el('div', { style: { marginBottom: '10px' } },
                         el(SelectControl, {
                             label: t('imageStyleLabel', 'Image style'),
                             value: imageStyle,
@@ -474,17 +517,23 @@
                 ),
 
                 el(PanelBody, { title: t('imageGenerationPanel', 'Image generation'), initialOpen: false },
-                    el('p', { style: { fontSize: '12px', color: '#666', marginBottom: '12px' } },
-                        t('imageGenerationDescription', 'Analyze the article, suggest images (1 featured + 5 inline), generate them with Gemini, and insert them into the post.')
-                    ),
-                    el(Button, {
-                        isSecondary: true,
-                        onClick: generateImagePrompts,
-                        isBusy: imgLoading,
-                        disabled: isDisabled,
-                        style: { width: '100%', justifyContent: 'center', height: '40px', marginBottom: '8px' }
-                    }, imgLoading ? t('analyzing', 'Analyzing...') : t('analyzeImagePromptsButton', '1. Analyze image prompts')),
-                    renderImageSuggestions()
+                    !isPaidApiPlan
+                        ? el('p', { style: { fontSize: '12px', color: '#856404', marginBottom: '0' } },
+                            t('imageGenFreeDisabled', 'Free Gemini API plan is selected. Image generation is disabled until you switch to the paid plan setting.')
+                        )
+                        : el(Fragment, {},
+                            el('p', { style: { fontSize: '12px', color: '#666', marginBottom: '12px' } },
+                                t('imageGenerationDescription', 'Analyze the article, suggest images (1 featured + 5 inline), generate them with Gemini, and insert them into the post.')
+                            ),
+                            el(Button, {
+                                isSecondary: true,
+                                onClick: generateImagePrompts,
+                                isBusy: imgLoading,
+                                disabled: isDisabled,
+                                style: { width: '100%', justifyContent: 'center', height: '40px', marginBottom: '8px' }
+                            }, imgLoading ? t('analyzing', 'Analyzing...') : t('analyzeImagePromptsButton', '1. Analyze image prompts')),
+                            renderImageSuggestions()
+                        )
                 ),
 
                 el(PanelBody, { title: t('lastUsedInfoPanel', 'Last used information'), initialOpen: false },
@@ -496,12 +545,15 @@
 
                 currentSources.length > 0 && el(PanelBody, { title: t('referenceUrlsPanel', 'Reference URLs'), initialOpen: true },
                     el('ul', { style: { margin: 0, paddingLeft: '16px', fontSize: '12px' } },
-                        currentSources.map((src, idx) =>
-                            el('li', { key: idx, style: { marginBottom: '6px', wordBreak: 'break-all' } },
+                        currentSources.map((src, idx) => {
+                            const href = safeUrl(src.url);
+                            return el('li', { key: idx, style: { marginBottom: '6px', wordBreak: 'break-all' } },
                                 src.title && el('div', { style: { fontWeight: 'bold', marginBottom: '2px' } }, src.title),
-                                el('a', { href: src.url, target: '_blank', rel: 'noopener noreferrer' }, src.url)
-                            )
-                        )
+                                href
+                                    ? el('a', { href, target: '_blank', rel: 'noopener noreferrer' }, href)
+                                    : el('span', {}, String(src.url || ''))
+                            );
+                        })
                     )
                 )
             )

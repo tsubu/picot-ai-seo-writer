@@ -8,6 +8,7 @@
 
 namespace PICOT_SEO_WRITING\REST;
 
+use PICOT_SEO_WRITING\Ai_Client_Helper;
 use PICOT_SEO_WRITING\API\Search_Simulator;
 use PICOT_SEO_WRITING\Database\Research_Repository;
 
@@ -58,8 +59,15 @@ class Research_Endpoint extends REST_Controller
      */
     public function create_research($request)
     {
-        $keyword = $request->get_param('keyword');
-        $post_id = $request->get_param('post_id');
+        // 入力を厳格にサニタイズ（配列・改行・過大長を排除し、ログ汚染や異常保存を防ぐ）。
+        $keyword_raw = $request->get_param('keyword');
+        $keyword = is_scalar($keyword_raw) ? sanitize_text_field((string) $keyword_raw) : '';
+        if (function_exists('mb_substr')) {
+            $keyword = mb_substr($keyword, 0, 200);
+        } else {
+            $keyword = substr($keyword, 0, 200);
+        }
+        $post_id = absint($request->get_param('post_id'));
 
         \PICOT_SEO_WRITING\Logger::info('create_research called', [
             'keyword' => $keyword,
@@ -112,13 +120,13 @@ class Research_Endpoint extends REST_Controller
                 'urls_ja' => $urls_ja,
                 'urls_en' => $urls_en,
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \PICOT_SEO_WRITING\Logger::error('Exception in create_research', [
                 'message' => $e->getMessage(),
                 'keyword' => $keyword,
                 'post_id' => $post_id
             ]);
-            return $this->error_response($e->getMessage(), 500);
+            return $this->error_response(Ai_Client_Helper::localize_api_error_message($e->getMessage()), 500);
         }
     }
 
@@ -149,12 +157,12 @@ class Research_Endpoint extends REST_Controller
             \PICOT_SEO_WRITING\Logger::debug('History retrieved', ['count' => count($history)]);
 
             return $this->success_response(['history' => $history]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \PICOT_SEO_WRITING\Logger::error('Exception in get_history', [
                 'message' => $e->getMessage(),
                 'post_id' => $post_id
             ]);
-            return $this->error_response($e->getMessage(), 500);
+            return $this->error_response(Ai_Client_Helper::localize_api_error_message($e->getMessage()), 500);
         }
     }
 
@@ -179,12 +187,12 @@ class Research_Endpoint extends REST_Controller
             }
 
             return $this->success_response($research);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \PICOT_SEO_WRITING\Logger::error('Exception in get_research', [
                 'message' => $e->getMessage(),
                 'id' => $id
             ]);
-            return $this->error_response($e->getMessage(), 500);
+            return $this->error_response(Ai_Client_Helper::localize_api_error_message($e->getMessage()), 500);
         }
     }
 }

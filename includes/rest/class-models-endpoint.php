@@ -8,6 +8,7 @@
 
 namespace PICOT_SEO_WRITING\REST;
 
+use PICOT_SEO_WRITING\Ai_Client_Helper;
 use PICOT_SEO_WRITING\API\Model_Manager;
 
 if (!defined('ABSPATH')) {
@@ -43,6 +44,10 @@ class Models_Endpoint extends REST_Controller
         \PICOT_SEO_WRITING\Logger::info('get_models called');
 
         try {
+            if (!Ai_Client_Helper::is_ready()) {
+                return $this->error_response(Ai_Client_Helper::readiness_error_message(), 400);
+            }
+
             if (!\PICOT_SEO_WRITING\Ai_Client_Helper::supports_text_generation()) {
                 \PICOT_SEO_WRITING\Logger::error('WordPress AI Client is not configured for text generation');
                 return $this->error_response(
@@ -70,13 +75,13 @@ class Models_Endpoint extends REST_Controller
             return $this->success_response([
                 'text_models' => $text_models,
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \PICOT_SEO_WRITING\Logger::error('Exception in get_models', [
                 'message' => $e->getMessage(),
                 'file' => $e->getFile(),
                 'line' => $e->getLine(),
             ]);
-            return $this->error_response($e->getMessage(), 500);
+            return $this->error_response(Ai_Client_Helper::localize_api_error_message($e->getMessage()), 500);
         }
     }
 }

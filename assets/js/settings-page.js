@@ -20,6 +20,37 @@
       $descDiv.text(desc);
     }
 
+    function getRecommendedModelLabel(models) {
+      let fallback = "";
+      let recommended = "";
+      $.each(models || {}, function (id, label) {
+        if (!fallback) {
+          fallback = label;
+        }
+        if (!recommended) {
+          const haystack = String(id) + " " + String(label);
+          if (haystack.toLowerCase().indexOf("-lite") !== -1) {
+            recommended = label;
+          }
+        }
+      });
+      return recommended || fallback;
+    }
+
+    function updateRecommendedModelText(models, selector, templateKey, templateFallback) {
+      const $el = $(selector);
+      if (!$el.length) {
+        return;
+      }
+      const label = getRecommendedModelLabel(models);
+      if (!label) {
+        return;
+      }
+      const template = s(templateKey, templateFallback);
+      const safeLabel = $("<div>").text(label).html();
+      $el.html(template.replace("%s", "<strong>" + safeLabel + "</strong>"));
+    }
+
     $(document).on('change', '#picot_seo_writing_text_model', function () {
       updateDescription($(this), $('#picot_seo_writing_text_model_description'));
     });
@@ -61,6 +92,12 @@
               $select.val(currentValue);
             }
             updateDescription($select, $('#picot_seo_writing_text_model_description'));
+            updateRecommendedModelText(
+              response.data.models,
+              ".picot-recommended-text-model",
+              "recommendedModel",
+              "Recommended model: %s"
+            );
 
             const $imgSelect = $("#picot_seo_writing_image_model");
             if ($imgSelect.length && response.data.image_models) {
@@ -75,6 +112,12 @@
                 $imgSelect.val(currentImgValue);
               }
               updateDescription($imgSelect, $('#picot_seo_writing_image_model_description'));
+              updateRecommendedModelText(
+                response.data.image_models,
+                ".picot-recommended-image-model",
+                "recommendedImageModel",
+                "Recommended image model: %s"
+              );
             }
 
             alert(s("updateSuccess", "Model list updated"));

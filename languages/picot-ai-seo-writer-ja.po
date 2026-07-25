@@ -1,10 +1,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Picot AI SEO Writer 1.0.4\n"
+"Project-Id-Version: picot-ai-seo-writer 1.0.5\n"
 "Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
 "POT-Creation-Date: 2026-07-11 19:12+0900\n"
-"PO-Revision-Date: 2026-07-11 12:47+0000\n"
+"PO-Revision-Date: 2026-07-25 12:46+0000\n"
 "Last-Translator: PICOT\n"
 "Language-Team: PICOT\n"
 "Language: ja\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: picot-ai-seo-writer ja build\n"
+"X-Generator: cursor ja style-guide fix\n"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Picot AI SEO Writer"
@@ -285,8 +285,12 @@ msgid "Find image placement points"
 msgstr "画像挿入ポイント探索"
 
 #: includes/admin/class-admin.php
-msgid "Image placement points:\\n\\n"
-msgstr "画像挿入ポイント:\\n\\n"
+msgid ""
+"Image placement points:\n"
+"\n"
+msgstr ""
+"画像挿入ポイント:\n"
+"\n"
 
 #: includes/admin/class-admin.php
 msgid "Image: "
@@ -528,7 +532,7 @@ msgstr "Google Gemini 連携"
 
 #: includes/admin/class-settings-page.php
 msgid "The Google Gemini connector (Settings → Connectors) must be connected"
-msgstr "Google Gemini コネクター (設定 → コネクター) の接続が必要です"
+msgstr "Google Gemini コネクター (「設定 → コネクター」) の接続が必要です"
 
 #: includes/admin/class-settings-page.php
 msgid "Connection status"
@@ -557,7 +561,7 @@ msgid ""
 "This plugin uses the Google Gemini connector. Manage API keys under Settings"
 " → Connectors. Requests are sent through the WordPress AI Client."
 msgstr ""
-"このプラグインは Google Gemini コネクターを使用します。API キーは設定 → コネクターで管理してください。リクエストは "
+"このプラグインは Google Gemini コネクターを使用します。API キーは「設定 → コネクター」で管理してください。リクエストは "
 "WordPress AI Client 経由で送信されます。"
 
 #: includes/admin/class-settings-page.php
@@ -587,6 +591,11 @@ msgstr "画像生成モデル"
 #: includes/admin/class-settings-page.php
 msgid "Choose the model used for image generation."
 msgstr "画像生成に使用するモデルを選択します。"
+
+#. translators: %s: Recommended image model name
+#: includes/admin/class-settings-page.php
+msgid "Recommended image model: %s"
+msgstr "推奨画像モデル: %s"
 
 #: includes/admin/class-settings-page.php
 msgid ""
@@ -623,15 +632,15 @@ msgstr "テクニカル (専門・正確)"
 
 #: includes/admin/class-settings-page.php
 msgid "Humorous (light and fun)"
-msgstr "ユーモア (軽快・面白い)"
+msgstr "ユーモア (軽快で楽しい)"
 
 #: includes/admin/class-settings-page.php
 msgid "Persuasive (passionate)"
-msgstr "説得力 (情熱・主張)"
+msgstr "説得的 (情熱的)"
 
 #: includes/admin/class-settings-page.php
 msgid "Informative (factual)"
-msgstr "インフォマティブ (事実・解説)"
+msgstr "説明的 (事実に基づく)"
 
 #: includes/admin/class-settings-page.php
 msgid "Choose the tone for images inserted into articles."
@@ -647,7 +656,7 @@ msgstr "コンテンツ生成のための詳細な指示 (任意)"
 
 #: includes/admin/class-settings-page.php
 msgid "Role settings<br>(Writing style details)"
-msgstr "ロール設定<br> (執筆スタイル詳細)"
+msgstr "ロール設定 <br> (執筆スタイル詳細)"
 
 #: includes/admin/class-settings-page.php
 msgid ""
@@ -706,7 +715,7 @@ msgid ""
 "Install and activate the Google (Gemini) connector under Settings → "
 "Connectors, then connect your API key. This plugin uses Gemini."
 msgstr ""
-"設定 → コネクターで Google (Gemini) コネクターをインストール・有効化し、API キーを接続してください。このプラグインは "
+"「設定 → コネクター」で Google (Gemini) コネクターをインストール・有効化し、API キーを接続してください。このプラグインは "
 "Gemini を使用します。"
 
 #: includes/admin/class-settings-page.php
@@ -770,7 +779,7 @@ msgstr "こんにちは"
 msgid ""
 "Google Gemini connector is not configured. Connect Gemini under Settings → "
 "Connectors."
-msgstr "Google Gemini コネクターが未設定です。設定 → コネクターで Gemini を接続してください。"
+msgstr "Google Gemini コネクターが未設定です。「設定 → コネクター」で Gemini を接続してください。"
 
 #: includes/admin/class-settings-page.php
 msgid "Successfully connected to the Google Gemini connector."
@@ -781,7 +790,7 @@ msgid ""
 "WordPress AI Client is not available. Install and configure the Google "
 "Gemini connector under Settings → Connectors."
 msgstr ""
-"WordPress AI Client が利用できません。設定 → コネクターで Google Gemini "
+"WordPress AI Client が利用できません。「設定 → コネクター」で Google Gemini "
 "コネクターをインストールして設定してください。"
 
 #: includes/api/class-gemini-client.php
@@ -878,3 +887,159 @@ msgstr "調査データの保存に失敗しました"
 #: includes/rest/class-research-endpoint.php
 msgid "Post ID is required"
 msgstr "投稿 ID は必須です"
+
+#. translators: 1: Google AI Studio URL, 2: Gemini API pricing URL
+msgid ""
+"To check free-tier quotas, rate limits, and whether a model is free or paid,"
+" open <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Google "
+"AI Studio</a> or the <a href=\"%2$s\" target=\"_blank\" rel=\"noopener "
+"noreferrer\">Gemini API pricing</a> page."
+msgstr ""
+"無償枠のクォータ、レート制限、モデルが無料か有料かは、<a href=\"%1$s\" target=\"_blank\" rel=\"noopener"
+" noreferrer\">Google AI Studio</a> または <a href=\"%2$s\" target=\"_blank\" "
+"rel=\"noopener noreferrer\">Gemini API の料金ページ </a> で確認できます。"
+
+msgid "Gemini API plan"
+msgstr "Gemini API プラン"
+
+msgid "Paid Gemini API (billing enabled)"
+msgstr "有償 Gemini API (課金有効)"
+
+msgid "Free Gemini API (free tier)"
+msgstr "無償 Gemini API (無料枠)"
+
+msgid ""
+"Choose the plan that matches your Google AI API key. On the free tier, "
+"Google Search grounding and image generation are disabled in this plugin."
+msgstr ""
+"Google AI API キーに合わせたプランを選択してください。無償枠では、このプラグイン内で Google "
+"検索グラウンディングと画像生成は無効になります。"
+
+msgid ""
+"Free Gemini API plan is selected. Image generation is disabled until you "
+"switch to the paid plan setting."
+msgstr "無償 Gemini API プランが選択されています。有償プラン設定に切り替えるまで、画像生成は無効です。"
+
+msgid ""
+"Image generation requires a paid Gemini API plan. Set Gemini API plan to "
+"Paid on the settings screen."
+msgstr "画像生成には有償 Gemini API プランが必要です。設定画面で Gemini API プランを「有償」にしてください。"
+
+#. API error localization
+msgid ""
+"The selected model is not available with this API key. Choose another model "
+"(for example a -lite model) or create a new API key in Google AI Studio."
+msgstr ""
+"選択したモデルはこの API キーでは利用できません。別のモデル (例: -lite モデル) を選ぶか、Google AI Studio で API "
+"キーを再発行してください。"
+
+#. API error localization
+msgid ""
+"Google Gemini authentication failed. Check the API key under Settings → "
+"Connectors."
+msgstr "Google Gemini の認証に失敗しました。「設定 → コネクター」で API キーを確認してください。"
+
+#. API error localization
+msgid ""
+"The Gemini API quota or rate limit was reached. Wait a moment and try again,"
+" or check your plan in Google AI Studio."
+msgstr ""
+"Gemini API のクォータまたはレート制限に達しました。しばらく待ってから再試行するか、Google AI Studio "
+"でプランを確認してください。"
+
+#. API error localization
+msgid ""
+"This feature requires a paid Gemini API plan with billing enabled. Check "
+"your Google AI plan or switch the model."
+msgstr "この機能には課金が有効な有償 Gemini API プランが必要です。Google AI のプランを確認するか、モデルを変更してください。"
+
+#. API error localization
+msgid ""
+"The AI request failed. Check the Google Gemini connector settings and the "
+"selected model."
+msgstr "AI リクエストに失敗しました。Google Gemini コネクターの設定と選択中のモデルを確認してください。"
+
+msgid "Activate WordPress AI plugin"
+msgstr "WordPress AI プラグインを有効化"
+
+msgid "Install WordPress AI plugin"
+msgstr "WordPress AI プラグインをインストール"
+
+msgid "WordPress AI plugin"
+msgstr "WordPress AI プラグイン"
+
+msgid "The official WordPress AI plugin is active."
+msgstr "公式の WordPress AI プラグインは有効です。"
+
+msgid ""
+"With free API usage, service may become unavailable due to Gemini token "
+"limit changes or similar policy updates."
+msgstr "API 無償利用の場合、Gemini のトークン使用上限変更等により、ご利用が不能となることがございます。"
+
+msgid "Save or wait until the post draft is available, then try again."
+msgstr "投稿の下書きが利用可能になるまで保存するか待ってから、もう一度お試しください。"
+
+msgid "Invalid post ID."
+msgstr "投稿 ID が不正です。"
+
+msgid "Post not found."
+msgstr "投稿が見つかりません。"
+
+msgid "Humorous"
+msgstr "ユーモア"
+
+msgid "Persuasive"
+msgstr "説得的"
+
+msgid "Informative"
+msgstr "説明的"
+
+msgid "Done: %1$d succeeded, %2$d failed."
+msgstr "完了: 成功%1$d件、失敗%2$d件。"
+
+msgid "The base64 image data was invalid."
+msgstr "base64 画像データが不正です。"
+
+msgid "Failed to decode the base64 image data."
+msgstr "base64 画像データのデコードに失敗しました。"
+
+msgid "The generated image exceeds the maximum upload size."
+msgstr "生成された画像が最大アップロードサイズを超えています。"
+
+msgid "The uploads directory is not writable."
+msgstr "アップロードディレクトリに書き込めません。"
+
+msgid "Failed to write the temporary image file."
+msgstr "一時画像ファイルの書き込みに失敗しました。"
+
+msgid "Invalid or unsupported image format."
+msgstr "無効またはサポートされていない画像形式です。"
+
+msgid "Failed to save the image file to disk."
+msgstr "画像ファイルの保存に失敗しました。"
+
+msgid ""
+"IMPORTANT: On the free tier, return a concise, simplified response, keep it "
+"within the token limit, and always finish the output."
+msgstr "【重要】無償枠では簡潔で簡易的な回答とし、トークン上限内に収めて必ず出力を完了すること。"
+
+msgid ""
+"After connecting AI providers under Settings → Connectors, activate the "
+"official WordPress AI plugin. This plugin also supports the AI plugin's "
+"experimental Connector Approvals feature."
+msgstr ""
+"「設定 → コネクター」で AI プロバイダーを接続したあと、公式の WordPress AI プラグインを有効化してください。このプラグインは AI "
+"プラグインの実験的なコネクター承認機能にも対応しています。"
+
+msgid ""
+"After connecting AI providers under Settings → Connectors, install and "
+"activate the official WordPress AI plugin. This plugin also supports the AI "
+"plugin's experimental Connector Approvals feature."
+msgstr ""
+"「設定 → コネクター」で AI プロバイダーを接続したあと、公式の WordPress AI "
+"プラグインをインストールして有効化してください。このプラグインは AI プラグインの実験的なコネクター承認機能にも対応しています。"
+
+msgid ""
+"Do this after connecting providers under Settings → Connectors. Also "
+"supports the AI plugin's experimental Connector Approvals feature."
+msgstr "「設定 → コネクター」でプロバイダーを接続したあとに行ってください。AI プラグインの実験的なコネクター承認機能にも対応しています。"

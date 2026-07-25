@@ -37,13 +37,8 @@ class Image_Generator extends Gemini_Client
      */
     public function generate_image($prompt, $post_id = 0, $style = '')
     {
-        if (!Ai_Client_Helper::is_available()) {
-            throw new \Exception(
-                esc_html__(
-                    'WordPress AI Client is not available. Install and configure the Google Gemini connector under Settings → Connectors.',
-                    'picot-ai-seo-writer'
-                )
-            );
+        if (!Ai_Client_Helper::is_ready()) {
+            throw new \Exception(esc_html(Ai_Client_Helper::readiness_error_message()));
         }
 
         $base64 = $this->call_image_api($prompt, $style);
@@ -59,6 +54,15 @@ class Image_Generator extends Gemini_Client
      */
     protected function call_image_api($prompt, $style = '')
     {
+        if (!Ai_Client_Helper::is_paid_api_plan()) {
+            throw new \Exception(
+                esc_html__(
+                    'Image generation requires a paid Gemini API plan. Set Gemini API plan to Paid on the settings screen.',
+                    'picot-ai-seo-writer'
+                )
+            );
+        }
+
         $model = get_option('picot_seo_writing_image_model', self::DEFAULT_IMAGE_MODEL);
         [$provider, $model_id] = Ai_Client_Helper::parse_model_spec($model);
 
@@ -96,7 +100,7 @@ class Image_Generator extends Gemini_Client
 
         $result = $builder->generate_image_result();
         if (is_wp_error($result)) {
-            throw new \Exception(esc_html($result->get_error_message()));
+            throw new \Exception(esc_html(Ai_Client_Helper::localize_api_error_message($result->get_error_message())));
         }
 
         try {
@@ -107,7 +111,10 @@ class Image_Generator extends Gemini_Client
             }
             return $base64;
         } catch (\Throwable $e) {
-            throw new \Exception(esc_html($e->getMessage()));
+            if ($e instanceof \Exception && $e->getMessage() === esc_html__('No image data was returned.', 'picot-ai-seo-writer')) {
+                throw $e;
+            }
+            throw new \Exception(esc_html(Ai_Client_Helper::localize_api_error_message($e->getMessage())));
         }
     }
 
@@ -118,23 +125,68 @@ class Image_Generator extends Gemini_Client
      */
     private function upload_to_media_library($base64_data, $title)
     {
-        $image_data = base64_decode($base64_data);
-        if (!$image_data) {
-            throw new \Exception('Failed to decode base64 image data');
+        // Base64 は画像用の文字集合のみ許可（改行・空白除去）。
+        $base64_clean = preg_replace('/\s+/', '', (string) $base64_data);
+        if ($base64_clean === '' || preg_match('#[^A-Za-z0-9+/=]#', $base64_clean)) {
+            throw new \Exception(esc_html__('The base64 image data was invalid.', 'picot-ai-seo-writer'));
+        }
+
+        $image_data = base64_decode($base64_clean, true);
+        if ($image_data === false || $image_data === '') {
+            throw new \Exception(esc_html__('Failed to decode the base64 image data.', 'picot-ai-seo-writer'));
+        }
+
+        // メモリ/ディスク枯渇を避けるためアップロード上限で制限する。
+        $max_bytes = (int) wp_max_upload_size();
+        if ($max_bytes <= 0) {
+            $max_bytes = 8 * 1024 * 1024;
+        }
+        if (strlen($image_data) > $max_bytes) {
+            throw new \Exception(esc_html__('The generated image exceeds the maximum upload size.', 'picot-ai-seo-writer'));
         }
 
         $upload_dir = wp_upload_dir();
-        $safe_name  = substr(sanitize_title($title), 0, 40);
-        $filename   = 'picot-seo-' . $safe_name . '-' . time() . '.png';
-        $file_path  = $upload_dir['path'] . '/' . $filename;
-
-        if (false === file_put_contents($file_path, $image_data)) {
-            throw new \Exception('Failed to save image file to disk');
+        if (!empty($upload_dir['error'])) {
+            throw new \Exception(esc_html__('The uploads directory is not writable.', 'picot-ai-seo-writer'));
         }
 
-        $wp_filetype = wp_check_filetype($filename, null);
+        // 一時ファイルへ書き出して実 MIME を検証する。
+        $temp_file = wp_tempnam('picot-seo-img');
+        if (!$temp_file || false === file_put_contents($temp_file, $image_data)) {
+            if ($temp_file) {
+                wp_delete_file($temp_file);
+            }
+            throw new \Exception(esc_html__('Failed to write the temporary image file.', 'picot-ai-seo-writer'));
+        }
+
+        $allowed_types = [
+            'image/jpeg' => 'jpg',
+            'image/png'  => 'png',
+            'image/gif'  => 'gif',
+            'image/webp' => 'webp',
+        ];
+        $mime = wp_get_image_mime($temp_file);
+        if (!$mime || !isset($allowed_types[$mime])) {
+            wp_delete_file($temp_file);
+            throw new \Exception(esc_html__('Invalid or unsupported image format.', 'picot-ai-seo-writer'));
+        }
+
+        $safe_name = substr(sanitize_title($title), 0, 40);
+        if ($safe_name === '') {
+            $safe_name = 'image';
+        }
+        $extension = $allowed_types[$mime];
+        $filename  = wp_unique_filename($upload_dir['path'], 'picot-seo-' . $safe_name . '-' . time() . '.' . $extension);
+        $file_path = $upload_dir['path'] . '/' . $filename;
+
+        if (false === file_put_contents($file_path, $image_data)) {
+            wp_delete_file($temp_file);
+            throw new \Exception(esc_html__('Failed to save the image file to disk.', 'picot-ai-seo-writer'));
+        }
+        wp_delete_file($temp_file);
+
         $attachment  = [
-            'post_mime_type' => $wp_filetype['type'] ?: 'image/png',
+            'post_mime_type' => $mime,
             'post_title'     => sanitize_text_field($title),
             'post_content'   => '',
             'post_status'    => 'inherit',
@@ -142,6 +194,7 @@ class Image_Generator extends Gemini_Client
 
         $attach_id = wp_insert_attachment($attachment, $file_path);
         if (is_wp_error($attach_id)) {
+            wp_delete_file($file_path);
             throw new \Exception(esc_html($attach_id->get_error_message()));
         }
 
@@ -191,7 +244,7 @@ class Image_Generator extends Gemini_Client
                 'featured_prompt' => $parsed['featured_prompt'] ?? '',
                 'suggestions'     => $suggestions,
             ];
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return ['featured_text' => '', 'featured_prompt' => '', 'suggestions' => []];
         }
     }

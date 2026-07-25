@@ -46,8 +46,8 @@ class Search_Simulator extends Gemini_Client
         try {
             $response = $this->generate_content($model, $contents, $options);
             return $this->extract_urls_from_grounding($response);
-        } catch (\Exception $e) {
-            $this->log_error('Search Simulation Error', ['message' => $e->getMessage()]);
+        } catch (\Throwable $e) {
+            \PICOT_SEO_WRITING\Logger::error('Search Simulation Error', ['message' => $e->getMessage()]);
             return [];
         }
     }
@@ -111,7 +111,7 @@ class Search_Simulator extends Gemini_Client
         try {
             $response = $this->generate_content($model, [['parts' => [['text' => $prompt]]]], ['temperature' => 0.1]);
             return trim($this->extract_text($response)) ?: $keyword;
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return $keyword;
         }
     }

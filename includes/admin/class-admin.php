@@ -53,8 +53,7 @@ class Admin
         // 管理メニュー
         add_action('admin_menu', [$this, 'add_admin_menu']);
 
-        // 設定登録
-        add_action('admin_init', [$this, 'register_settings']);
+        // 設定登録（設定項目は Settings_Page 側で登録される）
         add_action('admin_init', [$this, 'register_post_meta']);
 
         // メタボックス
@@ -63,8 +62,34 @@ class Admin
         // スクリプトとスタイル
         add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
 
+        // 公式 AI プラグイン導入促進
+        add_action('admin_notices', [$this, 'maybe_show_ai_plugin_notice']);
+
         // プラグインリンク
         add_filter('plugin_action_links_' . PICOT_SEO_WRITING_PLUGIN_BASENAME, [$this, 'add_settings_link']);
+    }
+
+    /**
+     * Prompt to install/activate the official AI plugin on the post editor.
+     *
+     * @return void
+     */
+    public function maybe_show_ai_plugin_notice()
+    {
+        if (!current_user_can('activate_plugins') || \PICOT_SEO_WRITING\Ai_Client_Helper::is_ai_plugin_active()) {
+            return;
+        }
+
+        $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+        if (!$screen || !in_array($screen->base, ['post', 'post-new'], true)) {
+            return;
+        }
+
+        if (!\PICOT_SEO_WRITING\Ai_Client_Helper::is_google_configured()) {
+            return;
+        }
+
+        \PICOT_SEO_WRITING\Ai_Client_Helper::print_ai_plugin_requirement_notice();
     }
 
     /**
@@ -149,69 +174,7 @@ class Admin
      */
     public function enqueue_scripts($hook)
     {
-        // 設定ページ
-        if ($hook === 'settings_page_picot-ai-seo-writer') {
-            $css_path = PICOT_SEO_WRITING_PLUGIN_DIR . 'assets/css/settings-page.css';
-            $css_ver = file_exists($css_path) ? filemtime($css_path) : PICOT_SEO_WRITING_VERSION;
-
-            wp_enqueue_style(
-                'picot-ai-seo-writer-settings',
-                PICOT_SEO_WRITING_PLUGIN_URL . 'assets/css/settings-page.css',
-                [],
-                $css_ver
-            );
-
-            $js_path = PICOT_SEO_WRITING_PLUGIN_DIR . 'assets/js/settings-page.js';
-            $js_ver = file_exists($js_path) ? filemtime($js_path) : PICOT_SEO_WRITING_VERSION;
-
-            wp_enqueue_script(
-                'picot-ai-seo-writer-settings',
-                PICOT_SEO_WRITING_PLUGIN_URL . 'assets/js/settings-page.js',
-                ['jquery'],
-                $js_ver,
-                true
-            );
-
-            wp_localize_script('picot-ai-seo-writer-settings', 'picot_seo_writing_settings', [
-                'rest_url' => rest_url('picot-ai-seo-writer/v1'),
-                'nonce' => wp_create_nonce('wp_rest'),
-            ]);
-
-            // ウィザード用アセット
-            $ai_configured = \PICOT_SEO_WRITING\Ai_Client_Helper::supports_text_generation();
-            $view = filter_input(INPUT_GET, 'view', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: '';
-            $is_wizard = ($view === 'wizard') || (!$ai_configured && $view !== 'standard');
-
-            if ($is_wizard) {
-                $wizard_css_path = PICOT_SEO_WRITING_PLUGIN_DIR . 'assets/css/wizard.css';
-                $wizard_css_ver = file_exists($wizard_css_path) ? filemtime($wizard_css_path) : PICOT_SEO_WRITING_VERSION;
-
-                wp_enqueue_style(
-                    'picot-ai-seo-writer-wizard',
-                    PICOT_SEO_WRITING_PLUGIN_URL . 'assets/css/wizard.css',
-                    ['picot-ai-seo-writer-settings'],
-                    $wizard_css_ver
-                );
-
-                $wizard_js_path = PICOT_SEO_WRITING_PLUGIN_DIR . 'assets/js/wizard.js';
-                $wizard_js_ver = file_exists($wizard_js_path) ? filemtime($wizard_js_path) : PICOT_SEO_WRITING_VERSION;
-
-                wp_enqueue_script(
-                    'picot-ai-seo-writer-wizard',
-                    PICOT_SEO_WRITING_PLUGIN_URL . 'assets/js/wizard.js',
-                    ['jquery'],
-                    $wizard_js_ver,
-                    true
-                );
-
-                wp_localize_script('picot-ai-seo-writer-wizard', 'picot_seo_writing_wizard', [
-                    'ajax_url' => admin_url('admin-ajax.php'),
-                    'nonce' => wp_create_nonce('picot_seo_writing_admin_nonce'),
-                    'model_descriptions' => get_option('picot_seo_writing_gemini_model_descriptions', []),
-                    'strings' => self::get_localized_strings(),
-                ]);
-            }
-        }
+        // 設定ページのアセットは Settings_Page::enqueue_assets が担当する。
 
         // 投稿編集画面
         if (in_array($hook, ['post.php', 'post-new.php'])) {
@@ -255,9 +218,8 @@ class Admin
                     true
                 );
 
-                $raw_post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
-                $post_id = $raw_post_id ? intval($raw_post_id) : get_the_id();
-                
+                $post_id = $this->resolve_editor_post_id();
+
                 $img_suggestions_json = get_post_meta($post_id, '_picot_aio_optimizer_image_suggestions', true);
                 $image_suggestions_data = null;
                 if (!empty($img_suggestions_json)) {
@@ -286,6 +248,7 @@ class Admin
                     'nonce' => wp_create_nonce('wp_rest'),
                     'postId' => $post_id,
                     'post_id' => $post_id,
+                    'isPaidApiPlan' => \PICOT_SEO_WRITING\Ai_Client_Helper::is_paid_api_plan(),
                     'lastKeyword' => get_post_meta($post_id, 'picot_seo_writing_keyword', true),
                     'target_keyword' => get_post_meta($post_id, 'picot_seo_writing_keyword', true),
                     'lastNotes' => get_post_meta($post_id, 'picot_seo_writing_notes', true),
@@ -316,22 +279,15 @@ class Admin
                 );
             }
 
-            $handle = $this->is_block_editor() ? 'picot-ai-seo-writer-block-editor' : 'picot-ai-seo-writer-classic-editor';
-
-            // 設定ページの場合は設定用スクリプトのハンドルを使用
-            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-            if (isset($_GET['page']) && sanitize_text_field(wp_unslash($_GET['page'])) === 'picot-ai-seo-writer') {
-                $handle = 'picot-ai-seo-writer-settings';
-            }
-
             if (!$this->is_block_editor()) {
                 wp_localize_script(
-                    $handle,
+                    'picot-ai-seo-writer-classic-editor',
                     'picot_seo_writing_admin',
                     [
                         'rest_url' => rest_url('picot-ai-seo-writer/v1'),
                         'nonce' => wp_create_nonce('wp_rest'),
-                        'post_id' => get_the_ID(),
+                        'post_id' => $this->resolve_editor_post_id(),
+                        'isPaidApiPlan' => \PICOT_SEO_WRITING\Ai_Client_Helper::is_paid_api_plan(),
                         'writingStyleOptions' => $this->get_writing_style_options(),
                         'imageStyleOptions' => $this->get_image_style_options(),
                         'strings' => self::get_localized_strings(),
@@ -339,6 +295,30 @@ class Admin
                 );
             }
         }
+    }
+
+    /**
+     * 編集画面の投稿IDを解決
+     *
+     * @return int 投稿ID（取得できない場合は0）
+     */
+    private function resolve_editor_post_id()
+    {
+        $raw_post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
+        $post_id = $raw_post_id ? intval($raw_post_id) : 0;
+
+        if ($post_id <= 0) {
+            $post_id = (int) get_the_ID();
+        }
+
+        if ($post_id <= 0) {
+            global $post;
+            if ($post instanceof \WP_Post) {
+                $post_id = (int) $post->ID;
+            }
+        }
+
+        return max(0, $post_id);
     }
 
     /**
@@ -364,6 +344,9 @@ class Admin
             ['label' => __('Professional', 'picot-ai-seo-writer'), 'value' => 'professional'],
             ['label' => __('Friendly', 'picot-ai-seo-writer'), 'value' => 'friendly'],
             ['label' => __('Technical', 'picot-ai-seo-writer'), 'value' => 'technical'],
+            ['label' => __('Humorous', 'picot-ai-seo-writer'), 'value' => 'humorous'],
+            ['label' => __('Persuasive', 'picot-ai-seo-writer'), 'value' => 'persuasive'],
+            ['label' => __('Informative', 'picot-ai-seo-writer'), 'value' => 'informative'],
             ['label' => __('Use detailed role settings', 'picot-ai-seo-writer'), 'value' => 'detailed_role'],
         ];
     }
@@ -430,6 +413,11 @@ class Admin
             'articleGenerationSettings' => __('Article generation settings', 'picot-ai-seo-writer'),
             'writingStylePanel' => __('Writing style', 'picot-ai-seo-writer'),
             'imageGenerationPanel' => __('Image generation', 'picot-ai-seo-writer'),
+            'imageGenPaidRequired' => __('Image generation requires a paid Gemini API plan. Set Gemini API plan to Paid on the settings screen.', 'picot-ai-seo-writer'),
+            'imageGenFreeDisabled' => __('Free Gemini API plan is selected. Image generation is disabled until you switch to the paid plan setting.', 'picot-ai-seo-writer'),
+            'postIdRequired' => __('Save or wait until the post draft is available, then try again.', 'picot-ai-seo-writer'),
+            /* translators: 1: number of succeeded images, 2: number of failed images */
+            'imagesCompletedWithErrors' => __('Done: %1$d succeeded, %2$d failed.', 'picot-ai-seo-writer'),
             'lastUsedInfoPanel' => __('Last used information', 'picot-ai-seo-writer'),
             'referenceUrlsPanel' => __('Reference URLs', 'picot-ai-seo-writer'),
             'targetKeyword' => __('Target keyword', 'picot-ai-seo-writer'),
@@ -519,6 +507,12 @@ class Admin
             'fetching' => __('Fetching...', 'picot-ai-seo-writer'),
             'updateSuccess' => __('Model list updated', 'picot-ai-seo-writer'),
             'updateFailed' => __('Failed to fetch model list', 'picot-ai-seo-writer'),
+            /* translators: %s: Recommended model name */
+            'recommendedModel' => __('Recommended model: %s', 'picot-ai-seo-writer'),
+            /* translators: %s: Recommended model name */
+            'recommendedTextModel' => __('Recommended text model: %s', 'picot-ai-seo-writer'),
+            /* translators: %s: Recommended image model name */
+            'recommendedImageModel' => __('Recommended image model: %s', 'picot-ai-seo-writer'),
             'checkReferenceUrls' => __('Review reference URLs', 'picot-ai-seo-writer'),
             /* translators: %s: Target keyword. */
             'referenceUrlsTitle' => __('%s - Reference URLs', 'picot-ai-seo-writer'),

@@ -82,8 +82,9 @@ abstract class REST_Controller
     {
         $post_id = (int) $request->get_param($param);
 
+        // 新投稿でも auto-draft の ID を必ず送る。投稿未指定の広い edit_posts フォールバックは使わない。
         if ($post_id <= 0) {
-            return current_user_can('edit_posts');
+            return false;
         }
 
         return current_user_can('edit_post', $post_id);

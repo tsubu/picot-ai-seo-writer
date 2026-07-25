@@ -73,6 +73,7 @@ class Activator
     private static function set_default_options()
     {
         $defaults = [
+            'picot_seo_writing_api_plan' => 'paid',
             'picot_seo_writing_text_model' => '',
             'picot_seo_writing_writing_style' => PICOT_SEO_WRITING_DEFAULT_WRITING_STYLE,
             'picot_seo_writing_writing_style_detail' => '',

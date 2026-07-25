@@ -56,14 +56,21 @@ class Settings_Page
             'picot-ai-seo-writer-admin-common',
            \PICOT_SEO_WRITING_PLUGIN_URL . 'assets/css/admin-common.css',
             [],
-           \PICOT_SEO_WRITING_VERSION
+            self::asset_version('assets/css/admin-common.css')
+        );
+
+        wp_enqueue_style(
+            'picot-ai-seo-writer-settings',
+           \PICOT_SEO_WRITING_PLUGIN_URL . 'assets/css/settings-page.css',
+            ['picot-ai-seo-writer-admin-common'],
+            self::asset_version('assets/css/settings-page.css')
         );
 
         wp_enqueue_script(
             'picot-ai-seo-writer-admin-settings',
            \PICOT_SEO_WRITING_PLUGIN_URL . 'assets/js/settings-page.js',
             ['jquery'],
-           \PICOT_SEO_WRITING_VERSION,
+            self::asset_version('assets/js/settings-page.js'),
             true
         );
 
@@ -73,8 +80,63 @@ class Settings_Page
             'nonce' => wp_create_nonce('wp_rest'),
             'ajax_nonce' => wp_create_nonce('picot_seo_writing_admin_nonce'),
             'model_descriptions' => get_option('picot_seo_writing_gemini_model_descriptions', []),
+            'isPaidApiPlan' => Ai_Client_Helper::is_paid_api_plan(),
             'strings' => Admin::get_localized_strings(),
         ]);
+
+        if (!self::is_wizard_view()) {
+            return;
+        }
+
+        wp_enqueue_style(
+            'picot-ai-seo-writer-wizard',
+           \PICOT_SEO_WRITING_PLUGIN_URL . 'assets/css/wizard.css',
+            ['picot-ai-seo-writer-settings'],
+            self::asset_version('assets/css/wizard.css')
+        );
+
+        wp_enqueue_script(
+            'picot-ai-seo-writer-wizard',
+           \PICOT_SEO_WRITING_PLUGIN_URL . 'assets/js/wizard.js',
+            ['jquery'],
+            self::asset_version('assets/js/wizard.js'),
+            true
+        );
+
+        wp_localize_script('picot-ai-seo-writer-wizard', 'picot_seo_writing_wizard', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('picot_seo_writing_admin_nonce'),
+            'model_descriptions' => get_option('picot_seo_writing_gemini_model_descriptions', []),
+            'isPaidApiPlan' => Ai_Client_Helper::is_paid_api_plan(),
+            'strings' => Admin::get_localized_strings(),
+        ]);
+    }
+
+    /**
+     * File-time based asset version with a plugin version fallback.
+     *
+     * @param string $relative_path Path relative to the plugin directory.
+     * @return string
+     */
+    private static function asset_version($relative_path)
+    {
+        $path = \PICOT_SEO_WRITING_PLUGIN_DIR . $relative_path;
+
+        return file_exists($path) ? (string) filemtime($path) : \PICOT_SEO_WRITING_VERSION;
+    }
+
+    /**
+     * Whether the wizard view is requested.
+     *
+     * Must stay in sync with render() so assets match the rendered screen.
+     *
+     * @return bool
+     */
+    private static function is_wizard_view()
+    {
+        $view = filter_input(INPUT_GET, 'view', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        return is_string($view) && $view === 'wizard';
     }
 
     /**
@@ -82,13 +144,160 @@ class Settings_Page
      */
     public function register_settings()
     {
+        register_setting(self::OPTION_GROUP, 'picot_seo_writing_api_plan', [
+            'sanitize_callback' => [Ai_Client_Helper::class, 'sanitize_api_plan'],
+            'default'           => 'paid',
+        ]);
         register_setting(self::OPTION_GROUP, 'picot_seo_writing_text_model', ['sanitize_callback' => 'sanitize_text_field']);
         register_setting(self::OPTION_GROUP, 'picot_seo_writing_image_model', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting(self::OPTION_GROUP, 'picot_seo_writing_writing_style', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting(self::OPTION_GROUP, 'picot_seo_writing_image_style', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting(self::OPTION_GROUP, 'picot_seo_writing_writing_style', [
+            'sanitize_callback' => [$this, 'sanitize_writing_style'],
+            'default'           => \PICOT_SEO_WRITING_DEFAULT_WRITING_STYLE,
+        ]);
+        register_setting(self::OPTION_GROUP, 'picot_seo_writing_image_style', [
+            'sanitize_callback' => [$this, 'sanitize_image_style'],
+            'default'           => 'photorealistic',
+        ]);
         register_setting(self::OPTION_GROUP, 'picot_seo_writing_writing_style_detail', ['sanitize_callback' => 'sanitize_textarea_field']);
         register_setting(self::OPTION_GROUP, 'picot_seo_writing_common_prompt', ['sanitize_callback' => 'sanitize_textarea_field']);
         register_setting(self::OPTION_GROUP, 'picot_seo_writing_image_common_prompt', ['sanitize_callback' => 'sanitize_textarea_field']);
+    }
+
+    /**
+     * Allowed writing style keys.
+     *
+     * @return string[]
+     */
+    public static function get_allowed_writing_styles()
+    {
+        return ['casual', 'professional', 'friendly', 'technical', 'humorous', 'persuasive', 'informative', 'detailed_role'];
+    }
+
+    /**
+     * Allowed image style keys.
+     *
+     * @return string[]
+     */
+    public static function get_allowed_image_styles()
+    {
+        return ['photorealistic', 'digital_art', 'vector', 'sketch', 'watercolor', 'cyberpunk', 'anime', 'oil_painting'];
+    }
+
+    /**
+     * Sanitize the writing style option.
+     *
+     * @param mixed $value Raw value.
+     * @return string
+     */
+    public function sanitize_writing_style($value)
+    {
+        $value = sanitize_key(is_string($value) ? $value : '');
+
+        return in_array($value, self::get_allowed_writing_styles(), true)
+            ? $value
+            : \PICOT_SEO_WRITING_DEFAULT_WRITING_STYLE;
+    }
+
+    /**
+     * Sanitize the image style option.
+     *
+     * @param mixed $value Raw value.
+     * @return string
+     */
+    public function sanitize_image_style($value)
+    {
+        $value = sanitize_key(is_string($value) ? $value : '');
+
+        return in_array($value, self::get_allowed_image_styles(), true) ? $value : 'photorealistic';
+    }
+
+    /**
+     * Output hidden inputs so partial forms do not wipe other options in the group.
+     *
+     * @param array $rendered Option names already rendered by the form.
+     */
+    private function render_preserved_settings_fields(array $rendered)
+    {
+        foreach (self::registered_option_names() as $option) {
+            if (in_array($option, $rendered, true)) {
+                continue;
+            }
+
+            $value = get_option($option, '');
+            if (is_array($value) || is_object($value)) {
+                continue;
+            }
+
+            printf(
+                '<input type="hidden" name="%1$s" value="%2$s" />',
+                esc_attr($option),
+                esc_attr((string) $value)
+            );
+        }
+    }
+
+    /**
+     * Option names registered under this plugin's settings group.
+     *
+     * @return string[]
+     */
+    private static function registered_option_names()
+    {
+        return [
+            'picot_seo_writing_api_plan',
+            'picot_seo_writing_text_model',
+            'picot_seo_writing_image_model',
+            'picot_seo_writing_writing_style',
+            'picot_seo_writing_image_style',
+            'picot_seo_writing_writing_style_detail',
+            'picot_seo_writing_common_prompt',
+            'picot_seo_writing_image_common_prompt',
+        ];
+    }
+
+    /**
+     * Render Gemini API plan selector markup.
+     *
+     * @param string $select_id HTML id for the select element.
+     */
+    private function render_api_plan_field($select_id = 'picot_seo_writing_api_plan')
+    {
+        $current = Ai_Client_Helper::get_api_plan();
+        $notice_id = $select_id . '_free_notice';
+        ?>
+        <select id="<?php echo esc_attr($select_id); ?>" name="picot_seo_writing_api_plan" class="picot-api-plan-select" data-free-notice="<?php echo esc_attr($notice_id); ?>">
+            <option value="paid" <?php selected($current, 'paid'); ?>><?php esc_html_e('Paid Gemini API (billing enabled)', 'picot-ai-seo-writer'); ?></option>
+            <option value="free" <?php selected($current, 'free'); ?>><?php esc_html_e('Free Gemini API (free tier)', 'picot-ai-seo-writer'); ?></option>
+        </select>
+        <p class="description">
+            <?php esc_html_e('Choose the plan that matches your Google AI API key. On the free tier, Google Search grounding and image generation are disabled in this plugin.', 'picot-ai-seo-writer'); ?>
+        </p>
+        <p
+            id="<?php echo esc_attr($notice_id); ?>"
+            class="description picot-api-plan-free-notice"
+            style="<?php echo $current === 'free' ? '' : 'display:none;'; ?>"
+        >
+            <?php esc_html_e('With free API usage, service may become unavailable due to Gemini token limit changes or similar policy updates.', 'picot-ai-seo-writer'); ?>
+        </p>
+        <script>
+        (function () {
+            var select = document.getElementById(<?php echo wp_json_encode($select_id); ?>);
+            if (!select) {
+                return;
+            }
+            var noticeId = select.getAttribute('data-free-notice');
+            var notice = noticeId ? document.getElementById(noticeId) : null;
+            if (!notice) {
+                return;
+            }
+            var sync = function () {
+                notice.style.display = select.value === 'free' ? '' : 'none';
+            };
+            select.addEventListener('change', sync);
+            sync();
+        })();
+        </script>
+        <?php
     }
 
     /**
@@ -120,6 +329,7 @@ class Settings_Page
 
         $ai_configured = Ai_Client_Helper::supports_text_generation();
         $ai_settings_url = Ai_Client_Helper::get_settings_url();
+        $ai_plugin_active = Ai_Client_Helper::is_ai_plugin_active();
 ?>
         <div class="wrap picot-settings-page">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
@@ -156,6 +366,47 @@ class Settings_Page
                                 </button>
                                 <span class="picot-connection-test-result" id="picot-test-result-ai"></span>
                                 <p class="description"><?php esc_html_e('This plugin uses the Google Gemini connector. Manage API keys under Settings → Connectors. Requests are sent through the WordPress AI Client.', 'picot-ai-seo-writer'); ?></p>
+                                <p class="description">
+                                    <?php
+                                    printf(
+                                        wp_kses(
+                                            /* translators: 1: Google AI Studio URL, 2: Gemini API pricing URL */
+                                            __('To check free-tier quotas, rate limits, and whether a model is free or paid, open <a href="%1$s" target="_blank" rel="noopener noreferrer">Google AI Studio</a> or the <a href="%2$s" target="_blank" rel="noopener noreferrer">Gemini API pricing</a> page.', 'picot-ai-seo-writer'),
+                                            array(
+                                                'a' => array(
+                                                    'href'   => true,
+                                                    'target' => true,
+                                                    'rel'    => true,
+                                                ),
+                                            )
+                                        ),
+                                        esc_url('https://aistudio.google.com/'),
+                                        esc_url('https://ai.google.dev/gemini-api/docs/pricing')
+                                    );
+                                    ?>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><?php esc_html_e('WordPress AI plugin', 'picot-ai-seo-writer'); ?></th>
+                            <td>
+                                <?php if ($ai_plugin_active) : ?>
+                                    <p style="margin: 0 0 10px; color: #155724;"><?php esc_html_e('The official WordPress AI plugin is active.', 'picot-ai-seo-writer'); ?></p>
+                                <?php else : ?>
+                                    <p style="margin: 0 0 10px; color: #856404;"><?php echo esc_html(Ai_Client_Helper::ai_plugin_required_message()); ?></p>
+                                    <p style="margin: 0 0 10px;">
+                                        <a class="button button-primary" href="<?php echo esc_url(Ai_Client_Helper::get_ai_plugin_action_url()); ?>">
+                                            <?php echo esc_html(Ai_Client_Helper::get_ai_plugin_action_label()); ?>
+                                        </a>
+                                    </p>
+                                <?php endif; ?>
+                                <p class="description"><?php esc_html_e('Do this after connecting providers under Settings → Connectors. Also supports the AI plugin\'s experimental Connector Approvals feature.', 'picot-ai-seo-writer'); ?></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="picot_seo_writing_api_plan"><?php esc_html_e('Gemini API plan', 'picot-ai-seo-writer'); ?></label></th>
+                            <td>
+                                <?php $this->render_api_plan_field(); ?>
                             </td>
                         </tr>
                         <tr>
@@ -180,12 +431,12 @@ class Settings_Page
                                     <button type="button" id="fetch-gemini-models" class="button"><?php esc_html_e('Refresh model list', 'picot-ai-seo-writer'); ?></button>
                                 </div>
                                 <div id="picot_seo_writing_text_model_description" class="picot-model-description" style="margin-top: 8px; font-size: 12px; color: #666; font-style: italic;"></div>
-                                <p class="description">
+                                <p class="description picot-recommended-text-model">
                                     <?php 
                                     if (!empty($models) && is_array($models)) {
-                                        $first_label = reset($models);
+                                        $recommended_label = Ai_Client_Helper::get_recommended_model_label($models);
                                         /* translators: %s: Recommended model name */
-                                        printf(esc_html__('Recommended model: %s', 'picot-ai-seo-writer'), '<strong>' . esc_html($first_label) . '</strong>');
+                                        printf(esc_html__('Recommended model: %s', 'picot-ai-seo-writer'), '<strong>' . esc_html($recommended_label) . '</strong>');
                                     } else {
                                         esc_html_e('Click "Refresh model list" to fetch available models.', 'picot-ai-seo-writer');
                                     }
@@ -213,8 +464,23 @@ class Settings_Page
                                     ?>
                                 </select>
                                 <div id="picot_seo_writing_image_model_description" class="picot-model-description" style="margin-top: 8px; font-size: 12px; color: #666; font-style: italic;"></div>
-                                <p class="description"><?php esc_html_e('Choose the model used for image generation.', 'picot-ai-seo-writer'); ?></p>
+                                <p class="description picot-recommended-image-model">
+                                    <?php
+                                    if (!empty($image_models) && is_array($image_models)) {
+                                        $recommended_image_label = Ai_Client_Helper::get_recommended_model_label($image_models);
+                                        /* translators: %s: Recommended image model name */
+                                        printf(esc_html__('Recommended image model: %s', 'picot-ai-seo-writer'), '<strong>' . esc_html($recommended_image_label) . '</strong>');
+                                    } else {
+                                        esc_html_e('Choose the model used for image generation.', 'picot-ai-seo-writer');
+                                    }
+                                    ?>
+                                </p>
                                 <p class="description"><?php esc_html_e('Image generation models (such as Imagen) require a paid Google AI API plan with billing enabled. Image generation may not work with API keys that only include the free tier.', 'picot-ai-seo-writer'); ?></p>
+                                <?php if (!Ai_Client_Helper::is_paid_api_plan()) : ?>
+                                    <p class="description" style="color: #856404;">
+                                        <?php esc_html_e('Free Gemini API plan is selected. Image generation is disabled until you switch to the paid plan setting.', 'picot-ai-seo-writer'); ?>
+                                    </p>
+                                <?php endif; ?>
                             </td>
                         </tr>
                         </tbody></table>
@@ -389,18 +655,60 @@ class Settings_Page
                 <form id="picot-wizard-form" method="post" action="options.php">
                     <?php settings_fields(self::OPTION_GROUP); ?>
                     <input type="hidden" name="_wp_http_referer" value="<?php echo esc_url(admin_url('options-general.php?page=' . self::PAGE_SLUG . '&settings-updated=true')); ?>" />
+                    <?php
+                    // options.php はグループ内の全設定を書き戻すため、ウィザードで扱わない項目は現在値を保持する。
+                    $this->render_preserved_settings_fields([
+                        'picot_seo_writing_api_plan',
+                        'picot_seo_writing_text_model',
+                        'picot_seo_writing_image_model',
+                    ]);
+                    ?>
                     
                     <div class="picot-wizard-content">
                         <!-- Step 1: WordPress AI -->
                         <div class="picot-wizard-screen active" data-step-id="ai_setup">
                         <h3><?php esc_html_e('1. Configure the Google Gemini connector', 'picot-ai-seo-writer'); ?></h3>
                         <p><?php esc_html_e('Install and activate the Google (Gemini) connector under Settings → Connectors, then connect your API key. This plugin uses Gemini.', 'picot-ai-seo-writer'); ?></p>
+                        <?php if (!Ai_Client_Helper::is_ai_plugin_active()) : ?>
+                            <div class="notice notice-warning inline" style="margin: 12px 0;">
+                                <p><?php echo esc_html(Ai_Client_Helper::ai_plugin_required_message()); ?></p>
+                                <p>
+                                    <a class="button button-primary" href="<?php echo esc_url(Ai_Client_Helper::get_ai_plugin_action_url()); ?>">
+                                        <?php echo esc_html(Ai_Client_Helper::get_ai_plugin_action_label()); ?>
+                                    </a>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                        <p class="description">
+                            <?php
+                            printf(
+                                wp_kses(
+                                    /* translators: 1: Google AI Studio URL, 2: Gemini API pricing URL */
+                                    __('To check free-tier quotas, rate limits, and whether a model is free or paid, open <a href="%1$s" target="_blank" rel="noopener noreferrer">Google AI Studio</a> or the <a href="%2$s" target="_blank" rel="noopener noreferrer">Gemini API pricing</a> page.', 'picot-ai-seo-writer'),
+                                    array(
+                                        'a' => array(
+                                            'href'   => true,
+                                            'target' => true,
+                                            'rel'    => true,
+                                        ),
+                                    )
+                                ),
+                                esc_url('https://aistudio.google.com/'),
+                                esc_url('https://ai.google.dev/gemini-api/docs/pricing')
+                            );
+                            ?>
+                        </p>
 
                         <div style="margin: 15px 0;">
                             <a href="<?php echo esc_url($ai_settings_url); ?>" class="button">
                                 <?php esc_html_e('Open AI connector settings', 'picot-ai-seo-writer'); ?>
                             </a>
                         </div>
+
+                        <p>
+                            <label for="picot_seo_writing_api_plan_wizard"><strong><?php esc_html_e('Gemini API plan', 'picot-ai-seo-writer'); ?></strong></label>
+                        </p>
+                        <?php $this->render_api_plan_field('picot_seo_writing_api_plan_wizard'); ?>
 
                         <p style="margin-top: 10px;">
                             <?php if ($ai_configured) : ?>
@@ -445,12 +753,12 @@ class Settings_Page
                             </div>
                         </div>
 
-                        <p class="description" style="margin-top: 15px; margin-bottom: 20px;">
+                        <p class="description picot-recommended-text-model" style="margin-top: 15px; margin-bottom: 20px;">
                             <?php 
                             if (!empty($models)) {
-                                $first_label = reset($models);
+                                $recommended_label = Ai_Client_Helper::get_recommended_model_label($models);
                                 /* translators: %s: Recommended model name */
-                                printf(esc_html__('Recommended text model: %s', 'picot-ai-seo-writer'), '<strong>' . esc_html($first_label) . '</strong>');
+                                printf(esc_html__('Recommended text model: %s', 'picot-ai-seo-writer'), '<strong>' . esc_html($recommended_label) . '</strong>');
                             }
                             ?>
                         </p>
@@ -472,6 +780,15 @@ class Settings_Page
                                 ?>
                             </select>
                             <div id="picot_seo_writing_image_model_description" class="picot-model-description" style="margin-top: 8px; font-size: 12px; color: #666; font-style: italic;"></div>
+                            <p class="description picot-recommended-image-model">
+                                <?php
+                                if (!empty($image_models) && is_array($image_models)) {
+                                    $recommended_image_label = Ai_Client_Helper::get_recommended_model_label($image_models);
+                                    /* translators: %s: Recommended image model name */
+                                    printf(esc_html__('Recommended image model: %s', 'picot-ai-seo-writer'), '<strong>' . esc_html($recommended_image_label) . '</strong>');
+                                }
+                                ?>
+                            </p>
                             <p class="description"><?php esc_html_e('Image generation models (such as Imagen) require a paid Google AI API plan with billing enabled. Image generation may not work with API keys that only include the free tier.', 'picot-ai-seo-writer'); ?></p>
                         </div>
                     </div>
@@ -499,16 +816,16 @@ class Settings_Page
             wp_send_json_error(['message' => __('You do not have permission to perform this action.', 'picot-ai-seo-writer')]);
         }
 
-        if (!Ai_Client_Helper::is_available()) {
-            wp_send_json_error(['message' => __('WordPress AI Client is unavailable. Install the Google Gemini connector.', 'picot-ai-seo-writer')]);
+        if (!Ai_Client_Helper::is_ready()) {
+            wp_send_json_error(['message' => Ai_Client_Helper::readiness_error_message()]);
         }
 
         try {
             $manager = new Model_Manager();
             $text_items = $manager->list_models();
             $image_items = $manager->list_image_models();
-        } catch (\Exception $e) {
-            wp_send_json_error(['message' => $e->getMessage()]);
+        } catch (\Throwable $e) {
+            wp_send_json_error(['message' => Ai_Client_Helper::localize_api_error_message($e->getMessage())]);
         }
 
         $text_models = [];
@@ -546,18 +863,23 @@ class Settings_Page
             wp_send_json_error(['message' => __('You do not have permission to perform this action.', 'picot-ai-seo-writer')]);
         }
 
-        if (!Ai_Client_Helper::is_available()) {
-            wp_send_json_error(['message' => __('WordPress AI Client is unavailable. Install the Google Gemini connector.', 'picot-ai-seo-writer')]);
+        if (!Ai_Client_Helper::is_ready()) {
+            wp_send_json_error(['message' => Ai_Client_Helper::readiness_error_message()]);
         }
 
-        $builder = Ai_Client_Helper::create_google_prompt_builder(__('Hello', 'picot-ai-seo-writer'));
-        if (!$builder || !$builder->is_supported_for_text_generation()) {
-            wp_send_json_error(['message' => __('Google Gemini connector is not configured. Connect Gemini under Settings → Connectors.', 'picot-ai-seo-writer')]);
+        try {
+            $builder = Ai_Client_Helper::create_google_prompt_builder(__('Hello', 'picot-ai-seo-writer'));
+            if (!$builder || !$builder->is_supported_for_text_generation()) {
+                wp_send_json_error(['message' => __('Google Gemini connector is not configured. Connect Gemini under Settings → Connectors.', 'picot-ai-seo-writer')]);
+            }
+
+            $result = $builder->generate_text();
+        } catch (\Throwable $e) {
+            wp_send_json_error(['message' => Ai_Client_Helper::localize_api_error_message($e->getMessage())]);
         }
 
-        $result = $builder->generate_text();
         if (is_wp_error($result)) {
-            wp_send_json_error(['message' => $result->get_error_message()]);
+            wp_send_json_error(['message' => Ai_Client_Helper::localize_api_error_message($result->get_error_message())]);
         }
 
         wp_send_json_success(['message' => __('Successfully connected to the Google Gemini connector.', 'picot-ai-seo-writer')]);

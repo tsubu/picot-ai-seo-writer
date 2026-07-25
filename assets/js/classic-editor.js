@@ -10,6 +10,11 @@
   let currentImageSuggestions = [];
 
   $(document).ready(function () {
+    // クラシック用メタボックス UI が無い画面では何もしない（不要な AJAX や誤動作を防ぐ）。
+    if ($("#picot-ai-seo-writer-meta-box").length === 0) {
+      return;
+    }
+
     // 履歴を読み込み
     loadHistory();
 
@@ -18,6 +23,20 @@
 
     // 画像挿入ポイント探索ボタン
     $("#picot-ai-seo-writer-suggest-images-btn").on("click", suggestImages);
+
+    if (!isPaidApiPlan()) {
+      $("#picot-ai-seo-writer-suggest-images-btn").prop("disabled", true).attr(
+        "title",
+        t("imageGenFreeDisabled", "Free Gemini API plan is selected. Image generation is disabled until you switch to the paid plan setting.")
+      );
+      $("#picot-ai-seo-writer-suggest-images-btn").closest(".picot-ai-seo-writer-field").append(
+        $("<p/>", {
+          class: "description",
+          css: { color: "#856404", marginTop: "8px" },
+          text: t("imageGenFreeDisabled", "Free Gemini API plan is selected. Image generation is disabled until you switch to the paid plan setting.")
+        })
+      );
+    }
 
     // マーカークリアボタン（動的に追加されるため親要素に委譲）
     $(document).on("click", "#picot-ai-seo-writer-clear-markers-btn", function() {
@@ -47,6 +66,18 @@
     return strings[key] || fallback || "";
   }
 
+  function isPaidApiPlan() {
+    return !!(window.picot_seo_writing_admin && picot_seo_writing_admin.isPaidApiPlan);
+  }
+
+  function getEditorPostId() {
+    const fromField = parseInt($("#post_ID").val(), 10);
+    if (fromField > 0) {
+      return fromField;
+    }
+    return parseInt((picot_seo_writing_admin && picot_seo_writing_admin.post_id) || 0, 10) || 0;
+  }
+
   function formatString(template, ...args) {
     if (!template) {
       return "";
@@ -65,7 +96,7 @@
     $.ajax({
       url: picot_seo_writing_admin.rest_url + "/research/history",
       method: "GET",
-      data: { post_id: picot_seo_writing_admin.post_id },
+      data: { post_id: getEditorPostId() },
       beforeSend: function (xhr) {
         xhr.setRequestHeader("X-WP-Nonce", picot_seo_writing_admin.nonce);
       },
@@ -171,7 +202,7 @@
       method: "POST",
       data: {
         keyword: keyword,
-        post_id: picot_seo_writing_admin.post_id,
+        post_id: getEditorPostId(),
       },
       beforeSend: function (xhr) {
         xhr.setRequestHeader("X-WP-Nonce", picot_seo_writing_admin.nonce);
@@ -338,6 +369,20 @@
    * 画像挿入ポイントを提案
    */
   function suggestImages() {
+    if (!isPaidApiPlan()) {
+      showMessage(
+        t("imageGenPaidRequired", "Image generation requires a paid Gemini API plan. Set Gemini API plan to Paid on the settings screen."),
+        "error"
+      );
+      return;
+    }
+
+    const postId = getEditorPostId();
+    if (!postId) {
+      showMessage(t("postIdRequired", "Save or wait until the post draft is available, then try again."), "error");
+      return;
+    }
+
     let content = "";
 
     // エディタから内容を取得
@@ -373,7 +418,7 @@
     $.ajax({
       url: picot_seo_writing_admin.rest_url + "/suggest-images",
       method: "POST",
-      data: { content: content },
+      data: { content: content, post_id: getEditorPostId() },
       beforeSend: function (xhr) {
         xhr.setRequestHeader("X-WP-Nonce", picot_seo_writing_admin.nonce);
       },
@@ -421,7 +466,11 @@
     }
 
     suggestions.forEach(function (suggestion, index) {
-      const marker = "<!-- PICOT_SEO_WRITING_MARKER:" + index + ": " + suggestion.prompt + " -->";
+      // プロンプトに "--" や ">" が含まれるとコメントが壊れるため無害化する。
+      const safePrompt = String(suggestion.prompt || "")
+        .replace(/-{2,}/g, "-")
+        .replace(/[<>]/g, "");
+      const marker = "<!-- PICOT_SEO_WRITING_MARKER:" + index + ": " + safePrompt + " -->";
       if (content.indexOf("PICOT_SEO_WRITING_MARKER:" + index + ":") !== -1) return;
 
       const searchText = suggestion.location;
@@ -492,6 +541,20 @@
    * 画像を生成してエディタに配置（またはアイキャッチ設定）
    */
   function generateAndPlaceImageClassic(suggestion, index, isFeatured) {
+    if (!isPaidApiPlan()) {
+      showMessage(
+        t("imageGenPaidRequired", "Image generation requires a paid Gemini API plan. Set Gemini API plan to Paid on the settings screen."),
+        "error"
+      );
+      return;
+    }
+
+    const postId = getEditorPostId();
+    if (!postId) {
+      showMessage(t("postIdRequired", "Save or wait until the post draft is available, then try again."), "error");
+      return;
+    }
+
     showLoading(true);
     showMessage(t("generatingImageClassic", "Generating image..."), "info");
 
@@ -500,18 +563,19 @@
       method: "POST",
       data: {
         prompt: suggestion.prompt,
-        post_id: picot_seo_writing_admin.post_id
+        post_id: postId
       },
       beforeSend: function (xhr) {
         xhr.setRequestHeader("X-WP-Nonce", picot_seo_writing_admin.nonce);
       },
       success: function (response) {
-        if (response.success && response.url) {
+        const result = (response && response.data) || response || {};
+        if (response && response.success && result.url) {
           if (isFeatured) {
             // アイキャッチに設定
-            $("#_thumbnail_id").val(response.attachment_id);
+            $("#_thumbnail_id").val(result.attachment_id);
             if (window.setPostThumbnail) {
-              window.setPostThumbnail(response.attachment_id);
+              window.setPostThumbnail(result.attachment_id);
             }
             currentFeaturedText = "";
             currentFeaturedPrompt = "";
@@ -519,7 +583,7 @@
             showMessage(t("featuredImageSetClassic", "Featured image set"), "success");
           } else {
             const markerSearch = "PICOT_SEO_WRITING_MARKER:" + index + ":";
-            const imageHtml = '<div style="text-align:center;"><img src="' + response.url + '" alt="' + escapeHtml(suggestion.description) + '" /><br /><small>' + escapeHtml(suggestion.description) + '</small></div>';
+            const imageHtml = '<div style="text-align:center;"><img src="' + escapeHtml(result.url) + '" alt="' + escapeHtml(suggestion.description) + '" /><br /><small>' + escapeHtml(suggestion.description) + '</small></div>';
             
             const isTinyMCE = typeof tinyMCE !== "undefined" && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden();
             if (isTinyMCE) {
@@ -592,7 +656,8 @@
    */
   function showMessage(message, type) {
     const $message = $("#picot-ai-seo-writer-message");
-    $message.html(message);
+    // サーバー由来の文字列を含むため HTML として解釈させない。
+    $message.text(message == null ? "" : String(message));
     $message.removeClass("success error info");
 
     if (type) {
@@ -613,13 +678,13 @@
     
     html += '<h3 style="font-size:15px; margin: 15px 0 10px;">' + escapeHtml(t("jaSearchRankings", "Japan search rankings (top 10)")) + '</h3><ul style="list-style:disc; margin-left:20px; margin-bottom: 20px;">';
     (item.locale_urls_ja || []).forEach(urlInfo => {
-      html += '<li style="margin-bottom:5px;"><a href="' + escapeHtml(urlInfo.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(urlInfo.title || urlInfo.url) + '</a></li>';
+      html += renderUrlListItem(urlInfo);
     });
     html += '</ul>';
 
     html += '<h3 style="font-size:15px; margin: 15px 0 10px;">' + escapeHtml(t("enSearchRankings", "English search rankings (top 5)")) + '</h3><ul style="list-style:disc; margin-left:20px; margin-bottom: 20px;">';
     (item.locale_urls_en || []).forEach(urlInfo => {
-      html += '<li style="margin-bottom:5px;"><a href="' + escapeHtml(urlInfo.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(urlInfo.title || urlInfo.url) + '</a></li>';
+      html += renderUrlListItem(urlInfo);
     });
     html += '</ul>';
     
@@ -636,6 +701,26 @@
   }
 
   /**
+   * 参照URLの一覧項目を生成（http/https 以外はリンクにしない）
+   */
+  function renderUrlListItem(urlInfo) {
+    const url = String((urlInfo && urlInfo.url) || "").trim();
+    const label = escapeHtml((urlInfo && urlInfo.title) || url);
+
+    if (!/^https?:\/\//i.test(url)) {
+      return '<li style="margin-bottom:5px;">' + label + "</li>";
+    }
+
+    return (
+      '<li style="margin-bottom:5px;"><a href="' +
+      escapeHtml(url) +
+      '" target="_blank" rel="noopener noreferrer">' +
+      label +
+      "</a></li>"
+    );
+  }
+
+  /**
    * HTMLエスケープ
    */
   function escapeHtml(text) {
@@ -646,7 +731,7 @@
       '"': "&quot;",
       "'": "&#039;",
     };
-    return text.replace(/[&<>"']/g, function (m) {
+    return String(text == null ? "" : text).replace(/[&<>"']/g, function (m) {
       return map[m];
     });
   }

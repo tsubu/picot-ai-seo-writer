@@ -32,13 +32,8 @@ class Gemini_Client
      */
     public function generate_content($model, $contents, $options = [], $timeout = PICOT_SEO_WRITING_API_TIMEOUT)
     {
-        if (!Ai_Client_Helper::is_available()) {
-            throw new \Exception(
-                esc_html__(
-                    'WordPress AI Client is not available. Install and configure the Google Gemini connector under Settings → Connectors.',
-                    'picot-ai-seo-writer'
-                )
-            );
+        if (!Ai_Client_Helper::is_ready()) {
+            throw new \Exception(esc_html(Ai_Client_Helper::readiness_error_message()));
         }
 
         [$provider, $model_id] = Ai_Client_Helper::parse_model_spec($model);
@@ -52,6 +47,8 @@ class Gemini_Client
         if ($prompt === '') {
             throw new \Exception(esc_html__('The prompt is empty.', 'picot-ai-seo-writer'));
         }
+
+        $prompt .= Ai_Client_Helper::free_tier_output_instruction();
 
         $request_options = new RequestOptions();
         $request_options->setTimeout((float) $timeout);
@@ -67,7 +64,7 @@ class Gemini_Client
             $builder->as_json_response();
         }
 
-        if (!empty($options['use_search'])) {
+        if (!empty($options['use_search']) && Ai_Client_Helper::is_paid_api_plan()) {
             $builder->using_web_search(new WebSearch());
         }
 

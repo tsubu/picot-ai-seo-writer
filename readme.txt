@@ -4,7 +4,7 @@ Tags: seo, ai, gemini, writing, content
 Requires at least: 7.0
 Tested up to: 7.0
 Requires PHP: 8.3
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,10 +22,20 @@ Picot AI SEO Writer helps site administrators create high-quality, SEO-friendly 
 * **Writing Style Presets**: Choose from professional, casual, friendly, technical, and other tone options.
 * **Image Prompt Suggestions**: Analyze generated content and save featured/body image prompts for downstream workflows.
 * **Reference URL List**: Review resolved source URLs used during generation.
+* **WordPress AI Connector Integration**: Supports connector-based provider/model selection, readiness checks, connector-specific error guidance, and WordPress's experimental Connector Approvals feature.
+* **Free-Tier Output Mode**: Gemini API free-tier requests are adjusted to request concise, simplified, complete responses.
+
+= Requirements and Gemini API plans =
+
+This plugin requires the official WordPress connector functionality and the official [AI plugin](https://wordpress.org/plugins/ai/). Install the **Google Gemini connector**, connect it under **Settings → Connectors**, and activate the official AI plugin. The plugin also supports WordPress's experimental Connector Approvals feature when that feature is enabled.
+
+Gemini API free-tier usage is supported for text generation. However, free-tier token quotas, rate limits, model availability, and Google policies may change, and the plugin may become temporarily or permanently unavailable under those limits. Google Search Grounding and image generation are disabled when the free plan is selected in this plugin.
+
+For more reliable operation, higher limits, and access to supported paid features, a small amount of paid Gemini API usage with billing enabled is recommended.
 
 == External services ==
 
-This plugin sends AI requests through the **WordPress AI Client** (WordPress 7.0+) and **requires the Google Gemini connector**. Install and activate the [Google AI connector plugin](https://wordpress.org/plugins/ai-provider-for-google/), then configure your Gemini API key under **Settings → Connectors**. Picot AI SEO Writer does not store or read provider API keys directly.
+This plugin sends AI requests through the **WordPress AI Client** (WordPress 7.0+) and requires both the [Google AI connector plugin](https://wordpress.org/plugins/ai-provider-for-google/) and the official [AI plugin](https://wordpress.org/plugins/ai/). It also supports the AI plugin's experimental Connector Approvals feature. Connect your Gemini API key under **Settings → Connectors** and, when Connector Approvals is enabled, approve connector access when prompted. Picot AI SEO Writer does not store or read provider API keys directly.
 
 This plugin connects to the **Google Generative Language API (Gemini)** provided by Google LLC.
 
@@ -41,13 +51,14 @@ This plugin connects to the **Google Generative Language API (Gemini)** provided
 1. Upload the `picot-ai-seo-writer` folder to the `/wp-content/plugins/` directory, or install through the WordPress Plugins screen.
 2. Activate the plugin through the **Plugins** menu in WordPress (requires WordPress 7.0 or later).
 3. Install and activate the **Google (Gemini) AI connector** plugin, then open **Settings → Connectors** and connect your Gemini API key.
-4. Open **Settings → Picot AI SEO Writer**, select a Gemini model, then use the **Picot AI SEO Writer** sidebar in a post to generate content.
+4. Install and activate the official **AI** plugin. If its experimental Connector Approvals feature is enabled, approve connector access when prompted.
+5. Open **Settings → Picot AI SEO Writer**, select a Gemini model and API plan, then use the **Picot AI SEO Writer** sidebar in a post to generate content.
 
 == Frequently Asked Questions ==
 
 = Which AI connector do I need? =
 
-This plugin requires the **Google Gemini connector** (AI Provider for Google). Other connectors such as OpenAI or Anthropic are not supported.
+This plugin requires the **Google Gemini connector** (AI Provider for Google) and the official **AI** plugin. It also supports the AI plugin's experimental Connector Approvals feature. Other provider connectors such as OpenAI or Anthropic are not supported.
 
 = Do I need to enter an API key in this plugin? =
 
@@ -61,9 +72,11 @@ No. This plugin uses Gemini's built-in Google Search Grounding feature. You only
 
 Yes. The plugin supports both the block editor and the classic editor.
 
-= Is the plugin free? =
+= Can I use the Gemini API free tier? =
 
-The plugin is free. Gemini API usage may incur costs depending on your Google AI plan and usage.
+Yes. The plugin itself is free, and text generation supports the Gemini API free tier. Free-tier prompts request concise, simplified responses so they are more likely to complete within strict token limits. Google Search Grounding and image generation are disabled when the free plan is selected.
+
+Free-tier quotas, token limits, rate limits, model availability, and Google policies can change without notice, so requests may fail or the service may become unavailable. For stable operation, a small amount of paid Gemini API usage with billing enabled is recommended.
 
 == Screenshots ==
 
@@ -74,6 +87,14 @@ The plugin is free. Gemini API usage may incur costs depending on your Google AI
 5. Settings page: connect Google Gemini via WordPress AI Client and select text and image models.
 
 == Changelog ==
+
+= 1.0.5 =
+* Added detailed WordPress AI connector integration, including support for the experimental Connector Approvals feature, readiness checks, and clear setup guidance.
+* Added explicit requirements for the Google Gemini connector and the official AI plugin.
+* Added Gemini API free-tier support guidance and concise, simplified free-tier response instructions.
+* Added a recommendation to use a small paid Gemini API allowance for more reliable operation.
+* Added security updates for REST permissions, output escaping, SSRF prevention, image upload validation, logging, and uninstall cleanup.
+* Improved model selection, editor behavior, error handling, translations, and free/paid plan behavior.
 
 = 1.0.4 =
 * Added Advanced settings for role settings (detailed writing style), common article generation prompts, and shared image prompts.
@@ -107,6 +128,9 @@ The plugin is free. Gemini API usage may incur costs depending on your Google AI
 * Reference URL resolution for grounded sources.
 
 == Upgrade Notice ==
+
+= 1.0.5 =
+Security and connector integration update. Requires the Google Gemini connector and the official AI plugin; free-tier text use is supported with stricter limits.
 
 = 1.0.4 =
 Adds advanced role/common prompts, safer image placement spacing, and Japanese translation style-guide fixes.

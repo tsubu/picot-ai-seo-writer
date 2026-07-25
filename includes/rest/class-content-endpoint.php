@@ -9,6 +9,7 @@
 namespace PICOT_SEO_WRITING\REST;
 
 use PICOT_SEO_WRITING\Admin\Admin;
+use PICOT_SEO_WRITING\Ai_Client_Helper;
 use PICOT_SEO_WRITING\API\Content_Generator;
 use PICOT_SEO_WRITING\API\Grounding_Url_Resolver;
 use PICOT_SEO_WRITING\Database\Research_Repository;
@@ -73,18 +74,18 @@ class Content_Endpoint extends REST_Controller
         $sources  = $request->get_param('sources'); // JSON 文字列または配列
 
         if ($post_id <= 0) {
-            return new \WP_REST_Response(['success' => false, 'error' => 'Invalid post_id'], 400);
+            return new \WP_REST_Response(['success' => false, 'error' => esc_html__('Invalid post ID.', 'picot-ai-seo-writer')], 400);
         }
 
         // post が実在するか確認
         if (!get_post($post_id)) {
-            return new \WP_REST_Response(['success' => false, 'error' => 'Post not found'], 404);
+            return new \WP_REST_Response(['success' => false, 'error' => esc_html__('Post not found.', 'picot-ai-seo-writer')], 404);
         }
 
         update_post_meta($post_id, 'picot_seo_writing_keyword', $keyword);
         update_post_meta($post_id, 'picot_seo_writing_notes', $notes);
 
-        $sources_json = is_string($sources) ? $sources : wp_json_encode($sources, JSON_UNESCAPED_UNICODE);
+        $sources_json = wp_json_encode($this->sanitize_sources($sources), JSON_UNESCAPED_UNICODE);
         update_post_meta($post_id, 'picot_seo_writing_sources', wp_slash($sources_json));
 
         \PICOT_SEO_WRITING\Logger::info('save-meta: Saved', [
@@ -105,12 +106,13 @@ class Content_Endpoint extends REST_Controller
     public function handle_insert_image_prompts($request)
     {
         $http_timeout_filter = $this->extend_execution_time();
+        $ob_base_level = ob_get_level();
         ob_start();
 
         try {
-            $content = $request->get_param('content');
+            $content = (string) $request->get_param('content');
             $post_id = (int) $request->get_param('post_id');
-            if (empty($content)) {
+            if ($content === '') {
                 throw new \Exception(esc_html__('Content is empty.', 'picot-ai-seo-writer'));
             }
 
@@ -118,9 +120,9 @@ class Content_Endpoint extends REST_Controller
             $result    = $generator->insert_image_prompts($content);
 
             if (is_wp_error($result)) {
-                ob_end_clean();
+                $this->discard_output_buffers($ob_base_level);
                 remove_filter('http_request_timeout', $http_timeout_filter);
-                return new \WP_REST_Response(['success' => false, 'message' => $result->get_error_message()], 500);
+                return new \WP_REST_Response(['success' => false, 'message' => Ai_Client_Helper::localize_api_error_message($result->get_error_message())], 500);
             }
 
             // --- JSON 抽出 ---
@@ -151,7 +153,7 @@ class Content_Endpoint extends REST_Controller
                 \PICOT_SEO_WRITING\Logger::error('insert-image-prompts: JSON parse failed', [
                     'error' => $json_err,
                 ]);
-                ob_end_clean();
+                $this->discard_output_buffers($ob_base_level);
                 remove_filter('http_request_timeout', $http_timeout_filter);
                 return new \WP_REST_Response([
                     'success' => false,
@@ -180,7 +182,7 @@ class Content_Endpoint extends REST_Controller
                 update_post_meta($post_id, '_picot_aio_optimizer_image_suggestions_updated', current_time('mysql'));
             }
 
-            ob_end_clean();
+            $this->discard_output_buffers($ob_base_level);
             remove_filter('http_request_timeout', $http_timeout_filter);
             return new \WP_REST_Response([
                 'success' => true,
@@ -189,7 +191,7 @@ class Content_Endpoint extends REST_Controller
             ], 200);
 
         } catch (\Throwable $e) {
-            ob_end_clean();
+            $this->discard_output_buffers($ob_base_level);
             remove_filter('http_request_timeout', $http_timeout_filter);
             \PICOT_SEO_WRITING\Logger::error('insert-image-prompts failed', [
                 'message' => $e->getMessage(),
@@ -198,9 +200,7 @@ class Content_Endpoint extends REST_Controller
             ]);
             return new \WP_REST_Response([
                 'success' => false,
-                'message' => $e->getMessage(),
-                'file'    => basename($e->getFile()),
-                'line'    => $e->getLine(),
+                'message' => Ai_Client_Helper::localize_api_error_message($e->getMessage()),
             ], 500);
         }
     }
@@ -216,10 +216,11 @@ class Content_Endpoint extends REST_Controller
         $http_timeout_filter = $this->extend_execution_time();
 
         // 出力バッファリングを開始し、意図しないPHPの警告出力を防ぐ
+        $ob_base_level = ob_get_level();
         ob_start();
 
-        $keyword = $request->get_param('keyword');
-        $additional_notes = $request->get_param('additional_notes') ?? '';
+        $keyword = sanitize_text_field((string) $request->get_param('keyword'));
+        $additional_notes = sanitize_textarea_field((string) ($request->get_param('additional_notes') ?? ''));
         $language = Admin::get_default_output_language();
         $post_id = (int) $request->get_param('post_id');
         $writing_style_param = $request->get_param('writing_style');
@@ -231,17 +232,13 @@ class Content_Endpoint extends REST_Controller
         ]);
 
         if (empty($keyword)) {
-            if (ob_get_length()) {
-                ob_end_clean();
-            }
+            $this->discard_output_buffers($ob_base_level);
             remove_filter('http_request_timeout', $http_timeout_filter);
             return $this->error_response(esc_html__('Target keyword is required', 'picot-ai-seo-writer'));
         }
 
         try {
-            $style = !empty($writing_style_param)
-                ? sanitize_text_field($writing_style_param)
-                : get_option('picot_seo_writing_writing_style', PICOT_SEO_WRITING_DEFAULT_WRITING_STYLE);
+            $style = $this->resolve_writing_style($writing_style_param);
 
             $generator = new Content_Generator();
             $url_resolver = new Grounding_Url_Resolver();
@@ -285,6 +282,7 @@ class Content_Endpoint extends REST_Controller
             if (!empty($sources)) {
                 $sources = $url_resolver->resolve_source_urls($sources);
             }
+            $sources = $this->sanitize_sources($sources);
 
             // タイトル抽出
             $title = '';
@@ -296,6 +294,12 @@ class Content_Endpoint extends REST_Controller
                 if (preg_match('/<h[1-3][^>]*>(.*?)<\/h[1-3]>/i', $raw_content, $m)) {
                     $title = wp_strip_all_tags($m[1]);
                 }
+            }
+
+            // 概要は本文を掃除する前に raw から抽出する（掃除後だと必ず空になるため）。
+            $excerpt = '';
+            if (preg_match('/\[OVERVIEW_START\](.*?)\[OVERVIEW_END\]/s', $raw_content, $overview_matches)) {
+                $excerpt = trim($overview_matches[1]);
             }
 
             // 本文のみを抽出（タグが含まれるブロックをすべて確実に削除）
@@ -349,13 +353,6 @@ class Content_Endpoint extends REST_Controller
                 'cleaned_length' => strlen($clean_content)
             ]);
 
-            // 概要の抽出と削除（本文に残さない）
-            $excerpt = '';
-            if (preg_match('/\[OVERVIEW_START\](.*?)\[OVERVIEW_END\]/s', $clean_content, $matches)) {
-                $excerpt = trim($matches[1]);
-                $clean_content = str_replace($matches[0], '', $clean_content);
-            }
-
             \PICOT_SEO_WRITING\Logger::info('REST API: Article generated successfully', [
                 'title' => $title,
                 'sources_count' => count($sources)
@@ -396,32 +393,102 @@ class Content_Endpoint extends REST_Controller
                 $research_id = 0;
             }
 
-            if (ob_get_length()) {
-                ob_end_clean();
-            }
+            $this->discard_output_buffers($ob_base_level);
 
             remove_filter('http_request_timeout', $http_timeout_filter);
 
             return $this->success_response([
-                'title' => $title,
-                'article_content' => trim($clean_content),
-                'excerpt' => $excerpt,
+                'title' => sanitize_text_field($title),
+                'article_content' => wp_kses_post(trim($clean_content)),
+                'excerpt' => sanitize_textarea_field($excerpt),
                 'sources' => $sources,
                 'research_id' => $research_id,
                 'success' => true
             ]);
         } catch (\Throwable $e) {
-            if (ob_get_length()) {
-                ob_end_clean();
-            }
+            $this->discard_output_buffers($ob_base_level);
             remove_filter('http_request_timeout', $http_timeout_filter);
             \PICOT_SEO_WRITING\Logger::error('REST API: generate_article_direct failed', [
                 'message' => $e->getMessage(),
                 'file'    => $e->getFile(),
                 'line'    => $e->getLine(),
             ]);
-            return new \WP_Error('gemini_error', $e->getMessage(), ['status' => 500]);
+            return new \WP_Error('gemini_error', Ai_Client_Helper::localize_api_error_message($e->getMessage()), ['status' => 500]);
         }
+    }
+
+    /**
+     * 参照元リストを URL とタイトルのみに正規化する
+     *
+     * @param mixed $sources JSON 文字列または配列
+     * @return array<int, array{url: string, title: string}>
+     */
+    private function sanitize_sources($sources)
+    {
+        if (is_string($sources)) {
+            $decoded = json_decode($sources, true);
+            $sources = is_array($decoded) ? $decoded : [];
+        }
+
+        if (!is_array($sources)) {
+            return [];
+        }
+
+        $clean = [];
+        foreach ($sources as $source) {
+            if (is_string($source)) {
+                $source = ['url' => $source, 'title' => ''];
+            }
+
+            if (!is_array($source) || empty($source['url'])) {
+                continue;
+            }
+
+            $url = esc_url_raw((string) $source['url']);
+            if ($url === '' || !preg_match('#^https?://#i', $url)) {
+                continue;
+            }
+
+            $clean[] = [
+                'url'   => $url,
+                'title' => isset($source['title']) ? sanitize_text_field((string) $source['title']) : '',
+            ];
+        }
+
+        return $clean;
+    }
+
+    /**
+     * 自分が開始した出力バッファのみを破棄する
+     *
+     * @param int $base_level ob_start 前のバッファ階層
+     */
+    private function discard_output_buffers($base_level)
+    {
+        while (ob_get_level() > $base_level) {
+            ob_end_clean();
+        }
+    }
+
+    /**
+     * リクエストの文体指定を許可済みの値に正規化する
+     *
+     * @param mixed $requested リクエスト値
+     * @return string
+     */
+    private function resolve_writing_style($requested)
+    {
+        $fallback = get_option('picot_seo_writing_writing_style', PICOT_SEO_WRITING_DEFAULT_WRITING_STYLE);
+        $allowed = \PICOT_SEO_WRITING\Admin\Settings_Page::get_allowed_writing_styles();
+
+        if (is_string($requested) && $requested !== '') {
+            $requested = sanitize_key($requested);
+            if (in_array($requested, $allowed, true)) {
+                return $requested;
+            }
+        }
+
+        return in_array($fallback, $allowed, true) ? $fallback : PICOT_SEO_WRITING_DEFAULT_WRITING_STYLE;
     }
 
     /**
@@ -462,11 +529,11 @@ class Content_Endpoint extends REST_Controller
      */
     public function generate_title($request)
     {
-        $research_id = $request->get_param('research_id');
-        $additional_notes = $request->get_param('additional_notes') ?? '';
+        $research_id = (int) $request->get_param('research_id');
+        $additional_notes = sanitize_textarea_field((string) ($request->get_param('additional_notes') ?? ''));
         $language = Admin::get_default_output_language();
 
-        if (empty($research_id)) {
+        if ($research_id <= 0) {
             return $this->error_response(esc_html__('Research ID is required', 'picot-ai-seo-writer'));
         }
 
@@ -513,12 +580,12 @@ class Content_Endpoint extends REST_Controller
             ]);
 
             return $this->success_response($result);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \PICOT_SEO_WRITING\Logger::error('Error in generate_title', [
                 'message' => $e->getMessage(),
                 'research_id' => $research_id
             ]);
-            return $this->error_response($e->getMessage(), 500);
+            return $this->error_response(Ai_Client_Helper::localize_api_error_message($e->getMessage()), 500);
         }
     }
 
@@ -533,9 +600,9 @@ class Content_Endpoint extends REST_Controller
      */
     public function generate_article($request)
     {
-        $research_id = $request->get_param('research_id');
-        $additional_notes = $request->get_param('additional_notes') ?? '';
-        $current_content = $request->get_param('current_content') ?? '';
+        $research_id = (int) $request->get_param('research_id');
+        $additional_notes = sanitize_textarea_field((string) ($request->get_param('additional_notes') ?? ''));
+        $current_content = (string) ($request->get_param('current_content') ?? '');
         $language = Admin::get_default_output_language();
 
         if (empty($research_id)) {
@@ -572,13 +639,13 @@ class Content_Endpoint extends REST_Controller
                 $language
             );
 
-            return $this->success_response(['content' => $content]);
-        } catch (\Exception $e) {
+            return $this->success_response(['content' => wp_kses_post((string) $content)]);
+        } catch (\Throwable $e) {
             \PICOT_SEO_WRITING\Logger::error('Error in generate_article', [
                 'message' => $e->getMessage(),
                 'research_id' => $research_id
             ]);
-            return $this->error_response($e->getMessage(), 500);
+            return $this->error_response(Ai_Client_Helper::localize_api_error_message($e->getMessage()), 500);
         }
     }
 

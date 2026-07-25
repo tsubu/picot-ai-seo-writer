@@ -76,6 +76,52 @@ class Logger
             // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- Bootstrap guard file for logs directory.
             file_put_contents($index, "<?php\n// Silence is golden.\n");
         }
+
+        // ログはアップロードディレクトリ配下に置かれるため、直接アクセスを拒否する。
+        $htaccess = self::$log_dir . '.htaccess';
+        if (!file_exists($htaccess)) {
+            $rules = "<IfModule mod_authz_core.c>\n"
+                . "    Require all denied\n"
+                . "</IfModule>\n"
+                . "<IfModule !mod_authz_core.c>\n"
+                . "    Order allow,deny\n"
+                . "    Deny from all\n"
+                . "</IfModule>\n";
+            // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- Bootstrap guard file for logs directory.
+            file_put_contents($htaccess, $rules);
+        }
+
+        $web_config = self::$log_dir . 'web.config';
+        if (!file_exists($web_config)) {
+            $config = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                . "<configuration>\n"
+                . "    <system.webServer>\n"
+                . "        <authorization>\n"
+                . "            <deny users=\"*\" />\n"
+                . "        </authorization>\n"
+                . "    </system.webServer>\n"
+                . "</configuration>\n";
+            // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- Bootstrap guard file for logs directory.
+            file_put_contents($web_config, $config);
+        }
+    }
+
+    /**
+     * Whether verbose (debug) logging is enabled.
+     *
+     * @return bool
+     */
+    private static function is_debug_enabled()
+    {
+        /**
+         * Filters whether debug-level logs are written.
+         *
+         * @param bool $enabled Defaults to WP_DEBUG.
+         */
+        return (bool) apply_filters(
+            'picot_seo_writing_debug_logging_enabled',
+            defined('WP_DEBUG') && WP_DEBUG
+        );
     }
 
     /**
@@ -87,6 +133,10 @@ class Logger
      */
     public static function log($message, $level = self::LEVEL_INFO, $context = [])
     {
+        if ($level === self::LEVEL_DEBUG && !self::is_debug_enabled()) {
+            return;
+        }
+
         if (!self::$log_dir) {
             self::init();
         }
@@ -186,6 +236,31 @@ class Logger
                 wp_delete_file($file);
             }
         }
+    }
+
+    /**
+     * ログディレクトリを丸ごと削除（アンインストール用）
+     */
+    public static function delete_all_logs()
+    {
+        $dir = self::get_log_directory();
+        if (!$dir || !is_dir($dir)) {
+            return;
+        }
+
+        $files = glob($dir . '*');
+        if (is_array($files)) {
+            foreach ($files as $file) {
+                if (is_file($file)) {
+                    wp_delete_file($file);
+                }
+            }
+        }
+
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- Removing our own log directory on uninstall.
+        @rmdir($dir);
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- Removing our own plugin upload directory on uninstall.
+        @rmdir(dirname(untrailingslashit($dir)) . '/');
     }
 
     /**
