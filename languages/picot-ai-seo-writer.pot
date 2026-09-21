@@ -283,7 +283,9 @@ msgid "Find image placement points"
 msgstr ""
 
 #: includes/admin/class-admin.php
-msgid "Image placement points:\\n\\n"
+msgid ""
+"Image placement points:\n"
+"\n"
 msgstr ""
 
 #: includes/admin/class-admin.php

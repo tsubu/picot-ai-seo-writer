@@ -2,9 +2,9 @@
 Contributors: tsubu
 Tags: seo, ai, gemini, writing, content
 Requires at least: 7.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.3
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,9 @@ Free-tier quotas, token limits, rate limits, model availability, and Google poli
 
 == Changelog ==
 
+= 1.0.6 =
+* Added Picot MCP integration (`picot_seo_writer` tool) for keyword article generation.
+
 = 1.0.5 =
 * Added detailed WordPress AI connector integration, including support for the experimental Connector Approvals feature, readiness checks, and clear setup guidance.
 * Added explicit requirements for the Google Gemini connector and the official AI plugin.
@@ -128,6 +131,9 @@ Free-tier quotas, token limits, rate limits, model availability, and Google poli
 * Reference URL resolution for grounded sources.
 
 == Upgrade Notice ==
+
+= 1.0.6 =
+Adds Picot MCP integration for keyword article generation.
 
 = 1.0.5 =
 Security and connector integration update. Requires the Google Gemini connector and the official AI plugin; free-tier text use is supported with stricter limits.

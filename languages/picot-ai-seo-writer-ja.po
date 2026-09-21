@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: picot-ai-seo-writer 1.0.5\n"
 "Report-Msgid-Bugs-To: https://github.com/tsubu/picot-ai-seo-writer/issues\n"
 "POT-Creation-Date: 2026-07-11 19:12+0900\n"
-"PO-Revision-Date: 2026-07-25 12:46+0000\n"
+"PO-Revision-Date: 2026-08-03 19:18+0000\n"
 "Last-Translator: PICOT\n"
 "Language-Team: PICOT\n"
 "Language: ja\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: cursor ja style-guide fix\n"
+"X-Generator: picot-ai-seo-writer ja build\n"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Picot AI SEO Writer"
@@ -122,15 +122,15 @@ msgstr "1. 画像プロンプトを分析"
 msgid ""
 "Analyze the article, suggest images (1 featured + 5 inline), generate them "
 "with Gemini, and insert them into the post."
-msgstr "記事を分析して画像を提案 (アイキャッチ1枚 + 本文5枚) し、Gemini で生成して記事に挿入します。"
+msgstr "記事を分析して画像を提案 (アイキャッチ画像1枚 + 本文画像5枚) し、Gemini で生成して投稿に挿入します。"
 
 #: includes/admin/class-admin.php
 msgid "Keyword: "
-msgstr "キーワード:"
+msgstr "キーワード: "
 
 #: includes/admin/class-admin.php
 msgid "Notes: "
-msgstr "要望:"
+msgstr "メモ: "
 
 #: includes/admin/class-admin.php
 msgid "(empty)"
@@ -162,7 +162,7 @@ msgstr "調査"
 
 #: includes/admin/class-admin.php
 msgid "Researching..."
-msgstr "調査中..."
+msgstr "調査中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Research completed"
@@ -190,39 +190,39 @@ msgstr "見出しから記事を作成"
 
 #: includes/admin/class-admin.php
 msgid "Generating..."
-msgstr "生成中..."
+msgstr "生成中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Analyzing..."
-msgstr "分析中..."
+msgstr "分析中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Gemini is writing..."
-msgstr "Gemini が執筆中..."
+msgstr "Gemini が執筆中 ..."
 
 #: includes/admin/class-admin.php
 msgid "AI is generating the article..."
-msgstr "AI が記事を生成中..."
+msgstr "AI が記事を生成中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Analyzing image prompts..."
-msgstr "画像プロンプトを分析中..."
+msgstr "画像プロンプトを分析中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Generating featured image..."
-msgstr "アイキャッチ画像を生成中..."
+msgstr "アイキャッチ画像を生成中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Generating image %d..."
-msgstr "画像%dを生成中..."
+msgstr "画像%dを生成中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Generating image %1$d of %2$d..."
-msgstr "全%2$d枚中%1$d枚目の画像を生成中..."
+msgstr "全%2$d枚中%1$d枚目の画像を生成中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Generating all images... (this may take a while)"
-msgstr "全画像を生成中... (時間がかかります)"
+msgstr "全画像を生成中 ... (時間がかかります)"
 
 #: includes/admin/class-admin.php
 msgid "This may take several tens of seconds."
@@ -230,15 +230,15 @@ msgstr "これには数十秒かかる場合があります。"
 
 #: includes/admin/class-admin.php
 msgid "AI is processing. Please wait..."
-msgstr "AI が処理を実行しています。しばらくお待ちください..."
+msgstr "AI が処理を実行しています。しばらくお待ちください ..."
 
 #: includes/admin/class-admin.php
 msgid "Processing..."
-msgstr "処理中..."
+msgstr "処理中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Title: "
-msgstr "タイトル:"
+msgstr "タイトル: "
 
 #: includes/admin/class-admin.php
 msgid "Failed to generate title"
@@ -246,7 +246,7 @@ msgstr "タイトル生成に失敗しました"
 
 #: includes/admin/class-admin.php
 msgid "Headings were inserted into the editor. Edit them freely."
-msgstr "エディターに見出しを展開しました。自由に編集してください。"
+msgstr "エディターに見出しを挿入しました。自由に編集してください。"
 
 #: includes/admin/class-admin.php
 msgid "Article inserted"
@@ -266,7 +266,7 @@ msgstr "先に記事を生成してください"
 
 #: includes/admin/class-admin.php
 msgid "Additional notes"
-msgstr "希望追加内容"
+msgstr "追加メモ"
 
 #: includes/admin/class-admin.php
 msgid "Enter any extra requirements"
@@ -282,7 +282,7 @@ msgstr "記事内容を入力してください"
 
 #: includes/admin/class-admin.php includes/admin/class-meta-box.php
 msgid "Find image placement points"
-msgstr "画像挿入ポイント探索"
+msgstr "画像挿入ポイントを探索"
 
 #: includes/admin/class-admin.php
 msgid ""
@@ -294,7 +294,7 @@ msgstr ""
 
 #: includes/admin/class-admin.php
 msgid "Image: "
-msgstr "画像:"
+msgstr "画像: "
 
 #: includes/admin/class-admin.php
 msgid "Failed to suggest images"
@@ -328,7 +328,7 @@ msgstr "提案とマーカーをクリア"
 
 #: includes/admin/class-admin.php
 msgid "Generate and set as featured image"
-msgstr "生成してアイキャッチに設定"
+msgstr "生成してアイキャッチ画像に設定"
 
 #: includes/admin/class-admin.php
 msgid "Generate and place"
@@ -340,7 +340,7 @@ msgstr "アイキャッチ画像を設定しました"
 
 #: includes/admin/class-admin.php
 msgid "Featured image set and inserted!"
-msgstr "アイキャッチ画像を設定・挿入しました !"
+msgstr "アイキャッチ画像を設定して挿入しました !"
 
 #: includes/admin/class-admin.php
 msgid "Image inserted"
@@ -348,15 +348,15 @@ msgstr "画像を挿入しました"
 
 #: includes/admin/class-admin.php
 msgid "Image inserted into the post!"
-msgstr "画像を記事に挿入しました !"
+msgstr "画像を投稿に挿入しました !"
 
 #: includes/admin/class-admin.php
 msgid "Skipped inserting an image next to another image."
-msgstr "別の画像の隣への挿入をスキップしました。"
+msgstr "別の画像の隣への画像挿入をスキップしました。"
 
 #: includes/admin/class-admin.php
 msgid "Generating image..."
-msgstr "画像を生成中..."
+msgstr "画像を生成中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Image generation failed"
@@ -372,15 +372,15 @@ msgstr "すべての画像は生成済みです !"
 
 #: includes/admin/class-admin.php
 msgid "All images were generated and inserted!"
-msgstr "すべての画像の生成・挿入が完了しました !"
+msgstr "すべての画像を生成して挿入しました !"
 
 #: includes/admin/class-admin.php
 msgid "Japanese: "
-msgstr "日本語:"
+msgstr "日本語: "
 
 #: includes/admin/class-admin.php
 msgid "English: "
-msgstr "英語:"
+msgstr "英語: "
 
 #: includes/admin/class-admin.php
 msgid "Japanese: %d"
@@ -400,15 +400,15 @@ msgstr "不明なエラー"
 
 #: includes/admin/class-admin.php
 msgid "Error: "
-msgstr "エラー:"
+msgstr "エラー: "
 
 #: includes/admin/class-admin.php
 msgid "Communication error: "
-msgstr "通信エラー:"
+msgstr "通信エラー: "
 
 #: includes/admin/class-admin.php
 msgid "Image generation error: "
-msgstr "画像生成エラー:"
+msgstr "画像生成エラー: "
 
 #: includes/admin/class-admin.php
 msgid "Success"
@@ -416,7 +416,7 @@ msgstr "成功しました"
 
 #: includes/admin/class-admin.php
 msgid "Fetching..."
-msgstr "取得中..."
+msgstr "取得中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Model list updated"
@@ -448,7 +448,7 @@ msgstr "閉じる"
 
 #: includes/admin/class-admin.php
 msgid "Fetching model list..."
-msgstr "モデル一覧を取得中..."
+msgstr "モデル一覧を取得中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Failed to fetch model list."
@@ -460,11 +460,11 @@ msgstr "次へ進む"
 
 #: includes/admin/class-admin.php
 msgid "Save settings and finish"
-msgstr "設定を保存して完了する"
+msgstr "設定を保存して完了"
 
 #: includes/admin/class-admin.php
 msgid "Testing connection..."
-msgstr "接続テスト中..."
+msgstr "接続テスト中 ..."
 
 #: includes/admin/class-admin.php
 msgid "A communication error occurred."
@@ -484,11 +484,11 @@ msgstr "セッションが切れています。ページを再読み込みして
 
 #: includes/admin/class-admin.php
 msgid "Testing..."
-msgstr "テスト中..."
+msgstr "テスト中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Connecting..."
-msgstr "通信中..."
+msgstr "通信中 ..."
 
 #: includes/admin/class-admin.php
 msgid "Connection successful"
@@ -595,7 +595,7 @@ msgstr "画像生成に使用するモデルを選択します。"
 #. translators: %s: Recommended image model name
 #: includes/admin/class-settings-page.php
 msgid "Recommended image model: %s"
-msgstr "推奨画像モデル: %s"
+msgstr "推奨画像生成モデル: %s"
 
 #: includes/admin/class-settings-page.php
 msgid ""
@@ -603,7 +603,7 @@ msgid ""
 "with billing enabled. Image generation may not work with API keys that only "
 "include the free tier."
 msgstr ""
-"画像生成モデル (Imagen など) の利用には、Google AI の有料 API プラン (課金設定済み) が必要です。無料枠のみの API "
+"画像生成モデル (Imagen など) の利用には、Google AI の有償 API プラン (課金設定済み) が必要です。無償枠のみの API "
 "キーでは画像生成が利用できない場合があります。"
 
 #: includes/admin/class-settings-page.php
@@ -620,7 +620,7 @@ msgstr "カジュアル (親しみやすい)"
 
 #: includes/admin/class-settings-page.php
 msgid "Professional (polished and trustworthy)"
-msgstr "プロフェッショナル (丁寧・信頼)"
+msgstr "プロフェッショナル (丁寧で信頼感がある)"
 
 #: includes/admin/class-settings-page.php
 msgid "Friendly (warm)"
@@ -628,15 +628,15 @@ msgstr "フレンドリー (温かみ)"
 
 #: includes/admin/class-settings-page.php
 msgid "Technical (precise)"
-msgstr "テクニカル (専門・正確)"
+msgstr "テクニカル (専門的で正確)"
 
 #: includes/admin/class-settings-page.php
 msgid "Humorous (light and fun)"
-msgstr "ユーモア (軽快で楽しい)"
+msgstr "ユーモア (軽快で面白い)"
 
 #: includes/admin/class-settings-page.php
 msgid "Persuasive (passionate)"
-msgstr "説得的 (情熱的)"
+msgstr "説得的 (情熱的で主張のある表現)"
 
 #: includes/admin/class-settings-page.php
 msgid "Informative (factual)"
@@ -648,15 +648,15 @@ msgstr "記事内に挿入される画像のトーンを指定します。"
 
 #: includes/admin/class-settings-page.php
 msgid "Advanced settings"
-msgstr "詳細設定"
+msgstr "高度な設定"
 
 #: includes/admin/class-settings-page.php
 msgid "Optional detailed instructions for content generation"
-msgstr "コンテンツ生成のための詳細な指示 (任意)"
+msgstr "コンテンツ生成向けの任意の詳細指示"
 
 #: includes/admin/class-settings-page.php
 msgid "Role settings<br>(Writing style details)"
-msgstr "ロール設定 <br> (執筆スタイル詳細)"
+msgstr "ロール設定<br>(執筆スタイルの詳細)"
 
 #: includes/admin/class-settings-page.php
 msgid ""
@@ -672,13 +672,13 @@ msgstr "執筆スタイルを詳しく記述してください。これらの指
 
 #: includes/admin/class-settings-page.php
 msgid "Common article generation prompt"
-msgstr "記事生成の共通プロンプト"
+msgstr "共通の記事生成プロンプト"
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "Example: Always include practical tips. Prefer bullet lists for steps. Do "
 "not invent statistics."
-msgstr "例: 実践的なヒントを必ず含める。手順は箇条書きを優先する。根拠のない統計を書かない。"
+msgstr "例: 実践的なヒントを必ず含める。手順は箇条書きを優先する。統計を捏造しない。"
 
 #: includes/admin/class-settings-page.php
 msgid "These instructions are always added to article generation prompts."
@@ -686,13 +686,13 @@ msgstr "これらの指示は、記事生成プロンプトに常に追加され
 
 #: includes/admin/class-settings-page.php
 msgid "Shared image prompt"
-msgstr "共有画像プロンプト"
+msgstr "共通画像プロンプト"
 
 #: includes/admin/class-settings-page.php
 msgid ""
 "Example: Clean composition, no text in the image, natural lighting, blog-"
 "ready illustration."
-msgstr "例: すっきりとした構図、画像内に文字を入れない、自然光、ブログ向けのイラスト。"
+msgstr "例: すっきりした構図、画像内に文字なし、自然光、ブログ向けのイラスト。"
 
 #: includes/admin/class-settings-page.php
 msgid "These instructions are always added to image generation prompts."
@@ -715,7 +715,7 @@ msgid ""
 "Install and activate the Google (Gemini) connector under Settings → "
 "Connectors, then connect your API key. This plugin uses Gemini."
 msgstr ""
-"「設定 → コネクター」で Google (Gemini) コネクターをインストール・有効化し、API キーを接続してください。このプラグインは "
+"「設定 → コネクター」で Google (Gemini) コネクターをインストールして有効化し、API キーを接続してください。このプラグインは "
 "Gemini を使用します。"
 
 #: includes/admin/class-settings-page.php
@@ -809,7 +809,7 @@ msgstr "選択した Gemini モデルはテキスト生成に対応していま�
 
 #: includes/api/class-image-generator.php
 msgid "Image model is not set. Choose one on the settings screen."
-msgstr "画像モデルが設定されていません。設定画面でモデルを選択してください。"
+msgstr "画像生成モデルが設定されていません。設定画面でモデルを選択してください。"
 
 #: includes/api/class-image-generator.php
 msgid ""
@@ -895,18 +895,18 @@ msgid ""
 "AI Studio</a> or the <a href=\"%2$s\" target=\"_blank\" rel=\"noopener "
 "noreferrer\">Gemini API pricing</a> page."
 msgstr ""
-"無償枠のクォータ、レート制限、モデルが無料か有料かは、<a href=\"%1$s\" target=\"_blank\" rel=\"noopener"
+"無償枠のクォータ、レート制限、モデルが無償か有償かは、<a href=\"%1$s\" target=\"_blank\" rel=\"noopener"
 " noreferrer\">Google AI Studio</a> または <a href=\"%2$s\" target=\"_blank\" "
-"rel=\"noopener noreferrer\">Gemini API の料金ページ </a> で確認できます。"
+"rel=\"noopener noreferrer\">Gemini API の料金ページ</a>で確認できます。"
 
 msgid "Gemini API plan"
 msgstr "Gemini API プラン"
 
 msgid "Paid Gemini API (billing enabled)"
-msgstr "有償 Gemini API (課金有効)"
+msgstr "有償 Gemini API (課金設定済み)"
 
 msgid "Free Gemini API (free tier)"
-msgstr "無償 Gemini API (無料枠)"
+msgstr "無償 Gemini API (無償枠)"
 
 msgid ""
 "Choose the plan that matches your Google AI API key. On the free tier, "
@@ -918,7 +918,7 @@ msgstr ""
 msgid ""
 "Free Gemini API plan is selected. Image generation is disabled until you "
 "switch to the paid plan setting."
-msgstr "無償 Gemini API プランが選択されています。有償プラン設定に切り替えるまで、画像生成は無効です。"
+msgstr "無償 Gemini API プランが選択されています。Gemini API プランを「有償」に切り替えるまで、画像生成は無効です。"
 
 msgid ""
 "Image generation requires a paid Gemini API plan. Set Gemini API plan to "
@@ -930,8 +930,8 @@ msgid ""
 "The selected model is not available with this API key. Choose another model "
 "(for example a -lite model) or create a new API key in Google AI Studio."
 msgstr ""
-"選択したモデルはこの API キーでは利用できません。別のモデル (例: -lite モデル) を選ぶか、Google AI Studio で API "
-"キーを再発行してください。"
+"選択したモデルはこの API キーでは利用できません。別のモデル (例: -lite モデル) を選ぶか、Google AI Studio で新しい "
+"API キーを作成してください。"
 
 #. API error localization
 msgid ""
@@ -974,10 +974,10 @@ msgstr "公式の WordPress AI プラグインは有効です。"
 msgid ""
 "With free API usage, service may become unavailable due to Gemini token "
 "limit changes or similar policy updates."
-msgstr "API 無償利用の場合、Gemini のトークン使用上限変更等により、ご利用が不能となることがございます。"
+msgstr "無償 API の利用時は、Gemini のトークン上限やポリシーの変更により、サービスを利用できなくなる場合があります。"
 
 msgid "Save or wait until the post draft is available, then try again."
-msgstr "投稿の下書きが利用可能になるまで保存するか待ってから、もう一度お試しください。"
+msgstr "投稿を保存するか、下書きが利用可能になるまで待ってから、もう一度お試しください。"
 
 msgid "Invalid post ID."
 msgstr "投稿 ID が不正です。"
@@ -998,10 +998,10 @@ msgid "Done: %1$d succeeded, %2$d failed."
 msgstr "完了: 成功%1$d件、失敗%2$d件。"
 
 msgid "The base64 image data was invalid."
-msgstr "base64 画像データが不正です。"
+msgstr "base64形式の画像データが不正です。"
 
 msgid "Failed to decode the base64 image data."
-msgstr "base64 画像データのデコードに失敗しました。"
+msgstr "base64形式の画像をデコードできませんでした。"
 
 msgid "The generated image exceeds the maximum upload size."
 msgstr "生成された画像が最大アップロードサイズを超えています。"
@@ -1016,12 +1016,12 @@ msgid "Invalid or unsupported image format."
 msgstr "無効またはサポートされていない画像形式です。"
 
 msgid "Failed to save the image file to disk."
-msgstr "画像ファイルの保存に失敗しました。"
+msgstr "画像ファイルをディスクに保存できませんでした。"
 
 msgid ""
 "IMPORTANT: On the free tier, return a concise, simplified response, keep it "
 "within the token limit, and always finish the output."
-msgstr "【重要】無償枠では簡潔で簡易的な回答とし、トークン上限内に収めて必ず出力を完了すること。"
+msgstr "重要: 無償枠では簡潔で内容を絞った回答とし、トークン上限内に収めて、必ず出力を完了すること。"
 
 msgid ""
 "After connecting AI providers under Settings → Connectors, activate the "
@@ -1029,7 +1029,7 @@ msgid ""
 "experimental Connector Approvals feature."
 msgstr ""
 "「設定 → コネクター」で AI プロバイダーを接続したあと、公式の WordPress AI プラグインを有効化してください。このプラグインは AI "
-"プラグインの実験的なコネクター承認機能にも対応しています。"
+"プラグインの試験的なコネクター承認機能にも対応しています。"
 
 msgid ""
 "After connecting AI providers under Settings → Connectors, install and "
@@ -1037,9 +1037,9 @@ msgid ""
 "plugin's experimental Connector Approvals feature."
 msgstr ""
 "「設定 → コネクター」で AI プロバイダーを接続したあと、公式の WordPress AI "
-"プラグインをインストールして有効化してください。このプラグインは AI プラグインの実験的なコネクター承認機能にも対応しています。"
+"プラグインをインストールして有効化してください。このプラグインは AI プラグインの試験的なコネクター承認機能にも対応しています。"
 
 msgid ""
 "Do this after connecting providers under Settings → Connectors. Also "
 "supports the AI plugin's experimental Connector Approvals feature."
-msgstr "「設定 → コネクター」でプロバイダーを接続したあとに行ってください。AI プラグインの実験的なコネクター承認機能にも対応しています。"
+msgstr "「設定 → コネクター」でプロバイダーを接続したあとに行ってください。AI プラグインの試験的なコネクター承認機能にも対応しています。"

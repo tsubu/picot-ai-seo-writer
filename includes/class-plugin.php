@@ -52,6 +52,9 @@ class Plugin
         // 他プラグインから API 設定を自動引き継ぎ
         Api_Settings_Sync::init();
 
+        // Picot MCP 連動
+        Mcp_Integration::init();
+
         // 管理画面の初期化
         if (is_admin()) {
             $this->admin = new Admin\Admin();

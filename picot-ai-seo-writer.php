@@ -4,7 +4,7 @@
  * Plugin Name: Picot AI SEO Writer
  * Plugin URI: https://github.com/tsubu/picot-ai-seo-writer
  * Description: Picot AI SEO Writer — generate research-backed SEO articles with Google Gemini from the post editor.
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author: PICOT
  * Author URI: https://picot.tokyo/aio/
  * License: GPL v2 or later
@@ -13,7 +13,7 @@
  * Domain Path: /languages
  * Requires at least: 7.0
  * Requires PHP: 8.3
- * Tested up to: 7.0
+ * Tested up to: 7.1
  */
 
 if (!defined('ABSPATH')) {
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 }
 
 // プラグイン定数
-define('PICOT_SEO_WRITING_VERSION', '1.0.5');
+define('PICOT_SEO_WRITING_VERSION', '1.0.6');
 define('PICOT_SEO_WRITING_PLUGIN_FILE', __FILE__);
 define('PICOT_SEO_WRITING_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PICOT_SEO_WRITING_PLUGIN_URL', plugin_dir_url(__FILE__));
